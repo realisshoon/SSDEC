@@ -1,93 +1,122 @@
 # Team2
 
+---
 
+## RISC-V 기반 보안 접근 제어 플랫폼
 
-## Getting started
+---
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## 프로젝트 개요
+본 프로젝트는 **Xilinx ZedBoard (Zynq-7000 SoC FPGA)**를 기반으로 **RISC-V Core**를 탑재하고,  
+**AXI-Lite Bus 표준**에 따라 설계된 Peripheral을 통합하여 **HW/SW Co-design 기반의 Door Lock 시스템**을 구현합니다. 추가적으로 **오디오(I²S/PWM)** 및 **RFID(SPI)** 기능을 확장하는 것을 목표로 합니다.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+---
 
-## Add your files
+## 프로젝트 목표
+- **SoC 아키텍처 및 Co-design 역량 확보**  
+  - RISC-V Core와 AXI-Lite Bus를 활용하여 시스템 통합 아키텍처 구축  
+  - Peripheral FSM/Register Map 설계 및 제어 → HW/SW 공동 설계 능력 배양  
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+- **핵심 Peripheral RTL 구현**  
+  - GPIO, UART, I²C 등 필수 임베디드 Peripheral RTL 직접 설계  
+  - EEPROM 활용 데이터 저장/관리 로직 구현 → 시스템적 사고력 증진  
 
-```
-cd existing_repo
-git remote add origin http://localhost:8180/sogan-soc-lab/team2.git
-git branch -M main
-git push -uf origin main
-```
+- **시스템 검증 및 신뢰성 확보**  
+  - Testbench 기반 시뮬레이션 및 FPGA 포팅  
+  - Door Lock 로직의 기능적 신뢰성 확보, 디버깅 경험 축적
 
-## Integrate with your tools
+- **추가 확장 기능**
+  - **오디오 출력(I²S/PWM):** 인증 성공/실패에 따른 효과음 출력
+  - **RFID 인증(SPI):** 카드 UID 기반 인증 기능 추가
 
-- [ ] [Set up project integrations](http://localhost:8180/sogan-soc-lab/team2/-/settings/integrations)
+---
 
-## Collaborate with your team
+##  세부 구성요소
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+### 1. RISC-V Core (RV32I)
+- 5-stage Pipeline (IF, ID, EX, MEM, WB)
+- AXI-Lite Master로 동작, Peripheral 접근 제어
 
-## Test and Deploy
+### 2. AXI-Lite Interconnect
+- CPU와 Peripheral 간 데이터 전송
+- Memory-Mapped IO 방식 (주소 기반 접근)
 
-Use the built-in continuous integration in GitLab.
+### 3. GPIO
+- **입력:** Keypad → 비밀번호 입력
+- **출력:** LED → Access 결과 표시
+- Register Map을 통한 제어 및 상태 확인
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+### 4. UART
+- PC ↔ FPGA 통신
+- Debug Log 출력 (“Access Granted/Denied”)
+- 관리자 모드에서 비밀번호 초기화 가능
 
-***
+### 5. I²C (EEPROM)
+- 비밀번호 저장/읽기
+- FSM 기반 Start → Addr → Data R/W → Stop 동작
+- Busy/ACK 플래그 제공
 
-# Editing this README
+### 6. Door Lock FSM
+- 상태: Idle → Input → Compare → Granted/Denied → Reset
+- 3회 이상 실패 시 Lockdown 모드 진입
+- LED/UART/Audio 제어 신호 발생
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+### 7. 오디오 모듈 (확장)
+- **I²S CODEC:** 헤드폰/스피커 효과음 출력
+- **PWM 부저:** 단순 비프음 패턴 구현
 
-## Suggestions for a good README
+### 8. RFID 모듈 (확장)
+- SPI Master ↔ RFID Reader 통신
+- 카드 UID 획득 후 EEPROM 저장 UID와 비교
+- UID 일치 시 Access Granted
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+---
 
-## Name
-Choose a self-explaining name for your project.
+## 개발 계획 (8주차 기준)
+1~2주 → 요구사항 정의 & 설계
+- Door Lock 시스템 요구사항 도출
+- FSM 상태도 및 Block Diagram 작성
+- Peripheral 기능/역할 정리 (GPIO, UART, I²C)
+- Register Map 설계
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+3~4주 → Peripheral RTL 설계 & Simulation 검증
+- GPIO(Keypad/LED), UART, I²C(EEPROM) RTL 설계
+- 단위 Testbench 작성 및 파형 검증
+- FSM 동작 Simulation
+- DR-I 발표 준비 및 진행 (설계 + Simulation 결과 공유)
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+5주차 → FPGA 검증 (기본 기능)
+- FPGA 보드에서 GPIO/UART/I²C 동작 검증
+- Door Lock FSM + 비밀번호 인증 동작 확인
+- Debugging 및 개선
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+6주차 → RISC-V F/W 개발 & 통합
+- 비밀번호 입력/검증 루틴 구현
+- UART Debug 출력, EEPROM 연동 테스트
+- FPGA에서 F/W 실행, 전체 시스템 통합 검증
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+7주차 → DR-II 및 최종 시연 (+ 확장 기능)
+- Door Lock 최종 시연 (Keypad/UART 입력 + EEPROM 저장/검증 + LED/UART 출력)
+- 최종 발표 및 보고서 작성
+- **확장 기능(선택):** 오디오(I²S/PWM), RFID 인증(SPI)
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+---
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+## 검증 방법 (Verification)
+- **단위 모듈 검증**  
+  - 각 Peripheral RTL에 대한 Testbench 작성  
+  - Simulation 파형 분석을 통한 동작 검증  
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+- **AXI-Lite Bus 검증**  
+  - Core ↔ Peripheral 간 AXI-Lite 트랜잭션 정상 동작 여부 확인
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+- **시스템 기능 시연**  
+  - **정상 동작:** 올바른 비밀번호 입력 → PC에 `"Access Granted"` 출력, LED ON  
+  - **오류 동작:** 잘못된 비밀번호 입력 → PC에 `"Access Denied"` 출력, LED 3회 깜빡임  
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+---
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+## 개발 환경 (Development Environment)
+**플랫폼** ZedBoard (Xilinx Zynq-7000 series SoC FPGA)
+**EDA Tool** Vivado 2021.2
+**OS / Toolchain** Ubuntu 22.04, RISC-V GCC Toolchain
