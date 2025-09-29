@@ -120,3 +120,4 @@
 **플랫폼** ZedBoard (Xilinx Zynq-7000 series SoC FPGA)\
 **EDA Tool** Vivado 2021.2\
 **OS / Toolchain** Ubuntu 22.04, RISC-V GCC Toolchain\
+
