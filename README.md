@@ -1,4 +1,5 @@
 # Team2
+![프로젝트 다이어그램](docs/images/image.png)
 
 ---
 
