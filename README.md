@@ -1,7 +1,7 @@
 # Team2
 
 
-##Diagram
+## Project Diagram
 ![프로젝트 다이어그램](docs/images/image.png)
 
 ---
