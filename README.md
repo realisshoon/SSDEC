@@ -1,5 +1,9 @@
 # Team2
 
+
+##Diagram
+![프로젝트 다이어그램](docs/images/image.png)
+
 ---
 
 ## RISC-V 기반 보안 접근 제어 플랫폼
