@@ -1,6 +1,6 @@
 #  Door Lock System 프로젝트 일정 (확장 기능 포함)
    
- ![스케쥴 이미지](docs/images/imagesch.png)
+ ![스케쥴 이미지](docs/images/unnamed.png)
 
 ## 1주차 (09/29 ~ 10/03)
 
