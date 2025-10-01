@@ -15,71 +15,62 @@
 - Peripheral 초기 목록 정리 (GPIO, UART, I²C, SPI, I²S)
 
 ### 10/01 (수)
-- **Kick-off 미팅** (1차 공유)
-- FSM 큰 틀 설계 (Idle → Input → Verify → Success/Fail → Lock)
+- 역할 분담 (GPIO,I2C)
+- RISC-V 플랫폼 분석 (IP 파악)
 - 블록 다이어그램 스케치 (RISC-V ↔ AXI ↔ Peripheral 구조)
 
 ### 10/02 (목)
-- FSM 상태도 구체화 (상태/전이/출력 조건)
-- State별 입력 이벤트 정의 (Keypad 입력, Timeout 등)
-- FSM 초안 검증 (상호 모순 여부 확인)
+- Kick-off,
+- GPIO, I2C 상세 분석 (레지스터 맵 초안 구상)
 
 ### 10/03 (금)
-- 휴강일 → 정리/보강: FSM, Block Diagram 초안 다듬기
-- 발표용 슬라이드에 기초 구조 반영
+- 휴강일 →  I2C 자율 학습
 
 ---
 
 ## 2주차 (10/06 ~ 10/10)
 
-### 전일 (월~금)
-- 추석 연휴 + 대체공휴일 + 한글날 + 휴강
-- **과제**: FSM/Block Diagram, Peripheral 기능 명세서 초안 완성, 개인공부
+### 전일 (월~수)
+- 추석 연휴
+- **과제**: 8~9 I2C 자율 학습/ 10 위든타워 자율 출근 및 I2C 자율 학습/RTL design
 
 ---
 
 ## 3주차 (10/13 ~ 10/17)
 
 ### 10/13 (월)
-- Register Map 설계 (GPIO, UART, I²C, SPI, I²S 레지스터 목록 및 주소 배정)
-- 각 레지스터 필드 정의
+- Packaging 강의, RTL design
 
 ### 10/14 (화)
-- Peripheral Spec 문서화 (기능, 입출력, 인터페이스 명세)
-- 시뮬레이션 시나리오 정의 (비밀번호 인증, RFID 인증, 오디오 출력 포함)
+- Packaging 강의, RTL design
 
 ### 10/15 (수)
 - **초청 세미나 참석**
-- 세미나 정리노트 작성 → 발표 자료에 반영
 
 ### 10/16 (목)
-- GPIO RTL 설계 시작 (Keypad 입력 Debounce, LED 출력 제어)
-- 간단한 Testbench 작성
+- Packaging 강의, RTL design 및 simulation 검증
 
 ### 10/17 (금)
-- UART RTL 설계 (Tx/Rx 모듈, Baudrate Generator)
-- UART 단위 Testbench 작성
+- Packaging 강의, RTL design 및 simulation 검증
 
 ---
 
 ## 4주차 (10/20 ~ 10/24)
 
 ### 10/20 (월)
-- I²C RTL 설계 (EEPROM 제어 FSM 포함)
-- AT24C02 데이터시트 분석
+- GPIO 학습
 
 ### 10/21 (화)
-- FSM RTL 설계 (Top FSM → Peripheral Control 연결)
+- GPIO 학습
 
 ### 10/22 (수)
-- FSM Testbench 작성 (Keypad 입력 → EEPROM 비교)
+- RTL design 및 simulation 검증
 
 ### 10/23 (목)
-- FSM Simulation (상태 변화 확인, 파형 검증)
+- RTL design 및 simulation 검증
 
 ### 10/24 (금)
-- Simulation 결과 정리
-- DR-I 발표 자료 초안 작성
+- RTL design 및 simulation 검증
 
 ---
 
