@@ -1,0 +1,74 @@
+[*]
+[*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
+[*] Mon Jun 30 05:02:00 2025
+[*]
+[dumpfile] "/home/adki/work/services/2025_03_01_HoongA/99_develop/iplib/stream_to_mem_ring_dual_sync/v0.4/sim.cosim/xsim/wave.vcd"
+[dumpfile_mtime] "Mon Jun 30 05:01:34 2025"
+[dumpfile_size] 36082792
+[savefile] "/home/adki/work/services/2025_03_01_HoongA/99_develop/iplib/stream_to_mem_ring_dual_sync/v0.4/sim.cosim/xsim/gtkwave.gtkw"
+[timestart] 75640000
+[size] 1874 1043
+[pos] -1 -1
+*-21.233900 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.u_stream_to_mem_ring.
+[treeopen] top.u_stream_to_mem_ring.BLK_MULTI.u_stream_if.
+[sst_width] 233
+[signals_width] 444
+[sst_expanded] 1
+[sst_vpaned_height] 298
+@200
+-u_stream_if
+@28
+top.u_stream_to_mem_ring.BLK_MULTI.u_stream_if.axis_aclk
+top.u_stream_to_mem_ring.BLK_MULTI.u_stream_if.sync_down_synced
+top.u_stream_to_mem_ring.BLK_MULTI.u_stream_if.sync_up_synced
+@820
+top.u_stream_to_mem_ring.BLK_MULTI.u_stream_if.state_ascii[159:0]
+@22
+top.u_stream_to_mem_ring.BLK_MULTI.u_stream_if.s_tdata[127:0]
+@28
+top.u_stream_to_mem_ring.BLK_MULTI.u_stream_if.s_tlast
+top.u_stream_to_mem_ring.BLK_MULTI.u_stream_if.s_tready
+top.u_stream_to_mem_ring.BLK_MULTI.u_stream_if.s_tvalid
+@22
+top.u_stream_to_mem_ring.BLK_MULTI.u_stream_if.d_tdata[127:0]
+@28
+top.u_stream_to_mem_ring.BLK_MULTI.u_stream_if.d_tlast
+top.u_stream_to_mem_ring.BLK_MULTI.u_stream_if.d_tuser
+top.u_stream_to_mem_ring.BLK_MULTI.u_stream_if.d_tvalid
+@22
+top.u_stream_to_mem_ring.BLK_MULTI.u_stream_if.m_tdata[127:0]
+@28
+top.u_stream_to_mem_ring.BLK_MULTI.u_stream_if.m_tlast
+top.u_stream_to_mem_ring.BLK_MULTI.u_stream_if.m_tready
+top.u_stream_to_mem_ring.BLK_MULTI.u_stream_if.m_tuser
+top.u_stream_to_mem_ring.BLK_MULTI.u_stream_if.m_tvalid
+@200
+-u_afifo
+@28
+top.u_stream_to_mem_ring.fifo_empty
+top.u_stream_to_mem_ring.fifo_full
+@200
+-u_dma
+@28
+top.u_stream_to_mem_ring.u_dma.aclk
+@820
+top.u_stream_to_mem_ring.u_dma.state_ascii[79:0]
+@23
+top.u_stream_to_mem_ring.u_dma.m_axi_awaddr[31:0]
+top.u_stream_to_mem_ring.u_dma.m_axi_awlen[7:0]
+@22
+top.u_stream_to_mem_ring.u_dma.m_axi_wdata[63:0]
+@28
+top.u_stream_to_mem_ring.u_dma.m_axi_wlast
+top.u_stream_to_mem_ring.u_dma.m_axi_wready
+@22
+top.u_stream_to_mem_ring.u_dma.m_axi_wstrb[7:0]
+@28
+top.u_stream_to_mem_ring.u_dma.m_axi_wvalid
+@22
+top.u_stream_to_mem_ring.u_dma.num_bytes[31:0]
+top.u_stream_to_mem_ring.u_dma.num_bytes[31:0]
+[pattern_trace] 1
+[pattern_trace] 0

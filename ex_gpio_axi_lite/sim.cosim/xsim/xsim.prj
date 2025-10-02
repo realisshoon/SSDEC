@@ -1,0 +1,10 @@
+sv work -d AMBA_AXI4 -d SIM -d VCD\
+        -i ${DIR_BENCH}\
+           ${DIR_BENCH}/top.sv\
+           ${DIR_BENCH}/cosim_bfm_axi_lite.sv\
+           ${DIR_BENCH}/axi4_to_lite.v\
+        -i ${DIR_COSIM_INC}/verilog\
+           ${DIR_COSIM_INC}/verilog/cosim_bfm_axi_dpi.sv\
+        -i ${DIR_RTL}\
+           ${DIR_RTL}/gpio_axi_lite.v
+
