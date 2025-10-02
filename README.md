@@ -85,8 +85,8 @@
   - Core ↔ Peripheral 간 AXI-Lite 트랜잭션 정상 동작 여부 확인
 
 - **시스템 기능 시연**  
-  - **정상 동작:** 올바른 비밀번호 입력 → PC에 `"Access Granted"` 출력, LED ON  
-  - **오류 동작:** 잘못된 비밀번호 입력 → PC에 `"Access Denied"` 출력, LED 3회 깜빡임  
+  - **정상 동작 : ** 올바른 비밀번호 입력 → PC에 `"Access Granted"` 출력, LED ON  
+  - **오류 동작 : ** 잘못된 비밀번호 입력 → PC에 `"Access Denied"` 출력, LED 3회 깜빡임  
 
 ---
 
