@@ -76,36 +76,6 @@
 
 ---
 
-## 개발 계획
-1~2주 → 요구사항 정의 & 설계
-- Door Lock 시스템 요구사항 도출
-- FSM 상태도 및 Block Diagram 작성
-- Peripheral 기능/역할 정리 (GPIO, UART, I²C)
-- Register Map 설계
-
-3~4주 → Peripheral RTL 설계 & Simulation 검증
-- GPIO(Keypad/LED), UART, I²C(EEPROM) RTL 설계
-- 단위 Testbench 작성 및 파형 검증
-- FSM 동작 Simulation
-- DR-I 발표 준비 및 진행 (설계 + Simulation 결과 공유)
-
-5주차 → FPGA 검증 (기본 기능)
-- FPGA 보드에서 GPIO/UART/I²C 동작 검증
-- Door Lock FSM + 비밀번호 인증 동작 확인
-- Debugging 및 개선
-
-6주차 → RISC-V F/W 개발 & 통합
-- 비밀번호 입력/검증 루틴 구현
-- UART Debug 출력, EEPROM 연동 테스트
-- FPGA에서 F/W 실행, 전체 시스템 통합 검증
-
-7주차 → DR-II 및 최종 시연 (+ 확장 기능)
-- Door Lock 최종 시연 (Keypad/UART 입력 + EEPROM 저장/검증 + LED/UART 출력)
-- 최종 발표 및 보고서 작성
-- **확장 기능(선택):** 오디오(I²S/PWM), RFID 인증(SPI)
-
----
-
 ## 검증 방법 (Verification)
 - **단위 모듈 검증**  
   - 각 Peripheral RTL에 대한 Testbench 작성  
@@ -123,5 +93,5 @@
 ## 개발 환경 (Development Environment)
 **플랫폼** ZedBoard (Xilinx Zynq-7000 series SoC FPGA)\
 **EDA Tool** Vivado 2021.2\
-**OS / Toolchain** Ubuntu 22.04, RISC-V GCC Toolchain\
+**OS / Toolchain** Ubuntu 22.04, RISC-V GCC Toolchain
 
