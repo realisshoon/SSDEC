@@ -1,0 +1,203 @@
+# Created by https://www.toptal.com/developers/gitignore/api/xilinxvivado,vivado,c,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=xilinxvivado,vivado,c,visualstudiocode
+
+### C ###
+# Prerequisites
+*.d
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Linker output
+*.ilk
+*.map
+*.exp
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
+
+### Vivado ###
+#########################################################################################################
+##	This is an example .gitignore file for Vivado, please treat it as an example as
+##	it might not be complete. In addition, XAPP 1165 should be followed.
+#########
+#Exclude all
+*
+!*/
+!.gitignore
+###########################################################################
+##	VIVADO
+#Source files:
+#Do NOT ignore VHDL, Verilog, block diagrams or EDIF files.
+!*.vhd
+!*.v
+!*.sv
+!*.bd
+!*.edif
+#IP files
+#.xci: synthesis and implemented not possible - you need to return back to the previous version to generate output products
+#.xci + .dcp: implementation possible but not re-synthesis
+#*.xci(www.spiritconsortium.org)
+!*.xci
+#.xcix: Core container file
+#.xcix: https://www.xilinx.com/support/documentation/sw_manuals/xilinx2016_2/ug896-vivado-ip.pdf (Page 41)
+!*.xcix
+#*.dcp(checkpoint files)
+!*.dcp
+!*.vds
+!*.pb
+#All bd comments and layout coordinates are stored within .ui
+!*.ui
+!*.ooc
+#System Generator
+!*.mdl
+!*.slx
+!*.bxml
+#Simulation logic analyzer
+!*.wcfg
+!*.coe
+#MIG
+!*.prj
+!*.mem
+#Project files
+#XPR  +  *.XML ? XPR (Files are merged into a single XPR file for 2014.1 version)
+#Do NOT ignore *.xpr files
+!*.xpr
+#Include *.xml files for 2013.4 or earlier version
+!*.xml
+#Constraint files
+#Do NOT ignore *.xdc files
+!*.xdc
+#TCL - files
+!*.tcl
+#Journal - files
+!*.jou
+#Reports
+!*.rpt
+!*.txt
+!*.vdi
+#C-files
+!*.c
+!*.h
+!*.elf
+!*.bmm
+!*.xmp
+
+### XilinxVivado ###
+#.xci: IP-core property file with core container disabled
+#*.dcp (checkpoint files: better be ignored!)
+#!*.dcp
+
+### RISC-V Toolchain Build Files ###
+# RISC-V toolchain build directories
+riscv32_toolchain/riscv-gnu-toolchain/build32/
+riscv32_toolchain/riscv-gnu-toolchain/build64/
+riscv32_toolchain/riscv-gnu-toolchain/build/
+
+# RISC-V toolchain install directories
+riscv32_toolchain/riscv-gnu-toolchain/install/
+
+# RISC-V build logs
+build_riscv-gnu-toolchain.log
+
+### Vivado Simulation Files ###
+# Vivado simulation directories
+xsim.dir/
+xsim/
+
+# Vivado simulation files
+*.wdb
+*.vcd
+*.pb
+*.jou
+*.log
+vivado_pid*.str
+
+# Vivado temporary files
+*.tmp
+*.cache
+
+### RISC-V Software Build Files ###
+# Object files
+obj/
+build/
+*.o
+*.elf
+*.bin
+*.hex
+
+# RISC-V specific build artifacts
+*.riscv
+*.rv32
+
+### Additional Vivado Files ###
+# Vivado checkpoint files (better to ignore)
+*.dcp
+
+# Vivado reports
+*.rpt
+*.txt
+
+# Vivado temporary directories
+.cache/
+.tmp/
+
+# End of https://www.toptal.com/developers/gitignore/api/xilinxvivado,vivado,c,visualstudiocode

@@ -1,6 +1,0 @@
-sv work \
-        -i ../../bench/verilog\
-        -i ../../rtl/verilog\
-           ../../bench/verilog/top.sv\
-           ../../bench/verilog/tester.sv\
-           ../../rtl/verilog/gpio_axi_lite.v
