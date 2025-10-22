@@ -1,0 +1,79 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"0.367666",
+   "Default View_TopLeft":"-596,30",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
+#  -string -flagsOSRD
+preplace port port-id_BOARD_CLK_IN -pg 1 -lvl 0 -x 0 -y 60 -defaultsOSRD
+preplace port port-id_BOARD_RST_SW -pg 1 -lvl 0 -x 0 -y 80 -defaultsOSRD
+preplace port port-id_SL_CS_N -pg 1 -lvl 3 -x 1090 -y 100 -defaultsOSRD
+preplace port port-id_SL_FLAGA -pg 1 -lvl 0 -x 0 -y 100 -defaultsOSRD
+preplace port port-id_SL_FLAGB -pg 1 -lvl 0 -x 0 -y 120 -defaultsOSRD
+preplace port port-id_SL_FLAGC -pg 1 -lvl 0 -x 0 -y 140 -defaultsOSRD
+preplace port port-id_SL_FLAGD -pg 1 -lvl 0 -x 0 -y 160 -defaultsOSRD
+preplace port port-id_SL_OE_N -pg 1 -lvl 3 -x 1090 -y 120 -defaultsOSRD
+preplace port port-id_SL_PCLK -pg 1 -lvl 3 -x 1090 -y 140 -defaultsOSRD
+preplace port port-id_SL_PKTEND_N -pg 1 -lvl 3 -x 1090 -y 160 -defaultsOSRD
+preplace port port-id_SL_RD_N -pg 1 -lvl 3 -x 1090 -y 180 -defaultsOSRD
+preplace port port-id_SL_RST_N -pg 1 -lvl 0 -x 0 -y 180 -defaultsOSRD
+preplace port port-id_SL_WR_N -pg 1 -lvl 3 -x 1090 -y 200 -defaultsOSRD
+preplace port port-id_uart_cts_n -pg 1 -lvl 0 -x 0 -y 200 -defaultsOSRD
+preplace port port-id_uart_rts_n -pg 1 -lvl 3 -x 1090 -y 220 -defaultsOSRD
+preplace port port-id_uart_rxd -pg 1 -lvl 0 -x 0 -y 220 -defaultsOSRD
+preplace port port-id_uart_txd -pg 1 -lvl 3 -x 1090 -y 240 -defaultsOSRD
+preplace portBus SL_AD -pg 1 -lvl 3 -x 1090 -y 20 -defaultsOSRD
+preplace portBus SL_DT -pg 1 -lvl 3 -x 1090 -y 40 -defaultsOSRD
+preplace portBus SL_MODE -pg 1 -lvl 0 -x 0 -y 20 -defaultsOSRD
+preplace portBus gpio_in -pg 1 -lvl 0 -x 0 -y 40 -defaultsOSRD
+preplace portBus gpio_out -pg 1 -lvl 3 -x 1090 -y 80 -defaultsOSRD
+preplace portBus gpio_dir -pg 1 -lvl 3 -x 1090 -y 60 -defaultsOSRD
+preplace inst axi_bram_ctrl_0 -pg 1 -lvl 1 -x 410 -y 80 -defaultsOSRD
+preplace inst axi_bram_ctrl_0_bram -pg 1 -lvl 1 -x 410 -y 210 -defaultsOSRD
+preplace inst bfm_axi_if_0 -pg 1 -lvl 1 -x 410 -y 560 -defaultsOSRD
+preplace inst clk_wiz_0 -pg 1 -lvl 1 -x 410 -y 340 -defaultsOSRD
+preplace inst proc_sys_reset_0 -pg 1 -lvl 1 -x 410 -y 800 -defaultsOSRD
+preplace inst riscv_cache_soc_0 -pg 1 -lvl 1 -x 410 -y 1000 -defaultsOSRD
+preplace inst rstmgra_0 -pg 1 -lvl 2 -x 910 -y 960 -defaultsOSRD
+preplace netloc BOARD_CLK_IN_1 1 0 1 110 60n
+preplace netloc BOARD_RST_SW_1 1 0 1 50 80n
+preplace netloc Net 1 1 2 690 40 NJ
+preplace netloc SL_FLAGA_0_1 1 0 1 90 100n
+preplace netloc SL_FLAGB_0_1 1 0 1 80 120n
+preplace netloc SL_FLAGC_0_1 1 0 1 40 140n
+preplace netloc SL_FLAGD_0_1 1 0 1 30 160n
+preplace netloc SL_MODE_0_1 1 0 1 100 20n
+preplace netloc SL_RST_N_0_1 1 0 1 70 180n
+preplace netloc bfm_axi_if_0_GPOUT 1 1 1 690 660n
+preplace netloc bfm_axi_if_0_SL_AD 1 1 2 680 20 NJ
+preplace netloc bfm_axi_if_0_SL_CS_N 1 1 2 670 100 NJ
+preplace netloc bfm_axi_if_0_SL_OE_N 1 1 2 710 120 NJ
+preplace netloc bfm_axi_if_0_SL_PCLK 1 1 2 700 140 NJ
+preplace netloc bfm_axi_if_0_SL_PKTEND_N 1 1 2 740 160 NJ
+preplace netloc bfm_axi_if_0_SL_RD_N 1 1 2 730 180 NJ
+preplace netloc bfm_axi_if_0_SL_WR_N 1 1 2 NJ 560 1050
+preplace netloc clk_wiz_0_clk_out1 1 0 2 160 1200 660
+preplace netloc clk_wiz_0_clk_out2 1 0 2 140 1160 720
+preplace netloc clk_wiz_0_locked 1 0 2 170 1170 650
+preplace netloc proc_sys_reset_0_interconnect_aresetn 1 1 1 670 820n
+preplace netloc proc_sys_reset_0_peripheral_aresetn 1 0 2 120 1180 610
+preplace netloc riscv_cache_soc_0_uart_rts_n 1 1 2 770J 870 1060
+preplace netloc riscv_cache_soc_0_uart_txd 1 1 2 680J 880 1070
+preplace netloc rstmgra_0_GPIN 1 0 3 150 1220 NJ 1220 1070
+preplace netloc rstmgra_0_bus_resetn 1 0 3 180 1230 NJ 1230 1060
+preplace netloc rstmgra_0_cpu_resetn 1 0 3 200 1210 NJ 1210 1050
+preplace netloc uart_cts_n_1 1 0 1 20 200n
+preplace netloc uart_rxd_1 1 0 1 N 220
+preplace netloc gpio_in_1 1 0 1 60 40n
+preplace netloc riscv_cache_soc_0_gpio_out 1 1 2 760 80 NJ
+preplace netloc riscv_cache_soc_0_gpio_dir 1 1 2 750 60 NJ
+preplace netloc util_vector_logic_0_Res 1 0 2 190 1190 640
+preplace netloc axi_bram_ctrl_0_BRAM_PORTA 1 0 2 210 1120 630
+preplace netloc axi_bram_ctrl_0_BRAM_PORTB 1 0 2 220 1130 620
+preplace netloc bfm_axi_if_0_m_axi 1 0 2 230 1140 600
+preplace netloc riscv_cache_soc_0_m_axi_mem 1 0 2 130 1150 590
+levelinfo -pg 1 0 410 910 1090
+pagesize -pg 1 -db -bbox -sgen -170 0 1250 1240
+"
+}
+

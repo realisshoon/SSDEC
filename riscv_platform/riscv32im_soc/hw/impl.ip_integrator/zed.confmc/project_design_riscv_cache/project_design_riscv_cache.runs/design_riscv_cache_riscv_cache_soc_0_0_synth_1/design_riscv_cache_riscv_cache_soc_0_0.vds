@@ -1,0 +1,243 @@
+#-----------------------------------------------------------
+# Vivado v2021.2 (64-bit)
+# SW Build 3367213 on Tue Oct 19 02:47:39 MDT 2021
+# IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
+# Start of session at: Tue Oct 21 15:52:32 2025
+# Process ID: 16890
+# Current directory: /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_riscv_cache_soc_0_0_synth_1
+# Command line: vivado -log design_riscv_cache_riscv_cache_soc_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_riscv_cache_riscv_cache_soc_0_0.tcl
+# Log file: /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_riscv_cache_soc_0_0_synth_1/design_riscv_cache_riscv_cache_soc_0_0.vds
+# Journal file: /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_riscv_cache_soc_0_0_synth_1/vivado.jou
+# Running On: sogang-500TGA-500SGA, OS: Linux, CPU Frequency: 3710.612 MHz, CPU Physical cores: 10, Host memory: 16429 MB
+#-----------------------------------------------------------
+source design_riscv_cache_riscv_cache_soc_0_0.tcl -notrace
+create_project: Time (s): cpu = 00:00:03 ; elapsed = 00:00:11 . Memory (MB): peak = 2719.977 ; gain = 0.000 ; free physical = 2535 ; free virtual = 81798
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/opt/confmc/2020.06/hwlib/trx_axi/gen_ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2021.2/data/ip'.
+Command: synth_design -top design_riscv_cache_riscv_cache_soc_0_0 -part xc7z020clg484-1 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg484-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 17245
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:22 . Memory (MB): peak = 2719.977 ; gain = 0.000 ; free physical = 193 ; free virtual = 77286
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'design_riscv_cache_riscv_cache_soc_0_0' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/synth/design_riscv_cache_riscv_cache_soc_0_0.v:59]
+INFO: [Synth 8-6157] synthesizing module 'riscv_cache_soc' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:47]
+INFO: [Synth 8-6157] synthesizing module 'riscv_cache_core' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_core.v:37]
+INFO: [Synth 8-6157] synthesizing module 'riscv_core' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_core.v:42]
+INFO: [Synth 8-6157] synthesizing module 'riscv_exec' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_exec.v:42]
+INFO: [Synth 8-6157] synthesizing module 'riscv_alu' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_alu.v:41]
+INFO: [Synth 8-6155] done synthesizing module 'riscv_alu' (1#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_alu.v:41]
+INFO: [Synth 8-6155] done synthesizing module 'riscv_exec' (2#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_exec.v:42]
+INFO: [Synth 8-6157] synthesizing module 'riscv_decode' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_decode.v:42]
+INFO: [Synth 8-6157] synthesizing module 'riscv_decoder' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_decoder.v:43]
+INFO: [Synth 8-6155] done synthesizing module 'riscv_decoder' (3#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_decoder.v:43]
+INFO: [Synth 8-6155] done synthesizing module 'riscv_decode' (4#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_decode.v:42]
+INFO: [Synth 8-6157] synthesizing module 'riscv_mmu' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_mmu.v:42]
+INFO: [Synth 8-6155] done synthesizing module 'riscv_mmu' (5#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_mmu.v:42]
+INFO: [Synth 8-6157] synthesizing module 'riscv_lsu' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_lsu.v:42]
+INFO: [Synth 8-226] default block is never used [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_lsu.v:224]
+INFO: [Synth 8-6157] synthesizing module 'riscv_lsu_fifo' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_lsu.v:438]
+INFO: [Synth 8-6155] done synthesizing module 'riscv_lsu_fifo' (6#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_lsu.v:438]
+INFO: [Synth 8-6155] done synthesizing module 'riscv_lsu' (7#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_lsu.v:42]
+INFO: [Synth 8-6157] synthesizing module 'riscv_csr' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_csr.v:42]
+INFO: [Synth 8-6157] synthesizing module 'riscv_csr_regfile' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_csr_regfile.v:41]
+WARNING: [Synth 8-6014] Unused sequential element csr_medeleg_q_reg was removed.  [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_csr_regfile.v:514]
+WARNING: [Synth 8-6014] Unused sequential element csr_scause_q_reg was removed.  [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_csr_regfile.v:520]
+WARNING: [Synth 8-6014] Unused sequential element csr_stval_q_reg was removed.  [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_csr_regfile.v:521]
+WARNING: [Synth 8-6014] Unused sequential element csr_sscratch_q_reg was removed.  [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_csr_regfile.v:523]
+INFO: [Synth 8-6155] done synthesizing module 'riscv_csr_regfile' (8#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_csr_regfile.v:41]
+INFO: [Synth 8-6155] done synthesizing module 'riscv_csr' (9#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_csr.v:42]
+INFO: [Synth 8-6157] synthesizing module 'riscv_multiplier' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_multiplier.v:42]
+WARNING: [Synth 8-6014] Unused sequential element result_e3_q_reg was removed.  [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_multiplier.v:154]
+INFO: [Synth 8-6155] done synthesizing module 'riscv_multiplier' (10#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_multiplier.v:42]
+INFO: [Synth 8-6157] synthesizing module 'riscv_divider' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_divider.v:42]
+INFO: [Synth 8-6155] done synthesizing module 'riscv_divider' (11#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_divider.v:42]
+INFO: [Synth 8-6157] synthesizing module 'riscv_issue' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_issue.v:42]
+INFO: [Synth 8-6157] synthesizing module 'riscv_pipe_ctrl' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_pipe_ctrl.v:41]
+WARNING: [Synth 8-6014] Unused sequential element npc_e1_q_reg was removed.  [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_pipe_ctrl.v:172]
+WARNING: [Synth 8-6014] Unused sequential element npc_e2_q_reg was removed.  [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_pipe_ctrl.v:252]
+WARNING: [Synth 8-6014] Unused sequential element npc_wb_q_reg was removed.  [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_pipe_ctrl.v:378]
+INFO: [Synth 8-6155] done synthesizing module 'riscv_pipe_ctrl' (12#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_pipe_ctrl.v:41]
+INFO: [Synth 8-6157] synthesizing module 'riscv_regfile' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_regfile.v:41]
+INFO: [Synth 8-6155] done synthesizing module 'riscv_regfile' (13#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_regfile.v:41]
+INFO: [Synth 8-6155] done synthesizing module 'riscv_issue' (14#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_issue.v:42]
+INFO: [Synth 8-6157] synthesizing module 'riscv_fetch' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_fetch.v:42]
+WARNING: [Synth 8-6014] Unused sequential element stall_q_reg was removed.  [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_fetch.v:144]
+INFO: [Synth 8-6155] done synthesizing module 'riscv_fetch' (15#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_fetch.v:42]
+INFO: [Synth 8-6155] done synthesizing module 'riscv_core' (16#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_core.v:42]
+INFO: [Synth 8-6157] synthesizing module 'icache' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/icache.v:45]
+INFO: [Synth 8-6157] synthesizing module 'icache_tag_ram' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/icache_tag_ram.v:45]
+INFO: [Synth 8-6155] done synthesizing module 'icache_tag_ram' (17#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/icache_tag_ram.v:45]
+INFO: [Synth 8-6157] synthesizing module 'icache_data_ram' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/icache_data_ram.v:45]
+INFO: [Synth 8-6155] done synthesizing module 'icache_data_ram' (18#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/icache_data_ram.v:45]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/icache.v:422]
+INFO: [Synth 8-226] default block is never used [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/icache.v:437]
+INFO: [Synth 8-6155] done synthesizing module 'icache' (19#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/icache.v:45]
+INFO: [Synth 8-6157] synthesizing module 'dcache' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache.v:45]
+INFO: [Synth 8-6157] synthesizing module 'dcache_if_pmem' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_if_pmem.v:45]
+INFO: [Synth 8-6157] synthesizing module 'dcache_if_pmem_fifo' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_if_pmem.v:209]
+WARNING: [Synth 8-7137] Register ram_q_reg in module dcache_if_pmem_fifo has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code 
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_q_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
+RAM "ram_q_reg" dissolved into registers
+INFO: [Synth 8-6155] done synthesizing module 'dcache_if_pmem_fifo' (20#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_if_pmem.v:209]
+INFO: [Synth 8-6157] synthesizing module 'dcache_if_pmem_fifo__parameterized0' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_if_pmem.v:209]
+WARNING: [Synth 8-7137] Register ram_q_reg in module dcache_if_pmem_fifo__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code 
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_q_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
+RAM "ram_q_reg" dissolved into registers
+INFO: [Synth 8-6155] done synthesizing module 'dcache_if_pmem_fifo__parameterized0' (20#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_if_pmem.v:209]
+INFO: [Synth 8-6155] done synthesizing module 'dcache_if_pmem' (21#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_if_pmem.v:45]
+INFO: [Synth 8-6157] synthesizing module 'dcache_pmem_mux' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_pmem_mux.v:45]
+INFO: [Synth 8-6155] done synthesizing module 'dcache_pmem_mux' (22#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_pmem_mux.v:45]
+INFO: [Synth 8-6157] synthesizing module 'dcache_mux' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_mux.v:45]
+INFO: [Synth 8-6155] done synthesizing module 'dcache_mux' (23#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_mux.v:45]
+INFO: [Synth 8-6157] synthesizing module 'dcache_core' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_core.v:45]
+INFO: [Synth 8-6157] synthesizing module 'dcache_core_tag_ram' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_core_tag_ram.v:45]
+INFO: [Synth 8-6155] done synthesizing module 'dcache_core_tag_ram' (24#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_core_tag_ram.v:45]
+INFO: [Synth 8-6157] synthesizing module 'dcache_core_data_ram' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_core_data_ram.v:45]
+INFO: [Synth 8-6155] done synthesizing module 'dcache_core_data_ram' (25#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_core_data_ram.v:45]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_core.v:662]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_core.v:677]
+INFO: [Synth 8-6155] done synthesizing module 'dcache_core' (26#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_core.v:45]
+INFO: [Synth 8-6157] synthesizing module 'dcache_axi' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_axi.v:45]
+INFO: [Synth 8-6157] synthesizing module 'dcache_axi_fifo' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_axi.v:256]
+WARNING: [Synth 8-7137] Register ram_q_reg in module dcache_axi_fifo has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code 
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_q_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
+RAM "ram_q_reg" dissolved into registers
+INFO: [Synth 8-6155] done synthesizing module 'dcache_axi_fifo' (27#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_axi.v:256]
+INFO: [Synth 8-6157] synthesizing module 'dcache_axi_axi' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_axi_axi.v:45]
+INFO: [Synth 8-6155] done synthesizing module 'dcache_axi_axi' (28#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_axi_axi.v:45]
+INFO: [Synth 8-6155] done synthesizing module 'dcache_axi' (29#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_axi.v:45]
+INFO: [Synth 8-6155] done synthesizing module 'dcache' (30#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache.v:45]
+INFO: [Synth 8-6155] done synthesizing module 'riscv_cache_core' (31#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_core.v:37]
+WARNING: [Synth 8-689] width (1) of port connection 'm_axi_inst_awlen' does not match port width (8) of module 'riscv_cache_core' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:327]
+WARNING: [Synth 8-7071] port 'm_axi_inst_awsize' of module 'riscv_cache_core' is unconnected for instance 'u_riscv_cache_core' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:321]
+WARNING: [Synth 8-7071] port 'm_axi_inst_awburst' of module 'riscv_cache_core' is unconnected for instance 'u_riscv_cache_core' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:321]
+WARNING: [Synth 8-7071] port 'm_axi_inst_awvalid' of module 'riscv_cache_core' is unconnected for instance 'u_riscv_cache_core' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:321]
+WARNING: [Synth 8-7023] instance 'u_riscv_cache_core' of module 'riscv_cache_core' has 63 connections declared, but only 60 given [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:321]
+INFO: [Synth 8-6157] synthesizing module 'axi_switch_m3s3' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:5]
+INFO: [Synth 8-6157] synthesizing module 'axi_mtos_m3' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:2523]
+INFO: [Synth 8-6157] synthesizing module 'axi_arbiter_mtos_m3' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:1960]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:2026]
+INFO: [Synth 8-6157] synthesizing module 'axi_fifo_sync' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:2294]
+INFO: [Synth 8-6155] done synthesizing module 'axi_fifo_sync' (32#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:2294]
+INFO: [Synth 8-6155] done synthesizing module 'axi_arbiter_mtos_m3' (33#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:1960]
+INFO: [Synth 8-6155] done synthesizing module 'axi_mtos_m3' (34#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:2523]
+INFO: [Synth 8-6157] synthesizing module 'axi_mtos_m3__parameterized0' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:2523]
+INFO: [Synth 8-6155] done synthesizing module 'axi_mtos_m3__parameterized0' (34#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:2523]
+INFO: [Synth 8-6157] synthesizing module 'axi_mtos_m3__parameterized1' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:2523]
+INFO: [Synth 8-6155] done synthesizing module 'axi_mtos_m3__parameterized1' (34#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:2523]
+INFO: [Synth 8-6157] synthesizing module 'axi_mtos_m3__parameterized2' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:2523]
+INFO: [Synth 8-6155] done synthesizing module 'axi_mtos_m3__parameterized2' (34#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:2523]
+INFO: [Synth 8-6157] synthesizing module 'axi_stom_s3' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:3169]
+INFO: [Synth 8-6157] synthesizing module 'axi_arbiter_stom_s3' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:2422]
+INFO: [Synth 8-6155] done synthesizing module 'axi_arbiter_stom_s3' (35#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:2422]
+INFO: [Synth 8-6155] done synthesizing module 'axi_stom_s3' (36#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:3169]
+INFO: [Synth 8-6157] synthesizing module 'axi_stom_s3__parameterized0' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:3169]
+INFO: [Synth 8-6155] done synthesizing module 'axi_stom_s3__parameterized0' (36#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:3169]
+INFO: [Synth 8-6157] synthesizing module 'axi_stom_s3__parameterized1' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:3169]
+INFO: [Synth 8-6155] done synthesizing module 'axi_stom_s3__parameterized1' (36#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:3169]
+INFO: [Synth 8-6157] synthesizing module 'axi_default_slave' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:3458]
+WARNING: [Synth 8-6014] Unused sequential element arid_reg_reg was removed.  [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:3636]
+INFO: [Synth 8-6155] done synthesizing module 'axi_default_slave' (37#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:3458]
+INFO: [Synth 8-6157] synthesizing module 'axi_wid' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:3689]
+INFO: [Synth 8-6157] synthesizing module 'axi_fifo_sync__parameterized0' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:2294]
+INFO: [Synth 8-6155] done synthesizing module 'axi_fifo_sync__parameterized0' (37#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:2294]
+INFO: [Synth 8-6155] done synthesizing module 'axi_wid' (38#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:3689]
+INFO: [Synth 8-6155] done synthesizing module 'axi_switch_m3s3' (39#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mem_axi' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/mem_axi/rtl/verilog/mem_axi.v:15]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/mem_axi/rtl/verilog/mem_axi.v:231]
+INFO: [Synth 8-6157] synthesizing module 'mem_axi_core' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/mem_axi/rtl/verilog/mem_axi.v:583]
+INFO: [Synth 8-6155] done synthesizing module 'mem_axi_core' (40#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/mem_axi/rtl/verilog/mem_axi.v:583]
+WARNING: [Synth 8-6014] Unused sequential element AWADDR_reg_reg was removed.  [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/mem_axi/rtl/verilog/mem_axi.v:94]
+WARNING: [Synth 8-6014] Unused sequential element ARADDR_reg_reg was removed.  [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/mem_axi/rtl/verilog/mem_axi.v:212]
+WARNING: [Synth 8-6014] Unused sequential element strbR_reg was removed.  [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/mem_axi/rtl/verilog/mem_axi.v:224]
+INFO: [Synth 8-6155] done synthesizing module 'mem_axi' (41#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/mem_axi/rtl/verilog/mem_axi.v:15]
+INFO: [Synth 8-6157] synthesizing module 'axi4_to_lite' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi4_to_lite/rtl/verilog/axi4_to_lite.v:20]
+INFO: [Synth 8-6157] synthesizing module 'axi4_to_lite_write' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi4_to_lite/rtl/verilog/axi4_to_lite.v:163]
+INFO: [Synth 8-226] default block is never used [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi4_to_lite/rtl/verilog/axi4_to_lite.v:252]
+INFO: [Synth 8-226] default block is never used [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi4_to_lite/rtl/verilog/axi4_to_lite.v:311]
+INFO: [Synth 8-6157] synthesizing module 'axi4_to_lite_fifo_sync' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi4_to_lite/rtl/verilog/axi4_to_lite_fifo_sync.v:47]
+INFO: [Synth 8-6155] done synthesizing module 'axi4_to_lite_fifo_sync' (42#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi4_to_lite/rtl/verilog/axi4_to_lite_fifo_sync.v:47]
+WARNING: [Synth 8-6014] Unused sequential element regAwaddr_reg was removed.  [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi4_to_lite/rtl/verilog/axi4_to_lite.v:245]
+WARNING: [Synth 8-6014] Unused sequential element cntLdata_reg was removed.  [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi4_to_lite/rtl/verilog/axi4_to_lite.v:380]
+INFO: [Synth 8-6155] done synthesizing module 'axi4_to_lite_write' (43#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi4_to_lite/rtl/verilog/axi4_to_lite.v:163]
+INFO: [Synth 8-6157] synthesizing module 'axi4_to_lite_read' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi4_to_lite/rtl/verilog/axi4_to_lite.v:559]
+INFO: [Synth 8-6157] synthesizing module 'axi4_to_lite_fifo_sync__parameterized0' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi4_to_lite/rtl/verilog/axi4_to_lite_fifo_sync.v:47]
+INFO: [Synth 8-6155] done synthesizing module 'axi4_to_lite_fifo_sync__parameterized0' (43#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi4_to_lite/rtl/verilog/axi4_to_lite_fifo_sync.v:47]
+INFO: [Synth 8-226] default block is never used [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi4_to_lite/rtl/verilog/axi4_to_lite.v:765]
+INFO: [Synth 8-226] default block is never used [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi4_to_lite/rtl/verilog/axi4_to_lite.v:811]
+WARNING: [Synth 8-6014] Unused sequential element regAraddr_reg was removed.  [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi4_to_lite/rtl/verilog/axi4_to_lite.v:633]
+WARNING: [Synth 8-6014] Unused sequential element cntLdata_reg was removed.  [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi4_to_lite/rtl/verilog/axi4_to_lite.v:762]
+INFO: [Synth 8-6155] done synthesizing module 'axi4_to_lite_read' (44#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi4_to_lite/rtl/verilog/axi4_to_lite.v:559]
+INFO: [Synth 8-6155] done synthesizing module 'axi4_to_lite' (45#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi4_to_lite/rtl/verilog/axi4_to_lite.v:20]
+INFO: [Synth 8-6157] synthesizing module 'amba_axi_lite_m4' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_lite/rtl/verilog/amba_axi_lite_m4.v:5]
+INFO: [Synth 8-6157] synthesizing module 'amba_axi_lite_m4_core' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_lite/rtl/verilog/amba_axi_lite_m4.v:232]
+INFO: [Synth 8-226] default block is never used [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_lite/rtl/verilog/amba_axi_lite_m4.v:444]
+WARNING: [Synth 8-7137] Register sel_read_reg in module amba_axi_lite_m4_core has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_lite/rtl/verilog/amba_axi_lite_m4.v:451]
+INFO: [Synth 8-6155] done synthesizing module 'amba_axi_lite_m4_core' (46#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_lite/rtl/verilog/amba_axi_lite_m4.v:232]
+INFO: [Synth 8-6155] done synthesizing module 'amba_axi_lite_m4' (47#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_lite/rtl/verilog/amba_axi_lite_m4.v:5]
+INFO: [Synth 8-6157] synthesizing module 'pic_axi_lite' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/pic_axi_lite/rtl/verilog/pic_axi_lite.v:16]
+INFO: [Synth 8-6157] synthesizing module 'pic_axi_lite_if' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/pic_axi_lite/rtl/verilog/pic_axi_lite_if.v:7]
+INFO: [Synth 8-226] default block is never used [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/pic_axi_lite/rtl/verilog/pic_axi_lite_if.v:91]
+INFO: [Synth 8-6155] done synthesizing module 'pic_axi_lite_if' (48#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/pic_axi_lite/rtl/verilog/pic_axi_lite_if.v:7]
+INFO: [Synth 8-6157] synthesizing module 'pic_core' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/pic_axi_lite/rtl/verilog/pic_core.v:28]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/pic_axi_lite/rtl/verilog/pic_core.v:94]
+INFO: [Synth 8-6155] done synthesizing module 'pic_core' (49#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/pic_axi_lite/rtl/verilog/pic_core.v:28]
+INFO: [Synth 8-6155] done synthesizing module 'pic_axi_lite' (50#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/pic_axi_lite/rtl/verilog/pic_axi_lite.v:16]
+INFO: [Synth 8-6157] synthesizing module 'timer_axi_lite' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/timer_axi_lite/rtl/verilog/timer_axi_lite.v:16]
+INFO: [Synth 8-6157] synthesizing module 'timer_axi_lite_if' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/timer_axi_lite/rtl/verilog/timer_axi_lite_if.v:7]
+INFO: [Synth 8-226] default block is never used [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/timer_axi_lite/rtl/verilog/timer_axi_lite_if.v:91]
+INFO: [Synth 8-6155] done synthesizing module 'timer_axi_lite_if' (51#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/timer_axi_lite/rtl/verilog/timer_axi_lite_if.v:7]
+INFO: [Synth 8-6157] synthesizing module 'timer_tick' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/timer_axi_lite/rtl/verilog/timer_tick.v:27]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/timer_axi_lite/rtl/verilog/timer_tick.v:89]
+INFO: [Synth 8-226] default block is never used [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/timer_axi_lite/rtl/verilog/timer_tick.v:116]
+INFO: [Synth 8-6155] done synthesizing module 'timer_tick' (52#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/timer_axi_lite/rtl/verilog/timer_tick.v:27]
+INFO: [Synth 8-6155] done synthesizing module 'timer_axi_lite' (53#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/timer_axi_lite/rtl/verilog/timer_axi_lite.v:16]
+INFO: [Synth 8-6157] synthesizing module 'uart_axi_lite' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_axi_lite.v:25]
+INFO: [Synth 8-6157] synthesizing module 'uart_axi_lite_if' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_axi_lite_if.v:7]
+INFO: [Synth 8-226] default block is never used [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_axi_lite_if.v:91]
+INFO: [Synth 8-6155] done synthesizing module 'uart_axi_lite_if' (54#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_axi_lite_if.v:7]
+INFO: [Synth 8-6157] synthesizing module 'uart_core' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_core.v:26]
+INFO: [Synth 8-6157] synthesizing module 'uart_csr' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_csr.v:28]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_csr.v:144]
+WARNING: [Synth 8-7137] Register csr_ie_tx_reg in module uart_csr has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_csr.v:147]
+WARNING: [Synth 8-7137] Register csr_ie_rx_reg in module uart_csr has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_csr.v:146]
+INFO: [Synth 8-6155] done synthesizing module 'uart_csr' (55#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_csr.v:28]
+INFO: [Synth 8-6157] synthesizing module 'uart_tx' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_tx.v:14]
+WARNING: [Synth 8-7137] Register division_reg_reg in module uart_tx has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_tx.v:72]
+INFO: [Synth 8-6155] done synthesizing module 'uart_tx' (56#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_tx.v:14]
+INFO: [Synth 8-6157] synthesizing module 'uart_rx' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_rx.v:15]
+INFO: [Synth 8-6157] synthesizing module 'uart_fifo_sync_wt' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_fifo_sync_wt.v:47]
+INFO: [Synth 8-6155] done synthesizing module 'uart_fifo_sync_wt' (57#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_fifo_sync_wt.v:47]
+WARNING: [Synth 8-7137] Register division_reg_reg in module uart_rx has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_rx.v:118]
+INFO: [Synth 8-6155] done synthesizing module 'uart_rx' (58#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_rx.v:15]
+WARNING: [Synth 8-3848] Net uart_dtr in module/entity uart_core does not have driver. [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_core.v:42]
+INFO: [Synth 8-6155] done synthesizing module 'uart_core' (59#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_core.v:26]
+WARNING: [Synth 8-7071] port 'uart_dtr' of module 'uart_core' is unconnected for instance 'u_core' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_axi_lite.v:115]
+WARNING: [Synth 8-7071] port 'uart_dsr' of module 'uart_core' is unconnected for instance 'u_core' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_axi_lite.v:115]
+WARNING: [Synth 8-7023] instance 'u_core' of module 'uart_core' has 14 connections declared, but only 12 given [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_axi_lite.v:115]
+INFO: [Synth 8-6155] done synthesizing module 'uart_axi_lite' (60#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_axi_lite.v:25]
+ERROR: [Synth 8-439] module 'gpio_axi_lite' not found [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:916]
+ERROR: [Synth 8-6156] failed synthesizing module 'riscv_cache_soc' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:47]
+ERROR: [Synth 8-6156] failed synthesizing module 'design_riscv_cache_riscv_cache_soc_0_0' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/synth/design_riscv_cache_riscv_cache_soc_0_0.v:59]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:38 . Memory (MB): peak = 2719.977 ; gain = 0.000 ; free physical = 606 ; free virtual = 76884
+---------------------------------------------------------------------------------
+RTL Elaboration failed
+INFO: [Common 17-83] Releasing license: Synthesis
+166 Infos, 37 Warnings, 0 Critical Warnings and 4 Errors encountered.
+synth_design failed
+ERROR: [Common 17-69] Command failed: Synthesis failed - please see the console or run log file for details
+INFO: [Common 17-206] Exiting Vivado at Tue Oct 21 15:53:59 2025...

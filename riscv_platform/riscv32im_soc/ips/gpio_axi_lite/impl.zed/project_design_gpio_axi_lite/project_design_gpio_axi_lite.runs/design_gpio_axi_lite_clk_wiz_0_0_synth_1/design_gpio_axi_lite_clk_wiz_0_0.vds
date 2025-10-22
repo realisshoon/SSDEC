@@ -1,0 +1,67 @@
+#-----------------------------------------------------------
+# Vivado v2021.2 (64-bit)
+# SW Build 3367213 on Tue Oct 19 02:47:39 MDT 2021
+# IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
+# Start of session at: Mon Oct 20 13:11:08 2025
+# Process ID: 55823
+# Current directory: /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/gpio_axi_lite/impl.zed/project_design_gpio_axi_lite/project_design_gpio_axi_lite.runs/design_gpio_axi_lite_clk_wiz_0_0_synth_1
+# Command line: vivado -log design_gpio_axi_lite_clk_wiz_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_gpio_axi_lite_clk_wiz_0_0.tcl
+# Log file: /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/gpio_axi_lite/impl.zed/project_design_gpio_axi_lite/project_design_gpio_axi_lite.runs/design_gpio_axi_lite_clk_wiz_0_0_synth_1/design_gpio_axi_lite_clk_wiz_0_0.vds
+# Journal file: /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/gpio_axi_lite/impl.zed/project_design_gpio_axi_lite/project_design_gpio_axi_lite.runs/design_gpio_axi_lite_clk_wiz_0_0_synth_1/vivado.jou
+# Running On: sogang-500TGA-500SGA, OS: Linux, CPU Frequency: 3900.078 MHz, CPU Physical cores: 10, Host memory: 16429 MB
+#-----------------------------------------------------------
+source design_gpio_axi_lite_clk_wiz_0_0.tcl -notrace
+create_project: Time (s): cpu = 00:00:03 ; elapsed = 00:00:06 . Memory (MB): peak = 2722.941 ; gain = 0.000 ; free physical = 4091 ; free virtual = 82278
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/gpio_axi_lite/bfm_axi.z7'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2021.2/data/ip'.
+Command: synth_design -top design_gpio_axi_lite_clk_wiz_0_0 -part xc7z020clg484-1 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg484-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 56048
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:05 . Memory (MB): peak = 2722.941 ; gain = 0.000 ; free physical = 163 ; free virtual = 78363
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'design_gpio_axi_lite_clk_wiz_0_0' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/gpio_axi_lite/impl.zed/project_design_gpio_axi_lite/project_design_gpio_axi_lite.gen/sources_1/bd/design_gpio_axi_lite/ip/design_gpio_axi_lite_clk_wiz_0_0/design_gpio_axi_lite_clk_wiz_0_0.v:71]
+INFO: [Synth 8-6157] synthesizing module 'design_gpio_axi_lite_clk_wiz_0_0_clk_wiz' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/gpio_axi_lite/impl.zed/project_design_gpio_axi_lite/project_design_gpio_axi_lite.gen/sources_1/bd/design_gpio_axi_lite/ip/design_gpio_axi_lite_clk_wiz_0_0/design_gpio_axi_lite_clk_wiz_0_0_clk_wiz.v:69]
+INFO: [Synth 8-6157] synthesizing module 'IBUF' [/tools/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:55204]
+INFO: [Synth 8-6155] done synthesizing module 'IBUF' (1#1) [/tools/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:55204]
+INFO: [Synth 8-6157] synthesizing module 'MMCME2_ADV' [/tools/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:63510]
+	Parameter BANDWIDTH bound to: OPTIMIZED - type: string 
+	Parameter CLKFBOUT_MULT_F bound to: 10.000000 - type: double 
+	Parameter CLKFBOUT_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKFBOUT_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKIN1_PERIOD bound to: 10.000000 - type: double 
+	Parameter CLKOUT0_DIVIDE_F bound to: 12.500000 - type: double 
+	Parameter CLKOUT0_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT0_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT0_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT1_DIVIDE bound to: 10 - type: integer 
+	Parameter CLKOUT1_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT1_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT1_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT4_CASCADE bound to: FALSE - type: string 
+	Parameter COMPENSATION bound to: ZHOLD - type: string 
+	Parameter DIVCLK_DIVIDE bound to: 1 - type: integer 
+	Parameter STARTUP_WAIT bound to: FALSE - type: string 
+INFO: [Synth 8-6155] done synthesizing module 'MMCME2_ADV' (2#1) [/tools/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:63510]
+INFO: [Synth 8-6157] synthesizing module 'BUFG' [/tools/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:1083]
+INFO: [Synth 8-6155] done synthesizing module 'BUFG' (3#1) [/tools/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:1083]
+INFO: [Synth 8-6155] done synthesizing module 'design_gpio_axi_lite_clk_wiz_0_0_clk_wiz' (4#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/gpio_axi_lite/impl.zed/project_design_gpio_axi_lite/project_design_gpio_axi_lite.gen/sources_1/bd/design_gpio_axi_lite/ip/design_gpio_axi_lite_clk_wiz_0_0/design_gpio_axi_lite_clk_wiz_0_0_clk_wiz.v:69]
+INFO: [Synth 8-6155] done synthesizing module 'design_gpio_axi_lite_clk_wiz_0_0' (5#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/gpio_axi_lite/impl.zed/project_design_gpio_axi_lite/project_design_gpio_axi_lite.gen/sources_1/bd/design_gpio_axi_lite/ip/design_gpio_axi_lite_clk_wiz_0_0/design_gpio_axi_lite_clk_wiz_0_0.v:71]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:41 . Memory (MB): peak = 2722.941 ; gain = 0.000 ; free physical = 204 ; free virtual = 76857
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:01:00 . Memory (MB): peak = 2722.941 ; gain = 0.000 ; free physical = 254 ; free virtual = 75679
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:01:00 . Memory (MB): peak = 2722.941 ; gain = 0.000 ; free physical = 258 ; free virtual = 75683
+---------------------------------------------------------------------------------
