@@ -17,5 +17,15 @@ set_property BITSTREAM.GENERAL.COMPRESS TRUE [current_design]
 #set_property BITSTREAM.CONFIG.SPI_BUSWIDTH 4 [current_design]
 #set_property BITSTREAM.CONFIG.SPI_FALL_EDGE YES [current_design]
 
+#--------------------------------------------------------
+# FMC (BFM) ports are not connected to physical pins
+# These are for simulation/test only, so relax DRC checks
+#--------------------------------------------------------
+# Allow unspecified I/O standard for FMC ports
+set_property SEVERITY {Warning} [get_drc_checks NSTD-1]
+# Allow unconstrained logical ports for FMC ports
+set_property SEVERITY {Warning} [get_drc_checks UCIO-1]
+# Allow bitstream creation with unspecified pins
+set_property SEVERITY {Warning} [get_drc_checks BIVB-1]
 
 

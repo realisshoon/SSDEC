@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7z020clg484-1" LaunchTime="1761029550">
+<GenRun Id="synth_1" LaunchPart="xc7z020clg484-1" LaunchTime="1761294480" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/design_riscv_cache_wrapper.dcp">
   <File Type="VDS-TIMING-PB" Name="design_riscv_cache_wrapper_timing_summary_synth.pb"/>
   <File Type="VDS-TIMINGSUMMARY" Name="design_riscv_cache_wrapper_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="design_riscv_cache_wrapper.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="design_riscv_cache_wrapper_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="design_riscv_cache_wrapper_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="design_riscv_cache_wrapper_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="design_riscv_cache_wrapper.vds"/>
   <File Type="REPORTS-TCL" Name="design_riscv_cache_wrapper_reports.tcl"/>
   <File Type="PA-TCL" Name="design_riscv_cache_wrapper.tcl"/>
-  <File Type="RDS-RDS" Name="design_riscv_cache_wrapper.vds"/>
-  <File Type="RDS-PROPCONSTRS" Name="design_riscv_cache_wrapper_drc_synth.rpt"/>
-  <File Type="RDS-UTIL" Name="design_riscv_cache_wrapper_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="design_riscv_cache_wrapper_utilization_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PPRDIR/../../../../ips/axi_lite/rtl/verilog/amba_axi_lite_m4.v">
@@ -96,6 +96,20 @@
       </FileInfo>
     </File>
     <File Path="$PPRDIR/../../../../ips/riscv/top_cache_axi/src_v/dcache_pmem_mux.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/gpio_axi_lite/rtl/verilog/gpio_axi_lite_if.v">
+      <FileInfo SFType="VHeader">
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/gpio_axi_lite/rtl/verilog/gpio_axi_lite.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -305,14 +319,14 @@
         <Attr Name="IsVisible" Val="1"/>
       </FileInfo>
     </File>
-    <File Path="$PPRDIR/../../../../ips/uart_axi_lite/rtl/verilog/uart_rx.v">
+    <File Path="$PPRDIR/../../../../ips/uart_axi_lite/rtl/verilog/uart_tx.v">
       <FileInfo SFType="VHeader">
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
         <Attr Name="IsVisible" Val="1"/>
       </FileInfo>
     </File>
-    <File Path="$PPRDIR/../../../../ips/uart_axi_lite/rtl/verilog/uart_tx.v">
+    <File Path="$PPRDIR/../../../../ips/uart_axi_lite/rtl/verilog/uart_rx.v">
       <FileInfo SFType="VHeader">
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -406,12 +420,6 @@
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
     <Filter Type="Constrs"/>
-    <File Path="$PPRDIR/../xdc/con-fmc_lpc_zed.xdc">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-      </FileInfo>
-    </File>
     <File Path="$PPRDIR/../xdc/fpga_etc.xdc">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -430,6 +438,14 @@
   </FileSet>
   <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1">
     <Filter Type="Utils"/>
+    <File Path="$PSRCDIR/utils_1/imports/synth_1/design_riscv_cache_wrapper.dcp">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedInSteps" Val="synth_1"/>
+        <Attr Name="AutoDcp" Val="1"/>
+      </FileInfo>
+    </File>
     <Config>
       <Option Name="TopAutoSet" Val="TRUE"/>
     </Config>
@@ -440,11 +456,11 @@
     </StratHandle>
     <Step Id="synth_design"/>
   </Strategy>
-  <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_proc_sys_reset_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_axi_bram_ctrl_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_axi_bram_ctrl_0_bram_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_bfm_axi_if_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_rstmgra_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_riscv_cache_soc_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_clk_wiz_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_bfm_axi_if_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_axi_bram_ctrl_0_bram_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_axi_bram_ctrl_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_proc_sys_reset_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_riscv_cache_soc_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_rstmgra_0_0"/>
 </GenRun>

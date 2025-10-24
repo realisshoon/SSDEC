@@ -61,7 +61,8 @@ module design_riscv_cache_riscv_cache_soc_0_0 (
   uart_cts_n,
   gpio_in,
   gpio_out,
-  gpio_dir,
+  keypad_col,
+  keypad_row,
   cpu_resetn,
   axi_aresetn,
   axi_aclk,
@@ -129,9 +130,10 @@ output wire uart_txd;
 input wire uart_rxdd;
 output wire uart_rts_n;
 input wire uart_cts_n;
-input wire [31 : 0] gpio_in;
-output wire [31 : 0] gpio_out;
-output wire [31 : 0] gpio_dir;
+input wire [7 : 0] gpio_in;
+output wire [7 : 0] gpio_out;
+output wire [3 : 0] keypad_col;
+input wire [3 : 0] keypad_row;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME cpu_resetn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 cpu_resetn RST" *)
 input wire cpu_resetn;
@@ -307,7 +309,8 @@ output wire m_axi_mem_rready;
     .uart_cts_n(uart_cts_n),
     .gpio_in(gpio_in),
     .gpio_out(gpio_out),
-    .gpio_dir(gpio_dir),
+    .keypad_col(keypad_col),
+    .keypad_row(keypad_row),
     .cpu_resetn(cpu_resetn),
     .axi_aresetn(axi_aresetn),
     .axi_aclk(axi_aclk),

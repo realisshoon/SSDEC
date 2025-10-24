@@ -89,9 +89,10 @@ module riscv_cache_soc
      (* mark_debug="true" *) input  wire  uart_rxdd,
      (* mark_debug="true" *) output wire  uart_rts_n,
      (* mark_debug="true" *) input  wire  uart_cts_n,
-     (* mark_debug="true" *) input  wire [31:0] gpio_in,
-     (* mark_debug="true" *) output wire [31:0] gpio_out,
-     (* mark_debug="true" *) output wire [31:0] gpio_dir, // tie 0 if not used
+     (* mark_debug="true" *) input  wire [7:0] gpio_in,   // 8 user switches on ZedBoard
+     (* mark_debug="true" *) output wire [7:0] gpio_out,  // 8 user LEDs on ZedBoard  
+     (* mark_debug="true" *) output wire [3:0] keypad_col, // 4x4 Matrix Keypad Column output
+     (* mark_debug="true" *) input  wire [3:0] keypad_row, // 4x4 Matrix Keypad Row input
      (* mark_debug="true" *) input  wire  cpu_resetn, // must go to 1 after axi_aresetn de-asserted
      (* X_INTERFACE_PARAMETER = "POLARITY ACTIVE_LOW" *)
      (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 axi_aresetn RST"*) (* mark_debug="true" *) input  wire  axi_aresetn,
@@ -121,7 +122,7 @@ module riscv_cache_soc
      (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_confmc bid"     *) output wire [AXI_WIDTH_ID-1:0]   s_axi_confmc_bid,
      (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_confmc bresp"   *) output wire [ 1:0]               s_axi_confmc_bresp,
      (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_confmc bvalid"  *) output wire                      s_axi_confmc_bvalid,
-     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_confmc bready"  *) input  wire                      s_axi_confmc_bready,
+     (* X_INTERFACE_INFO = "xilpgainx.com:interface:aximm:1.0 s_axi_confmc bready"  *) input  wire                      s_axi_confmc_bready,
      (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_confmc arid"    *) input  wire [AXI_WIDTH_ID-1:0]   s_axi_confmc_arid,
      (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_confmc araddr"  *) input  wire [AXI_WIDTH_ADDR-1:0] s_axi_confmc_araddr,
      (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_confmc arlen"   *) input  wire [ 7:0]               s_axi_confmc_arlen,
@@ -210,6 +211,9 @@ module riscv_cache_soc
     //--------------------------------------------------------------------------
     wire         interrupt_core;
     wire  [31:0] reset_vector=BOOT_VECTOR;
+    //--------------------------------------------------------------------------
+    // GPIO internal signals
+    (* mark_debug="true" *) wire [7:0] gpio_dir;  // GPIO direction (internal only)
     //--------------------------------------------------------------------------
    (* mark_debug="true" *)wire [AXI_WIDTH_ID-1:0]   axi_inst_awid   , axi_data_awid   ;
    (* mark_debug="true" *)wire [AXI_WIDTH_ADDR-1:0] axi_inst_awaddr , axi_data_awaddr ;
@@ -324,7 +328,7 @@ module riscv_cache_soc
         ,.axi_aclk           ( axi_aclk         )
         ,.m_axi_inst_awid    ( axi_inst_awid    )
         ,.m_axi_inst_awaddr  ( axi_inst_awaddr  )
-        ,.m_axi_inst_awlen   ( adxi_inst_awvalid )
+        ,.m_axi_inst_awlen   ( axi_inst_awlen    )
         ,.m_axi_inst_awready ( axi_inst_awready )
         ,.m_axi_inst_wdata   ( axi_inst_wdata   )
         ,.m_axi_inst_wstrb   ( axi_inst_wstrb   )
@@ -906,13 +910,13 @@ module riscv_cache_soc
         , .s_axi_rvalid  ( axi_lite_rvalid [3])
         , .s_axi_rready  ( axi_lite_rready [3])
         , .uart_tx       ( uart_txd       )
-        , .uart_rx       ( uart_rxd       )
+        , .uart_rx       ( uart_rxdd      )
         , .uart_rts_n    ( uart_rts_n     )
         , .uart_cts_n    ( uart_cts_n     )
         , .interrupt     ( irq[IRQ_UART])
     );
     //--------------------------------------------------------------------------
-    gpio_axi_lite #(.P_WIDTH(32))
+    gpio_axi_lite #(.P_WIDTH(8))
     u_gpio (
           .aresetn       ( axi_aresetn        )
         , .aclk          ( axi_aclk           )
@@ -937,5 +941,12 @@ module riscv_cache_soc
         , .gpio_dir      ( gpio_dir          )  // GPIO direction
         , .interrupt     ( irq[IRQ_GPIO]     )
     );
+    //--------------------------------------------------------------------------
+    // Keypad Column/Row assignment (connected to GPIO for software control)
+    // Software can control keypad through GPIO registers
+    // Alternatively, connect directly for dedicated keypad interface
+    assign keypad_col = gpio_out[3:0];  // Lower 4 bits of GPIO output -> Keypad columns
+    // Note: Software should read keypad_row separately if needed
+    // For now, keypad_row is independent input (not connected to GPIO)
     //--------------------------------------------------------------------------
 endmodule

@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_riscv_cache_soc_0_0_synth_1/design_riscv_cache_riscv_cache_soc_0_0.tcl"
+  variable script "/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_riscv_cache_soc_0_0_synth_1/design_riscv_cache_riscv_cache_soc_0_0.tcl"
   variable category "vivado_synth"
 }
 
@@ -73,91 +73,94 @@ OPTRACE "design_riscv_cache_riscv_cache_soc_0_0_synth_1" START { ROLLUP_AUTO }
 set_msg_config -id {HDL-1065} -limit 10000
 set_param project.vivado.isBlockSynthRun true
 OPTRACE "Creating in-memory project" START { }
-set_param ips.modRefOverrideMrefDirPath /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/mref
+set_param ips.modRefOverrideMrefDirPath /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/mref
 create_project -in_memory -part xc7z020clg484-1
 
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
-set_property webtalk.parent_dir /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.cache/wt [current_project]
-set_property parent.project_path /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.xpr [current_project]
+set_property webtalk.parent_dir /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.cache/wt [current_project]
+set_property parent.project_path /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.xpr [current_project]
 set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property ip_repo_paths /opt/confmc/2020.06/hwlib/trx_axi/gen_ip [current_project]
 update_ip_catalog
-set_property ip_output_repo /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.cache/ip [current_project]
+set_property ip_output_repo /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog {
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi4_to_lite/rtl/verilog/axi4_to_lite_fifo_sync.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/pic_axi_lite/rtl/verilog/pic_core.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/pic_axi_lite/rtl/verilog/pic_axi_lite_if.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_defs.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/timer_axi_lite/rtl/verilog/timer_tick.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/timer_axi_lite/rtl/verilog/timer_axi_lite_if.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_fifo_sync_wt.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_rx.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_tx.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_csr.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_axi_lite_if.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_core.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/axi4_to_lite/rtl/verilog/axi4_to_lite_fifo_sync.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/gpio_axi_lite/rtl/verilog/gpio_axi_lite_if.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/pic_axi_lite/rtl/verilog/pic_core.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/pic_axi_lite/rtl/verilog/pic_axi_lite_if.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_defs.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/timer_axi_lite/rtl/verilog/timer_tick.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/timer_axi_lite/rtl/verilog/timer_axi_lite_if.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_fifo_sync_wt.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_tx.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_rx.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_csr.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_axi_lite_if.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_core.v
 }
-set_property file_type "Verilog Header" [get_files /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi4_to_lite/rtl/verilog/axi4_to_lite_fifo_sync.v]
-set_property file_type "Verilog Header" [get_files /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/pic_axi_lite/rtl/verilog/pic_core.v]
-set_property file_type "Verilog Header" [get_files /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/pic_axi_lite/rtl/verilog/pic_axi_lite_if.v]
-set_property file_type "Verilog Header" [get_files /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_defs.v]
-set_property file_type "Verilog Header" [get_files /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/timer_axi_lite/rtl/verilog/timer_tick.v]
-set_property file_type "Verilog Header" [get_files /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/timer_axi_lite/rtl/verilog/timer_axi_lite_if.v]
-set_property file_type "Verilog Header" [get_files /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_fifo_sync_wt.v]
-set_property file_type "Verilog Header" [get_files /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_rx.v]
-set_property file_type "Verilog Header" [get_files /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_tx.v]
-set_property file_type "Verilog Header" [get_files /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_csr.v]
-set_property file_type "Verilog Header" [get_files /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_axi_lite_if.v]
-set_property file_type "Verilog Header" [get_files /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_core.v]
+set_property file_type "Verilog Header" [get_files /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/axi4_to_lite/rtl/verilog/axi4_to_lite_fifo_sync.v]
+set_property file_type "Verilog Header" [get_files /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/gpio_axi_lite/rtl/verilog/gpio_axi_lite_if.v]
+set_property file_type "Verilog Header" [get_files /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/pic_axi_lite/rtl/verilog/pic_core.v]
+set_property file_type "Verilog Header" [get_files /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/pic_axi_lite/rtl/verilog/pic_axi_lite_if.v]
+set_property file_type "Verilog Header" [get_files /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_defs.v]
+set_property file_type "Verilog Header" [get_files /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/timer_axi_lite/rtl/verilog/timer_tick.v]
+set_property file_type "Verilog Header" [get_files /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/timer_axi_lite/rtl/verilog/timer_axi_lite_if.v]
+set_property file_type "Verilog Header" [get_files /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_fifo_sync_wt.v]
+set_property file_type "Verilog Header" [get_files /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_tx.v]
+set_property file_type "Verilog Header" [get_files /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_rx.v]
+set_property file_type "Verilog Header" [get_files /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_csr.v]
+set_property file_type "Verilog Header" [get_files /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_axi_lite_if.v]
+set_property file_type "Verilog Header" [get_files /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_core.v]
 read_verilog -library xil_defaultlib {
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/syn_define.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_lite/rtl/verilog/amba_axi_lite_m4.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi4_to_lite/rtl/verilog/axi4_to_lite.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_axi.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_axi_axi.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_core.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_core_data_ram.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_core_tag_ram.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_if_pmem.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_mux.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_pmem_mux.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/icache.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/icache_data_ram.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/icache_tag_ram.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/mem_axi/rtl/verilog/mem_axi.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/pic_axi_lite/rtl/verilog/pic_axi_lite.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_alu.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_core.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_core.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_csr.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_csr_regfile.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_decode.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_decoder.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_divider.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_exec.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_fetch.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_issue.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_lsu.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_mmu.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_multiplier.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_pipe_ctrl.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_regfile.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_xilinx_2r1w.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/timer_axi_lite/rtl/verilog/timer_axi_lite.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_axi_lite.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/syn_define.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/axi_lite/rtl/verilog/amba_axi_lite_m4.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/axi4_to_lite/rtl/verilog/axi4_to_lite.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_axi.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_axi_axi.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_core.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_core_data_ram.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_core_tag_ram.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_if_pmem.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_mux.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_pmem_mux.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/gpio_axi_lite/rtl/verilog/gpio_axi_lite.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/icache.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/icache_data_ram.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/icache_tag_ram.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/mem_axi/rtl/verilog/mem_axi.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/pic_axi_lite/rtl/verilog/pic_axi_lite.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_alu.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_core.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_core.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_csr.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_csr_regfile.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_decode.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_decoder.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_divider.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_exec.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_fetch.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_issue.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_lsu.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_mmu.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_multiplier.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_pipe_ctrl.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_regfile.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_xilinx_2r1w.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/timer_axi_lite/rtl/verilog/timer_axi_lite.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_axi_lite.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v
 }
-read_ip -quiet /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.srcs/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/design_riscv_cache_riscv_cache_soc_0_0.xci
+read_ip -quiet /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.srcs/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/design_riscv_cache_riscv_cache_soc_0_0.xci
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -171,7 +174,7 @@ foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
 set_param ips.enableIPCacheLiteLoad 1
 OPTRACE "Configure IP Cache" START { }
 
-set cacheID [config_ip_cache -export -no_bom  -dir /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_riscv_cache_soc_0_0_synth_1 -new_name design_riscv_cache_riscv_cache_soc_0_0 -ip [get_ips design_riscv_cache_riscv_cache_soc_0_0]]
+set cacheID [config_ip_cache -export -no_bom  -dir /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_riscv_cache_soc_0_0_synth_1 -new_name design_riscv_cache_riscv_cache_soc_0_0 -ip [get_ips design_riscv_cache_riscv_cache_soc_0_0]]
 
 OPTRACE "Configure IP Cache" END { }
 if { $cacheID == "" } {
@@ -226,32 +229,32 @@ create_report "design_riscv_cache_riscv_cache_soc_0_0_synth_1_synth_report_utili
 OPTRACE "synth reports" END { }
 
 if { [catch {
-  file copy -force /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_riscv_cache_soc_0_0_synth_1/design_riscv_cache_riscv_cache_soc_0_0.dcp /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/design_riscv_cache_riscv_cache_soc_0_0.dcp
+  file copy -force /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_riscv_cache_soc_0_0_synth_1/design_riscv_cache_riscv_cache_soc_0_0.dcp /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/design_riscv_cache_riscv_cache_soc_0_0.dcp
 } _RESULT ] } { 
   send_msg_id runtcl-3 status "ERROR: Unable to successfully create or copy the sub-design checkpoint file."
   error "ERROR: Unable to successfully create or copy the sub-design checkpoint file."
 }
 
 if { [catch {
-  write_verilog -force -mode synth_stub /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/design_riscv_cache_riscv_cache_soc_0_0_stub.v
+  write_verilog -force -mode synth_stub /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/design_riscv_cache_riscv_cache_soc_0_0_stub.v
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create a Verilog synthesis stub for the sub-design. This may lead to errors in top level synthesis of the design. Error reported: $_RESULT"
 }
 
 if { [catch {
-  write_vhdl -force -mode synth_stub /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/design_riscv_cache_riscv_cache_soc_0_0_stub.vhdl
+  write_vhdl -force -mode synth_stub /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/design_riscv_cache_riscv_cache_soc_0_0_stub.vhdl
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create a VHDL synthesis stub for the sub-design. This may lead to errors in top level synthesis of the design. Error reported: $_RESULT"
 }
 
 if { [catch {
-  write_verilog -force -mode funcsim /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/design_riscv_cache_riscv_cache_soc_0_0_sim_netlist.v
+  write_verilog -force -mode funcsim /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/design_riscv_cache_riscv_cache_soc_0_0_sim_netlist.v
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create the Verilog functional simulation sub-design file. Post-Synthesis Functional Simulation with this file may not be possible or may give incorrect results. Error reported: $_RESULT"
 }
 
 if { [catch {
-  write_vhdl -force -mode funcsim /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/design_riscv_cache_riscv_cache_soc_0_0_sim_netlist.vhdl
+  write_vhdl -force -mode funcsim /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/design_riscv_cache_riscv_cache_soc_0_0_sim_netlist.vhdl
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create the VHDL functional simulation sub-design file. Post-Synthesis Functional Simulation with this file may not be possible or may give incorrect results. Error reported: $_RESULT"
 }
@@ -261,47 +264,47 @@ if { [catch {
 
 
 if { [catch {
-  file copy -force /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_riscv_cache_soc_0_0_synth_1/design_riscv_cache_riscv_cache_soc_0_0.dcp /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/design_riscv_cache_riscv_cache_soc_0_0.dcp
+  file copy -force /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_riscv_cache_soc_0_0_synth_1/design_riscv_cache_riscv_cache_soc_0_0.dcp /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/design_riscv_cache_riscv_cache_soc_0_0.dcp
 } _RESULT ] } { 
   send_msg_id runtcl-3 status "ERROR: Unable to successfully create or copy the sub-design checkpoint file."
   error "ERROR: Unable to successfully create or copy the sub-design checkpoint file."
 }
 
 if { [catch {
-  file rename -force /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_riscv_cache_soc_0_0_synth_1/design_riscv_cache_riscv_cache_soc_0_0_stub.v /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/design_riscv_cache_riscv_cache_soc_0_0_stub.v
+  file rename -force /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_riscv_cache_soc_0_0_synth_1/design_riscv_cache_riscv_cache_soc_0_0_stub.v /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/design_riscv_cache_riscv_cache_soc_0_0_stub.v
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create a Verilog synthesis stub for the sub-design. This may lead to errors in top level synthesis of the design. Error reported: $_RESULT"
 }
 
 if { [catch {
-  file rename -force /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_riscv_cache_soc_0_0_synth_1/design_riscv_cache_riscv_cache_soc_0_0_stub.vhdl /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/design_riscv_cache_riscv_cache_soc_0_0_stub.vhdl
+  file rename -force /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_riscv_cache_soc_0_0_synth_1/design_riscv_cache_riscv_cache_soc_0_0_stub.vhdl /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/design_riscv_cache_riscv_cache_soc_0_0_stub.vhdl
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create a VHDL synthesis stub for the sub-design. This may lead to errors in top level synthesis of the design. Error reported: $_RESULT"
 }
 
 if { [catch {
-  file rename -force /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_riscv_cache_soc_0_0_synth_1/design_riscv_cache_riscv_cache_soc_0_0_sim_netlist.v /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/design_riscv_cache_riscv_cache_soc_0_0_sim_netlist.v
+  file rename -force /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_riscv_cache_soc_0_0_synth_1/design_riscv_cache_riscv_cache_soc_0_0_sim_netlist.v /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/design_riscv_cache_riscv_cache_soc_0_0_sim_netlist.v
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create the Verilog functional simulation sub-design file. Post-Synthesis Functional Simulation with this file may not be possible or may give incorrect results. Error reported: $_RESULT"
 }
 
 if { [catch {
-  file rename -force /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_riscv_cache_soc_0_0_synth_1/design_riscv_cache_riscv_cache_soc_0_0_sim_netlist.vhdl /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/design_riscv_cache_riscv_cache_soc_0_0_sim_netlist.vhdl
+  file rename -force /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_riscv_cache_soc_0_0_synth_1/design_riscv_cache_riscv_cache_soc_0_0_sim_netlist.vhdl /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/design_riscv_cache_riscv_cache_soc_0_0_sim_netlist.vhdl
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create the VHDL functional simulation sub-design file. Post-Synthesis Functional Simulation with this file may not be possible or may give incorrect results. Error reported: $_RESULT"
 }
 
 }; # end if cacheID 
 
-if {[file isdir /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.ip_user_files/ip/design_riscv_cache_riscv_cache_soc_0_0]} {
+if {[file isdir /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.ip_user_files/ip/design_riscv_cache_riscv_cache_soc_0_0]} {
   catch { 
-    file copy -force /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/design_riscv_cache_riscv_cache_soc_0_0_stub.v /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.ip_user_files/ip/design_riscv_cache_riscv_cache_soc_0_0
+    file copy -force /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/design_riscv_cache_riscv_cache_soc_0_0_stub.v /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.ip_user_files/ip/design_riscv_cache_riscv_cache_soc_0_0
   }
 }
 
-if {[file isdir /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.ip_user_files/ip/design_riscv_cache_riscv_cache_soc_0_0]} {
+if {[file isdir /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.ip_user_files/ip/design_riscv_cache_riscv_cache_soc_0_0]} {
   catch { 
-    file copy -force /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/design_riscv_cache_riscv_cache_soc_0_0_stub.vhdl /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.ip_user_files/ip/design_riscv_cache_riscv_cache_soc_0_0
+    file copy -force /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/design_riscv_cache_riscv_cache_soc_0_0_stub.vhdl /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.ip_user_files/ip/design_riscv_cache_riscv_cache_soc_0_0
   }
 }
 file delete __synthesis_is_running__

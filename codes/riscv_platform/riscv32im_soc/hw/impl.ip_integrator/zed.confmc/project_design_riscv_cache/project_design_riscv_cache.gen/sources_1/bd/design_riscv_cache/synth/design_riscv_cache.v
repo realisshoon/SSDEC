@@ -1,7 +1,7 @@
 //Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2021.2 (lin64) Build 3367213 Tue Oct 19 02:47:39 MDT 2021
-//Date        : Tue Oct 21 15:52:22 2025
+//Date        : Fri Oct 24 16:28:09 2025
 //Host        : sogang-500TGA-500SGA running 64-bit Ubuntu 22.04.5 LTS
 //Command     : generate_target design_riscv_cache.bd
 //Design      : design_riscv_cache
@@ -13,46 +13,20 @@
 module design_riscv_cache
    (BOARD_CLK_IN,
     BOARD_RST_SW,
-    SL_AD,
-    SL_CS_N,
-    SL_DT,
-    SL_FLAGA,
-    SL_FLAGB,
-    SL_FLAGC,
-    SL_FLAGD,
-    SL_MODE,
-    SL_OE_N,
-    SL_PCLK,
-    SL_PKTEND_N,
-    SL_RD_N,
-    SL_RST_N,
-    SL_WR_N,
-    gpio_dir,
     gpio_in,
     gpio_out,
+    keypad_col,
+    keypad_row,
     uart_cts_n,
     uart_rts_n,
     uart_rxd,
     uart_txd);
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.BOARD_CLK_IN CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.BOARD_CLK_IN, CLK_DOMAIN design_riscv_cache_BOARD_CLK_IN, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) input BOARD_CLK_IN;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.BOARD_RST_SW RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.BOARD_RST_SW, INSERT_VIP 0, POLARITY ACTIVE_HIGH" *) input BOARD_RST_SW;
-  output [1:0]SL_AD;
-  output SL_CS_N;
-  inout [31:0]SL_DT;
-  input SL_FLAGA;
-  input SL_FLAGB;
-  input SL_FLAGC;
-  input SL_FLAGD;
-  input [1:0]SL_MODE;
-  output SL_OE_N;
-  output SL_PCLK;
-  output SL_PKTEND_N;
-  output SL_RD_N;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.SL_RST_N RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.SL_RST_N, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input SL_RST_N;
-  output SL_WR_N;
-  output [31:0]gpio_dir;
-  input [31:0]gpio_in;
-  output [31:0]gpio_out;
+  input [7:0]gpio_in;
+  output [7:0]gpio_out;
+  output [3:0]keypad_col;
+  input [3:0]keypad_row;
   input uart_cts_n;
   output uart_rts_n;
   input uart_rxd;
@@ -60,13 +34,6 @@ module design_riscv_cache
 
   wire BOARD_CLK_IN_1;
   wire BOARD_RST_SW_1;
-  wire [31:0]Net;
-  wire SL_FLAGA_0_1;
-  wire SL_FLAGB_0_1;
-  wire SL_FLAGC_0_1;
-  wire SL_FLAGD_0_1;
-  wire [1:0]SL_MODE_0_1;
-  wire SL_RST_N_0_1;
   wire [16:0]axi_bram_ctrl_0_BRAM_PORTA_ADDR;
   wire axi_bram_ctrl_0_BRAM_PORTA_CLK;
   wire [31:0]axi_bram_ctrl_0_BRAM_PORTA_DIN;
@@ -82,13 +49,6 @@ module design_riscv_cache
   wire axi_bram_ctrl_0_BRAM_PORTB_RST;
   wire [3:0]axi_bram_ctrl_0_BRAM_PORTB_WE;
   wire [15:0]bfm_axi_if_0_GPOUT;
-  wire [1:0]bfm_axi_if_0_SL_AD;
-  wire bfm_axi_if_0_SL_CS_N;
-  wire bfm_axi_if_0_SL_OE_N;
-  wire bfm_axi_if_0_SL_PCLK;
-  wire bfm_axi_if_0_SL_PKTEND_N;
-  wire bfm_axi_if_0_SL_RD_N;
-  wire bfm_axi_if_0_SL_WR_N;
   wire [31:0]bfm_axi_if_0_m_axi_ARADDR;
   wire [1:0]bfm_axi_if_0_m_axi_ARBURST;
   wire [3:0]bfm_axi_if_0_m_axi_ARID;
@@ -121,11 +81,12 @@ module design_riscv_cache
   wire clk_wiz_0_clk_out1;
   wire clk_wiz_0_clk_out2;
   wire clk_wiz_0_locked;
-  wire [31:0]gpio_in_1;
+  wire [7:0]gpio_in_1;
+  wire [3:0]keypad_row_1;
   wire [0:0]proc_sys_reset_0_interconnect_aresetn;
   wire [0:0]proc_sys_reset_0_peripheral_aresetn;
-  wire [31:0]riscv_cache_soc_0_gpio_dir;
-  wire [31:0]riscv_cache_soc_0_gpio_out;
+  wire [7:0]riscv_cache_soc_0_gpio_out;
+  wire [3:0]riscv_cache_soc_0_keypad_col;
   wire [31:0]riscv_cache_soc_0_m_axi_mem_ARADDR;
   wire [1:0]riscv_cache_soc_0_m_axi_mem_ARBURST;
   wire [5:0]riscv_cache_soc_0_m_axi_mem_ARID;
@@ -166,22 +127,10 @@ module design_riscv_cache
 
   assign BOARD_CLK_IN_1 = BOARD_CLK_IN;
   assign BOARD_RST_SW_1 = BOARD_RST_SW;
-  assign SL_AD[1:0] = bfm_axi_if_0_SL_AD;
-  assign SL_CS_N = bfm_axi_if_0_SL_CS_N;
-  assign SL_FLAGA_0_1 = SL_FLAGA;
-  assign SL_FLAGB_0_1 = SL_FLAGB;
-  assign SL_FLAGC_0_1 = SL_FLAGC;
-  assign SL_FLAGD_0_1 = SL_FLAGD;
-  assign SL_MODE_0_1 = SL_MODE[1:0];
-  assign SL_OE_N = bfm_axi_if_0_SL_OE_N;
-  assign SL_PCLK = bfm_axi_if_0_SL_PCLK;
-  assign SL_PKTEND_N = bfm_axi_if_0_SL_PKTEND_N;
-  assign SL_RD_N = bfm_axi_if_0_SL_RD_N;
-  assign SL_RST_N_0_1 = SL_RST_N;
-  assign SL_WR_N = bfm_axi_if_0_SL_WR_N;
-  assign gpio_dir[31:0] = riscv_cache_soc_0_gpio_dir;
-  assign gpio_in_1 = gpio_in[31:0];
-  assign gpio_out[31:0] = riscv_cache_soc_0_gpio_out;
+  assign gpio_in_1 = gpio_in[7:0];
+  assign gpio_out[7:0] = riscv_cache_soc_0_gpio_out;
+  assign keypad_col[3:0] = riscv_cache_soc_0_keypad_col;
+  assign keypad_row_1 = keypad_row[3:0];
   assign uart_cts_n_1 = uart_cts_n;
   assign uart_rts_n = riscv_cache_soc_0_uart_rts_n;
   assign uart_rxd_1 = uart_rxd;
@@ -256,20 +205,12 @@ module design_riscv_cache
   design_riscv_cache_bfm_axi_if_0_0 bfm_axi_if_0
        (.GPIN(rstmgra_0_GPIN),
         .GPOUT(bfm_axi_if_0_GPOUT),
-        .SL_AD(bfm_axi_if_0_SL_AD),
-        .SL_CS_N(bfm_axi_if_0_SL_CS_N),
-        .SL_DT(SL_DT[31:0]),
-        .SL_FLAGA(SL_FLAGA_0_1),
-        .SL_FLAGB(SL_FLAGB_0_1),
-        .SL_FLAGC(SL_FLAGC_0_1),
-        .SL_FLAGD(SL_FLAGD_0_1),
-        .SL_MODE(SL_MODE_0_1),
-        .SL_OE_N(bfm_axi_if_0_SL_OE_N),
-        .SL_PCLK(bfm_axi_if_0_SL_PCLK),
-        .SL_PKTEND_N(bfm_axi_if_0_SL_PKTEND_N),
-        .SL_RD_N(bfm_axi_if_0_SL_RD_N),
-        .SL_RST_N(SL_RST_N_0_1),
-        .SL_WR_N(bfm_axi_if_0_SL_WR_N),
+        .SL_FLAGA(1'b0),
+        .SL_FLAGB(1'b0),
+        .SL_FLAGC(1'b0),
+        .SL_FLAGD(1'b0),
+        .SL_MODE({1'b0,1'b0}),
+        .SL_RST_N(1'b0),
         .SYS_CLK(clk_wiz_0_clk_out1),
         .SYS_CLK_STABLE(clk_wiz_0_locked),
         .SYS_RST_N(util_vector_logic_0_Res),
@@ -321,9 +262,10 @@ module design_riscv_cache
        (.axi_aclk(clk_wiz_0_clk_out2),
         .axi_aresetn(rstmgra_0_bus_resetn),
         .cpu_resetn(rstmgra_0_cpu_resetn),
-        .gpio_dir(riscv_cache_soc_0_gpio_dir),
         .gpio_in(gpio_in_1),
         .gpio_out(riscv_cache_soc_0_gpio_out),
+        .keypad_col(riscv_cache_soc_0_keypad_col),
+        .keypad_row(keypad_row_1),
         .m_axi_mem_araddr(riscv_cache_soc_0_m_axi_mem_ARADDR),
         .m_axi_mem_arburst(riscv_cache_soc_0_m_axi_mem_ARBURST),
         .m_axi_mem_arid(riscv_cache_soc_0_m_axi_mem_ARID),

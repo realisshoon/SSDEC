@@ -8,8 +8,8 @@
 `define RIGOR
 //-----------------------------------------------------------------------
 `define XILINX
-`define CON_FMC
-`define MEMORY_EXTERNAL
+`define CON_FMC    // Keep defined for Block Design compatibility, but FMC XDC is disabled
+`define MEMORY_EXTERNAL  // Enable AXI memory interface (connects to internal BRAM in Block Design)
 //-----------------------------------------------------------------------
 // define board type: ML605, ZC706, SP605, VCU108
 `undef  BOARD_SP605

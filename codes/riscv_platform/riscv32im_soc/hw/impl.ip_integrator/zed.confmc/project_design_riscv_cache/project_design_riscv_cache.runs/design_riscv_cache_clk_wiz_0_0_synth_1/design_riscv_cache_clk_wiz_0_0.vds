@@ -2,16 +2,16 @@
 # Vivado v2021.2 (64-bit)
 # SW Build 3367213 on Tue Oct 19 02:47:39 MDT 2021
 # IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
-# Start of session at: Tue Oct 21 15:52:32 2025
-# Process ID: 16895
-# Current directory: /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_clk_wiz_0_0_synth_1
+# Start of session at: Fri Oct 24 16:32:23 2025
+# Process ID: 425175
+# Current directory: /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_clk_wiz_0_0_synth_1
 # Command line: vivado -log design_riscv_cache_clk_wiz_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_riscv_cache_clk_wiz_0_0.tcl
-# Log file: /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_clk_wiz_0_0_synth_1/design_riscv_cache_clk_wiz_0_0.vds
-# Journal file: /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_clk_wiz_0_0_synth_1/vivado.jou
-# Running On: sogang-500TGA-500SGA, OS: Linux, CPU Frequency: 4000.000 MHz, CPU Physical cores: 10, Host memory: 16429 MB
+# Log file: /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_clk_wiz_0_0_synth_1/design_riscv_cache_clk_wiz_0_0.vds
+# Journal file: /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_clk_wiz_0_0_synth_1/vivado.jou
+# Running On: sogang-500TGA-500SGA, OS: Linux, CPU Frequency: 917.272 MHz, CPU Physical cores: 10, Host memory: 16429 MB
 #-----------------------------------------------------------
 source design_riscv_cache_clk_wiz_0_0.tcl -notrace
-create_project: Time (s): cpu = 00:00:03 ; elapsed = 00:00:11 . Memory (MB): peak = 2722.941 ; gain = 0.000 ; free physical = 2535 ; free virtual = 81798
+create_project: Time (s): cpu = 00:00:03 ; elapsed = 00:00:13 . Memory (MB): peak = 2504.355 ; gain = 0.000 ; free physical = 5927 ; free virtual = 81967
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1700] Loaded user IP repository '/opt/confmc/2020.06/hwlib/trx_axi/gen_ip'.
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2021.2/data/ip'.
@@ -22,12 +22,12 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020
 INFO: [Device 21-403] Loading part xc7z020clg484-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 17248
+INFO: [Synth 8-7075] Helper process launched with PID 426085
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:21 . Memory (MB): peak = 2722.941 ; gain = 0.000 ; free physical = 194 ; free virtual = 77316
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2515.254 ; gain = 10.898 ; free physical = 2994 ; free virtual = 79182
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'design_riscv_cache_clk_wiz_0_0' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_clk_wiz_0_0/design_riscv_cache_clk_wiz_0_0.v:71]
-INFO: [Synth 8-6157] synthesizing module 'design_riscv_cache_clk_wiz_0_0_clk_wiz' [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_clk_wiz_0_0/design_riscv_cache_clk_wiz_0_0_clk_wiz.v:69]
+INFO: [Synth 8-6157] synthesizing module 'design_riscv_cache_clk_wiz_0_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_clk_wiz_0_0/design_riscv_cache_clk_wiz_0_0.v:71]
+INFO: [Synth 8-6157] synthesizing module 'design_riscv_cache_clk_wiz_0_0_clk_wiz' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_clk_wiz_0_0/design_riscv_cache_clk_wiz_0_0_clk_wiz.v:69]
 INFO: [Synth 8-6157] synthesizing module 'IBUF' [/tools/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:55204]
 INFO: [Synth 8-6155] done synthesizing module 'IBUF' (1#1) [/tools/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:55204]
 INFO: [Synth 8-6157] synthesizing module 'MMCME2_ADV' [/tools/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:63510]
@@ -51,64 +51,64 @@ INFO: [Synth 8-6157] synthesizing module 'MMCME2_ADV' [/tools/Xilinx/Vivado/2021
 INFO: [Synth 8-6155] done synthesizing module 'MMCME2_ADV' (2#1) [/tools/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:63510]
 INFO: [Synth 8-6157] synthesizing module 'BUFG' [/tools/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:1083]
 INFO: [Synth 8-6155] done synthesizing module 'BUFG' (3#1) [/tools/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:1083]
-INFO: [Synth 8-6155] done synthesizing module 'design_riscv_cache_clk_wiz_0_0_clk_wiz' (4#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_clk_wiz_0_0/design_riscv_cache_clk_wiz_0_0_clk_wiz.v:69]
-INFO: [Synth 8-6155] done synthesizing module 'design_riscv_cache_clk_wiz_0_0' (5#1) [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_clk_wiz_0_0/design_riscv_cache_clk_wiz_0_0.v:71]
+INFO: [Synth 8-6155] done synthesizing module 'design_riscv_cache_clk_wiz_0_0_clk_wiz' (4#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_clk_wiz_0_0/design_riscv_cache_clk_wiz_0_0_clk_wiz.v:69]
+INFO: [Synth 8-6155] done synthesizing module 'design_riscv_cache_clk_wiz_0_0' (5#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_clk_wiz_0_0/design_riscv_cache_clk_wiz_0_0.v:71]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:36 . Memory (MB): peak = 2722.941 ; gain = 0.000 ; free physical = 412 ; free virtual = 76679
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2560.223 ; gain = 55.867 ; free physical = 2353 ; free virtual = 78546
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:37 . Memory (MB): peak = 2722.941 ; gain = 0.000 ; free physical = 659 ; free virtual = 76933
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2572.098 ; gain = 67.742 ; free physical = 2354 ; free virtual = 78546
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:37 . Memory (MB): peak = 2722.941 ; gain = 0.000 ; free physical = 659 ; free virtual = 76933
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2572.098 ; gain = 67.742 ; free physical = 2354 ; free virtual = 78546
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.06 . Memory (MB): peak = 2722.941 ; gain = 0.000 ; free physical = 341 ; free virtual = 76628
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2580.035 ; gain = 0.000 ; free physical = 2354 ; free virtual = 78546
 INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_clk_wiz_0_0/design_riscv_cache_clk_wiz_0_0_ooc.xdc] for cell 'inst'
-Finished Parsing XDC File [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_clk_wiz_0_0/design_riscv_cache_clk_wiz_0_0_ooc.xdc] for cell 'inst'
-Parsing XDC File [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_clk_wiz_0_0/design_riscv_cache_clk_wiz_0_0_board.xdc] for cell 'inst'
-Finished Parsing XDC File [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_clk_wiz_0_0/design_riscv_cache_clk_wiz_0_0_board.xdc] for cell 'inst'
-Parsing XDC File [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_clk_wiz_0_0/design_riscv_cache_clk_wiz_0_0.xdc] for cell 'inst'
-Finished Parsing XDC File [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_clk_wiz_0_0/design_riscv_cache_clk_wiz_0_0.xdc] for cell 'inst'
-INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_clk_wiz_0_0/design_riscv_cache_clk_wiz_0_0.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/design_riscv_cache_clk_wiz_0_0_propImpl.xdc].
+Parsing XDC File [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_clk_wiz_0_0/design_riscv_cache_clk_wiz_0_0_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_clk_wiz_0_0/design_riscv_cache_clk_wiz_0_0_ooc.xdc] for cell 'inst'
+Parsing XDC File [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_clk_wiz_0_0/design_riscv_cache_clk_wiz_0_0_board.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_clk_wiz_0_0/design_riscv_cache_clk_wiz_0_0_board.xdc] for cell 'inst'
+Parsing XDC File [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_clk_wiz_0_0/design_riscv_cache_clk_wiz_0_0.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_clk_wiz_0_0/design_riscv_cache_clk_wiz_0_0.xdc] for cell 'inst'
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_clk_wiz_0_0/design_riscv_cache_clk_wiz_0_0.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/design_riscv_cache_clk_wiz_0_0_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/design_riscv_cache_clk_wiz_0_0_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 INFO: [Timing 38-2] Deriving generated clocks
-Parsing XDC File [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_clk_wiz_0_0_synth_1/dont_touch.xdc]
-Finished Parsing XDC File [/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_clk_wiz_0_0_synth_1/dont_touch.xdc]
+Parsing XDC File [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_clk_wiz_0_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_clk_wiz_0_0_synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2784.996 ; gain = 0.000 ; free physical = 181 ; free virtual = 76554
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2660.910 ; gain = 0.000 ; free physical = 4053 ; free virtual = 80250
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2784.996 ; gain = 0.000 ; free physical = 179 ; free virtual = 76552
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2660.910 ; gain = 0.000 ; free physical = 4052 ; free virtual = 80249
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:07 ; elapsed = 00:01:14 . Memory (MB): peak = 2784.996 ; gain = 62.055 ; free physical = 267 ; free virtual = 76648
+Finished Constraint Validation : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2660.910 ; gain = 156.555 ; free physical = 4090 ; free virtual = 80305
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg484-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:07 ; elapsed = 00:01:14 . Memory (MB): peak = 2784.996 ; gain = 62.055 ; free physical = 267 ; free virtual = 76648
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2660.910 ; gain = 156.555 ; free physical = 4090 ; free virtual = 80305
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property KEEP_HIERARCHY = SOFT for inst. (constraint file  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_clk_wiz_0_0_synth_1/dont_touch.xdc, line 9).
+Applied set_property KEEP_HIERARCHY = SOFT for inst. (constraint file  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_clk_wiz_0_0_synth_1/dont_touch.xdc, line 9).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:07 ; elapsed = 00:01:14 . Memory (MB): peak = 2784.996 ; gain = 62.055 ; free physical = 278 ; free virtual = 76671
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2660.910 ; gain = 156.555 ; free physical = 4090 ; free virtual = 80305
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:07 ; elapsed = 00:01:15 . Memory (MB): peak = 2784.996 ; gain = 62.055 ; free physical = 274 ; free virtual = 76674
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2660.910 ; gain = 156.555 ; free physical = 4090 ; free virtual = 80308
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -131,25 +131,25 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:08 ; elapsed = 00:01:16 . Memory (MB): peak = 2784.996 ; gain = 62.055 ; free physical = 189 ; free virtual = 76612
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2660.910 ; gain = 156.555 ; free physical = 4089 ; free virtual = 80313
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:01:30 . Memory (MB): peak = 2784.996 ; gain = 62.055 ; free physical = 262 ; free virtual = 75950
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 2660.910 ; gain = 156.555 ; free physical = 3970 ; free virtual = 80210
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:01:30 . Memory (MB): peak = 2784.996 ; gain = 62.055 ; free physical = 179 ; free virtual = 75866
+Finished Timing Optimization : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 2660.910 ; gain = 156.555 ; free physical = 3970 ; free virtual = 80210
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:11 ; elapsed = 00:01:31 . Memory (MB): peak = 2784.996 ; gain = 62.055 ; free physical = 216 ; free virtual = 75903
+Finished Technology Mapping : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 2660.910 ; gain = 156.555 ; free physical = 3954 ; free virtual = 80194
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -167,37 +167,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:13 ; elapsed = 00:01:32 . Memory (MB): peak = 2784.996 ; gain = 62.055 ; free physical = 155 ; free virtual = 75720
+Finished IO Insertion : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 2660.910 ; gain = 156.555 ; free physical = 4042 ; free virtual = 80300
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:13 ; elapsed = 00:01:32 . Memory (MB): peak = 2784.996 ; gain = 62.055 ; free physical = 155 ; free virtual = 75720
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 2660.910 ; gain = 156.555 ; free physical = 4042 ; free virtual = 80300
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:13 ; elapsed = 00:01:32 . Memory (MB): peak = 2784.996 ; gain = 62.055 ; free physical = 155 ; free virtual = 75720
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 2660.910 ; gain = 156.555 ; free physical = 4042 ; free virtual = 80300
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:13 ; elapsed = 00:01:32 . Memory (MB): peak = 2784.996 ; gain = 62.055 ; free physical = 155 ; free virtual = 75720
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 2660.910 ; gain = 156.555 ; free physical = 4042 ; free virtual = 80300
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:13 ; elapsed = 00:01:32 . Memory (MB): peak = 2784.996 ; gain = 62.055 ; free physical = 155 ; free virtual = 75720
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 2660.910 ; gain = 156.555 ; free physical = 4042 ; free virtual = 80300
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:13 ; elapsed = 00:01:32 . Memory (MB): peak = 2784.996 ; gain = 62.055 ; free physical = 155 ; free virtual = 75720
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 2660.910 ; gain = 156.555 ; free physical = 4042 ; free virtual = 80300
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -218,18 +218,18 @@ Report Cell Usage:
 |3     |IBUF       |     1|
 +------+-----------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:13 ; elapsed = 00:01:32 . Memory (MB): peak = 2784.996 ; gain = 62.055 ; free physical = 155 ; free virtual = 75720
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 2660.910 ; gain = 156.555 ; free physical = 4042 ; free virtual = 80300
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:11 ; elapsed = 00:01:00 . Memory (MB): peak = 2784.996 ; gain = 0.000 ; free physical = 344 ; free virtual = 75804
-Synthesis Optimization Complete : Time (s): cpu = 00:00:13 ; elapsed = 00:01:34 . Memory (MB): peak = 2784.996 ; gain = 62.055 ; free physical = 286 ; free virtual = 75750
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2660.910 ; gain = 67.742 ; free physical = 4108 ; free virtual = 80366
+Synthesis Optimization Complete : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 2660.910 ; gain = 156.555 ; free physical = 4108 ; free virtual = 80366
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2784.996 ; gain = 0.000 ; free physical = 165 ; free virtual = 75643
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2660.910 ; gain = 0.000 ; free physical = 4108 ; free virtual = 80366
 INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2784.996 ; gain = 0.000 ; free physical = 171 ; free virtual = 74722
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2660.910 ; gain = 0.000 ; free physical = 4148 ; free virtual = 80407
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
@@ -237,9 +237,9 @@ Synth Design complete, checksum: fc1d8486
 INFO: [Common 17-83] Releasing license: Synthesis
 31 Infos, 1 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:16 ; elapsed = 00:02:02 . Memory (MB): peak = 2784.996 ; gain = 62.055 ; free physical = 1282 ; free virtual = 75790
-INFO: [Common 17-1381] The checkpoint '/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_clk_wiz_0_0_synth_1/design_riscv_cache_clk_wiz_0_0.dcp' has been generated.
-write_checkpoint: Time (s): cpu = 00:00:00.20 ; elapsed = 00:00:11 . Memory (MB): peak = 2784.996 ; gain = 0.000 ; free physical = 185 ; free virtual = 74716
+synth_design: Time (s): cpu = 00:00:18 ; elapsed = 00:00:35 . Memory (MB): peak = 2660.910 ; gain = 156.555 ; free physical = 4268 ; free virtual = 80527
+INFO: [Common 17-1381] The checkpoint '/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_clk_wiz_0_0_synth_1/design_riscv_cache_clk_wiz_0_0.dcp' has been generated.
 INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP design_riscv_cache_clk_wiz_0_0, cache-ID = 69cc3513be9d5584
-INFO: [Common 17-1381] The checkpoint '/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_clk_wiz_0_0_synth_1/design_riscv_cache_clk_wiz_0_0.dcp' has been generated.
+INFO: [Common 17-1381] The checkpoint '/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_clk_wiz_0_0_synth_1/design_riscv_cache_clk_wiz_0_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file design_riscv_cache_clk_wiz_0_0_utilization_synth.rpt -pb design_riscv_cache_clk_wiz_0_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri Oct 24 16:34:39 2025...

@@ -13,15 +13,18 @@ set_param board.repoPaths $::env(XILINX_VIVADO)/data/boards/board_files/${BOARD}
 
 source ${DESIGN_NAME}.tcl
 
-add_files -fileset constrs_1 ${XDC_DIR}/con-fmc_lpc_zed.xdc
-add_files -fileset constrs_1 ${XDC_DIR}/fpga_etc.xdc
-add_files -fileset constrs_1 ${XDC_DIR}/fpga_zed.xdc
-
 make_wrapper -force -top -files [get_files ${PROJECT_DIR}/${PROJECT_NAME}.srcs/sources_1/bd/${DESIGN_NAME}/${DESIGN_NAME}.bd]
-file copy -force ${PROJECT_DIR}/${PROJECT_NAME}.gen/sources_1/bd/${DESIGN_NAME}/hdl/${DESIGN_NAME}_wrapper.v ${DESIGN_NAME}_wrapper.v 
+file copy -force ${PROJECT_DIR}/${PROJECT_NAME}.gen/sources_1/bd/${DESIGN_NAME}/hdl/${DESIGN_NAME}_wrapper.v ${DESIGN_NAME}_wrapper.v
 add_files -norecurse ${PROJECT_DIR}/${PROJECT_NAME}.gen/sources_1/bd/${DESIGN_NAME}/hdl/${DESIGN_NAME}_wrapper.v
 add_files -norecurse ${DESIGN_NAME}_wrapper.v
 set_property top ${DESIGN_NAME}_wrapper [current_fileset]
+
+# Add XDC files AFTER wrapper is created and set as top
+# NOTE: con-fmc_lpc_zed.xdc is commented out because FMC ports are not used
+#       and cause I/O overutilization (412 I/O vs 327 available)
+#add_files -fileset constrs_1 ${XDC_DIR}/con-fmc_lpc_zed.xdc
+add_files -fileset constrs_1 ${XDC_DIR}/fpga_etc.xdc
+add_files -fileset constrs_1 ${XDC_DIR}/fpga_zed.xdc
 
 proc syn_impl { } {
     global PROJECT_DIR PROJECT_NAME DESIGN_NAME

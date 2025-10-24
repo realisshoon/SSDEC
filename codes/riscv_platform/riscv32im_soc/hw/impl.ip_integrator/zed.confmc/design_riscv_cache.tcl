@@ -67,6 +67,8 @@ add_files -norecurse -scan_for_includes $::env(DIR_AXI4_LITE_BUS)/rtl/verilog/am
 add_files -norecurse -scan_for_includes $::env(DIR_PIC_AXI_LITE)/rtl/verilog/pic_axi_lite.v
 add_files -norecurse -scan_for_includes $::env(DIR_TIMER_AXI_LITE)/rtl/verilog/timer_axi_lite.v
 add_files -norecurse -scan_for_includes $::env(DIR_UART_AXI_LITE)/rtl/verilog/uart_axi_lite.v
+add_files -norecurse -scan_for_includes $::env(DIR_GPIO_AXI_LITE)/rtl/verilog/gpio_axi_lite.v
+add_files -norecurse -scan_for_includes $::env(DIR_GPIO_AXI_LITE)/rtl/verilog/gpio_axi_lite_if.v
 add_files -norecurse -scan_for_includes $::env(DIR_RTL)/riscv_cache_soc.v
 add_files -norecurse -scan_for_includes $::env(DIR_RTL)/riscv_cache_core.v
 add_files -norecurse -scan_for_includes $::env(RISCV_CORE)/top_cache_axi/src_v/dcache_axi_axi.v
@@ -278,27 +280,30 @@ proc create_root_design { parentCell } {
   set_property -dict [ list \
    CONFIG.POLARITY {ACTIVE_HIGH} \
  ] $BOARD_RST_SW
-  set SL_AD [ create_bd_port -dir O -from 1 -to 0 SL_AD ]
-  set SL_CS_N [ create_bd_port -dir O SL_CS_N ]
-  set SL_DT [ create_bd_port -dir IO -from 31 -to 0 SL_DT ]
-  set SL_FLAGA [ create_bd_port -dir I SL_FLAGA ]
-  set SL_FLAGB [ create_bd_port -dir I SL_FLAGB ]
-  set SL_FLAGC [ create_bd_port -dir I SL_FLAGC ]
-  set SL_FLAGD [ create_bd_port -dir I SL_FLAGD ]
-  set SL_MODE [ create_bd_port -dir I -from 1 -to 0 SL_MODE ]
-  set SL_OE_N [ create_bd_port -dir O SL_OE_N ]
-  set SL_PCLK [ create_bd_port -dir O SL_PCLK ]
-  set SL_PKTEND_N [ create_bd_port -dir O SL_PKTEND_N ]
-  set SL_RD_N [ create_bd_port -dir O SL_RD_N ]
-  set SL_RST_N [ create_bd_port -dir I -type rst SL_RST_N ]
-  set SL_WR_N [ create_bd_port -dir O SL_WR_N ]
+  # FMC/BFM ports are commented out to reduce I/O usage
+  # These are only needed for external USB debugging via FMC connector
+  #set SL_AD [ create_bd_port -dir O -from 1 -to 0 SL_AD ]
+  #set SL_CS_N [ create_bd_port -dir O SL_CS_N ]
+  #set SL_DT [ create_bd_port -dir IO -from 31 -to 0 SL_DT ]
+  #set SL_FLAGA [ create_bd_port -dir I SL_FLAGA ]
+  #set SL_FLAGB [ create_bd_port -dir I SL_FLAGB ]
+  #set SL_FLAGC [ create_bd_port -dir I SL_FLAGC ]
+  #set SL_FLAGD [ create_bd_port -dir I SL_FLAGD ]
+  #set SL_MODE [ create_bd_port -dir I -from 1 -to 0 SL_MODE ]
+  #set SL_OE_N [ create_bd_port -dir O SL_OE_N ]
+  #set SL_PCLK [ create_bd_port -dir O SL_PCLK ]
+  #set SL_PKTEND_N [ create_bd_port -dir O SL_PKTEND_N ]
+  #set SL_RD_N [ create_bd_port -dir O SL_RD_N ]
+  #set SL_RST_N [ create_bd_port -dir I -type rst SL_RST_N ]
+  #set SL_WR_N [ create_bd_port -dir O SL_WR_N ]
   set uart_cts_n [ create_bd_port -dir I uart_cts_n ]
   set uart_rts_n [ create_bd_port -dir O uart_rts_n ]
   set uart_rxd [ create_bd_port -dir I uart_rxd ]
   set uart_txd [ create_bd_port -dir O uart_txd ]
-  set gpio_in [ create_bd_port -dir I -from 31 -to 0 gpio_in ]
-  set gpio_out [ create_bd_port -dir O -from 31 -to 0 gpio_out ]
-  set gpio_dir [ create_bd_port -dir O -from 31 -to 0 gpio_dir ]
+  set gpio_in [ create_bd_port -dir I -from 7 -to 0 gpio_in ]
+  set gpio_out [ create_bd_port -dir O -from 7 -to 0 gpio_out ]
+  set keypad_col [ create_bd_port -dir O -from 3 -to 0 keypad_col ]
+  set keypad_row [ create_bd_port -dir I -from 3 -to 0 keypad_row ]
 
   # Create instance: axi_bram_ctrl_0, and set properties
   set axi_bram_ctrl_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl:4.1 axi_bram_ctrl_0 ]
@@ -360,21 +365,22 @@ proc create_root_design { parentCell } {
   # Create port connections
   connect_bd_net -net BOARD_CLK_IN_1 [get_bd_ports BOARD_CLK_IN] [get_bd_pins clk_wiz_0/clk_in1]
   connect_bd_net -net BOARD_RST_SW_1 [get_bd_ports BOARD_RST_SW] [get_bd_pins proc_sys_reset_0/ext_reset_in]
-  connect_bd_net -net Net [get_bd_ports SL_DT] [get_bd_pins bfm_axi_if_0/SL_DT]
-  connect_bd_net -net SL_FLAGA_0_1 [get_bd_ports SL_FLAGA] [get_bd_pins bfm_axi_if_0/SL_FLAGA]
-  connect_bd_net -net SL_FLAGB_0_1 [get_bd_ports SL_FLAGB] [get_bd_pins bfm_axi_if_0/SL_FLAGB]
-  connect_bd_net -net SL_FLAGC_0_1 [get_bd_ports SL_FLAGC] [get_bd_pins bfm_axi_if_0/SL_FLAGC]
-  connect_bd_net -net SL_FLAGD_0_1 [get_bd_ports SL_FLAGD] [get_bd_pins bfm_axi_if_0/SL_FLAGD]
-  connect_bd_net -net SL_MODE_0_1 [get_bd_ports SL_MODE] [get_bd_pins bfm_axi_if_0/SL_MODE]
-  connect_bd_net -net SL_RST_N_0_1 [get_bd_ports SL_RST_N] [get_bd_pins bfm_axi_if_0/SL_RST_N]
+  # FMC port connections are commented out (ports not created)
+  #connect_bd_net -net Net [get_bd_ports SL_DT] [get_bd_pins bfm_axi_if_0/SL_DT]
+  #connect_bd_net -net SL_FLAGA_0_1 [get_bd_ports SL_FLAGA] [get_bd_pins bfm_axi_if_0/SL_FLAGA]
+  #connect_bd_net -net SL_FLAGB_0_1 [get_bd_ports SL_FLAGB] [get_bd_pins bfm_axi_if_0/SL_FLAGB]
+  #connect_bd_net -net SL_FLAGC_0_1 [get_bd_ports SL_FLAGC] [get_bd_pins bfm_axi_if_0/SL_FLAGC]
+  #connect_bd_net -net SL_FLAGD_0_1 [get_bd_ports SL_FLAGD] [get_bd_pins bfm_axi_if_0/SL_FLAGD]
+  #connect_bd_net -net SL_MODE_0_1 [get_bd_ports SL_MODE] [get_bd_pins bfm_axi_if_0/SL_MODE]
+  #connect_bd_net -net SL_RST_N_0_1 [get_bd_ports SL_RST_N] [get_bd_pins bfm_axi_if_0/SL_RST_N]
   connect_bd_net -net bfm_axi_if_0_GPOUT [get_bd_pins bfm_axi_if_0/GPOUT] [get_bd_pins rstmgra_0/GPOUT]
-  connect_bd_net -net bfm_axi_if_0_SL_AD [get_bd_ports SL_AD] [get_bd_pins bfm_axi_if_0/SL_AD]
-  connect_bd_net -net bfm_axi_if_0_SL_CS_N [get_bd_ports SL_CS_N] [get_bd_pins bfm_axi_if_0/SL_CS_N]
-  connect_bd_net -net bfm_axi_if_0_SL_OE_N [get_bd_ports SL_OE_N] [get_bd_pins bfm_axi_if_0/SL_OE_N]
-  connect_bd_net -net bfm_axi_if_0_SL_PCLK [get_bd_ports SL_PCLK] [get_bd_pins bfm_axi_if_0/SL_PCLK]
-  connect_bd_net -net bfm_axi_if_0_SL_PKTEND_N [get_bd_ports SL_PKTEND_N] [get_bd_pins bfm_axi_if_0/SL_PKTEND_N]
-  connect_bd_net -net bfm_axi_if_0_SL_RD_N [get_bd_ports SL_RD_N] [get_bd_pins bfm_axi_if_0/SL_RD_N]
-  connect_bd_net -net bfm_axi_if_0_SL_WR_N [get_bd_ports SL_WR_N] [get_bd_pins bfm_axi_if_0/SL_WR_N]
+  #connect_bd_net -net bfm_axi_if_0_SL_AD [get_bd_ports SL_AD] [get_bd_pins bfm_axi_if_0/SL_AD]
+  #connect_bd_net -net bfm_axi_if_0_SL_CS_N [get_bd_ports SL_CS_N] [get_bd_pins bfm_axi_if_0/SL_CS_N]
+  #connect_bd_net -net bfm_axi_if_0_SL_OE_N [get_bd_ports SL_OE_N] [get_bd_pins bfm_axi_if_0/SL_OE_N]
+  #connect_bd_net -net bfm_axi_if_0_SL_PCLK [get_bd_ports SL_PCLK] [get_bd_pins bfm_axi_if_0/SL_PCLK]
+  #connect_bd_net -net bfm_axi_if_0_SL_PKTEND_N [get_bd_ports SL_PKTEND_N] [get_bd_pins bfm_axi_if_0/SL_PKTEND_N]
+  #connect_bd_net -net bfm_axi_if_0_SL_RD_N [get_bd_ports SL_RD_N] [get_bd_pins bfm_axi_if_0/SL_RD_N]
+  #connect_bd_net -net bfm_axi_if_0_SL_WR_N [get_bd_ports SL_WR_N] [get_bd_pins bfm_axi_if_0/SL_WR_N]
   connect_bd_net -net clk_wiz_0_clk_out1 [get_bd_pins bfm_axi_if_0/SYS_CLK] [get_bd_pins clk_wiz_0/clk_out1]
   connect_bd_net -net clk_wiz_0_clk_out2 [get_bd_pins axi_bram_ctrl_0/s_axi_aclk] [get_bd_pins bfm_axi_if_0/m_axi_aclk] [get_bd_pins clk_wiz_0/clk_out2] [get_bd_pins proc_sys_reset_0/slowest_sync_clk] [get_bd_pins riscv_cache_soc_0/axi_aclk] [get_bd_pins rstmgra_0/clk]
   connect_bd_net -net clk_wiz_0_locked [get_bd_pins bfm_axi_if_0/SYS_CLK_STABLE] [get_bd_pins clk_wiz_0/locked] [get_bd_pins proc_sys_reset_0/dcm_locked]
@@ -389,7 +395,9 @@ proc create_root_design { parentCell } {
   connect_bd_net -net uart_rxd_1 [get_bd_ports uart_rxd] [get_bd_pins riscv_cache_soc_0/uart_rxd]
   connect_bd_net -net gpio_in_1 [get_bd_ports gpio_in] [get_bd_pins riscv_cache_soc_0/gpio_in]
   connect_bd_net -net riscv_cache_soc_0_gpio_out [get_bd_ports gpio_out] [get_bd_pins riscv_cache_soc_0/gpio_out]
-  connect_bd_net -net riscv_cache_soc_0_gpio_dir [get_bd_ports gpio_dir] [get_bd_pins riscv_cache_soc_0/gpio_dir]
+  connect_bd_net -net riscv_cache_soc_0_keypad_col [get_bd_ports keypad_col] [get_bd_pins riscv_cache_soc_0/keypad_col]
+  connect_bd_net -net keypad_row_1 [get_bd_ports keypad_row] [get_bd_pins riscv_cache_soc_0/keypad_row]
+  # Note: gpio_dir is internal signal only, not connected to top-level port
   connect_bd_net -net util_vector_logic_0_Res [get_bd_pins bfm_axi_if_0/SYS_RST_N] [get_bd_pins proc_sys_reset_0/aux_reset_in]
 
   # Create address segments

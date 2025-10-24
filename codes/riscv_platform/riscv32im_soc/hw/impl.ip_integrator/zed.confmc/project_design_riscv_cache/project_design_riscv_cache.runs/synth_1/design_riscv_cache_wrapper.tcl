@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/design_riscv_cache_wrapper.tcl"
+  variable script "/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/design_riscv_cache_wrapper.tcl"
   variable category "vivado_synth"
 }
 
@@ -70,6 +70,7 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
+set_param chipscope.maxJobs 4
 set_msg_config -id {HDL-1065} -limit 10000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7z020clg484-1
@@ -78,31 +79,31 @@ set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
-set_property webtalk.parent_dir /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.cache/wt [current_project]
-set_property parent.project_path /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.xpr [current_project]
+set_property webtalk.parent_dir /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.cache/wt [current_project]
+set_property parent.project_path /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.xpr [current_project]
 set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property ip_repo_paths /opt/confmc/2020.06/hwlib/trx_axi/gen_ip [current_project]
 update_ip_catalog
-set_property ip_output_repo /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.cache/ip [current_project]
+set_property ip_output_repo /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/syn_define.v
-  /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/hdl/design_riscv_cache_wrapper.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/syn_define.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/hdl/design_riscv_cache_wrapper.v
 }
-add_files /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.srcs/sources_1/bd/design_riscv_cache/design_riscv_cache.bd
-set_property used_in_implementation false [get_files -all /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_axi_bram_ctrl_0_0/design_riscv_cache_axi_bram_ctrl_0_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_axi_bram_ctrl_0_bram_0/design_riscv_cache_axi_bram_ctrl_0_bram_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_clk_wiz_0_0/design_riscv_cache_clk_wiz_0_0_board.xdc]
-set_property used_in_implementation false [get_files -all /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_clk_wiz_0_0/design_riscv_cache_clk_wiz_0_0.xdc]
-set_property used_in_implementation false [get_files -all /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_clk_wiz_0_0/design_riscv_cache_clk_wiz_0_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_proc_sys_reset_0_0/design_riscv_cache_proc_sys_reset_0_0_board.xdc]
-set_property used_in_implementation false [get_files -all /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_proc_sys_reset_0_0/design_riscv_cache_proc_sys_reset_0_0.xdc]
-set_property used_in_implementation false [get_files -all /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_proc_sys_reset_0_0/design_riscv_cache_proc_sys_reset_0_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/design_riscv_cache_ooc.xdc]
+add_files /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.srcs/sources_1/bd/design_riscv_cache/design_riscv_cache.bd
+set_property used_in_implementation false [get_files -all /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_axi_bram_ctrl_0_0/design_riscv_cache_axi_bram_ctrl_0_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_axi_bram_ctrl_0_bram_0/design_riscv_cache_axi_bram_ctrl_0_bram_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_clk_wiz_0_0/design_riscv_cache_clk_wiz_0_0_board.xdc]
+set_property used_in_implementation false [get_files -all /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_clk_wiz_0_0/design_riscv_cache_clk_wiz_0_0.xdc]
+set_property used_in_implementation false [get_files -all /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_clk_wiz_0_0/design_riscv_cache_clk_wiz_0_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_proc_sys_reset_0_0/design_riscv_cache_proc_sys_reset_0_0_board.xdc]
+set_property used_in_implementation false [get_files -all /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_proc_sys_reset_0_0/design_riscv_cache_proc_sys_reset_0_0.xdc]
+set_property used_in_implementation false [get_files -all /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_proc_sys_reset_0_0/design_riscv_cache_proc_sys_reset_0_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/design_riscv_cache_ooc.xdc]
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -113,18 +114,17 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/con-fmc_lpc_zed.xdc
-set_property used_in_implementation false [get_files /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/con-fmc_lpc_zed.xdc]
+read_xdc /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_etc.xdc
+set_property used_in_implementation false [get_files /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_etc.xdc]
 
-read_xdc /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_etc.xdc
-set_property used_in_implementation false [get_files /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_etc.xdc]
-
-read_xdc /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc
-set_property used_in_implementation false [get_files /home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc]
+read_xdc /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc
+set_property used_in_implementation false [get_files /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc]
 
 read_xdc dont_touch.xdc
 set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 1
+
+read_checkpoint -auto_incremental -incremental /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.srcs/utils_1/imports/synth_1/design_riscv_cache_wrapper.dcp
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }

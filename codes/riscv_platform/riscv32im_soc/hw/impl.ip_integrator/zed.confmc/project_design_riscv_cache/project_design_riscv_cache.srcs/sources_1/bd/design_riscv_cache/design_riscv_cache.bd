@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x5A24DCA021F2BD6E",
+      "boundary_crc": "0x94B157897404887B",
       "device": "xc7z020clg484-1",
       "gen_directory": "../../../../project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache",
       "name": "design_riscv_cache",
@@ -58,65 +58,6 @@
           }
         }
       },
-      "SL_AD": {
-        "direction": "O",
-        "left": "1",
-        "right": "0"
-      },
-      "SL_CS_N": {
-        "direction": "O"
-      },
-      "SL_DT": {
-        "direction": "IO",
-        "left": "31",
-        "right": "0"
-      },
-      "SL_FLAGA": {
-        "direction": "I"
-      },
-      "SL_FLAGB": {
-        "direction": "I"
-      },
-      "SL_FLAGC": {
-        "direction": "I"
-      },
-      "SL_FLAGD": {
-        "direction": "I"
-      },
-      "SL_MODE": {
-        "direction": "I",
-        "left": "1",
-        "right": "0"
-      },
-      "SL_OE_N": {
-        "direction": "O"
-      },
-      "SL_PCLK": {
-        "direction": "O"
-      },
-      "SL_PKTEND_N": {
-        "direction": "O"
-      },
-      "SL_RD_N": {
-        "direction": "O"
-      },
-      "SL_RST_N": {
-        "type": "rst",
-        "direction": "I",
-        "parameters": {
-          "INSERT_VIP": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "POLARITY": {
-            "value": "ACTIVE_LOW",
-            "value_src": "default"
-          }
-        }
-      },
-      "SL_WR_N": {
-        "direction": "O"
-      },
       "uart_cts_n": {
         "direction": "I"
       },
@@ -131,17 +72,22 @@
       },
       "gpio_in": {
         "direction": "I",
-        "left": "31",
+        "left": "7",
         "right": "0"
       },
       "gpio_out": {
         "direction": "O",
-        "left": "31",
+        "left": "7",
         "right": "0"
       },
-      "gpio_dir": {
+      "keypad_col": {
         "direction": "O",
-        "left": "31",
+        "left": "3",
+        "right": "0"
+      },
+      "keypad_row": {
+        "direction": "I",
+        "left": "3",
         "right": "0"
       }
     },
@@ -805,17 +751,22 @@
           },
           "gpio_in": {
             "direction": "I",
-            "left": "31",
+            "left": "7",
             "right": "0"
           },
           "gpio_out": {
             "direction": "O",
-            "left": "31",
+            "left": "7",
             "right": "0"
           },
-          "gpio_dir": {
+          "keypad_col": {
             "direction": "O",
-            "left": "31",
+            "left": "3",
+            "right": "0"
+          },
+          "keypad_row": {
+            "direction": "I",
+            "left": "3",
             "right": "0"
           },
           "cpu_resetn": {
@@ -989,94 +940,10 @@
           "proc_sys_reset_0/ext_reset_in"
         ]
       },
-      "Net": {
-        "ports": [
-          "SL_DT",
-          "bfm_axi_if_0/SL_DT"
-        ]
-      },
-      "SL_FLAGA_0_1": {
-        "ports": [
-          "SL_FLAGA",
-          "bfm_axi_if_0/SL_FLAGA"
-        ]
-      },
-      "SL_FLAGB_0_1": {
-        "ports": [
-          "SL_FLAGB",
-          "bfm_axi_if_0/SL_FLAGB"
-        ]
-      },
-      "SL_FLAGC_0_1": {
-        "ports": [
-          "SL_FLAGC",
-          "bfm_axi_if_0/SL_FLAGC"
-        ]
-      },
-      "SL_FLAGD_0_1": {
-        "ports": [
-          "SL_FLAGD",
-          "bfm_axi_if_0/SL_FLAGD"
-        ]
-      },
-      "SL_MODE_0_1": {
-        "ports": [
-          "SL_MODE",
-          "bfm_axi_if_0/SL_MODE"
-        ]
-      },
-      "SL_RST_N_0_1": {
-        "ports": [
-          "SL_RST_N",
-          "bfm_axi_if_0/SL_RST_N"
-        ]
-      },
       "bfm_axi_if_0_GPOUT": {
         "ports": [
           "bfm_axi_if_0/GPOUT",
           "rstmgra_0/GPOUT"
-        ]
-      },
-      "bfm_axi_if_0_SL_AD": {
-        "ports": [
-          "bfm_axi_if_0/SL_AD",
-          "SL_AD"
-        ]
-      },
-      "bfm_axi_if_0_SL_CS_N": {
-        "ports": [
-          "bfm_axi_if_0/SL_CS_N",
-          "SL_CS_N"
-        ]
-      },
-      "bfm_axi_if_0_SL_OE_N": {
-        "ports": [
-          "bfm_axi_if_0/SL_OE_N",
-          "SL_OE_N"
-        ]
-      },
-      "bfm_axi_if_0_SL_PCLK": {
-        "ports": [
-          "bfm_axi_if_0/SL_PCLK",
-          "SL_PCLK"
-        ]
-      },
-      "bfm_axi_if_0_SL_PKTEND_N": {
-        "ports": [
-          "bfm_axi_if_0/SL_PKTEND_N",
-          "SL_PKTEND_N"
-        ]
-      },
-      "bfm_axi_if_0_SL_RD_N": {
-        "ports": [
-          "bfm_axi_if_0/SL_RD_N",
-          "SL_RD_N"
-        ]
-      },
-      "bfm_axi_if_0_SL_WR_N": {
-        "ports": [
-          "bfm_axi_if_0/SL_WR_N",
-          "SL_WR_N"
         ]
       },
       "clk_wiz_0_clk_out1": {
@@ -1108,6 +975,12 @@
           "riscv_cache_soc_0/gpio_in"
         ]
       },
+      "keypad_row_1": {
+        "ports": [
+          "keypad_row",
+          "riscv_cache_soc_0/keypad_row"
+        ]
+      },
       "proc_sys_reset_0_interconnect_aresetn": {
         "ports": [
           "proc_sys_reset_0/interconnect_aresetn",
@@ -1121,16 +994,16 @@
           "bfm_axi_if_0/m_axi_aresetn"
         ]
       },
-      "riscv_cache_soc_0_gpio_dir": {
-        "ports": [
-          "riscv_cache_soc_0/gpio_dir",
-          "gpio_dir"
-        ]
-      },
       "riscv_cache_soc_0_gpio_out": {
         "ports": [
           "riscv_cache_soc_0/gpio_out",
           "gpio_out"
+        ]
+      },
+      "riscv_cache_soc_0_keypad_col": {
+        "ports": [
+          "riscv_cache_soc_0/keypad_col",
+          "keypad_col"
         ]
       },
       "riscv_cache_soc_0_uart_rts_n": {

@@ -66,70 +66,136 @@ module top ;
     //--------------------------------------------------------------------------
     wire  cpu_resetn;
     wire  uart_txd;
-    wire  uart_rxd;
+    wire  uart_rxdd;
     wire  uart_rts_n;
     wire  uart_cts_n=uart_rts_n;
-    wire  [31:0] gpio_in;
-    wire  [31:0] gpio_out;
-    wire  [31:0] gpio_dir;
+    wire  [7:0] gpio_in;
+    wire  [7:0] gpio_out;
+    wire  [3:0] keypad_col;
+    wire  [3:0] keypad_row;
 
     // 가상 키패드 시뮬레이션을 위한 reg 신호
-    reg [31:0] gpio_in_reg;
+    reg [7:0] gpio_in_reg;
+    reg [3:0] keypad_row_reg;
     assign gpio_in = gpio_in_reg;
+    assign keypad_row = keypad_row_reg;
     
     // 초기값 설정
     initial begin
-        gpio_in_reg = 32'h0;  // 모든 핀 해제
+        gpio_in_reg = 8'h0;  // 모든 핀 해제
+        // keypad_row_reg는 always @(*) 블록에서 조합논리로 설정됨
     end
     
-    // 간단한 키패드 시뮬레이션 (4개 키 입력)
+    // PmodKYPD 시뮬레이션: Column을 스캔하면서 Row 응답
+    // Keypad 매트릭스: COL[3:0] = {COL4, COL3, COL2, COL1}
+    //                  ROW[3:0] = {ROW4, ROW3, ROW2, ROW1}
+    //      COL0 COL1 COL2 COL3
+    // ROW0  1    2    3    A
+    // ROW1  4    5    6    B
+    // ROW2  7    8    9    C
+    // ROW3  *    0    #    D
+    
+    // 키패드 동작: COL이 LOW일 때, 해당 버튼이 눌리면 ROW가 LOW
+    always @(*) begin
+        keypad_row_reg = 4'hF;  // 기본값: 모든 ROW HIGH
+        
+        // COL0이 LOW일 때
+        if (keypad_col[0] == 1'b0) begin
+            if (gpio_in_reg[0]) keypad_row_reg[0] = 1'b0;  // '1' 버튼
+            if (gpio_in_reg[1]) keypad_row_reg[1] = 1'b0;  // '4' 버튼
+            if (gpio_in_reg[2]) keypad_row_reg[2] = 1'b0;  // '7' 버튼
+            if (gpio_in_reg[3]) keypad_row_reg[3] = 1'b0;  // '*' 버튼
+        end
+        
+        // COL1이 LOW일 때
+        if (keypad_col[1] == 1'b0) begin
+            if (gpio_in_reg[0]) keypad_row_reg[0] = 1'b0;  // '2' 버튼
+            if (gpio_in_reg[1]) keypad_row_reg[1] = 1'b0;  // '5' 버튼
+            if (gpio_in_reg[2]) keypad_row_reg[2] = 1'b0;  // '8' 버튼
+            if (gpio_in_reg[3]) keypad_row_reg[3] = 1'b0;  // '0' 버튼
+        end
+        
+        // COL2가 LOW일 때
+        if (keypad_col[2] == 1'b0) begin
+            if (gpio_in_reg[0]) keypad_row_reg[0] = 1'b0;  // '3' 버튼
+            if (gpio_in_reg[1]) keypad_row_reg[1] = 1'b0;  // '6' 버튼
+            if (gpio_in_reg[2]) keypad_row_reg[2] = 1'b0;  // '9' 버튼
+            if (gpio_in_reg[3]) keypad_row_reg[3] = 1'b0;  // '#' 버튼
+        end
+        
+        // COL3이 LOW일 때
+        if (keypad_col[3] == 1'b0) begin
+            if (gpio_in_reg[0]) keypad_row_reg[0] = 1'b0;  // 'A' 버튼
+            if (gpio_in_reg[1]) keypad_row_reg[1] = 1'b0;  // 'B' 버튼
+            if (gpio_in_reg[2]) keypad_row_reg[2] = 1'b0;  // 'C' 버튼
+            if (gpio_in_reg[3]) keypad_row_reg[3] = 1'b0;  // 'D' 버튼
+        end
+    end
+    
+    // 체계적인 GPIO 입력 시뮬레이션 (파형 분석용)
     initial begin
-        $display("=== GPIO 키패드 테스트 시작 ===");
-        $display("4개의 키패드 입력을 시뮬레이션합니다.");
+        $display("=== 4x4 Matrix Keypad 테스트 시작 ===");
+        $display("PmodKYPD 시뮬레이션");
         
         // 시스템 초기화 및 CPU 시작 대기
         wait (cpu_resetn==1'b1);
         
         // CPU가 초기화될 시간을 충분히 대기
-        #100000000;  // 100ms 대기
+        #1000000;  // 1ms 대기
         
         $display("키패드 시뮬레이션 시작...");
         
-        // 키 0 입력 시뮬레이션
-        $display("키 0 입력 시뮬레이션");
+        // 시퀀스 1: '1' 버튼 입력 (ROW0, COL0)
+        $display("=== 시퀀스 1: '1' 버튼 입력 ===");
         gpio_in_reg[0] = 1'b1;
-        #100000000;  // 100ms 유지 (CPU가 감지할 수 있도록)
+        #2000000;  // 2ms 유지 (파형 관찰용)
         gpio_in_reg[0] = 1'b0;
-        #50000000;   // 50ms 대기
+        #1000000;  // 1ms 대기
         
-        // 키 1 입력 시뮬레이션
-        $display("키 1 입력 시뮬레이션");
+        // 시퀀스 2: 키 1 입력 (GPIO[1] = 1)
+        $display("=== 시퀀스 2: 키 1 입력 ===");
         gpio_in_reg[1] = 1'b1;
-        #100000000;  // 100ms 유지
+        #2000000;  // 2ms 유지
         gpio_in_reg[1] = 1'b0;
-        #50000000;   // 50ms 대기
+        #1000000;  // 1ms 대기
         
-        // 키 2 입력 시뮬레이션
-        $display("키 2 입력 시뮬레이션");
+        // 시퀀스 3: 키 2 입력 (GPIO[2] = 1)
+        $display("=== 시퀀스 3: 키 2 입력 ===");
         gpio_in_reg[2] = 1'b1;
-        #100000000;  // 100ms 유지
+        #2000000;  // 2ms 유지
         gpio_in_reg[2] = 1'b0;
-        #50000000;   // 50ms 대기
+        #1000000;  // 1ms 대기
         
-        // 키 3 입력 시뮬레이션
-        $display("키 3 입력 시뮬레이션");
+        // 시퀀스 4: 키 3 입력 (GPIO[3] = 1)
+        $display("=== 시퀀스 4: 키 3 입력 ===");
         gpio_in_reg[3] = 1'b1;
-        #100000000;  // 100ms 유지
+        #200000;  // 2ms 유지
         gpio_in_reg[3] = 1'b0;
-        #50000000;   // 50ms 대기
+        #100000;  // 1ms 대기
+        
+        // 시퀀스 5: 다중 키 입력 (GPIO[0,1] = 1)
+        $display("=== 시퀀스 5: 다중 키 입력 (0,1) ===");
+        gpio_in_reg[0] = 1'b1;
+        gpio_in_reg[1] = 1'b1;
+        #2000000;  // 2ms 유지
+        gpio_in_reg[0] = 1'b0;
+        gpio_in_reg[1] = 1'b0;
+        #100000;  // 1ms 대기
+        
+        // 시퀀스 6: 모든 키 입력 (GPIO[0,1,2,3] = 1)
+        $display("=== 시퀀스 6: 모든 키 입력 (0,1,2,3) ===");
+        gpio_in_reg[3:0] = 4'b1111;
+        #200000;  // 2ms 유지
+        gpio_in_reg[3:0] = 4'b0000;
+        #100000;  // 1ms 대기
         
         $display("=== 키패드 시뮬레이션 완료 ===");
-        $display("4개의 키가 입력되었습니다: 0, 1, 2, 3");
+        $display("6개의 시퀀스가 완료되었습니다.");
         
-        // 무한 루프 (시뮬레이션 종료 방지)
-        while(1) begin
-            #100000000;  // 100ms 대기
-        end
+        // 시뮬레이션 종료
+        #500000;  // 5ms 추가 대기 후 종료
+        $display("=== 시뮬레이션 완료 ===");
+        $finish;
     end
 
     //--------------------------------------------------------------------------
@@ -169,12 +235,13 @@ module top ;
         ,.axi_aresetn ( axi_aresetn )
         ,.axi_aclk    ( axi_aclk    )
         ,.uart_txd    ( uart_txd    )
-        ,.uart_rxd    ( uart_rxd    )
+        ,.uart_rxdd   ( uart_rxdd   )
         ,.uart_cts_n  ( uart_cts_n  )
         ,.uart_rts_n  ( uart_rts_n  )
         ,.gpio_in     ( gpio_in     )
         ,.gpio_out    ( gpio_out    )
-        ,.gpio_dir    ( gpio_dir    )
+        ,.keypad_col  ( keypad_col  )
+        ,.keypad_row  ( keypad_row  )
     );
     //--------------------------------------------------------------------------
     // load program and release reset
@@ -193,7 +260,7 @@ module top ;
          ,.WIDTH (8))  // 8-bit data width
     u_tty (
        .uart_rx(uart_txd)
-      ,.uart_tx(uart_rxd)
+      ,.uart_tx(uart_rxdd)
     );
     //--------------------------------------------------------------------------
     integer code;
