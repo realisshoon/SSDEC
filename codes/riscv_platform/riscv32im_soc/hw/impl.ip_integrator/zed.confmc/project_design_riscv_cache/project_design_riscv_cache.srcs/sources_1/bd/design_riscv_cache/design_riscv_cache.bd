@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x94B157897404887B",
+      "boundary_crc": "0xFB286639B3159BAF",
       "device": "xc7z020clg484-1",
       "gen_directory": "../../../../project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache",
       "name": "design_riscv_cache",
@@ -89,6 +89,12 @@
         "direction": "I",
         "left": "3",
         "right": "0"
+      },
+      "i2c_sda": {
+        "direction": "IO"
+      },
+      "i2c_scl": {
+        "direction": "O"
       }
     },
     "components": {
@@ -740,7 +746,7 @@
           "uart_txd": {
             "direction": "O"
           },
-          "uart_rxdd": {
+          "uart_rxd": {
             "direction": "I"
           },
           "uart_rts_n": {
@@ -768,6 +774,12 @@
             "direction": "I",
             "left": "3",
             "right": "0"
+          },
+          "i2c_sda": {
+            "direction": "IO"
+          },
+          "i2c_scl": {
+            "direction": "O"
           },
           "cpu_resetn": {
             "type": "rst",
@@ -1000,6 +1012,18 @@
           "gpio_out"
         ]
       },
+      "riscv_cache_soc_0_i2c_scl": {
+        "ports": [
+          "riscv_cache_soc_0/i2c_scl",
+          "i2c_scl"
+        ]
+      },
+      "riscv_cache_soc_0_i2c_sda": {
+        "ports": [
+          "i2c_sda",
+          "riscv_cache_soc_0/i2c_sda"
+        ]
+      },
       "riscv_cache_soc_0_keypad_col": {
         "ports": [
           "riscv_cache_soc_0/keypad_col",
@@ -1044,7 +1068,8 @@
       },
       "uart_rxd_1": {
         "ports": [
-          "uart_rxd"
+          "uart_rxd",
+          "riscv_cache_soc_0/uart_rxd"
         ]
       },
       "util_vector_logic_0_Res": {

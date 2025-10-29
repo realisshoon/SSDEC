@@ -1099,7 +1099,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:aecf4a76</spirit:value>
+            <spirit:value>9:c6231324</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1110,7 +1110,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:aecf4a76</spirit:value>
+            <spirit:value>9:c6231324</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1126,11 +1126,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Oct 24 07:28:11 UTC 2025</spirit:value>
+            <spirit:value>Wed Oct 29 08:28:57 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:aecf4a76</spirit:value>
+            <spirit:value>9:c6231324</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1142,7 +1142,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:4fbf6e5e</spirit:value>
+            <spirit:value>9:6b425304</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1158,11 +1158,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Oct 24 07:28:11 UTC 2025</spirit:value>
+            <spirit:value>Wed Oct 29 08:28:57 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:4fbf6e5e</spirit:value>
+            <spirit:value>9:6b425304</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1176,11 +1176,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Oct 24 07:31:26 UTC 2025</spirit:value>
+            <spirit:value>Wed Oct 29 08:37:53 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:aecf4a76</spirit:value>
+            <spirit:value>9:c6231324</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1200,7 +1200,7 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>uart_rxdd</spirit:name>
+        <spirit:name>uart_rxd</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:wireTypeDefs>
@@ -1297,6 +1297,32 @@
             <spirit:left spirit:format="long">3</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>wire</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>i2c_sda</spirit:name>
+        <spirit:wire>
+          <spirit:direction>inout</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>wire</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>i2c_scl</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>wire</spirit:typeName>
@@ -2434,6 +2460,11 @@
         <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.ADDR_GPIO" spirit:bitStringLength="32">0x90030000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>ADDR_I2C</spirit:name>
+        <spirit:displayName>Addr I2c</spirit:displayName>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.ADDR_I2C" spirit:bitStringLength="32">0x90040000</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>SIZE_PIC</spirit:name>
         <spirit:displayName>Size Pic</spirit:displayName>
         <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.SIZE_PIC" spirit:bitStringLength="32">0x00001000</spirit:value>
@@ -2452,6 +2483,11 @@
         <spirit:name>SIZE_GPIO</spirit:name>
         <spirit:displayName>Size Gpio</spirit:displayName>
         <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.SIZE_GPIO" spirit:bitStringLength="32">0x00001000</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>SIZE_I2C</spirit:name>
+        <spirit:displayName>Size I2c</spirit:displayName>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.SIZE_I2C" spirit:bitStringLength="32">0x00001000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>NUM_IRQ</spirit:name>
@@ -2684,6 +2720,11 @@
       <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.ADDR_GPIO" spirit:bitStringLength="32">0x90030000</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
+      <spirit:name>ADDR_I2C</spirit:name>
+      <spirit:displayName>Addr I2c</spirit:displayName>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.ADDR_I2C" spirit:bitStringLength="32">0x90040000</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
       <spirit:name>SIZE_PIC</spirit:name>
       <spirit:displayName>Size Pic</spirit:displayName>
       <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.SIZE_PIC" spirit:bitStringLength="32">0x00001000</spirit:value>
@@ -2702,6 +2743,11 @@
       <spirit:name>SIZE_GPIO</spirit:name>
       <spirit:displayName>Size Gpio</spirit:displayName>
       <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.SIZE_GPIO" spirit:bitStringLength="32">0x00001000</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>SIZE_I2C</spirit:name>
+      <spirit:displayName>Size I2c</spirit:displayName>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.SIZE_I2C" spirit:bitStringLength="32">0x00001000</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>NUM_IRQ</spirit:name>

@@ -63,12 +63,16 @@ add_files -norecurse -scan_for_includes $::env(DIR_AXI_SWITCH)/rtl/verilog/axi_s
 add_files -norecurse -scan_for_includes $::env(DIR_MEM_AXI)/rtl/verilog/mem_axi.v
 add_files -norecurse -scan_for_includes $::env(DIR_AXI2LITE)/rtl/verilog/axi4_to_lite.v
 # add_files -norecurse -scan_for_includes $::env(DIR_AXI4_LITE_BUS)/rtl/verilog/amba_axi_lite_m3.v
-add_files -norecurse -scan_for_includes $::env(DIR_AXI4_LITE_BUS)/rtl/verilog/amba_axi_lite_m4.v
+#add_files -norecurse -scan_for_includes $::env(DIR_AXI4_LITE_BUS)/rtl/verilog/amba_axi_lite_m4.v
+add_files -norecurse -scan_for_includes $::env(DIR_AXI4_LITE_BUS)/rtl/verilog/amba_axi_lite_m5.v
 add_files -norecurse -scan_for_includes $::env(DIR_PIC_AXI_LITE)/rtl/verilog/pic_axi_lite.v
 add_files -norecurse -scan_for_includes $::env(DIR_TIMER_AXI_LITE)/rtl/verilog/timer_axi_lite.v
 add_files -norecurse -scan_for_includes $::env(DIR_UART_AXI_LITE)/rtl/verilog/uart_axi_lite.v
 add_files -norecurse -scan_for_includes $::env(DIR_GPIO_AXI_LITE)/rtl/verilog/gpio_axi_lite.v
 add_files -norecurse -scan_for_includes $::env(DIR_GPIO_AXI_LITE)/rtl/verilog/gpio_axi_lite_if.v
+add_files -norecurse -scan_for_includes $::env(DIR_I2C_AXI_LITE)/rtl/verilog/i2c_axi_lite.v
+add_files -norecurse -scan_for_includes $::env(DIR_I2C_AXI_LITE)/rtl/verilog/i2c_axi_lite_if.v
+add_files -norecurse -scan_for_includes $::env(DIR_I2C_AXI_LITE)/rtl/verilog/i2c_master.v
 add_files -norecurse -scan_for_includes $::env(DIR_RTL)/riscv_cache_soc.v
 add_files -norecurse -scan_for_includes $::env(DIR_RTL)/riscv_cache_core.v
 add_files -norecurse -scan_for_includes $::env(RISCV_CORE)/top_cache_axi/src_v/dcache_axi_axi.v
@@ -304,6 +308,8 @@ proc create_root_design { parentCell } {
   set gpio_out [ create_bd_port -dir O -from 7 -to 0 gpio_out ]
   set keypad_col [ create_bd_port -dir O -from 3 -to 0 keypad_col ]
   set keypad_row [ create_bd_port -dir I -from 3 -to 0 keypad_row ]
+  set i2c_sda [ create_bd_port -dir IO i2c_sda ]
+  set i2c_scl [ create_bd_port -dir O i2c_scl ]
 
   # Create instance: axi_bram_ctrl_0, and set properties
   set axi_bram_ctrl_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl:4.1 axi_bram_ctrl_0 ]
@@ -397,6 +403,8 @@ proc create_root_design { parentCell } {
   connect_bd_net -net riscv_cache_soc_0_gpio_out [get_bd_ports gpio_out] [get_bd_pins riscv_cache_soc_0/gpio_out]
   connect_bd_net -net riscv_cache_soc_0_keypad_col [get_bd_ports keypad_col] [get_bd_pins riscv_cache_soc_0/keypad_col]
   connect_bd_net -net keypad_row_1 [get_bd_ports keypad_row] [get_bd_pins riscv_cache_soc_0/keypad_row]
+  connect_bd_net -net riscv_cache_soc_0_i2c_sda [get_bd_ports i2c_sda] [get_bd_pins riscv_cache_soc_0/i2c_sda]
+  connect_bd_net -net riscv_cache_soc_0_i2c_scl [get_bd_ports i2c_scl] [get_bd_pins riscv_cache_soc_0/i2c_scl]
   # Note: gpio_dir is internal signal only, not connected to top-level port
   connect_bd_net -net util_vector_logic_0_Res [get_bd_pins bfm_axi_if_0/SYS_RST_N] [get_bd_pins proc_sys_reset_0/aux_reset_in]
 

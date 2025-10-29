@@ -56,13 +56,15 @@
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module design_riscv_cache_riscv_cache_soc_0_0 (
   uart_txd,
-  uart_rxdd,
+  uart_rxd,
   uart_rts_n,
   uart_cts_n,
   gpio_in,
   gpio_out,
   keypad_col,
   keypad_row,
+  i2c_sda,
+  i2c_scl,
   cpu_resetn,
   axi_aresetn,
   axi_aclk,
@@ -127,13 +129,15 @@ module design_riscv_cache_riscv_cache_soc_0_0 (
 );
 
 output wire uart_txd;
-input wire uart_rxdd;
+input wire uart_rxd;
 output wire uart_rts_n;
 input wire uart_cts_n;
 input wire [7 : 0] gpio_in;
 output wire [7 : 0] gpio_out;
 output wire [3 : 0] keypad_col;
 input wire [3 : 0] keypad_row;
+inout wire i2c_sda;
+output wire i2c_scl;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME cpu_resetn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 cpu_resetn RST" *)
 input wire cpu_resetn;
@@ -288,10 +292,12 @@ output wire m_axi_mem_rready;
     .ADDR_TIMER(32'H90010000),
     .ADDR_UART(32'H90020000),
     .ADDR_GPIO(32'H90030000),
+    .ADDR_I2C(32'H90040000),
     .SIZE_PIC(32'H00001000),
     .SIZE_TIMER(32'H00001000),
     .SIZE_UART(32'H00001000),
     .SIZE_GPIO(32'H00001000),
+    .SIZE_I2C(32'H00001000),
     .NUM_IRQ(3),
     .IRQ_TIMER(0),
     .IRQ_UART(1),
@@ -304,13 +310,15 @@ output wire m_axi_mem_rready;
     .AXI_WIDTH_STRB(4)
   ) inst (
     .uart_txd(uart_txd),
-    .uart_rxdd(uart_rxdd),
+    .uart_rxd(uart_rxd),
     .uart_rts_n(uart_rts_n),
     .uart_cts_n(uart_cts_n),
     .gpio_in(gpio_in),
     .gpio_out(gpio_out),
     .keypad_col(keypad_col),
     .keypad_row(keypad_row),
+    .i2c_sda(i2c_sda),
+    .i2c_scl(i2c_scl),
     .cpu_resetn(cpu_resetn),
     .axi_aresetn(axi_aresetn),
     .axi_aclk(axi_aclk),

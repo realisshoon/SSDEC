@@ -1,7 +1,7 @@
 //Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2021.2 (lin64) Build 3367213 Tue Oct 19 02:47:39 MDT 2021
-//Date        : Fri Oct 24 16:28:09 2025
+//Date        : Wed Oct 29 17:28:55 2025
 //Host        : sogang-500TGA-500SGA running 64-bit Ubuntu 22.04.5 LTS
 //Command     : generate_target design_riscv_cache.bd
 //Design      : design_riscv_cache
@@ -15,6 +15,8 @@ module design_riscv_cache
     BOARD_RST_SW,
     gpio_in,
     gpio_out,
+    i2c_scl,
+    i2c_sda,
     keypad_col,
     keypad_row,
     uart_cts_n,
@@ -25,6 +27,8 @@ module design_riscv_cache
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.BOARD_RST_SW RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.BOARD_RST_SW, INSERT_VIP 0, POLARITY ACTIVE_HIGH" *) input BOARD_RST_SW;
   input [7:0]gpio_in;
   output [7:0]gpio_out;
+  output i2c_scl;
+  inout i2c_sda;
   output [3:0]keypad_col;
   input [3:0]keypad_row;
   input uart_cts_n;
@@ -86,6 +90,8 @@ module design_riscv_cache
   wire [0:0]proc_sys_reset_0_interconnect_aresetn;
   wire [0:0]proc_sys_reset_0_peripheral_aresetn;
   wire [7:0]riscv_cache_soc_0_gpio_out;
+  wire riscv_cache_soc_0_i2c_scl;
+  wire riscv_cache_soc_0_i2c_sda;
   wire [3:0]riscv_cache_soc_0_keypad_col;
   wire [31:0]riscv_cache_soc_0_m_axi_mem_ARADDR;
   wire [1:0]riscv_cache_soc_0_m_axi_mem_ARBURST;
@@ -129,6 +135,7 @@ module design_riscv_cache
   assign BOARD_RST_SW_1 = BOARD_RST_SW;
   assign gpio_in_1 = gpio_in[7:0];
   assign gpio_out[7:0] = riscv_cache_soc_0_gpio_out;
+  assign i2c_scl = riscv_cache_soc_0_i2c_scl;
   assign keypad_col[3:0] = riscv_cache_soc_0_keypad_col;
   assign keypad_row_1 = keypad_row[3:0];
   assign uart_cts_n_1 = uart_cts_n;
@@ -264,6 +271,8 @@ module design_riscv_cache
         .cpu_resetn(rstmgra_0_cpu_resetn),
         .gpio_in(gpio_in_1),
         .gpio_out(riscv_cache_soc_0_gpio_out),
+        .i2c_scl(riscv_cache_soc_0_i2c_scl),
+        .i2c_sda(i2c_sda),
         .keypad_col(riscv_cache_soc_0_keypad_col),
         .keypad_row(keypad_row_1),
         .m_axi_mem_araddr(riscv_cache_soc_0_m_axi_mem_ARADDR),
@@ -326,7 +335,7 @@ module design_riscv_cache
         .s_axi_confmc_wvalid(bfm_axi_if_0_m_axi_WVALID),
         .uart_cts_n(uart_cts_n_1),
         .uart_rts_n(riscv_cache_soc_0_uart_rts_n),
-        .uart_rxdd(1'b0),
+        .uart_rxd(uart_rxd_1),
         .uart_txd(riscv_cache_soc_0_uart_txd));
   design_riscv_cache_rstmgra_0_0 rstmgra_0
        (.GPIN(rstmgra_0_GPIN),

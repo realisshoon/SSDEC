@@ -70,10 +70,12 @@ module riscv_cache_soc
       ,parameter ADDR_TIMER = 32'h9001_0000 // starting address of TIMER
       ,parameter ADDR_UART  = 32'h9002_0000 // starting address of UART
       ,parameter ADDR_GPIO  = 32'h9003_0000 // starting address of GPIO
+      ,parameter ADDR_I2C   = 32'h9004_0000 // starting address of I2C
       ,parameter SIZE_PIC   = 32'h0000_1000
       ,parameter SIZE_TIMER = 32'h0000_1000
       ,parameter SIZE_UART  = 32'h0000_1000
       ,parameter SIZE_GPIO  = 32'h0000_1000
+      ,parameter SIZE_I2C   = 32'h0000_1000
       ,parameter NUM_IRQ    = 3  // timer(0), uart(1), gpio(2)
       ,parameter IRQ_TIMER  = 0  // timer(0)
       ,parameter IRQ_UART   = 1 // uart(1)
@@ -86,13 +88,15 @@ module riscv_cache_soc
       ,parameter AXI_WIDTH_STRB =(AXI_WIDTH_DATA/8))
 (
      (* mark_debug="true" *) output wire  uart_txd,
-     (* mark_debug="true" *) input  wire  uart_rxdd,
+     (* mark_debug="true" *) input  wire  uart_rxd,
      (* mark_debug="true" *) output wire  uart_rts_n,
      (* mark_debug="true" *) input  wire  uart_cts_n,
      (* mark_debug="true" *) input  wire [7:0] gpio_in,   // 8 user switches on ZedBoard
      (* mark_debug="true" *) output wire [7:0] gpio_out,  // 8 user LEDs on ZedBoard  
      (* mark_debug="true" *) output wire [3:0] keypad_col, // 4x4 Matrix Keypad Column output
-     (* mark_debug="true" *) input  wire [3:0] keypad_row, // 4x4 Matrix Keypad Row input
+     input  wire [3:0] keypad_row, // 4x4 Matrix Keypad Row input
+     (* mark_debug="true" *) inout  wire       i2c_sda,    // I2C data line
+     (* mark_debug="true" *) output wire       i2c_scl,    // I2C clock line
      (* mark_debug="true" *) input  wire  cpu_resetn, // must go to 1 after axi_aresetn de-asserted
      (* X_INTERFACE_PARAMETER = "POLARITY ACTIVE_LOW" *)
      (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 axi_aresetn RST"*) (* mark_debug="true" *) input  wire  axi_aresetn,
@@ -671,22 +675,22 @@ module riscv_cache_soc
   //end
   //assign axi_bus_wid[0]=(axi_bus_awvalid[0]) ? axi_bus_awid[0] : reg_wid0;
     //--------------------------------------------------------------------------
-    wire [31:0] axi_lite_awaddr [0:4];
-    wire        axi_lite_awvalid[0:4];
-    wire        axi_lite_awready[0:4];
-    wire [31:0] axi_lite_wdata  [0:4];
-    wire        axi_lite_wvalid [0:4];
-    wire        axi_lite_wready [0:4];
-    wire [ 1:0] axi_lite_bresp  [0:4];
-    wire        axi_lite_bvalid [0:4];
-    wire        axi_lite_bready [0:4];
-    wire [31:0] axi_lite_araddr [0:4];
-    wire        axi_lite_arvalid[0:4];
-    wire        axi_lite_arready[0:4];
-    wire [31:0] axi_lite_rdata  [0:4];
-    wire [ 1:0] axi_lite_rresp  [0:4];
-    wire        axi_lite_rvalid [0:4];
-    wire        axi_lite_rready [0:4];
+    wire [31:0] axi_lite_awaddr [0:5];
+    wire        axi_lite_awvalid[0:5];
+    wire        axi_lite_awready[0:5];
+    wire [31:0] axi_lite_wdata  [0:5];
+    wire        axi_lite_wvalid [0:5];
+    wire        axi_lite_wready [0:5];
+    wire [ 1:0] axi_lite_bresp  [0:5];
+    wire        axi_lite_bvalid [0:5];
+    wire        axi_lite_bready [0:5];
+    wire [31:0] axi_lite_araddr [0:5];
+    wire        axi_lite_arvalid[0:5];
+    wire        axi_lite_arready[0:5];
+    wire [31:0] axi_lite_rdata  [0:5];
+    wire [ 1:0] axi_lite_rresp  [0:5];
+    wire        axi_lite_rvalid [0:5];
+    wire        axi_lite_rready [0:5];
     //--------------------------------------------------------------------------
     axi4_to_lite #(.AXI_WIDTH_ID  (AXI_WIDTH_SID )
                   ,.AXI_WIDTH_ADDR(AXI_WIDTH_ADDR)
@@ -747,14 +751,16 @@ module riscv_cache_soc
   //end
   //assign axi_bus_wid[1]=(axi_bus_awvalid[1]) ? axi_bus_awid[1] : reg_wid1;
     //--------------------------------------------------------------------------
-    amba_axi_lite_m4 #(.P0_ADDR_START(ADDR_PIC  )
+    amba_axi_lite_m5 #(.P0_ADDR_START(ADDR_PIC  )
                       ,.P1_ADDR_START(ADDR_TIMER)
                       ,.P2_ADDR_START(ADDR_UART )
                       ,.P3_ADDR_START(ADDR_GPIO )
+                      ,.P4_ADDR_START(ADDR_I2C  )
                       ,.P0_SIZE      (SIZE_PIC  )
                       ,.P1_SIZE      (SIZE_TIMER)
                       ,.P2_SIZE      (SIZE_UART )
-                      ,.P3_SIZE      (SIZE_GPIO ))
+                      ,.P3_SIZE      (SIZE_GPIO )
+                      ,.P4_SIZE      (SIZE_I2C  ))
     u_axi_lite_bus (
           .axi_lite_aresetn    ( axi_aresetn )
         , .axi_lite_aclk       ( axi_aclk    )
@@ -838,6 +844,22 @@ module riscv_cache_soc
         , .m3_axi_lite_rresp   ( axi_lite_rresp  [4])
         , .m3_axi_lite_rvalid  ( axi_lite_rvalid [4])
         , .m3_axi_lite_rready  ( axi_lite_rready [4])
+        , .m4_axi_lite_awaddr  ( axi_lite_awaddr [5])
+        , .m4_axi_lite_awvalid ( axi_lite_awvalid[5])
+        , .m4_axi_lite_awready ( axi_lite_awready[5])
+        , .m4_axi_lite_wdata   ( axi_lite_wdata  [5])
+        , .m4_axi_lite_wvalid  ( axi_lite_wvalid [5])
+        , .m4_axi_lite_wready  ( axi_lite_wready [5])
+        , .m4_axi_lite_bresp   ( axi_lite_bresp  [5])
+        , .m4_axi_lite_bvalid  ( axi_lite_bvalid [5])
+        , .m4_axi_lite_bready  ( axi_lite_bready [5])
+        , .m4_axi_lite_araddr  ( axi_lite_araddr [5])
+        , .m4_axi_lite_arvalid ( axi_lite_arvalid[5])
+        , .m4_axi_lite_arready ( axi_lite_arready[5])
+        , .m4_axi_lite_rdata   ( axi_lite_rdata  [5])
+        , .m4_axi_lite_rresp   ( axi_lite_rresp  [5])
+        , .m4_axi_lite_rvalid  ( axi_lite_rvalid [5])
+        , .m4_axi_lite_rready  ( axi_lite_rready [5])
     );
     //--------------------------------------------------------------------------
     wire [NUM_IRQ-1:0] irq;
@@ -910,7 +932,7 @@ module riscv_cache_soc
         , .s_axi_rvalid  ( axi_lite_rvalid [3])
         , .s_axi_rready  ( axi_lite_rready [3])
         , .uart_tx       ( uart_txd       )
-        , .uart_rx       ( uart_rxdd      )
+        , .uart_rx       ( uart_rxd       )
         , .uart_rts_n    ( uart_rts_n     )
         , .uart_cts_n    ( uart_cts_n     )
         , .interrupt     ( irq[IRQ_UART])
@@ -940,6 +962,30 @@ module riscv_cache_soc
         , .gpio_out      ( gpio_out          )  // GPIO output
         , .gpio_dir      ( gpio_dir          )  // GPIO direction
         , .interrupt     ( irq[IRQ_GPIO]     )
+    );
+    //--------------------------------------------------------------------------
+    i2c_axi_lite #(.Hz_counter(120)) 
+    u_i2c (
+          .aresetn       ( axi_aresetn        )
+        , .aclk          ( axi_aclk           )
+        , .s_axi_awaddr  ( axi_lite_awaddr [5])
+        , .s_axi_awvalid ( axi_lite_awvalid[5])
+        , .s_axi_awready ( axi_lite_awready[5])
+        , .s_axi_wdata   ( axi_lite_wdata  [5])
+        , .s_axi_wvalid  ( axi_lite_wvalid [5])
+        , .s_axi_wready  ( axi_lite_wready [5])
+        , .s_axi_bresp   ( axi_lite_bresp  [5])
+        , .s_axi_bvalid  ( axi_lite_bvalid [5])
+        , .s_axi_bready  ( axi_lite_bready [5])
+        , .s_axi_araddr  ( axi_lite_araddr [5])
+        , .s_axi_arvalid ( axi_lite_arvalid[5])
+        , .s_axi_arready ( axi_lite_arready[5])
+        , .s_axi_rdata   ( axi_lite_rdata  [5])
+        , .s_axi_rresp   ( axi_lite_rresp  [5])
+        , .s_axi_rvalid  ( axi_lite_rvalid [5])
+        , .s_axi_rready  ( axi_lite_rready [5])
+        , .i2c_sda       ( i2c_sda          )   // I2C data line
+        , .i2c_scl       ( i2c_scl          )   // I2C clock line
     );
     //--------------------------------------------------------------------------
     // Keypad Column/Row assignment (connected to GPIO for software control)

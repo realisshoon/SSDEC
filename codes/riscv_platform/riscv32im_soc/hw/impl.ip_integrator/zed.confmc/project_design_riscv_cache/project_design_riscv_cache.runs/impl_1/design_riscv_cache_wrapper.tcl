@@ -124,7 +124,8 @@ start_step write_bitstream
 set ACTIVE_STEP write_bitstream
 set rc [catch {
   create_msg_db write_bitstream.pb
-  set_param chipscope.maxJobs 4
+  set_param chipscope.maxJobs 3
+  set_param xicom.use_bs_reader 1
   open_checkpoint design_riscv_cache_wrapper_routed.dcp
   set_property webtalk.parent_dir /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.cache/wt [current_project]
 set_property TOP design_riscv_cache_wrapper [current_fileset]

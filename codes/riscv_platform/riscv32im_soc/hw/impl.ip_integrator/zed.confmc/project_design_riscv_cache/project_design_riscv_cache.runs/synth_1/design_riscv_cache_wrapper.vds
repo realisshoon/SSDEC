@@ -2,13 +2,13 @@
 # Vivado v2021.2 (64-bit)
 # SW Build 3367213 on Tue Oct 19 02:47:39 MDT 2021
 # IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
-# Start of session at: Fri Oct 24 17:28:01 2025
-# Process ID: 503550
+# Start of session at: Wed Oct 29 17:48:36 2025
+# Process ID: 439039
 # Current directory: /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1
 # Command line: vivado -log design_riscv_cache_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_riscv_cache_wrapper.tcl
 # Log file: /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/design_riscv_cache_wrapper.vds
 # Journal file: /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/vivado.jou
-# Running On: sogang-500TGA-500SGA, OS: Linux, CPU Frequency: 3040.790 MHz, CPU Physical cores: 10, Host memory: 16429 MB
+# Running On: sogang-500TGA-500SGA, OS: Linux, CPU Frequency: 800.246 MHz, CPU Physical cores: 10, Host memory: 16429 MB
 #-----------------------------------------------------------
 source design_riscv_cache_wrapper.tcl -notrace
 INFO: [IP_Flow 19-234] Refreshing IP repositories
@@ -26,69 +26,68 @@ WARNING: [Designutils 20-4072] Reference run did not run incremental synthesis b
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 503719
+INFO: [Synth 8-7075] Helper process launched with PID 439095
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2866.031 ; gain = 0.000 ; free physical = 535 ; free virtual = 79288
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2866.000 ; gain = 0.000 ; free physical = 3121 ; free virtual = 70795
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'design_riscv_cache_wrapper' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/hdl/design_riscv_cache_wrapper.v:12]
 INFO: [Synth 8-6157] synthesizing module 'design_riscv_cache' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:13]
-INFO: [Synth 8-6157] synthesizing module 'design_riscv_cache_axi_bram_ctrl_0_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/.Xil/Vivado-503550-sogang-500TGA-500SGA/realtime/design_riscv_cache_axi_bram_ctrl_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_riscv_cache_axi_bram_ctrl_0_0' (1#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/.Xil/Vivado-503550-sogang-500TGA-500SGA/realtime/design_riscv_cache_axi_bram_ctrl_0_0_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'design_riscv_cache_axi_bram_ctrl_0_bram_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/.Xil/Vivado-503550-sogang-500TGA-500SGA/realtime/design_riscv_cache_axi_bram_ctrl_0_bram_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_riscv_cache_axi_bram_ctrl_0_bram_0' (2#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/.Xil/Vivado-503550-sogang-500TGA-500SGA/realtime/design_riscv_cache_axi_bram_ctrl_0_bram_0_stub.v:6]
-WARNING: [Synth 8-7071] port 'rsta_busy' of module 'design_riscv_cache_axi_bram_ctrl_0_bram_0' is unconnected for instance 'axi_bram_ctrl_0_bram' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:190]
-WARNING: [Synth 8-7071] port 'rstb_busy' of module 'design_riscv_cache_axi_bram_ctrl_0_bram_0' is unconnected for instance 'axi_bram_ctrl_0_bram' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:190]
-WARNING: [Synth 8-7023] instance 'axi_bram_ctrl_0_bram' of module 'design_riscv_cache_axi_bram_ctrl_0_bram_0' has 16 connections declared, but only 14 given [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:190]
-INFO: [Synth 8-6157] synthesizing module 'design_riscv_cache_bfm_axi_if_0_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/.Xil/Vivado-503550-sogang-500TGA-500SGA/realtime/design_riscv_cache_bfm_axi_if_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_riscv_cache_bfm_axi_if_0_0' (3#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/.Xil/Vivado-503550-sogang-500TGA-500SGA/realtime/design_riscv_cache_bfm_axi_if_0_0_stub.v:6]
-WARNING: [Synth 8-7071] port 'SL_CS_N' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:205]
-WARNING: [Synth 8-7071] port 'SL_PCLK' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:205]
-WARNING: [Synth 8-7071] port 'SL_RD_N' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:205]
-WARNING: [Synth 8-7071] port 'SL_WR_N' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:205]
-WARNING: [Synth 8-7071] port 'SL_OE_N' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:205]
-WARNING: [Synth 8-7071] port 'SL_PKTEND_N' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:205]
-WARNING: [Synth 8-7071] port 'SL_AD' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:205]
-WARNING: [Synth 8-7071] port 'SL_DT' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:205]
-WARNING: [Synth 8-7071] port 'm_axi_awlock' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:205]
-WARNING: [Synth 8-7071] port 'm_axi_awcache' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:205]
-WARNING: [Synth 8-7071] port 'm_axi_awprot' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:205]
-WARNING: [Synth 8-7071] port 'm_axi_awqos' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:205]
-WARNING: [Synth 8-7071] port 'm_axi_awregion' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:205]
-WARNING: [Synth 8-7071] port 'm_axi_wid' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:205]
-WARNING: [Synth 8-7071] port 'm_axi_arlock' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:205]
-WARNING: [Synth 8-7071] port 'm_axi_arcache' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:205]
-WARNING: [Synth 8-7071] port 'm_axi_arprot' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:205]
-WARNING: [Synth 8-7071] port 'm_axi_arqos' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:205]
-WARNING: [Synth 8-7071] port 'm_axi_arregion' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:205]
-WARNING: [Synth 8-7023] instance 'bfm_axi_if_0' of module 'design_riscv_cache_bfm_axi_if_0_0' has 61 connections declared, but only 42 given [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:205]
-INFO: [Synth 8-6157] synthesizing module 'design_riscv_cache_clk_wiz_0_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/.Xil/Vivado-503550-sogang-500TGA-500SGA/realtime/design_riscv_cache_clk_wiz_0_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'design_riscv_cache_clk_wiz_0_0' (4#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/.Xil/Vivado-503550-sogang-500TGA-500SGA/realtime/design_riscv_cache_clk_wiz_0_0_stub.v:5]
-INFO: [Synth 8-6157] synthesizing module 'design_riscv_cache_proc_sys_reset_0_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/.Xil/Vivado-503550-sogang-500TGA-500SGA/realtime/design_riscv_cache_proc_sys_reset_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_riscv_cache_proc_sys_reset_0_0' (5#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/.Xil/Vivado-503550-sogang-500TGA-500SGA/realtime/design_riscv_cache_proc_sys_reset_0_0_stub.v:6]
-WARNING: [Synth 8-7071] port 'mb_reset' of module 'design_riscv_cache_proc_sys_reset_0_0' is unconnected for instance 'proc_sys_reset_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:253]
-WARNING: [Synth 8-7071] port 'bus_struct_reset' of module 'design_riscv_cache_proc_sys_reset_0_0' is unconnected for instance 'proc_sys_reset_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:253]
-WARNING: [Synth 8-7071] port 'peripheral_reset' of module 'design_riscv_cache_proc_sys_reset_0_0' is unconnected for instance 'proc_sys_reset_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:253]
-WARNING: [Synth 8-7023] instance 'proc_sys_reset_0' of module 'design_riscv_cache_proc_sys_reset_0_0' has 10 connections declared, but only 7 given [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:253]
-INFO: [Synth 8-6157] synthesizing module 'design_riscv_cache_riscv_cache_soc_0_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/.Xil/Vivado-503550-sogang-500TGA-500SGA/realtime/design_riscv_cache_riscv_cache_soc_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_riscv_cache_riscv_cache_soc_0_0' (6#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/.Xil/Vivado-503550-sogang-500TGA-500SGA/realtime/design_riscv_cache_riscv_cache_soc_0_0_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'design_riscv_cache_rstmgra_0_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/.Xil/Vivado-503550-sogang-500TGA-500SGA/realtime/design_riscv_cache_rstmgra_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_riscv_cache_rstmgra_0_0' (7#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/.Xil/Vivado-503550-sogang-500TGA-500SGA/realtime/design_riscv_cache_rstmgra_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_riscv_cache_axi_bram_ctrl_0_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/.Xil/Vivado-439039-sogang-500TGA-500SGA/realtime/design_riscv_cache_axi_bram_ctrl_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_riscv_cache_axi_bram_ctrl_0_0' (1#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/.Xil/Vivado-439039-sogang-500TGA-500SGA/realtime/design_riscv_cache_axi_bram_ctrl_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_riscv_cache_axi_bram_ctrl_0_bram_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/.Xil/Vivado-439039-sogang-500TGA-500SGA/realtime/design_riscv_cache_axi_bram_ctrl_0_bram_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_riscv_cache_axi_bram_ctrl_0_bram_0' (2#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/.Xil/Vivado-439039-sogang-500TGA-500SGA/realtime/design_riscv_cache_axi_bram_ctrl_0_bram_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'rsta_busy' of module 'design_riscv_cache_axi_bram_ctrl_0_bram_0' is unconnected for instance 'axi_bram_ctrl_0_bram' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:197]
+WARNING: [Synth 8-7071] port 'rstb_busy' of module 'design_riscv_cache_axi_bram_ctrl_0_bram_0' is unconnected for instance 'axi_bram_ctrl_0_bram' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:197]
+WARNING: [Synth 8-7023] instance 'axi_bram_ctrl_0_bram' of module 'design_riscv_cache_axi_bram_ctrl_0_bram_0' has 16 connections declared, but only 14 given [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:197]
+INFO: [Synth 8-6157] synthesizing module 'design_riscv_cache_bfm_axi_if_0_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/.Xil/Vivado-439039-sogang-500TGA-500SGA/realtime/design_riscv_cache_bfm_axi_if_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_riscv_cache_bfm_axi_if_0_0' (3#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/.Xil/Vivado-439039-sogang-500TGA-500SGA/realtime/design_riscv_cache_bfm_axi_if_0_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'SL_CS_N' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:212]
+WARNING: [Synth 8-7071] port 'SL_PCLK' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:212]
+WARNING: [Synth 8-7071] port 'SL_RD_N' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:212]
+WARNING: [Synth 8-7071] port 'SL_WR_N' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:212]
+WARNING: [Synth 8-7071] port 'SL_OE_N' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:212]
+WARNING: [Synth 8-7071] port 'SL_PKTEND_N' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:212]
+WARNING: [Synth 8-7071] port 'SL_AD' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:212]
+WARNING: [Synth 8-7071] port 'SL_DT' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:212]
+WARNING: [Synth 8-7071] port 'm_axi_awlock' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:212]
+WARNING: [Synth 8-7071] port 'm_axi_awcache' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:212]
+WARNING: [Synth 8-7071] port 'm_axi_awprot' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:212]
+WARNING: [Synth 8-7071] port 'm_axi_awqos' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:212]
+WARNING: [Synth 8-7071] port 'm_axi_awregion' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:212]
+WARNING: [Synth 8-7071] port 'm_axi_wid' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:212]
+WARNING: [Synth 8-7071] port 'm_axi_arlock' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:212]
+WARNING: [Synth 8-7071] port 'm_axi_arcache' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:212]
+WARNING: [Synth 8-7071] port 'm_axi_arprot' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:212]
+WARNING: [Synth 8-7071] port 'm_axi_arqos' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:212]
+WARNING: [Synth 8-7071] port 'm_axi_arregion' of module 'design_riscv_cache_bfm_axi_if_0_0' is unconnected for instance 'bfm_axi_if_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:212]
+WARNING: [Synth 8-7023] instance 'bfm_axi_if_0' of module 'design_riscv_cache_bfm_axi_if_0_0' has 61 connections declared, but only 42 given [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:212]
+INFO: [Synth 8-6157] synthesizing module 'design_riscv_cache_clk_wiz_0_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/.Xil/Vivado-439039-sogang-500TGA-500SGA/realtime/design_riscv_cache_clk_wiz_0_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'design_riscv_cache_clk_wiz_0_0' (4#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/.Xil/Vivado-439039-sogang-500TGA-500SGA/realtime/design_riscv_cache_clk_wiz_0_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'design_riscv_cache_proc_sys_reset_0_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/.Xil/Vivado-439039-sogang-500TGA-500SGA/realtime/design_riscv_cache_proc_sys_reset_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_riscv_cache_proc_sys_reset_0_0' (5#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/.Xil/Vivado-439039-sogang-500TGA-500SGA/realtime/design_riscv_cache_proc_sys_reset_0_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'mb_reset' of module 'design_riscv_cache_proc_sys_reset_0_0' is unconnected for instance 'proc_sys_reset_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:260]
+WARNING: [Synth 8-7071] port 'bus_struct_reset' of module 'design_riscv_cache_proc_sys_reset_0_0' is unconnected for instance 'proc_sys_reset_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:260]
+WARNING: [Synth 8-7071] port 'peripheral_reset' of module 'design_riscv_cache_proc_sys_reset_0_0' is unconnected for instance 'proc_sys_reset_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:260]
+WARNING: [Synth 8-7023] instance 'proc_sys_reset_0' of module 'design_riscv_cache_proc_sys_reset_0_0' has 10 connections declared, but only 7 given [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:260]
+INFO: [Synth 8-6157] synthesizing module 'design_riscv_cache_riscv_cache_soc_0_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/.Xil/Vivado-439039-sogang-500TGA-500SGA/realtime/design_riscv_cache_riscv_cache_soc_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_riscv_cache_riscv_cache_soc_0_0' (6#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/.Xil/Vivado-439039-sogang-500TGA-500SGA/realtime/design_riscv_cache_riscv_cache_soc_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_riscv_cache_rstmgra_0_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/.Xil/Vivado-439039-sogang-500TGA-500SGA/realtime/design_riscv_cache_rstmgra_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_riscv_cache_rstmgra_0_0' (7#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/.Xil/Vivado-439039-sogang-500TGA-500SGA/realtime/design_riscv_cache_rstmgra_0_0_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 'design_riscv_cache' (8#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/synth/design_riscv_cache.v:13]
 INFO: [Synth 8-6155] done synthesizing module 'design_riscv_cache_wrapper' (9#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/hdl/design_riscv_cache_wrapper.v:12]
-WARNING: [Synth 8-7129] Port uart_rxd in module design_riscv_cache is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2866.031 ; gain = 0.000 ; free physical = 401 ; free virtual = 79110
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2866.000 ; gain = 0.000 ; free physical = 2731 ; free virtual = 70405
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2866.031 ; gain = 0.000 ; free physical = 419 ; free virtual = 79128
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2866.000 ; gain = 0.000 ; free physical = 2753 ; free virtual = 70427
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2866.031 ; gain = 0.000 ; free physical = 419 ; free virtual = 79128
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2866.000 ; gain = 0.000 ; free physical = 2753 ; free virtual = 70427
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2866.031 ; gain = 0.000 ; free physical = 412 ; free virtual = 79121
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2866.000 ; gain = 0.000 ; free physical = 2752 ; free virtual = 70426
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -108,39 +107,10 @@ Finished Parsing XDC File [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im
 Parsing XDC File [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_rstmgra_0_0/design_riscv_cache_rstmgra_0_0/design_riscv_cache_rstmgra_0_0_in_context.xdc] for cell 'design_riscv_cache_i/rstmgra_0'
 Finished Parsing XDC File [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_rstmgra_0_0/design_riscv_cache_rstmgra_0_0/design_riscv_cache_rstmgra_0_0_in_context.xdc] for cell 'design_riscv_cache_i/rstmgra_0'
 Parsing XDC File [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_etc.xdc]
-CRITICAL WARNING: [Vivado 12-4430] You are lowering the severity from an ERROR. This can potentially lead to board damage or other functionality issues on hardware. If this is not desired, please run 'reset_property SEVERITY [get_drc_checks BIVB-1]' to undo this change. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_etc.xdc:29]
 Finished Parsing XDC File [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_etc.xdc]
-INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_etc.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/design_riscv_cache_wrapper_propImpl.xdc].
-Resolution: To avoid this warning, move constraints listed in [.Xil/design_riscv_cache_wrapper_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Parsing XDC File [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc]
-WARNING: [Designutils 20-1567] Use of 'set_false_path' with '-reset_path' is not supported by synthesis. The constraint will not be passed to synthesis. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:12]
-WARNING: [Constraints 18-619] A clock with name 'BOARD_CLK_IN' already exists, overwriting the previous clock with the same name. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:13]
-CRITICAL WARNING: [Common 17-161] Invalid option value '#' specified for 'objects'. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:50]
-CRITICAL WARNING: [Common 17-161] Invalid option value '#' specified for 'objects'. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:51]
-CRITICAL WARNING: [Common 17-161] Invalid option value '#' specified for 'objects'. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:52]
-CRITICAL WARNING: [Common 17-161] Invalid option value '#' specified for 'objects'. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:53]
-CRITICAL WARNING: [Common 17-161] Invalid option value '#' specified for 'objects'. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:54]
-CRITICAL WARNING: [Common 17-161] Invalid option value '#' specified for 'objects'. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:55]
-CRITICAL WARNING: [Common 17-161] Invalid option value '#' specified for 'objects'. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:56]
-CRITICAL WARNING: [Common 17-161] Invalid option value '#' specified for 'objects'. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:57]
-CRITICAL WARNING: [Common 17-161] Invalid option value '#' specified for 'objects'. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:60]
-CRITICAL WARNING: [Common 17-161] Invalid option value '#' specified for 'objects'. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:61]
-CRITICAL WARNING: [Common 17-161] Invalid option value '#' specified for 'objects'. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:62]
-CRITICAL WARNING: [Common 17-161] Invalid option value '#' specified for 'objects'. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:63]
-CRITICAL WARNING: [Common 17-161] Invalid option value '#' specified for 'objects'. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:64]
-CRITICAL WARNING: [Common 17-161] Invalid option value '#' specified for 'objects'. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:65]
-CRITICAL WARNING: [Common 17-161] Invalid option value '#' specified for 'objects'. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:66]
-CRITICAL WARNING: [Common 17-161] Invalid option value '#' specified for 'objects'. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:67]
-CRITICAL WARNING: [Common 17-161] Invalid option value '#' specified for 'objects'. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:73]
-CRITICAL WARNING: [Common 17-161] Invalid option value '#' specified for 'objects'. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:74]
-CRITICAL WARNING: [Common 17-170] Unknown option '->', please type 'set_property -help' for usage info. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:81]
-CRITICAL WARNING: [Common 17-170] Unknown option '->', please type 'set_property -help' for usage info. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:82]
-CRITICAL WARNING: [Common 17-170] Unknown option '->', please type 'set_property -help' for usage info. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:83]
-CRITICAL WARNING: [Common 17-170] Unknown option '->', please type 'set_property -help' for usage info. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:84]
-CRITICAL WARNING: [Common 17-170] Unknown option '->', please type 'set_property -help' for usage info. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:87]
-CRITICAL WARNING: [Common 17-170] Unknown option '->', please type 'set_property -help' for usage info. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:88]
-CRITICAL WARNING: [Common 17-170] Unknown option '->', please type 'set_property -help' for usage info. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:89]
-CRITICAL WARNING: [Common 17-170] Unknown option '->', please type 'set_property -help' for usage info. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:90]
+WARNING: [Designutils 20-1567] Use of 'set_false_path' with '-reset_path' is not supported by synthesis. The constraint will not be passed to synthesis. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:13]
+WARNING: [Constraints 18-619] A clock with name 'BOARD_CLK_IN' already exists, overwriting the previous clock with the same name. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc:14]
 Finished Parsing XDC File [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc]
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/xdc/fpga_zed.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/design_riscv_cache_wrapper_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/design_riscv_cache_wrapper_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
@@ -148,23 +118,23 @@ Parsing XDC File [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/i
 Finished Parsing XDC File [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2866.031 ; gain = 0.000 ; free physical = 1201 ; free virtual = 79910
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2866.000 ; gain = 0.000 ; free physical = 2675 ; free virtual = 70349
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2866.031 ; gain = 0.000 ; free physical = 1201 ; free virtual = 79910
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2866.000 ; gain = 0.000 ; free physical = 2675 ; free virtual = 70349
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'design_riscv_cache_i/axi_bram_ctrl_0_bram' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
 WARNING: [Designutils 20-4072] Reference run did not run incremental synthesis because the design is too small; reverting to default synthesis
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2866.031 ; gain = 0.000 ; free physical = 1237 ; free virtual = 79946
+Finished Constraint Validation : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2866.000 ; gain = 0.000 ; free physical = 3565 ; free virtual = 71240
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg484-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2866.031 ; gain = 0.000 ; free physical = 1237 ; free virtual = 79946
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2866.000 ; gain = 0.000 ; free physical = 3565 ; free virtual = 71240
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -180,10 +150,10 @@ Applied set_property KEEP_HIERARCHY = SOFT for design_riscv_cache_i/proc_sys_res
 Applied set_property KEEP_HIERARCHY = SOFT for design_riscv_cache_i/riscv_cache_soc_0. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for design_riscv_cache_i/rstmgra_0. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2866.031 ; gain = 0.000 ; free physical = 1237 ; free virtual = 79946
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2866.000 ; gain = 0.000 ; free physical = 3565 ; free virtual = 71240
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2866.031 ; gain = 0.000 ; free physical = 1245 ; free virtual = 79955
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2866.000 ; gain = 0.000 ; free physical = 3568 ; free virtual = 71244
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -205,28 +175,27 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
-WARNING: [Synth 8-7129] Port uart_rxd in module design_riscv_cache is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2866.031 ; gain = 0.000 ; free physical = 1239 ; free virtual = 79952
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2866.000 ; gain = 0.000 ; free physical = 3581 ; free virtual = 71262
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-565] redefining clock 'BOARD_CLK_IN'
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 2866.031 ; gain = 0.000 ; free physical = 1136 ; free virtual = 79850
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 2866.000 ; gain = 0.000 ; free physical = 3532 ; free virtual = 71213
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 2866.031 ; gain = 0.000 ; free physical = 1136 ; free virtual = 79850
+Finished Timing Optimization : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 2866.000 ; gain = 0.000 ; free physical = 3532 ; free virtual = 71213
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 2866.031 ; gain = 0.000 ; free physical = 1125 ; free virtual = 79840
+Finished Technology Mapping : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 2866.000 ; gain = 0.000 ; free physical = 3519 ; free virtual = 71204
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -244,37 +213,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2866.031 ; gain = 0.000 ; free physical = 1125 ; free virtual = 79839
+Finished IO Insertion : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2866.000 ; gain = 0.000 ; free physical = 3548 ; free virtual = 71229
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2866.031 ; gain = 0.000 ; free physical = 1125 ; free virtual = 79839
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2866.000 ; gain = 0.000 ; free physical = 3548 ; free virtual = 71229
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2866.031 ; gain = 0.000 ; free physical = 1125 ; free virtual = 79839
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2866.000 ; gain = 0.000 ; free physical = 3548 ; free virtual = 71229
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2866.031 ; gain = 0.000 ; free physical = 1125 ; free virtual = 79839
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2866.000 ; gain = 0.000 ; free physical = 3548 ; free virtual = 71229
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2866.031 ; gain = 0.000 ; free physical = 1125 ; free virtual = 79839
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2866.000 ; gain = 0.000 ; free physical = 3548 ; free virtual = 71229
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2866.031 ; gain = 0.000 ; free physical = 1125 ; free virtual = 79839
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2866.000 ; gain = 0.000 ; free physical = 3548 ; free virtual = 71229
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -304,29 +273,28 @@ Report Cell Usage:
 |5     |design_riscv_cache_proc_sys_reset_0     |     1|
 |6     |design_riscv_cache_riscv_cache_soc_0    |     1|
 |7     |design_riscv_cache_rstmgra_0            |     1|
-|8     |IBUF                                    |    14|
-|9     |OBUF                                    |    14|
+|8     |IBUF                                    |    15|
+|9     |OBUF                                    |    15|
 +------+----------------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2866.031 ; gain = 0.000 ; free physical = 1125 ; free virtual = 79839
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2866.000 ; gain = 0.000 ; free physical = 3548 ; free virtual = 71229
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 3 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2866.031 ; gain = 0.000 ; free physical = 1182 ; free virtual = 79897
-Synthesis Optimization Complete : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2866.031 ; gain = 0.000 ; free physical = 1182 ; free virtual = 79897
+Synthesis finished with 0 errors, 0 critical warnings and 2 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2866.000 ; gain = 0.000 ; free physical = 3598 ; free virtual = 71278
+Synthesis Optimization Complete : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2866.000 ; gain = 0.000 ; free physical = 3598 ; free virtual = 71278
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2866.031 ; gain = 0.000 ; free physical = 1257 ; free virtual = 79971
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2866.000 ; gain = 0.000 ; free physical = 3644 ; free virtual = 71324
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2866.031 ; gain = 0.000 ; free physical = 1211 ; free virtual = 79918
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2866.000 ; gain = 0.000 ; free physical = 3600 ; free virtual = 71273
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete, checksum: 3e8862a0
+Synth Design complete, checksum: b02dc7f0
 INFO: [Common 17-83] Releasing license: Synthesis
-39 Infos, 36 Warnings, 27 Critical Warnings and 0 Errors encountered.
+38 Infos, 34 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:17 ; elapsed = 00:00:15 . Memory (MB): peak = 2866.031 ; gain = 0.000 ; free physical = 1344 ; free virtual = 80052
-INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
+synth_design: Time (s): cpu = 00:00:19 ; elapsed = 00:00:14 . Memory (MB): peak = 2866.000 ; gain = 0.000 ; free physical = 3714 ; free virtual = 71387
 INFO: [Common 17-1381] The checkpoint '/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/synth_1/design_riscv_cache_wrapper.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file design_riscv_cache_wrapper_utilization_synth.rpt -pb design_riscv_cache_wrapper_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Fri Oct 24 17:28:25 2025...
+INFO: [Common 17-206] Exiting Vivado at Wed Oct 29 17:49:00 2025...

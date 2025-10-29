@@ -6,7 +6,7 @@
 <Project Version="7" Minor="56" Path="/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
-    <Option Name="Id" Val="cbefbd0780f7401a98c793f86d1ac21e"/>
+    <Option Name="Id" Val="56ebbb1c0b8f466b9daf7b03b22c8636"/>
     <Option Name="Part" Val="xc7z020clg484-1"/>
     <Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
     <Option Name="CompiledLibDirXSim" Val=""/>
@@ -87,7 +87,7 @@
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
       <Filter Type="Srcs"/>
-      <File Path="$PPRDIR/../../../../ips/axi_lite/rtl/verilog/amba_axi_lite_m4.v">
+      <File Path="$PPRDIR/../../../../ips/axi_lite/rtl/verilog/amba_axi_lite_m5.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -186,6 +186,27 @@
         </FileInfo>
       </File>
       <File Path="$PPRDIR/../../../../ips/gpio_axi_lite/rtl/verilog/gpio_axi_lite.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../ips/i2c_axi_lite/rtl/verilog/i2c_master.v">
+        <FileInfo SFType="VHeader">
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+          <Attr Name="IsVisible" Val="1"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../ips/i2c_axi_lite/rtl/verilog/i2c_axi_lite_if.v">
+        <FileInfo SFType="VHeader">
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+          <Attr Name="IsVisible" Val="1"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../ips/i2c_axi_lite/rtl/verilog/i2c_axi_lite.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -465,26 +486,26 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-        <CompFileExtendedInfo CompFileName="design_riscv_cache.bd" FileRelPathName="ip/design_riscv_cache_rstmgra_0_0/design_riscv_cache_rstmgra_0_0.xci">
-          <Proxy FileSetName="design_riscv_cache_rstmgra_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_riscv_cache.bd" FileRelPathName="ip/design_riscv_cache_riscv_cache_soc_0_0/design_riscv_cache_riscv_cache_soc_0_0.xci">
-          <Proxy FileSetName="design_riscv_cache_riscv_cache_soc_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_riscv_cache.bd" FileRelPathName="ip/design_riscv_cache_proc_sys_reset_0_0/design_riscv_cache_proc_sys_reset_0_0.xci">
-          <Proxy FileSetName="design_riscv_cache_proc_sys_reset_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_riscv_cache.bd" FileRelPathName="ip/design_riscv_cache_axi_bram_ctrl_0_0/design_riscv_cache_axi_bram_ctrl_0_0.xci">
-          <Proxy FileSetName="design_riscv_cache_axi_bram_ctrl_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_riscv_cache.bd" FileRelPathName="ip/design_riscv_cache_axi_bram_ctrl_0_bram_0/design_riscv_cache_axi_bram_ctrl_0_bram_0.xci">
-          <Proxy FileSetName="design_riscv_cache_axi_bram_ctrl_0_bram_0"/>
-        </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="design_riscv_cache.bd" FileRelPathName="ip/design_riscv_cache_bfm_axi_if_0_0/design_riscv_cache_bfm_axi_if_0_0.xci">
           <Proxy FileSetName="design_riscv_cache_bfm_axi_if_0_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="design_riscv_cache.bd" FileRelPathName="ip/design_riscv_cache_clk_wiz_0_0/design_riscv_cache_clk_wiz_0_0.xci">
           <Proxy FileSetName="design_riscv_cache_clk_wiz_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_riscv_cache.bd" FileRelPathName="ip/design_riscv_cache_proc_sys_reset_0_0/design_riscv_cache_proc_sys_reset_0_0.xci">
+          <Proxy FileSetName="design_riscv_cache_proc_sys_reset_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_riscv_cache.bd" FileRelPathName="ip/design_riscv_cache_axi_bram_ctrl_0_bram_0/design_riscv_cache_axi_bram_ctrl_0_bram_0.xci">
+          <Proxy FileSetName="design_riscv_cache_axi_bram_ctrl_0_bram_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_riscv_cache.bd" FileRelPathName="ip/design_riscv_cache_riscv_cache_soc_0_0/design_riscv_cache_riscv_cache_soc_0_0.xci">
+          <Proxy FileSetName="design_riscv_cache_riscv_cache_soc_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_riscv_cache.bd" FileRelPathName="ip/design_riscv_cache_axi_bram_ctrl_0_0/design_riscv_cache_axi_bram_ctrl_0_0.xci">
+          <Proxy FileSetName="design_riscv_cache_axi_bram_ctrl_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_riscv_cache.bd" FileRelPathName="ip/design_riscv_cache_rstmgra_0_0/design_riscv_cache_rstmgra_0_0.xci">
+          <Proxy FileSetName="design_riscv_cache_rstmgra_0_0"/>
         </CompFileExtendedInfo>
       </File>
       <File Path="$PGENDIR/sources_1/bd/design_riscv_cache/hdl/design_riscv_cache_wrapper.v">
@@ -530,14 +551,17 @@
         </FileInfo>
       </File>
       <Config>
+        <Option Name="TargetConstrsFile" Val="$PPRDIR/../xdc/fpga_zed.xdc"/>
         <Option Name="ConstrsType" Val="XDC"/>
       </Config>
     </FileSet>
     <FileSet Name="sim_1" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/sim_1" RelGenDir="$PGENDIR/sim_1">
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="design_riscv_cache_wrapper"/>
+        <Option Name="TopModule" Val="riscv_cache_soc"/>
         <Option Name="TopLib" Val="xil_defaultlib"/>
+        <Option Name="TopRTLFile" Val="$PPRDIR/../../../rtl/verilog/riscv_cache_soc.v"/>
+        <Option Name="TopAutoSet" Val="TRUE"/>
         <Option Name="TransportPathDelay" Val="0"/>
         <Option Name="TransportIntDelay" Val="0"/>
         <Option Name="SelectedSimModel" Val="rtl"/>
@@ -562,36 +586,6 @@
         <Option Name="TopAutoSet" Val="TRUE"/>
       </Config>
     </FileSet>
-    <FileSet Name="design_riscv_cache_rstmgra_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_riscv_cache_rstmgra_0_0" RelGenDir="$PGENDIR/design_riscv_cache_rstmgra_0_0">
-      <Config>
-        <Option Name="TopModule" Val="design_riscv_cache_rstmgra_0_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="design_riscv_cache_riscv_cache_soc_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_riscv_cache_riscv_cache_soc_0_0" RelGenDir="$PGENDIR/design_riscv_cache_riscv_cache_soc_0_0">
-      <Config>
-        <Option Name="TopModule" Val="design_riscv_cache_riscv_cache_soc_0_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="design_riscv_cache_proc_sys_reset_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_riscv_cache_proc_sys_reset_0_0" RelGenDir="$PGENDIR/design_riscv_cache_proc_sys_reset_0_0">
-      <Config>
-        <Option Name="TopModule" Val="design_riscv_cache_proc_sys_reset_0_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="design_riscv_cache_axi_bram_ctrl_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_riscv_cache_axi_bram_ctrl_0_0" RelGenDir="$PGENDIR/design_riscv_cache_axi_bram_ctrl_0_0">
-      <Config>
-        <Option Name="TopModule" Val="design_riscv_cache_axi_bram_ctrl_0_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="design_riscv_cache_axi_bram_ctrl_0_bram_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_riscv_cache_axi_bram_ctrl_0_bram_0" RelGenDir="$PGENDIR/design_riscv_cache_axi_bram_ctrl_0_bram_0">
-      <Config>
-        <Option Name="TopModule" Val="design_riscv_cache_axi_bram_ctrl_0_bram_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
     <FileSet Name="design_riscv_cache_bfm_axi_if_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_riscv_cache_bfm_axi_if_0_0" RelGenDir="$PGENDIR/design_riscv_cache_bfm_axi_if_0_0">
       <Config>
         <Option Name="TopModule" Val="design_riscv_cache_bfm_axi_if_0_0"/>
@@ -601,6 +595,36 @@
     <FileSet Name="design_riscv_cache_clk_wiz_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_riscv_cache_clk_wiz_0_0" RelGenDir="$PGENDIR/design_riscv_cache_clk_wiz_0_0">
       <Config>
         <Option Name="TopModule" Val="design_riscv_cache_clk_wiz_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="design_riscv_cache_proc_sys_reset_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_riscv_cache_proc_sys_reset_0_0" RelGenDir="$PGENDIR/design_riscv_cache_proc_sys_reset_0_0">
+      <Config>
+        <Option Name="TopModule" Val="design_riscv_cache_proc_sys_reset_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="design_riscv_cache_axi_bram_ctrl_0_bram_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_riscv_cache_axi_bram_ctrl_0_bram_0" RelGenDir="$PGENDIR/design_riscv_cache_axi_bram_ctrl_0_bram_0">
+      <Config>
+        <Option Name="TopModule" Val="design_riscv_cache_axi_bram_ctrl_0_bram_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="design_riscv_cache_riscv_cache_soc_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_riscv_cache_riscv_cache_soc_0_0" RelGenDir="$PGENDIR/design_riscv_cache_riscv_cache_soc_0_0">
+      <Config>
+        <Option Name="TopModule" Val="design_riscv_cache_riscv_cache_soc_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="design_riscv_cache_axi_bram_ctrl_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_riscv_cache_axi_bram_ctrl_0_0" RelGenDir="$PGENDIR/design_riscv_cache_axi_bram_ctrl_0_0">
+      <Config>
+        <Option Name="TopModule" Val="design_riscv_cache_axi_bram_ctrl_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="design_riscv_cache_rstmgra_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_riscv_cache_rstmgra_0_0" RelGenDir="$PGENDIR/design_riscv_cache_rstmgra_0_0">
+      <Config>
+        <Option Name="TopModule" Val="design_riscv_cache_rstmgra_0_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -639,7 +663,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="design_riscv_cache_rstmgra_0_0_synth_1" Type="Ft3:Synth" SrcSet="design_riscv_cache_rstmgra_0_0" Part="xc7z020clg484-1" ConstrsSet="design_riscv_cache_rstmgra_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_riscv_cache_rstmgra_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_riscv_cache_rstmgra_0_0_synth_1">
+    <Run Id="design_riscv_cache_bfm_axi_if_0_0_synth_1" Type="Ft3:Synth" SrcSet="design_riscv_cache_bfm_axi_if_0_0" Part="xc7z020clg484-1" ConstrsSet="design_riscv_cache_bfm_axi_if_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_riscv_cache_bfm_axi_if_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_riscv_cache_bfm_axi_if_0_0_synth_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021">
           <Desc>Vivado Synthesis Defaults</Desc>
@@ -651,7 +675,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="design_riscv_cache_riscv_cache_soc_0_0_synth_1" Type="Ft3:Synth" SrcSet="design_riscv_cache_riscv_cache_soc_0_0" Part="xc7z020clg484-1" ConstrsSet="design_riscv_cache_riscv_cache_soc_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_riscv_cache_riscv_cache_soc_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_riscv_cache_riscv_cache_soc_0_0_synth_1">
+    <Run Id="design_riscv_cache_clk_wiz_0_0_synth_1" Type="Ft3:Synth" SrcSet="design_riscv_cache_clk_wiz_0_0" Part="xc7z020clg484-1" ConstrsSet="design_riscv_cache_clk_wiz_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_riscv_cache_clk_wiz_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_riscv_cache_clk_wiz_0_0_synth_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021">
           <Desc>Vivado Synthesis Defaults</Desc>
@@ -675,18 +699,6 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="design_riscv_cache_axi_bram_ctrl_0_0_synth_1" Type="Ft3:Synth" SrcSet="design_riscv_cache_axi_bram_ctrl_0_0" Part="xc7z020clg484-1" ConstrsSet="design_riscv_cache_axi_bram_ctrl_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_riscv_cache_axi_bram_ctrl_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_riscv_cache_axi_bram_ctrl_0_0_synth_1">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2021"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
     <Run Id="design_riscv_cache_axi_bram_ctrl_0_bram_0_synth_1" Type="Ft3:Synth" SrcSet="design_riscv_cache_axi_bram_ctrl_0_bram_0" Part="xc7z020clg484-1" ConstrsSet="design_riscv_cache_axi_bram_ctrl_0_bram_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_riscv_cache_axi_bram_ctrl_0_bram_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_riscv_cache_axi_bram_ctrl_0_bram_0_synth_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021">
@@ -699,7 +711,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="design_riscv_cache_bfm_axi_if_0_0_synth_1" Type="Ft3:Synth" SrcSet="design_riscv_cache_bfm_axi_if_0_0" Part="xc7z020clg484-1" ConstrsSet="design_riscv_cache_bfm_axi_if_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_riscv_cache_bfm_axi_if_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_riscv_cache_bfm_axi_if_0_0_synth_1">
+    <Run Id="design_riscv_cache_riscv_cache_soc_0_0_synth_1" Type="Ft3:Synth" SrcSet="design_riscv_cache_riscv_cache_soc_0_0" Part="xc7z020clg484-1" ConstrsSet="design_riscv_cache_riscv_cache_soc_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_riscv_cache_riscv_cache_soc_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_riscv_cache_riscv_cache_soc_0_0_synth_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021">
           <Desc>Vivado Synthesis Defaults</Desc>
@@ -711,7 +723,19 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="design_riscv_cache_clk_wiz_0_0_synth_1" Type="Ft3:Synth" SrcSet="design_riscv_cache_clk_wiz_0_0" Part="xc7z020clg484-1" ConstrsSet="design_riscv_cache_clk_wiz_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_riscv_cache_clk_wiz_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_riscv_cache_clk_wiz_0_0_synth_1">
+    <Run Id="design_riscv_cache_axi_bram_ctrl_0_0_synth_1" Type="Ft3:Synth" SrcSet="design_riscv_cache_axi_bram_ctrl_0_0" Part="xc7z020clg484-1" ConstrsSet="design_riscv_cache_axi_bram_ctrl_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_riscv_cache_axi_bram_ctrl_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_riscv_cache_axi_bram_ctrl_0_0_synth_1">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2021"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="design_riscv_cache_rstmgra_0_0_synth_1" Type="Ft3:Synth" SrcSet="design_riscv_cache_rstmgra_0_0" Part="xc7z020clg484-1" ConstrsSet="design_riscv_cache_rstmgra_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_riscv_cache_rstmgra_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_riscv_cache_rstmgra_0_0_synth_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021">
           <Desc>Vivado Synthesis Defaults</Desc>
@@ -743,7 +767,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="design_riscv_cache_rstmgra_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg484-1" ConstrsSet="design_riscv_cache_rstmgra_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_riscv_cache_rstmgra_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_riscv_cache_rstmgra_0_0_impl_1">
+    <Run Id="design_riscv_cache_bfm_axi_if_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg484-1" ConstrsSet="design_riscv_cache_bfm_axi_if_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_riscv_cache_bfm_axi_if_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_riscv_cache_bfm_axi_if_0_0_impl_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2021">
           <Desc>Default settings for Implementation.</Desc>
@@ -762,7 +786,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="design_riscv_cache_riscv_cache_soc_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg484-1" ConstrsSet="design_riscv_cache_riscv_cache_soc_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_riscv_cache_riscv_cache_soc_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_riscv_cache_riscv_cache_soc_0_0_impl_1">
+    <Run Id="design_riscv_cache_clk_wiz_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg484-1" ConstrsSet="design_riscv_cache_clk_wiz_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_riscv_cache_clk_wiz_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_riscv_cache_clk_wiz_0_0_impl_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2021">
           <Desc>Default settings for Implementation.</Desc>
@@ -800,25 +824,6 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="design_riscv_cache_axi_bram_ctrl_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg484-1" ConstrsSet="design_riscv_cache_axi_bram_ctrl_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_riscv_cache_axi_bram_ctrl_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_riscv_cache_axi_bram_ctrl_0_0_impl_1">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2021">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2021"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
     <Run Id="design_riscv_cache_axi_bram_ctrl_0_bram_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg484-1" ConstrsSet="design_riscv_cache_axi_bram_ctrl_0_bram_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_riscv_cache_axi_bram_ctrl_0_bram_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_riscv_cache_axi_bram_ctrl_0_bram_0_impl_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2021">
@@ -838,7 +843,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="design_riscv_cache_bfm_axi_if_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg484-1" ConstrsSet="design_riscv_cache_bfm_axi_if_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_riscv_cache_bfm_axi_if_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_riscv_cache_bfm_axi_if_0_0_impl_1">
+    <Run Id="design_riscv_cache_riscv_cache_soc_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg484-1" ConstrsSet="design_riscv_cache_riscv_cache_soc_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_riscv_cache_riscv_cache_soc_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_riscv_cache_riscv_cache_soc_0_0_impl_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2021">
           <Desc>Default settings for Implementation.</Desc>
@@ -857,7 +862,26 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="design_riscv_cache_clk_wiz_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg484-1" ConstrsSet="design_riscv_cache_clk_wiz_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_riscv_cache_clk_wiz_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_riscv_cache_clk_wiz_0_0_impl_1">
+    <Run Id="design_riscv_cache_axi_bram_ctrl_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg484-1" ConstrsSet="design_riscv_cache_axi_bram_ctrl_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_riscv_cache_axi_bram_ctrl_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_riscv_cache_axi_bram_ctrl_0_0_impl_1">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2021">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2021"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="design_riscv_cache_rstmgra_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg484-1" ConstrsSet="design_riscv_cache_rstmgra_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_riscv_cache_rstmgra_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_riscv_cache_rstmgra_0_0_impl_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2021">
           <Desc>Default settings for Implementation.</Desc>
