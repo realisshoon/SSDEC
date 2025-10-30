@@ -21,7 +21,7 @@
     `define ADDR_ENTRY 32'h0
 `endif
 `ifndef FILE_BIN
-    `define FILE_BIN   "gpio_test.bin"
+    `define FILE_BIN   "i2c_test.bin"
 `endif
 `ifndef BAUD_RATE
     `define BAUD_RATE   115200
@@ -54,11 +54,13 @@ module top ;
     localparam ADDR_PIC   = 32'h9000_0000;// starting address of PIC
     localparam ADDR_TIMER = 32'h9001_0000;// starting address of TIMER
     localparam ADDR_UART  = 32'h9002_0000;// starting address of UART
-    localparam ADDR_GPIO  = 32'h9003_0000;
+    localparam ADDR_GPIO  = 32'h9003_0000;// starting address of GPIO
+    localparam ADDR_I2C   = 32'h9004_0000;// starting address of I2C
     localparam SIZE_PIC   = 32'h0000_1000;
     localparam SIZE_TIMER = 32'h0000_1000;
     localparam SIZE_UART  = 32'h0000_1000;
     localparam SIZE_GPIO  = 32'h0000_1000;
+    localparam SIZE_I2C   = 32'h0000_1000;
     localparam NUM_IRQ    = 3; // timer(0), uart(1), gpio(2)
     localparam IRQ_TIMER  = 0; // timer(0)
     localparam IRQ_UART   = 1; // uart(1)
@@ -66,13 +68,15 @@ module top ;
     //--------------------------------------------------------------------------
     wire  cpu_resetn;
     wire  uart_txd;
-    wire  uart_rxdd;
+    wire  uart_rxd;
     wire  uart_rts_n;
     wire  uart_cts_n=uart_rts_n;
     wire  [7:0] gpio_in;
     wire  [7:0] gpio_out;
     wire  [3:0] keypad_col;
     wire  [3:0] keypad_row;
+    wire        i2c_sda;
+    wire        i2c_scl;
 
     // 가상 키패드 시뮬레이션을 위한 reg 신호
     reg [7:0] gpio_in_reg;
@@ -80,126 +84,35 @@ module top ;
     assign gpio_in = gpio_in_reg;
     assign keypad_row = keypad_row_reg;
     
-    // 초기값 설정
+    // 입력 신호 초기화 및 테스트 패턴 생성
     initial begin
-        gpio_in_reg = 8'h0;  // 모든 핀 해제
-        // keypad_row_reg는 always @(*) 블록에서 조합논리로 설정됨
-    end
-    
-    // PmodKYPD 시뮬레이션: Column을 스캔하면서 Row 응답
-    // Keypad 매트릭스: COL[3:0] = {COL4, COL3, COL2, COL1}
-    //                  ROW[3:0] = {ROW4, ROW3, ROW2, ROW1}
-    //      COL0 COL1 COL2 COL3
-    // ROW0  1    2    3    A
-    // ROW1  4    5    6    B
-    // ROW2  7    8    9    C
-    // ROW3  *    0    #    D
-    
-    // 키패드 동작: COL이 LOW일 때, 해당 버튼이 눌리면 ROW가 LOW
-    always @(*) begin
-        keypad_row_reg = 4'hF;  // 기본값: 모든 ROW HIGH
+        // 초기값 설정 (xx 방지)
+        gpio_in_reg = 8'h00;
+        keypad_row_reg = 4'h0;
         
-        // COL0이 LOW일 때
-        if (keypad_col[0] == 1'b0) begin
-            if (gpio_in_reg[0]) keypad_row_reg[0] = 1'b0;  // '1' 버튼
-            if (gpio_in_reg[1]) keypad_row_reg[1] = 1'b0;  // '4' 버튼
-            if (gpio_in_reg[2]) keypad_row_reg[2] = 1'b0;  // '7' 버튼
-            if (gpio_in_reg[3]) keypad_row_reg[3] = 1'b0;  // '*' 버튼
-        end
+        // 시뮬레이션 중간에 값 변경 예시
+        #1000000; // 1ms 후
+        gpio_in_reg = 8'hAA;
+        keypad_row_reg = 4'hF;
         
-        // COL1이 LOW일 때
-        if (keypad_col[1] == 1'b0) begin
-            if (gpio_in_reg[0]) keypad_row_reg[0] = 1'b0;  // '2' 버튼
-            if (gpio_in_reg[1]) keypad_row_reg[1] = 1'b0;  // '5' 버튼
-            if (gpio_in_reg[2]) keypad_row_reg[2] = 1'b0;  // '8' 버튼
-            if (gpio_in_reg[3]) keypad_row_reg[3] = 1'b0;  // '0' 버튼
-        end
+        #2000000; // 추가 2ms 후
+        gpio_in_reg = 8'h55;
+        keypad_row_reg = 4'h3;
         
-        // COL2가 LOW일 때
-        if (keypad_col[2] == 1'b0) begin
-            if (gpio_in_reg[0]) keypad_row_reg[0] = 1'b0;  // '3' 버튼
-            if (gpio_in_reg[1]) keypad_row_reg[1] = 1'b0;  // '6' 버튼
-            if (gpio_in_reg[2]) keypad_row_reg[2] = 1'b0;  // '9' 버튼
-            if (gpio_in_reg[3]) keypad_row_reg[3] = 1'b0;  // '#' 버튼
-        end
-        
-        // COL3이 LOW일 때
-        if (keypad_col[3] == 1'b0) begin
-            if (gpio_in_reg[0]) keypad_row_reg[0] = 1'b0;  // 'A' 버튼
-            if (gpio_in_reg[1]) keypad_row_reg[1] = 1'b0;  // 'B' 버튼
-            if (gpio_in_reg[2]) keypad_row_reg[2] = 1'b0;  // 'C' 버튼
-            if (gpio_in_reg[3]) keypad_row_reg[3] = 1'b0;  // 'D' 버튼
-        end
-    end
-    
-    // 체계적인 GPIO 입력 시뮬레이션 (파형 분석용)
-    initial begin
-        $display("=== 4x4 Matrix Keypad 테스트 시작 ===");
-        $display("PmodKYPD 시뮬레이션");
-        
-        // 시스템 초기화 및 CPU 시작 대기
-        wait (cpu_resetn==1'b1);
-        
-        // CPU가 초기화될 시간을 충분히 대기
-        #1000000;  // 1ms 대기
-        
-        $display("키패드 시뮬레이션 시작...");
-        
-        // 시퀀스 1: '1' 버튼 입력 (ROW0, COL0)
-        $display("=== 시퀀스 1: '1' 버튼 입력 ===");
-        gpio_in_reg[0] = 1'b1;
-        #2000000;  // 2ms 유지 (파형 관찰용)
-        gpio_in_reg[0] = 1'b0;
-        #1000000;  // 1ms 대기
-        
-        // 시퀀스 2: 키 1 입력 (GPIO[1] = 1)
-        $display("=== 시퀀스 2: 키 1 입력 ===");
-        gpio_in_reg[1] = 1'b1;
-        #2000000;  // 2ms 유지
-        gpio_in_reg[1] = 1'b0;
-        #1000000;  // 1ms 대기
-        
-        // 시퀀스 3: 키 2 입력 (GPIO[2] = 1)
-        $display("=== 시퀀스 3: 키 2 입력 ===");
-        gpio_in_reg[2] = 1'b1;
-        #2000000;  // 2ms 유지
-        gpio_in_reg[2] = 1'b0;
-        #1000000;  // 1ms 대기
-        
-        // 시퀀스 4: 키 3 입력 (GPIO[3] = 1)
-        $display("=== 시퀀스 4: 키 3 입력 ===");
-        gpio_in_reg[3] = 1'b1;
-        #200000;  // 2ms 유지
-        gpio_in_reg[3] = 1'b0;
-        #100000;  // 1ms 대기
-        
-        // 시퀀스 5: 다중 키 입력 (GPIO[0,1] = 1)
-        $display("=== 시퀀스 5: 다중 키 입력 (0,1) ===");
-        gpio_in_reg[0] = 1'b1;
-        gpio_in_reg[1] = 1'b1;
-        #2000000;  // 2ms 유지
-        gpio_in_reg[0] = 1'b0;
-        gpio_in_reg[1] = 1'b0;
-        #100000;  // 1ms 대기
-        
-        // 시퀀스 6: 모든 키 입력 (GPIO[0,1,2,3] = 1)
-        $display("=== 시퀀스 6: 모든 키 입력 (0,1,2,3) ===");
-        gpio_in_reg[3:0] = 4'b1111;
-        #200000;  // 2ms 유지
-        gpio_in_reg[3:0] = 4'b0000;
-        #100000;  // 1ms 대기
-        
-        $display("=== 키패드 시뮬레이션 완료 ===");
-        $display("6개의 시퀀스가 완료되었습니다.");
-        
-        // 시뮬레이션 종료
-        #500000;  // 5ms 추가 대기 후 종료
-        $display("=== 시뮬레이션 완료 ===");
-        $finish;
+        #2000000; // 추가 2ms 후
+        gpio_in_reg = 8'hFF;
+        keypad_row_reg = 4'hC;
     end
 
     //--------------------------------------------------------------------------
     pullup u_pu(uart_rxd); // make default high, since 0 means start.
+    
+    // I2C pullup resistors (simulate 4.7k pullup)
+    pullup u_pu_sda(i2c_sda);
+    pullup u_pu_scl(i2c_scl);
+    
+    // Note: EEPROM 모델 없이도 I2C 마스터가 SDA/SCL 신호를 출력하는 것은 확인 가능
+    //       ACK를 못 받아서 timeout이 발생하지만, 파형에서 I2C 프로토콜은 관찰됨
     //--------------------------------------------------------------------------
     riscv_cache_soc #(.BOOT_VECTOR           (BOOT_VECTOR           )
                      ,.CORE_ID               (CORE_ID               )
@@ -222,10 +135,12 @@ module top ;
                      ,.ADDR_TIMER            (ADDR_TIMER            )
                      ,.ADDR_UART             (ADDR_UART             )
                      ,.ADDR_GPIO             (ADDR_GPIO             )
+                     ,.ADDR_I2C              (ADDR_I2C              )
                      ,.SIZE_PIC              (SIZE_PIC              )
                      ,.SIZE_TIMER            (SIZE_TIMER            )
                      ,.SIZE_UART             (SIZE_UART             )
                      ,.SIZE_GPIO             (SIZE_GPIO             )
+                     ,.SIZE_I2C              (SIZE_I2C              )
                      ,.NUM_IRQ               (NUM_IRQ               )
                      ,.IRQ_TIMER             (IRQ_TIMER             )
                      ,.IRQ_UART              (IRQ_UART              )
@@ -235,13 +150,15 @@ module top ;
         ,.axi_aresetn ( axi_aresetn )
         ,.axi_aclk    ( axi_aclk    )
         ,.uart_txd    ( uart_txd    )
-        ,.uart_rxdd   ( uart_rxdd   )
+        ,.uart_rxd   ( uart_rxd   )
         ,.uart_cts_n  ( uart_cts_n  )
         ,.uart_rts_n  ( uart_rts_n  )
         ,.gpio_in     ( gpio_in     )
         ,.gpio_out    ( gpio_out    )
         ,.keypad_col  ( keypad_col  )
         ,.keypad_row  ( keypad_row  )
+        ,.i2c_sda     ( i2c_sda     )
+        ,.i2c_scl     ( i2c_scl     )
     );
     //--------------------------------------------------------------------------
     // load program and release reset
@@ -260,7 +177,7 @@ module top ;
          ,.WIDTH (8))  // 8-bit data width
     u_tty (
        .uart_rx(uart_txd)
-      ,.uart_tx(uart_rxdd)
+      ,.uart_tx(uart_rxd)
     );
     //--------------------------------------------------------------------------
     integer code;

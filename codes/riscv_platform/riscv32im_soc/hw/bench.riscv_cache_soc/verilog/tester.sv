@@ -2,7 +2,7 @@
 
 module tester
      #(parameter P_ADDR_ENTRY=32'h0
-      ,parameter P_FILE_BIN="test.bin"
+      ,parameter P_FILE_BIN="i2c_test.bin"
       ,parameter P_BOOT_VECTOR=32'h0000_0000)
 (
       input  wire          aclk
@@ -22,12 +22,9 @@ module tester
         cpu_resetn=1'b0;
         wait (aresetn==1'b0);
         wait (aresetn==1'b1);
-        $display("=== RISC-V CPU 초기화 시작 ===");
         load_program;
         repeat (5) @(posedge aclk);
         cpu_resetn=1'b1;
-        $display("=== RISC-V CPU 시작됨 ===");
-        $display("GPIO 키패드 테스트 프로그램이 실행됩니다.");
     end
     //--------------------------------------------------------------------------
     task load_program;

@@ -65,9 +65,11 @@ module i2c_axi_lite
     //--------------------------------------------------------------------------
     // Internal Signals
     //--------------------------------------------------------------------------
-    wire [31:0] i2c_data0;
-    wire [31:0] i2c_data1;
-    wire [31:0] i2c_data2;
+    // [수정] i2c_master.v 인터페이스 변경에 따른 신호명 업데이트
+    // data0 -> i2c_ctrl, data1 -> wdata, data2 -> rdata (output)
+    wire [31:0] i2c_ctrl;     // i2c_master로 전달할 제어/주소 데이터
+    wire [31:0] wdata;        // i2c_master로 전달할 쓰기 데이터
+    wire [31:0] rdata;        // i2c_master에서 받는 읽기 데이터 (output)
     wire        i2c_start;
     wire        i2c_busy;
     
@@ -96,9 +98,9 @@ module i2c_axi_lite
         .s_axi_rready   (s_axi_rready),
         
         // I2C Master Interface
-        .i2c_data0      (i2c_data0),
-        .i2c_data1      (i2c_data1),
-        .i2c_data2      (i2c_data2),
+        .i2c_ctrl       (i2c_ctrl),    // 변경: i2c_data0 -> i2c_ctrl
+        .wdata          (wdata),        // 변경: i2c_data1 -> wdata
+        .rdata          (rdata),        // 변경: i2c_data2 -> rdata (output)
         .i2c_start      (i2c_start),
         .i2c_busy       (i2c_busy)
     );
@@ -136,12 +138,13 @@ module i2c_axi_lite
     I2C #(
         .Hz_counter(Hz_counter)
     ) u_i2c_master (
-        .clk    (aclk),
-        .n_rst  (aresetn),
-        .data0  (i2c_data0),
-        .data1  (i2c_data1),
-        .sda    (i2c_sda),
-        .scl    (i2c_scl)
+        .clk        (aclk),
+        .n_rst      (aresetn),
+        .i2c_ctrl   (i2c_ctrl),   // 변경: data0 -> i2c_ctrl
+        .wdata      (wdata),      // 변경: data1 -> wdata
+        .rdata      (rdata),      // 변경: data2 -> rdata (output)
+        .sda        (i2c_sda),
+        .scl        (i2c_scl)
     );
 
 endmodule

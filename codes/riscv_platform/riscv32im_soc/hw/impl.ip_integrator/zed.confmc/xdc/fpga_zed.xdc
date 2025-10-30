@@ -132,6 +132,11 @@ set_property IOSTANDARD LVCMOS33 [get_ports i2c_scl]
 set_property SLEW FAST [get_ports i2c_sda]
 set_property SLEW FAST [get_ports i2c_scl]
 
+
+# --------------------------------------------------------
+# I2C Debug
+# --------------------------------------------------------
+
 create_debug_core u_ila_0 ila
 set_property ALL_PROBE_SAME_MU true [get_debug_cores u_ila_0]
 set_property ALL_PROBE_SAME_MU_CNT 1 [get_debug_cores u_ila_0]

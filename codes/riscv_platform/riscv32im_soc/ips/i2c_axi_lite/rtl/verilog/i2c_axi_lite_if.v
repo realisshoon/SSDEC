@@ -40,10 +40,10 @@ module i2c_axi_lite_if
     output reg         s_axi_rvalid,
     input  wire        s_axi_rready,
     
-    // I2C 마스터 인터페이스
-    output wire [31:0] i2c_data0,      // Control/Address data
-    output wire [31:0] i2c_data1,      // Write data
-    input  wire [31:0] i2c_data2,      // Read data
+    // I2C 마스터 인터페이스 (i2c_master.v 변경사항 반영)
+    output wire [31:0] i2c_ctrl,       // Control/Address data (변경: i2c_data0 -> i2c_ctrl)
+    output wire [31:0] wdata,          // Write data (변경: i2c_data1 -> wdata)
+    input  wire [31:0] rdata,          // Read data (변경: i2c_data2 -> rdata, output으로 변경됨)
     output reg         i2c_start,
     input  wire        i2c_busy
 );
@@ -178,8 +178,8 @@ module i2c_axi_lite_if
                 STR_READ: begin
                     s_axi_rresp <= 2'b00; // OKAY
                     
-                    // I2C에서 읽은 데이터 업데이트
-                    rd_data_reg <= i2c_data2;
+                    // I2C에서 읽은 데이터 업데이트 (변경: i2c_data2 -> rdata)
+                    rd_data_reg <= rdata;
                     
                     // 레지스터 읽기
                     case (read_addr[6:2])
@@ -214,24 +214,27 @@ module i2c_axi_lite_if
     //--------------------------------------------------------------------------
     // I2C 마스터 데이터 인터페이스
     //--------------------------------------------------------------------------
-    // data0 포맷:
-    // [7:0]   - Device Address (0xA0 for write, 0xA1 for read)
-    // [15:8]  - Memory Address
-    // [16]    - Random Read (1=Random, 0=Current)
+    // i2c_ctrl 포맷 (i2c_master.v 변경사항 반영):
+    // [31]    - START trigger (외부에서 START 제어, 변경됨)
     // [17]    - Page Mode (1=Page, 0=Byte)
+    // [16]    - Random Read (1=Random, 0=Current)
+    // [15:8]  - Memory Address
+    // [7:0]   - Device Address with R/W bit
     
     wire [7:0] i2c_dev_addr;
     assign i2c_dev_addr = control_reg[1] ? 
                           {dev_addr_reg[7:1], 1'b1} :  // Read
                           {dev_addr_reg[7:1], 1'b0};   // Write
     
-    assign i2c_data0 = {14'h0, 
-                        1'b0,  // Page mode (byte mode)
-                        control_reg[1],  // Random read
-                        mem_addr_reg[7:0],
-                        i2c_dev_addr};
+    // START trigger 추가: control_reg[0] (START 비트)를 [31]에 매핑
+    assign i2c_ctrl = {control_reg[0],  // [31] START trigger
+                       13'h0,            // [30:18] Reserved
+                       1'b0,             // [17] Page mode (byte mode)
+                       control_reg[1],   // [16] Random read
+                       mem_addr_reg[7:0], // [15:8] Memory address
+                       i2c_dev_addr};    // [7:0] Device address
     
-    assign i2c_data1 = {24'h0, wr_data_reg[7:0]};
+    assign wdata = {24'h0, wr_data_reg[7:0]};
 
 endmodule
 
