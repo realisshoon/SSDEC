@@ -184,9 +184,6 @@ build/
 *.bin
 *.hex
 
-# RISC-V specific build artifacts
-*.riscv
-*.rv32
 
 ### Additional Vivado Files ###
 # Vivado checkpoint files (better to ignore)
