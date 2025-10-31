@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<Runs Version="1" Minor="0">
+	<Run Id="design_gpio_axi_lite_axi4_to_lite_0_0_synth_1" LaunchDir="/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/gpio_axi_lite/impl.zed/project_design_gpio_axi_lite/project_design_gpio_axi_lite.runs/design_gpio_axi_lite_axi4_to_lite_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="design_gpio_axi_lite_bfm_axi_if_0_0_synth_1" LaunchDir="/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/gpio_axi_lite/impl.zed/project_design_gpio_axi_lite/project_design_gpio_axi_lite.runs/design_gpio_axi_lite_bfm_axi_if_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="design_gpio_axi_lite_clk_wiz_0_0_synth_1" LaunchDir="/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/gpio_axi_lite/impl.zed/project_design_gpio_axi_lite/project_design_gpio_axi_lite.runs/design_gpio_axi_lite_clk_wiz_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="design_gpio_axi_lite_gpio_axi_lite_0_0_synth_1" LaunchDir="/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/gpio_axi_lite/impl.zed/project_design_gpio_axi_lite/project_design_gpio_axi_lite.runs/design_gpio_axi_lite_gpio_axi_lite_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="design_gpio_axi_lite_proc_sys_reset_0_0_synth_1" LaunchDir="/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/gpio_axi_lite/impl.zed/project_design_gpio_axi_lite/project_design_gpio_axi_lite.runs/design_gpio_axi_lite_proc_sys_reset_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="synth_1" LaunchDir="/home/sogang/pjt/work/codes/riscv_platform/riscv32im_soc/ips/gpio_axi_lite/impl.zed/project_design_gpio_axi_lite/project_design_gpio_axi_lite.runs/synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado">
+		<Parent Id="design_gpio_axi_lite_axi4_to_lite_0_0_synth_1"/>
+		<Parent Id="design_gpio_axi_lite_bfm_axi_if_0_0_synth_1"/>
+		<Parent Id="design_gpio_axi_lite_clk_wiz_0_0_synth_1"/>
+		<Parent Id="design_gpio_axi_lite_gpio_axi_lite_0_0_synth_1"/>
+		<Parent Id="design_gpio_axi_lite_proc_sys_reset_0_0_synth_1"/>
+	</Run>
+	<Parameters>
+		<Parameter Name="runs.monitorLSFJobs" Val="true" Type="bool"/>
+		<Parameter Name="runs.enableClusterConf" Val="true" Type="bool"/>
+	</Parameters>
+</Runs>
+
