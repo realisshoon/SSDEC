@@ -161,6 +161,9 @@ dkms.conf
 #!*.dcp
 
 ### RISC-V Toolchain Build Files ###
+# RISC-V toolchain - ignore entire directory (too large to push, users should build locally)
+codes/riscv_platform/riscv32_toolchain/
+riscv32_toolchain/
 # RISC-V toolchain build directories
 riscv32_toolchain/riscv-gnu-toolchain/build32/
 riscv32_toolchain/riscv-gnu-toolchain/build64/
