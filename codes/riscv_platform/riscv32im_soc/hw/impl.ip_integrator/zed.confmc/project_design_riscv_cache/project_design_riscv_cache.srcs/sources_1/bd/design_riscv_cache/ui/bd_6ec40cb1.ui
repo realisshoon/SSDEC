@@ -1,57 +1,30 @@
 {
    "ActiveEmotionalView":"Default View",
-   "Default View_ScaleFactor":"0.336641",
-   "Default View_TopLeft":"-612,-21",
+   "Default View_ScaleFactor":"0.446491",
+   "Default View_TopLeft":"-1059,0",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
 #  -string -flagsOSRD
 preplace port port-id_BOARD_CLK_IN -pg 1 -lvl 0 -x 0 -y 60 -defaultsOSRD
 preplace port port-id_BOARD_RST_SW -pg 1 -lvl 0 -x 0 -y 80 -defaultsOSRD
 preplace port port-id_uart_cts_n -pg 1 -lvl 0 -x 0 -y 100 -defaultsOSRD
-preplace port port-id_uart_rts_n -pg 1 -lvl 3 -x 1030 -y 100 -defaultsOSRD
+preplace port port-id_uart_rts_n -pg 1 -lvl 2 -x 400 -y 100 -defaultsOSRD
 preplace port port-id_uart_rxd -pg 1 -lvl 0 -x 0 -y 120 -defaultsOSRD
-preplace port port-id_uart_txd -pg 1 -lvl 3 -x 1030 -y 120 -defaultsOSRD
-preplace port port-id_i2c_sda -pg 1 -lvl 3 -x 1030 -y 80 -defaultsOSRD
-preplace port port-id_i2c_scl -pg 1 -lvl 3 -x 1030 -y 60 -defaultsOSRD
+preplace port port-id_uart_txd -pg 1 -lvl 2 -x 400 -y 120 -defaultsOSRD
+preplace port port-id_i2c_sda -pg 1 -lvl 2 -x 400 -y 80 -defaultsOSRD
+preplace port port-id_i2c_scl -pg 1 -lvl 2 -x 400 -y 60 -defaultsOSRD
 preplace portBus gpio_in -pg 1 -lvl 0 -x 0 -y 20 -defaultsOSRD
-preplace portBus gpio_out -pg 1 -lvl 3 -x 1030 -y 20 -defaultsOSRD
-preplace portBus keypad_col -pg 1 -lvl 3 -x 1030 -y 40 -defaultsOSRD
+preplace portBus gpio_out -pg 1 -lvl 2 -x 400 -y 20 -defaultsOSRD
+preplace portBus keypad_col -pg 1 -lvl 2 -x 400 -y 40 -defaultsOSRD
 preplace portBus keypad_row -pg 1 -lvl 0 -x 0 -y 40 -defaultsOSRD
-preplace inst axi_bram_ctrl_0 -pg 1 -lvl 1 -x 370 -y 80 -defaultsOSRD
-preplace inst axi_bram_ctrl_0_bram -pg 1 -lvl 1 -x 370 -y 210 -defaultsOSRD
-preplace inst bfm_axi_if_0 -pg 1 -lvl 1 -x 370 -y 560 -defaultsOSRD
-preplace inst clk_wiz_0 -pg 1 -lvl 1 -x 370 -y 340 -defaultsOSRD
-preplace inst proc_sys_reset_0 -pg 1 -lvl 1 -x 370 -y 800 -defaultsOSRD
-preplace inst riscv_cache_soc_0 -pg 1 -lvl 1 -x 370 -y 1010 -defaultsOSRD
-preplace inst rstmgra_0 -pg 1 -lvl 2 -x 850 -y 920 -defaultsOSRD
-preplace netloc BOARD_CLK_IN_1 1 0 1 70 60n
-preplace netloc BOARD_RST_SW_1 1 0 1 50 80n
-preplace netloc bfm_axi_if_0_GPOUT 1 1 1 660 660n
-preplace netloc clk_wiz_0_clk_out1 1 0 2 120 1220 620
-preplace netloc clk_wiz_0_clk_out2 1 0 2 100 1180 670
-preplace netloc clk_wiz_0_locked 1 0 2 130 1190 610
-preplace netloc proc_sys_reset_0_interconnect_aresetn 1 1 1 650 820n
-preplace netloc proc_sys_reset_0_peripheral_aresetn 1 0 2 80 1200 570
-preplace netloc riscv_cache_soc_0_uart_rts_n 1 1 2 680J 100 N
-preplace netloc riscv_cache_soc_0_uart_txd 1 1 2 690J 840 1010
-preplace netloc rstmgra_0_GPIN 1 0 3 110 1240 NJ 1240 1010
-preplace netloc rstmgra_0_bus_resetn 1 0 3 140 1250 NJ 1250 1000
-preplace netloc rstmgra_0_cpu_resetn 1 0 3 160 1230 NJ 1230 990
-preplace netloc uart_cts_n_1 1 0 1 30 100n
-preplace netloc uart_rxd_1 1 0 1 20 120n
-preplace netloc gpio_in_1 1 0 1 60 20n
-preplace netloc riscv_cache_soc_0_gpio_out 1 1 2 630J 20 N
-preplace netloc riscv_cache_soc_0_keypad_col 1 1 2 640J 40 N
-preplace netloc keypad_row_1 1 0 1 40 40n
-preplace netloc riscv_cache_soc_0_i2c_sda 1 1 2 710J 80 N
-preplace netloc riscv_cache_soc_0_i2c_scl 1 1 2 700J 60 N
-preplace netloc util_vector_logic_0_Res 1 0 2 150 1210 600
-preplace netloc axi_bram_ctrl_0_BRAM_PORTA 1 0 2 170 1140 590
-preplace netloc axi_bram_ctrl_0_BRAM_PORTB 1 0 2 180 1150 580
-preplace netloc bfm_axi_if_0_m_axi 1 0 2 190 1160 560
-preplace netloc riscv_cache_soc_0_m_axi_mem 1 0 2 90 1170 550
-levelinfo -pg 1 0 370 850 1030
-pagesize -pg 1 -db -bbox -sgen -170 0 1200 1260
+preplace inst axi_bram_ctrl_0 -pg 1 -lvl 1 -x 200 -y 80 -defaultsOSRD
+preplace inst axi_bram_ctrl_0_bram -pg 1 -lvl 1 -x 200 -y 210 -defaultsOSRD
+preplace inst bfm_axi_if_0 -pg 1 -lvl 1 -x 200 -y 560 -defaultsOSRD
+preplace inst clk_wiz_0 -pg 1 -lvl 1 -x 200 -y 340 -defaultsOSRD
+preplace inst proc_sys_reset_0 -pg 1 -lvl 1 -x 200 -y 800 -defaultsOSRD
+preplace inst riscv_cache_soc_0 -pg 1 -lvl 1 -x 200 -y 1010 -defaultsOSRD
+levelinfo -pg 1 0 200 400
+pagesize -pg 1 -db -bbox -sgen -170 0 570 1140
 "
 }
 
