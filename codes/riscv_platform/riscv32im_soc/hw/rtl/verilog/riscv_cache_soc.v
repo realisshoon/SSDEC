@@ -93,7 +93,7 @@ module riscv_cache_soc
      (* mark_debug="true" *) input  wire  uart_cts_n,
      (* mark_debug="true" *) input  wire [7:0] gpio_in,   // 8 user switches on ZedBoard
      (* mark_debug="true" *) output wire [7:0] gpio_out,  // 8 user LEDs on ZedBoard  
-     (* mark_debug="true" *) output wire [3:0] keypad_col, // 4x4 Matrix Keypad Column output
+     (* mark_debug="true" *) output wire [3:0] keypad_col, // 4x4 Matrix Keypad Column outpuㅠt
      input  wire [3:0] keypad_row, // 4x4 Matrix Keypad Row input
      (* mark_debug="true" *) inout  wire       i2c_sda,    // I2C data line
      (* mark_debug="true" *) output wire       i2c_scl,    // I2C clock line
@@ -218,6 +218,8 @@ module riscv_cache_soc
     //--------------------------------------------------------------------------
     // GPIO internal signals
     (* mark_debug="true" *) wire [7:0] gpio_dir;  // GPIO direction (internal only)
+    wire [7:0] gpio_in_combined;  // Combined GPIO input: keypad_row[3:0] + gpio_in[3:0]
+    assign gpio_in_combined = {keypad_row, gpio_in[3:0]};  // keypad_row[3:0] -> [7:4], switches -> [3:0]
     //--------------------------------------------------------------------------
    (* mark_debug="true" *)wire [AXI_WIDTH_ID-1:0]   axi_inst_awid   , axi_data_awid   ;
    (* mark_debug="true" *)wire [AXI_WIDTH_ADDR-1:0] axi_inst_awaddr , axi_data_awaddr ;
@@ -958,7 +960,7 @@ module riscv_cache_soc
         , .s_axi_lite_rresp   ( axi_lite_rresp  [4])
         , .s_axi_lite_rvalid  ( axi_lite_rvalid [4])
         , .s_axi_lite_rready  ( axi_lite_rready [4])
-        , .gpio_in       ( gpio_in           )  // GPIO input
+        , .gpio_in       ( gpio_in_combined  )  // GPIO input: keypad_row[3:0] -> [7:4], gpio_in switches -> [3:0]
         , .gpio_out      ( gpio_out          )  // GPIO output
         , .gpio_dir      ( gpio_dir          )  // GPIO direction
         , .interrupt     ( irq[IRQ_GPIO]     )
@@ -989,10 +991,14 @@ module riscv_cache_soc
     );
     //--------------------------------------------------------------------------
     // Keypad Column/Row assignment (connected to GPIO for software control)
-    // Software can control keypad through GPIO registers
-    // Alternatively, connect directly for dedicated keypad interface
-    assign keypad_col = gpio_out[3:0];  // Lower 4 bits of GPIO output -> Keypad columns
-    // Note: Software should read keypad_row separately if needed
-    // For now, keypad_row is independent input (not connected to GPIO)
+    // PMODKYPD 구조:
+    //   - Column: 출력 (LOW로 만들어서 스캔)
+    //   - Row: 입력 (풀업 내장, 키 안 눌림=HIGH, 키 눌림=LOW)
+    // 하드웨어 연결:
+    //   - keypad_col[3:0] = gpio_out[3:0]  (GPIO 하위 4비트 출력 -> Column)
+    //   - keypad_row[3:0] -> gpio_in[7:4]  (Row 입력 -> GPIO 상위 4비트로 읽기)
+    // Note: gpio_in[3:0]은 여전히 스위치 입력용으로 사용 가능
+    assign keypad_col = gpio_out[3:0];  // GPIO 하위 4비트 출력 -> Keypad Column
+    // keypad_row는 GPIO 모듈의 gpio_in[7:4]로 연결됨 (위에서 연결함)
     //--------------------------------------------------------------------------
 endmodule

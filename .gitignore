@@ -175,10 +175,6 @@ riscv32_toolchain/riscv-gnu-toolchain/install/
 # RISC-V build logs
 build_riscv-gnu-toolchain.log
 
-### Vivado Simulation Files ###
-# Vivado simulation directories
-xsim.dir/
-xsim/
 
 # Vivado simulation files
 *.wdb
@@ -208,10 +204,8 @@ build/
 
 # Vivado reports
 *.rpt
-*.txt
 
 # Vivado temporary directories
 .cache/
 .tmp/
 
-# End of https://www.toptal.com/developers/gitignore/api/xilinxvivado,vivado,c,visualstudiocode

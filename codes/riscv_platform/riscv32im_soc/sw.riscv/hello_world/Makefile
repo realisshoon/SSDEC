@@ -7,11 +7,11 @@ MAKEFILE = Makefile
 PLATFORM = $(shell uname -s | tr '[:upper:]' '[:lower:]')
 MACHINE  = $(shell uname -m)
 
-export TARGET   = uart_test
+export TARGET   = gpio_test
 #-------------------------------------------------------------------------------
 ifeq ($(MAKECMDGOALS),$(findstring $(MAKECMDGOALS), "" "all" "sw" "sim"))
     ifndef RISCV
-       export RISCV = $(HOME)/riscv32)
+       export RISCV = $(HOME)/pjt/team2/codes/riscv32im
        $(warning RISCV environment variable updated $(RISCV))
     endif
     export HOST = riscv32-unknown-elf
@@ -26,12 +26,13 @@ endif
 #-------------------------------------------------------------------------------
 export DIR_SRC    := ./src
 export DIR_UART   := ../../ips/uart_axi_lite
+export DIR_GPIO   := ../../ips/gpio_axi_lite
 #28800 115200 460800 921600
 export BAUD_RATE  := 115200
 #export BAUD_RATE  := 921600
 export VCD := 1
 
-SRC.C   = main.c my_printf.c uart_api.c gpio_api.c
+SRC.C   = main.c my_printf.c uart_api.c gpio_api.c keypad_api.c syscalls.c
 SRC.S   = start.S
 OBJS    = $(SRC.S:.S=.o) $(SRC.C:.c=.o)
 
@@ -48,7 +49,9 @@ ABI     = ilp32
 ASFLAGS = -march=$(ARCH) -mabi=$(ABI)
 # add -v to get more information for gcc
 CFLAGS  = -march=$(ARCH) -mabi=$(ABI) -DBAUD_RATE=$(BAUD_RATE)
-INCS    = -I $(DIR_SRC) -I $(DIR_UART)/api/c\
+INCS    = -I $(DIR_SRC) \
+          -I $(DIR_UART)/api/c \
+          -I $(DIR_GPIO)/api/c \
           -I $(RISCV)/$(HOST)/include\
           -I $(RISCV)/lib/gcc/$(HOST)/$(GCCVER)/include
 LDFLAGS = -nostdlib -static\
@@ -61,8 +64,8 @@ LDFLAGS = -nostdlib -static\
 #          -Ttext-segment $(ADDR_ENTRY)
 
 #-------------------------------------------------------------------------------
-vpath %.h   $(DIR_SRC):$(DIR_UART)/api/c
-vpath %.c   $(DIR_SRC):$(DIR_UART)/api/c
+vpath %.h   $(DIR_SRC):$(DIR_UART)/api/c:$(DIR_GPIO)/api/c
+vpath %.c   $(DIR_SRC):$(DIR_UART)/api/c:$(DIR_GPIO)/api/c
 vpath %.S   $(DIR_SRC)
 
 $(DIR_OBJ)/%.o: %.c
@@ -118,6 +121,23 @@ program:
 download:
 	../../sw.confmc/elf_download/elf_download -A $(TARGET).elf -B u.bin -D
 
+# UART 출력 확인 (시리얼 터미널)
+uart-monitor:
+	@echo "UART 모니터링을 시작합니다..."
+	@echo "보드레이트: 115200"
+	@echo ""
+	@if [ -c /dev/ttyUSB0 ]; then \
+		echo "Using /dev/ttyUSB0"; \
+		sudo minicom -D /dev/ttyUSB0 -b 115200; \
+	elif [ -c /dev/ttyACM0 ]; then \
+		echo "Using /dev/ttyACM0"; \
+		sudo minicom -D /dev/ttyACM0 -b 115200; \
+	else \
+		echo "ERROR: 시리얼 포트를 찾을 수 없습니다 (/dev/ttyUSB0, /dev/ttyACM0)"; \
+		echo "사용 가능한 포트를 확인하려면: ls /dev/tty*"; \
+		exit 1; \
+	fi
+
 #-------------------------------------------------------------------------------
 #export SIMULATOR ?= iverilog
 export SIMULATOR ?= xsim
@@ -132,7 +152,7 @@ ifeq ($(MAKECMDGOALS),$(findstring $(MAKECMDGOALS), "hw" "sim"))
         ifeq (, $(shell which iverilog))
            $(error iverilog not found.)
         endif
-        export DIR_HW_SIM = ../../hw/sim.riscv_cache_soc/iverilog
+        #export DIR_HW_SIM = ../../hw/sim.riscv_cache_soc/iverilog
     endif
     FILE_BIN = $(abspath $(TARGET).bin)
    #FILE_BIN = $(abspath ../../sw.confmc/elf_download/u.bin)
