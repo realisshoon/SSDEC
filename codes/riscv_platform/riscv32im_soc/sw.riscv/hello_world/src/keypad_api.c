@@ -11,7 +11,8 @@
 static uint32_t keypad_gpio_addr = 0x90030000;
 
 // 키 매핑: [row][col] = key_value
-// 0-15 값 또는 문자로 변환 가능
+// PMODKYPD 표준 레이아웃: 4x4 매트릭스 키패드
+// 하드웨어 연결이 반대이므로 전치된 형태로 정의
 static const char keypad_map[4][4] = {
     {'1', '2', '3', 'A'},  // Row 0
     {'4', '5', '6', 'B'},  // Row 1
@@ -26,7 +27,7 @@ void keypad_init(uint32_t gpio_base_addr) {
     // GPIO 초기화: 하위 4비트는 출력(Column), 상위 4비트는 입력(Row)
     gpio_set_addr(gpio_base_addr);
     
-    uint32_t dir = 0x0000000F;  // 하위 4비트만 출력 (Column)
+    uint32_t dir = 0x0000000F;  // 하위 4비트만 출력 
     
     // PMODKYPD: Column을 HIGH로 설정 (기본 상태)
     // 키 스캔 시 Column을 LOW로 만들어 Row를 읽음
@@ -50,7 +51,8 @@ int keypad_scan(void) {
         
         // 디바운싱 지연 (신호 안정화)
         // PMODKYPD는 하드웨어 디바운싱이 없으므로 소프트웨어 처리 필요
-        volatile int delay = 1000;  // 약 10μs @ 100MHz (충분한 지연)
+        // 스캔 속도 향상을 위해 지연 시간 단축
+        volatile int delay = 100;  // 약 1μs @ 100MHz (최소 지연)
         while (delay--);
         
         // Row 입력 읽기 (GPIO bit 7-4에 keypad_row[3:0]이 연결됨)
@@ -85,7 +87,13 @@ int keypad_scan(void) {
 char keypad_get_char(void) {
     int key = keypad_scan();
     if (key >= 0 && key < 16) {
-        return keypad_map[key / 4][key % 4];
+        // key = row * 4 + col이므로
+        // key / 4 = row, key % 4 = col
+        // keypad_map은 [row][col] 형태
+        // 하드웨어 연결이 반대이므로 [col][row]로 접근하여 전치
+        int row = key / 4;
+        int col = key % 4;
+        return keypad_map[col][row];
     }
     return 0;
 }

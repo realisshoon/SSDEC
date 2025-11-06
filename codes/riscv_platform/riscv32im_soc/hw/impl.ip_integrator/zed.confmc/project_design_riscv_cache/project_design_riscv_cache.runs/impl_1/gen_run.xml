@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="impl_1" LaunchPart="xc7z020clg484-1" LaunchTime="1762336869">
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <File Type="BITSTR-SYSDEF" Name="design_riscv_cache_wrapper.sysdef"/>
+  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
+  <File Type="BITSTR-LTX" Name="design_riscv_cache_wrapper.ltx"/>
+  <File Type="BG-BGN" Name="design_riscv_cache_wrapper.bgn"/>
+  <File Type="RNPI_FILE" Name="design_riscv_cache_wrapper.rnpi"/>
+  <File Type="BG-DRC" Name="design_riscv_cache_wrapper.drc"/>
+  <File Type="CFI_FILE" Name="design_riscv_cache_wrapper.cfi"/>
+  <File Type="RCFI_FILE" Name="design_riscv_cache_wrapper.rcfi"/>
+  <File Type="BITSTR-MMI" Name="design_riscv_cache_wrapper.mmi"/>
+  <File Type="BITSTR-BMM" Name="design_riscv_cache_wrapper_bd.bmm"/>
+  <File Type="BITSTR-NKY" Name="design_riscv_cache_wrapper.nky"/>
+  <File Type="BITSTR-RBT" Name="design_riscv_cache_wrapper.rbt"/>
+  <File Type="RBD_FILE" Name="design_riscv_cache_wrapper.rbd"/>
+  <File Type="BITSTR-MSK" Name="design_riscv_cache_wrapper.msk"/>
+  <File Type="NPI_FILE" Name="design_riscv_cache_wrapper.npi"/>
+  <File Type="BG-BIN" Name="design_riscv_cache_wrapper.bin"/>
+  <File Type="PDI-FILE" Name="design_riscv_cache_wrapper.pdi"/>
+  <File Type="BG-BIT" Name="design_riscv_cache_wrapper.bit"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="design_riscv_cache_wrapper_bus_skew_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="design_riscv_cache_wrapper_bus_skew_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="design_riscv_cache_wrapper_bus_skew_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="design_riscv_cache_wrapper_timing_summary_postroute_physopted.rpx"/>
+  <File Type="RDI-RDI" Name="design_riscv_cache_wrapper.vdi"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="design_riscv_cache_wrapper_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="design_riscv_cache_wrapper_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="design_riscv_cache_wrapper_postroute_physopt_bb.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="design_riscv_cache_wrapper_postroute_physopt.dcp"/>
+  <File Type="ROUTE-BUS-SKEW" Name="design_riscv_cache_wrapper_bus_skew_routed.rpt"/>
+  <File Type="ROUTE-CLK" Name="design_riscv_cache_wrapper_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-SIMILARITY" Name="design_riscv_cache_wrapper_incremental_reuse_routed.rpt"/>
+  <File Type="ROUTE-TIMING-RPX" Name="design_riscv_cache_wrapper_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-TIMING-PB" Name="design_riscv_cache_wrapper_timing_summary_routed.pb"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="design_riscv_cache_wrapper_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-STATUS-PB" Name="design_riscv_cache_wrapper_route_status.pb"/>
+  <File Type="ROUTE-STATUS" Name="design_riscv_cache_wrapper_route_status.rpt"/>
+  <File Type="ROUTE-PWR-RPX" Name="design_riscv_cache_wrapper_power_routed.rpx"/>
+  <File Type="PLACE-UTIL-PB" Name="design_riscv_cache_wrapper_utilization_placed.pb"/>
+  <File Type="PLACE-UTIL" Name="design_riscv_cache_wrapper_utilization_placed.rpt"/>
+  <File Type="PLACE-CLK" Name="design_riscv_cache_wrapper_clock_utilization_placed.rpt"/>
+  <File Type="PLACE-IO" Name="design_riscv_cache_wrapper_io_placed.rpt"/>
+  <File Type="PLACE-DCP" Name="design_riscv_cache_wrapper_placed.dcp"/>
+  <File Type="PWROPT-DCP" Name="design_riscv_cache_wrapper_pwropt.dcp"/>
+  <File Type="OPT-TIMING" Name="design_riscv_cache_wrapper_timing_summary_opted.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="design_riscv_cache_wrapper_incremental_reuse_pre_placed.rpt"/>
+  <File Type="PWROPT-DRC" Name="design_riscv_cache_wrapper_drc_pwropted.rpt"/>
+  <File Type="ROUTE-BUS-SKEW-RPX" Name="design_riscv_cache_wrapper_bus_skew_routed.rpx"/>
+  <File Type="REPORTS-TCL" Name="design_riscv_cache_wrapper_reports.tcl"/>
+  <File Type="ROUTE-BUS-SKEW-PB" Name="design_riscv_cache_wrapper_bus_skew_routed.pb"/>
+  <File Type="PA-TCL" Name="design_riscv_cache_wrapper.tcl"/>
+  <File Type="OPT-HWDEF" Name="design_riscv_cache_wrapper.hwdef"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="design_riscv_cache_wrapper_methodology_drc_opted.rpt"/>
+  <File Type="INIT-TIMING" Name="design_riscv_cache_wrapper_timing_summary_init.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="design_riscv_cache_wrapper_incremental_reuse_placed.rpt"/>
+  <File Type="PWROPT-TIMING" Name="design_riscv_cache_wrapper_timing_summary_pwropted.rpt"/>
+  <File Type="ROUTE-DRC" Name="design_riscv_cache_wrapper_drc_routed.rpt"/>
+  <File Type="OPT-DCP" Name="design_riscv_cache_wrapper_opt.dcp"/>
+  <File Type="OPT-DRC" Name="design_riscv_cache_wrapper_drc_opted.rpt"/>
+  <File Type="PLACE-CTRL" Name="design_riscv_cache_wrapper_control_sets_placed.rpt"/>
+  <File Type="PLACE-TIMING" Name="design_riscv_cache_wrapper_timing_summary_placed.rpt"/>
+  <File Type="ROUTE-DRC-PB" Name="design_riscv_cache_wrapper_drc_routed.pb"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="design_riscv_cache_wrapper_postplace_pwropt.dcp"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="design_riscv_cache_wrapper_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="ROUTE-PWR" Name="design_riscv_cache_wrapper_power_routed.rpt"/>
+  <File Type="PHYSOPT-DCP" Name="design_riscv_cache_wrapper_physopt.dcp"/>
+  <File Type="PHYSOPT-DRC" Name="design_riscv_cache_wrapper_drc_physopted.rpt"/>
+  <File Type="PHYSOPT-TIMING" Name="design_riscv_cache_wrapper_timing_summary_physopted.rpt"/>
+  <File Type="ROUTE-PWR-SUM" Name="design_riscv_cache_wrapper_power_summary_routed.pb"/>
+  <File Type="ROUTE-ERROR-DCP" Name="design_riscv_cache_wrapper_routed_error.dcp"/>
+  <File Type="ROUTE-DRC-RPX" Name="design_riscv_cache_wrapper_drc_routed.rpx"/>
+  <File Type="ROUTE-DCP" Name="design_riscv_cache_wrapper_routed.dcp"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="design_riscv_cache_wrapper_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="design_riscv_cache_wrapper_routed_bb.dcp"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="design_riscv_cache_wrapper_methodology_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="design_riscv_cache_wrapper_methodology_drc_routed.pb"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PPRDIR/../../../../ips/axi_lite/rtl/verilog/amba_axi_lite_m5.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/axi4_to_lite/rtl/verilog/axi4_to_lite_fifo_sync.v">
+      <FileInfo SFType="VHeader">
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/axi4_to_lite/rtl/verilog/axi4_to_lite.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/axi_switch/rtl/verilog/axi_switch_m3s3.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/top_cache_axi/src_v/dcache.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/top_cache_axi/src_v/dcache_axi.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/top_cache_axi/src_v/dcache_axi_axi.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/top_cache_axi/src_v/dcache_core.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/top_cache_axi/src_v/dcache_core_data_ram.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/top_cache_axi/src_v/dcache_core_tag_ram.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/top_cache_axi/src_v/dcache_if_pmem.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/top_cache_axi/src_v/dcache_mux.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/top_cache_axi/src_v/dcache_pmem_mux.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/gpio_axi_lite/rtl/verilog/gpio_axi_lite_if.v">
+      <FileInfo SFType="VHeader">
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/gpio_axi_lite/rtl/verilog/gpio_axi_lite.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/i2c_axi_lite/rtl/verilog/i2c_master.v">
+      <FileInfo SFType="VHeader">
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/i2c_axi_lite/rtl/verilog/i2c_axi_lite_if.v">
+      <FileInfo SFType="VHeader">
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/i2c_axi_lite/rtl/verilog/i2c_axi_lite.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/top_cache_axi/src_v/icache.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/top_cache_axi/src_v/icache_data_ram.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/top_cache_axi/src_v/icache_tag_ram.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/mem_axi/rtl/verilog/mem_axi.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/pic_axi_lite/rtl/verilog/pic_core.v">
+      <FileInfo SFType="VHeader">
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/pic_axi_lite/rtl/verilog/pic_axi_lite_if.v">
+      <FileInfo SFType="VHeader">
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/pic_axi_lite/rtl/verilog/pic_axi_lite.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/core/riscv/riscv_defs.v">
+      <FileInfo SFType="VHeader">
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/core/riscv/riscv_alu.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../rtl/verilog/riscv_cache_core.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/core/riscv/riscv_core.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/core/riscv/riscv_csr.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/core/riscv/riscv_csr_regfile.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/core/riscv/riscv_decode.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/core/riscv/riscv_decoder.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/core/riscv/riscv_divider.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/core/riscv/riscv_exec.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/core/riscv/riscv_fetch.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/core/riscv/riscv_issue.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/core/riscv/riscv_lsu.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/core/riscv/riscv_mmu.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/core/riscv/riscv_multiplier.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/core/riscv/riscv_pipe_ctrl.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/core/riscv/riscv_regfile.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/core/riscv/riscv_xilinx_2r1w.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/timer_axi_lite/rtl/verilog/timer_tick.v">
+      <FileInfo SFType="VHeader">
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/timer_axi_lite/rtl/verilog/timer_axi_lite_if.v">
+      <FileInfo SFType="VHeader">
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/timer_axi_lite/rtl/verilog/timer_axi_lite.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/uart_axi_lite/rtl/verilog/uart_fifo_sync_wt.v">
+      <FileInfo SFType="VHeader">
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/uart_axi_lite/rtl/verilog/uart_tx.v">
+      <FileInfo SFType="VHeader">
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/uart_axi_lite/rtl/verilog/uart_rx.v">
+      <FileInfo SFType="VHeader">
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/uart_axi_lite/rtl/verilog/uart_csr.v">
+      <FileInfo SFType="VHeader">
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/uart_axi_lite/rtl/verilog/uart_axi_lite_if.v">
+      <FileInfo SFType="VHeader">
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/uart_axi_lite/rtl/verilog/uart_core.v">
+      <FileInfo SFType="VHeader">
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/uart_axi_lite/rtl/verilog/uart_axi_lite.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../rtl/verilog/riscv_cache_soc.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../rtl/verilog/rstmgra.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../syn_define.v">
+      <FileInfo>
+        <Attr Name="IsGlobalInclude" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/bd/design_riscv_cache/design_riscv_cache.bd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PGENDIR/sources_1/bd/design_riscv_cache/hdl/design_riscv_cache_wrapper.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/riscv/core/riscv/riscv_trace_sim.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../design_riscv_cache_wrapper.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="design_riscv_cache_wrapper"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PPRDIR/../xdc/con-fmc_lpc_zed.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../xdc/fpga_etc.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../xdc/fpga_zed.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1">
+    <Filter Type="Utils"/>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2021">
+      <Desc>Default settings for Implementation.</Desc>
+    </StratHandle>
+    <Step Id="init_design"/>
+    <Step Id="opt_design"/>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design"/>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design"/>
+    <Step Id="route_design"/>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream"/>
+  </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_clk_wiz_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_proc_sys_reset_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_axi_bram_ctrl_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_bfm_axi_if_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_axi_bram_ctrl_0_bram_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_rstmgra_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_riscv_cache_soc_0_0"/>
+</GenRun>

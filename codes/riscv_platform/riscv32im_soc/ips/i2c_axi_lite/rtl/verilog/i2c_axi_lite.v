@@ -58,7 +58,10 @@ module i2c_axi_lite
     input  wire          s_axi_rready,
     
     // I2C Physical Interface
-    inout  wire          i2c_sda,
+    // IP Packager가 자동으로 IOBUF를 생성하므로, inout 대신 분리된 포트 사용
+    input  wire          i2c_sda_i,  // Input from pad (IOBUF의 O)
+    output wire          i2c_sda_o,  // Output to pad (IOBUF의 I)
+    output wire          i2c_sda_t,  // Tri-state enable (IOBUF의 T)
     output wire          i2c_scl
 );
 
@@ -72,6 +75,8 @@ module i2c_axi_lite
     wire [31:0] rdata;        // i2c_master에서 받는 읽기 데이터 (output)
     wire        i2c_start;
     wire        i2c_busy;
+    
+    // IOBUF signals are now external ports (IP Packager가 자동으로 IOBUF 생성)
     
     //--------------------------------------------------------------------------
     // AXI4-Lite Interface Module
@@ -135,6 +140,10 @@ module i2c_axi_lite
     
     assign i2c_busy = i2c_busy_reg;
     
+    //--------------------------------------------------------------------------
+    // I2C Master Module
+    // Note: IOBUF는 IP Packager가 자동으로 생성하므로, 내부 IOBUF는 제거
+    //--------------------------------------------------------------------------
     I2C #(
         .Hz_counter(Hz_counter)
     ) u_i2c_master (
@@ -143,7 +152,9 @@ module i2c_axi_lite
         .i2c_ctrl   (i2c_ctrl),   // 변경: data0 -> i2c_ctrl
         .wdata      (wdata),      // 변경: data1 -> wdata
         .rdata      (rdata),      // 변경: data2 -> rdata (output)
-        .sda        (i2c_sda),
+        .sda_i      (i2c_sda_i),  // Input from pad
+        .sda_o      (i2c_sda_o),  // Output to pad (always 0)
+        .sda_t      (i2c_sda_t),  // Tri-state enable
         .scl        (i2c_scl)
     );
 

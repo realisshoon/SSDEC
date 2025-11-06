@@ -20,9 +20,8 @@ add_files -norecurse ${DESIGN_NAME}_wrapper.v
 set_property top ${DESIGN_NAME}_wrapper [current_fileset]
 
 # Add XDC files AFTER wrapper is created and set as top
-# NOTE: con-fmc_lpc_zed.xdc is commented out because FMC ports are not used
-#       and cause I/O overutilization (412 I/O vs 327 available)
-#add_files -fileset constrs_1 ${XDC_DIR}/con-fmc_lpc_zed.xdc
+# FMC ports are now used for BFM interface
+add_files -fileset constrs_1 ${XDC_DIR}/con-fmc_lpc_zed.xdc
 add_files -fileset constrs_1 ${XDC_DIR}/fpga_etc.xdc
 add_files -fileset constrs_1 ${XDC_DIR}/fpga_zed.xdc
 

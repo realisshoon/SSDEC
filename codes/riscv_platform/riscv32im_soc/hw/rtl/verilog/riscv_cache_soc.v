@@ -966,6 +966,21 @@ module riscv_cache_soc
         , .interrupt     ( irq[IRQ_GPIO]     )
     );
     //--------------------------------------------------------------------------
+    // I2C SDA IOBUF signals (IP Packager 자동 생성 방지)
+    //--------------------------------------------------------------------------
+    wire i2c_sda_i;  // Input from pad
+    wire i2c_sda_o;  // Output to pad
+    wire i2c_sda_t;  // Tri-state enable
+    
+    // IOBUF for I2C SDA
+    IOBUF i2c_sda_iobuf (
+        .IO(i2c_sda),      // Bidirectional port
+        .I(i2c_sda_o),     // Output from logic
+        .O(i2c_sda_i),     // Input to logic
+        .T(i2c_sda_t)      // Tri-state enable
+    );
+    
+    //--------------------------------------------------------------------------
     i2c_axi_lite #(.Hz_counter(120)) 
     u_i2c (
           .aresetn       ( axi_aresetn        )
@@ -986,7 +1001,9 @@ module riscv_cache_soc
         , .s_axi_rresp   ( axi_lite_rresp  [5])
         , .s_axi_rvalid  ( axi_lite_rvalid [5])
         , .s_axi_rready  ( axi_lite_rready [5])
-        , .i2c_sda       ( i2c_sda          )   // I2C data line
+        , .i2c_sda_i     ( i2c_sda_i        )   // I2C SDA input from pad
+        , .i2c_sda_o     ( i2c_sda_o        )   // I2C SDA output to pad
+        , .i2c_sda_t     ( i2c_sda_t        )   // I2C SDA tri-state enable
         , .i2c_scl       ( i2c_scl          )   // I2C clock line
     );
     //--------------------------------------------------------------------------

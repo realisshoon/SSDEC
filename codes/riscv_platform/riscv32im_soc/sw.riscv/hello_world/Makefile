@@ -27,12 +27,12 @@ endif
 export DIR_SRC    := ./src
 export DIR_UART   := ../../ips/uart_axi_lite
 export DIR_GPIO   := ../../ips/gpio_axi_lite
-#28800 115200 460800 921600
+export DIR_I2C    := ../../ips/i2c_axi_lite
 export BAUD_RATE  := 115200
 #export BAUD_RATE  := 921600
 export VCD := 1
 
-SRC.C   = main.c my_printf.c uart_api.c gpio_api.c keypad_api.c syscalls.c
+SRC.C   = main.c my_printf.c uart_api.c gpio_api.c keypad_api.c i2c_api.c syscalls.c
 SRC.S   = start.S
 OBJS    = $(SRC.S:.S=.o) $(SRC.C:.c=.o)
 
@@ -52,6 +52,7 @@ CFLAGS  = -march=$(ARCH) -mabi=$(ABI) -DBAUD_RATE=$(BAUD_RATE)
 INCS    = -I $(DIR_SRC) \
           -I $(DIR_UART)/api/c \
           -I $(DIR_GPIO)/api/c \
+          -I $(DIR_I2C)/api/c \
           -I $(RISCV)/$(HOST)/include\
           -I $(RISCV)/lib/gcc/$(HOST)/$(GCCVER)/include
 LDFLAGS = -nostdlib -static\
@@ -64,8 +65,8 @@ LDFLAGS = -nostdlib -static\
 #          -Ttext-segment $(ADDR_ENTRY)
 
 #-------------------------------------------------------------------------------
-vpath %.h   $(DIR_SRC):$(DIR_UART)/api/c:$(DIR_GPIO)/api/c
-vpath %.c   $(DIR_SRC):$(DIR_UART)/api/c:$(DIR_GPIO)/api/c
+vpath %.h   $(DIR_SRC):$(DIR_UART)/api/c:$(DIR_GPIO)/api/c:$(DIR_I2C)/api/c
+vpath %.c   $(DIR_SRC):$(DIR_UART)/api/c:$(DIR_GPIO)/api/c:$(DIR_I2C)/api/c
 vpath %.S   $(DIR_SRC)
 
 $(DIR_OBJ)/%.o: %.c
@@ -119,24 +120,10 @@ program:
 	$(DIR_BIT)/program_fpga.sh $(DIR_BIT)/design_riscv_cache_wrapper.bit
 
 download:
-	../../sw.confmc/elf_download/elf_download -A $(TARGET).elf -B u.bin -D
+	@echo "Downloading $(TARGET).elf to CON-FMC..."
+	@../../sw.confmc/elf_download/elf_download -A $(TARGET).elf -B u.bin -D -g 1
+	@echo "Download completed successfully!"
 
-# UART 출력 확인 (시리얼 터미널)
-uart-monitor:
-	@echo "UART 모니터링을 시작합니다..."
-	@echo "보드레이트: 115200"
-	@echo ""
-	@if [ -c /dev/ttyUSB0 ]; then \
-		echo "Using /dev/ttyUSB0"; \
-		sudo minicom -D /dev/ttyUSB0 -b 115200; \
-	elif [ -c /dev/ttyACM0 ]; then \
-		echo "Using /dev/ttyACM0"; \
-		sudo minicom -D /dev/ttyACM0 -b 115200; \
-	else \
-		echo "ERROR: 시리얼 포트를 찾을 수 없습니다 (/dev/ttyUSB0, /dev/ttyACM0)"; \
-		echo "사용 가능한 포트를 확인하려면: ls /dev/tty*"; \
-		exit 1; \
-	fi
 
 #-------------------------------------------------------------------------------
 #export SIMULATOR ?= iverilog

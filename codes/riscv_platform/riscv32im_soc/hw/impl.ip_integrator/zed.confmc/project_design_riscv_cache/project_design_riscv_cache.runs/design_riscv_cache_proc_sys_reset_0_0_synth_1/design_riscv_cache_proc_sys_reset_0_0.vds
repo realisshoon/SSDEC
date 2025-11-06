@@ -2,13 +2,13 @@
 # Vivado v2021.2 (64-bit)
 # SW Build 3367213 on Tue Oct 19 02:47:39 MDT 2021
 # IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
-# Start of session at: Mon Nov  3 18:36:24 2025
-# Process ID: 149520
+# Start of session at: Wed Nov  5 18:56:51 2025
+# Process ID: 393804
 # Current directory: /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_proc_sys_reset_0_0_synth_1
 # Command line: vivado -log design_riscv_cache_proc_sys_reset_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_riscv_cache_proc_sys_reset_0_0.tcl
 # Log file: /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_proc_sys_reset_0_0_synth_1/design_riscv_cache_proc_sys_reset_0_0.vds
 # Journal file: /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_proc_sys_reset_0_0_synth_1/vivado.jou
-# Running On: sogang-500TGA-500SGA, OS: Linux, CPU Frequency: 2007.392 MHz, CPU Physical cores: 10, Host memory: 16429 MB
+# Running On: sogang-500TGA-500SGA, OS: Linux, CPU Frequency: 2858.761 MHz, CPU Physical cores: 10, Host memory: 16429 MB
 #-----------------------------------------------------------
 source design_riscv_cache_proc_sys_reset_0_0.tcl -notrace
 INFO: [IP_Flow 19-234] Refreshing IP repositories
@@ -21,9 +21,9 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020
 INFO: [Device 21-403] Loading part xc7z020clg484-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 149821
+INFO: [Synth 8-7075] Helper process launched with PID 393946
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 2744.828 ; gain = 0.000 ; free physical = 187 ; free virtual = 77945
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:17 . Memory (MB): peak = 2746.766 ; gain = 0.000 ; free physical = 239 ; free virtual = 77399
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'design_riscv_cache_proc_sys_reset_0_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_proc_sys_reset_0_0/synth/design_riscv_cache_proc_sys_reset_0_0.vhd:74]
 	Parameter C_FAMILY bound to: zynq - type: string 
@@ -78,14 +78,216 @@ WARNING: [Synth 8-7129] Port prmry_vect_in[1] in module cdc_sync is either uncon
 WARNING: [Synth 8-7129] Port prmry_vect_in[0] in module cdc_sync is either unconnected or has no load
 WARNING: [Synth 8-7129] Port scndry_resetn in module cdc_sync is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:18 . Memory (MB): peak = 2744.828 ; gain = 0.000 ; free physical = 387 ; free virtual = 77578
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:33 . Memory (MB): peak = 2746.766 ; gain = 0.000 ; free physical = 2562 ; free virtual = 78885
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:19 . Memory (MB): peak = 2744.828 ; gain = 0.000 ; free physical = 278 ; free virtual = 77496
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:34 . Memory (MB): peak = 2746.766 ; gain = 0.000 ; free physical = 2658 ; free virtual = 78985
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:19 . Memory (MB): peak = 2744.828 ; gain = 0.000 ; free physical = 278 ; free virtual = 77496
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:34 . Memory (MB): peak = 2746.766 ; gain = 0.000 ; free physical = 2658 ; free virtual = 78985
 ---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2746.766 ; gain = 0.000 ; free physical = 2648 ; free virtual = 78977
+INFO: [Netlist 29-17] Analyzing 13 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_proc_sys_reset_0_0/design_riscv_cache_proc_sys_reset_0_0_ooc.xdc] for cell 'U0'
+Finished Parsing XDC File [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_proc_sys_reset_0_0/design_riscv_cache_proc_sys_reset_0_0_ooc.xdc] for cell 'U0'
+Parsing XDC File [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_proc_sys_reset_0_0/design_riscv_cache_proc_sys_reset_0_0_board.xdc] for cell 'U0'
+Finished Parsing XDC File [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_proc_sys_reset_0_0/design_riscv_cache_proc_sys_reset_0_0_board.xdc] for cell 'U0'
+Parsing XDC File [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_proc_sys_reset_0_0/design_riscv_cache_proc_sys_reset_0_0.xdc] for cell 'U0'
+Finished Parsing XDC File [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_proc_sys_reset_0_0/design_riscv_cache_proc_sys_reset_0_0.xdc] for cell 'U0'
+Parsing XDC File [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_proc_sys_reset_0_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_proc_sys_reset_0_0_synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2810.719 ; gain = 0.000 ; free physical = 2176 ; free virtual = 78521
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 13 instances were transformed.
+  FDR => FDRE: 12 instances
+  SRL16 => SRL16E: 1 instance 
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2810.719 ; gain = 0.000 ; free physical = 2176 ; free virtual = 78521
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:07 ; elapsed = 00:00:43 . Memory (MB): peak = 2810.719 ; gain = 63.953 ; free physical = 2098 ; free virtual = 78449
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg484-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:07 ; elapsed = 00:00:43 . Memory (MB): peak = 2810.719 ; gain = 63.953 ; free physical = 2098 ; free virtual = 78449
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property KEEP_HIERARCHY = SOFT for U0. (constraint file  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_proc_sys_reset_0_0_synth_1/dont_touch.xdc, line 9).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:07 ; elapsed = 00:00:43 . Memory (MB): peak = 2810.719 ; gain = 63.953 ; free physical = 2100 ; free virtual = 78454
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:44 . Memory (MB): peak = 2810.719 ; gain = 63.953 ; free physical = 2125 ; free virtual = 78484
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input    6 Bit       Adders := 1     
++---Registers : 
+	                6 Bit    Registers := 1     
+	                3 Bit    Registers := 3     
+	                1 Bit    Registers := 8     
++---Muxes : 
+	   2 Input    6 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-3332] Sequential element (EXT_LPF/ACTIVE_HIGH_EXT.ACT_HI_EXT/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5) is unused and will be removed from module proc_sys_reset.
+WARNING: [Synth 8-3332] Sequential element (EXT_LPF/ACTIVE_HIGH_EXT.ACT_HI_EXT/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d6) is unused and will be removed from module proc_sys_reset.
+WARNING: [Synth 8-3332] Sequential element (EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5) is unused and will be removed from module proc_sys_reset.
+WARNING: [Synth 8-3332] Sequential element (EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d6) is unused and will be removed from module proc_sys_reset.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:08 ; elapsed = 00:00:45 . Memory (MB): peak = 2810.719 ; gain = 63.953 ; free physical = 2118 ; free virtual = 78483
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:52 . Memory (MB): peak = 2810.719 ; gain = 63.953 ; free physical = 2021 ; free virtual = 78411
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:52 . Memory (MB): peak = 2810.719 ; gain = 63.953 ; free physical = 1997 ; free virtual = 78387
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:11 ; elapsed = 00:00:52 . Memory (MB): peak = 2810.719 ; gain = 63.953 ; free physical = 1960 ; free virtual = 78349
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:13 ; elapsed = 00:00:54 . Memory (MB): peak = 2810.719 ; gain = 63.953 ; free physical = 1945 ; free virtual = 78335
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:13 ; elapsed = 00:00:54 . Memory (MB): peak = 2810.719 ; gain = 63.953 ; free physical = 1945 ; free virtual = 78335
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:13 ; elapsed = 00:00:54 . Memory (MB): peak = 2810.719 ; gain = 63.953 ; free physical = 1945 ; free virtual = 78335
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:13 ; elapsed = 00:00:54 . Memory (MB): peak = 2810.719 ; gain = 63.953 ; free physical = 1945 ; free virtual = 78335
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:13 ; elapsed = 00:00:54 . Memory (MB): peak = 2810.719 ; gain = 63.953 ; free physical = 1945 ; free virtual = 78335
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:13 ; elapsed = 00:00:54 . Memory (MB): peak = 2810.719 ; gain = 63.953 ; free physical = 1945 ; free virtual = 78335
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+------+------+
+|      |Cell  |Count |
++------+------+------+
+|1     |LUT1  |     5|
+|2     |LUT2  |     9|
+|3     |LUT3  |     1|
+|4     |LUT4  |     6|
+|5     |LUT5  |     3|
+|6     |LUT6  |     1|
+|7     |SRL16 |     1|
+|8     |FDR   |     8|
+|9     |FDRE  |    28|
+|10    |FDSE  |     4|
++------+------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:13 ; elapsed = 00:00:55 . Memory (MB): peak = 2810.719 ; gain = 63.953 ; free physical = 1937 ; free virtual = 78327
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 5 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:12 ; elapsed = 00:00:48 . Memory (MB): peak = 2810.719 ; gain = 0.000 ; free physical = 2074 ; free virtual = 78465
+Synthesis Optimization Complete : Time (s): cpu = 00:00:13 ; elapsed = 00:00:55 . Memory (MB): peak = 2810.719 ; gain = 63.953 ; free physical = 2074 ; free virtual = 78465
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2810.719 ; gain = 0.000 ; free physical = 2081 ; free virtual = 78474
+INFO: [Netlist 29-17] Analyzing 9 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2810.719 ; gain = 0.000 ; free physical = 1970 ; free virtual = 78375
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 9 instances were transformed.
+  FDR => FDRE: 8 instances
+  SRL16 => SRL16E: 1 instance 
+
+Synth Design complete, checksum: 8c2fec34
+INFO: [Common 17-83] Releasing license: Synthesis
+46 Infos, 10 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:15 ; elapsed = 00:00:58 . Memory (MB): peak = 2810.719 ; gain = 64.031 ; free physical = 2234 ; free virtual = 78639
+report_design_analysis: Time (s): cpu = 00:00:00.13 ; elapsed = 00:00:08 . Memory (MB): peak = 2842.734 ; gain = 0.000 ; free physical = 3129 ; free virtual = 79571
+INFO: [Common 17-1381] The checkpoint '/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_proc_sys_reset_0_0_synth_1/design_riscv_cache_proc_sys_reset_0_0.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:05 ; elapsed = 00:00:10 . Memory (MB): peak = 2842.734 ; gain = 32.016 ; free physical = 3136 ; free virtual = 79578
+WARNING: [Coretcl 2-1799] Unable to create IP cache entry for IP design_riscv_cache_proc_sys_reset_0_0: Unable to create cache entry directory: /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.cache/ip/2021.2/1/7/1702291a1ef7e305
+INFO: [Coretcl 2-1174] Renamed 6 cell refs.
+INFO: [Common 17-1381] The checkpoint '/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_proc_sys_reset_0_0_synth_1/design_riscv_cache_proc_sys_reset_0_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file design_riscv_cache_proc_sys_reset_0_0_utilization_synth.rpt -pb design_riscv_cache_proc_sys_reset_0_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Wed Nov  5 18:58:19 2025...

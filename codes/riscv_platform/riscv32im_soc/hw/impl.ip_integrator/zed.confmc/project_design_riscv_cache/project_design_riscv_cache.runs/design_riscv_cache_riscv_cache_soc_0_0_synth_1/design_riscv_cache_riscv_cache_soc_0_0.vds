@@ -2,13 +2,13 @@
 # Vivado v2021.2 (64-bit)
 # SW Build 3367213 on Tue Oct 19 02:47:39 MDT 2021
 # IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
-# Start of session at: Mon Nov  3 18:36:24 2025
-# Process ID: 149521
+# Start of session at: Wed Nov  5 18:56:51 2025
+# Process ID: 393809
 # Current directory: /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_riscv_cache_soc_0_0_synth_1
 # Command line: vivado -log design_riscv_cache_riscv_cache_soc_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_riscv_cache_riscv_cache_soc_0_0.tcl
 # Log file: /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_riscv_cache_soc_0_0_synth_1/design_riscv_cache_riscv_cache_soc_0_0.vds
 # Journal file: /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_riscv_cache_soc_0_0_synth_1/vivado.jou
-# Running On: sogang-500TGA-500SGA, OS: Linux, CPU Frequency: 3847.065 MHz, CPU Physical cores: 10, Host memory: 16429 MB
+# Running On: sogang-500TGA-500SGA, OS: Linux, CPU Frequency: 3799.961 MHz, CPU Physical cores: 10, Host memory: 16429 MB
 #-----------------------------------------------------------
 source design_riscv_cache_riscv_cache_soc_0_0.tcl -notrace
 INFO: [IP_Flow 19-234] Refreshing IP repositories
@@ -21,10 +21,10 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020
 INFO: [Device 21-403] Loading part xc7z020clg484-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 149857
-WARNING: [Synth 8-1102] /* in comment [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_master.v:31]
+INFO: [Synth 8-7075] Helper process launched with PID 393976
+WARNING: [Synth 8-1102] /* in comment [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_master.v:33]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 2744.824 ; gain = 0.000 ; free physical = 187 ; free virtual = 77944
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:36 . Memory (MB): peak = 2745.824 ; gain = 0.000 ; free physical = 2607 ; free virtual = 78942
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'design_riscv_cache_riscv_cache_soc_0_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/synth/design_riscv_cache_riscv_cache_soc_0_0.v:60]
 INFO: [Synth 8-6157] synthesizing module 'riscv_cache_soc' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:47]
@@ -121,10 +121,10 @@ INFO: [Synth 8-6155] done synthesizing module 'dcache_axi_axi' (28#1) [/home/sog
 INFO: [Synth 8-6155] done synthesizing module 'dcache_axi' (29#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_axi.v:45]
 INFO: [Synth 8-6155] done synthesizing module 'dcache' (30#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache.v:45]
 INFO: [Synth 8-6155] done synthesizing module 'riscv_cache_core' (31#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_core.v:37]
-WARNING: [Synth 8-7071] port 'm_axi_inst_awsize' of module 'riscv_cache_core' is unconnected for instance 'u_riscv_cache_core' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:329]
-WARNING: [Synth 8-7071] port 'm_axi_inst_awburst' of module 'riscv_cache_core' is unconnected for instance 'u_riscv_cache_core' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:329]
-WARNING: [Synth 8-7071] port 'm_axi_inst_awvalid' of module 'riscv_cache_core' is unconnected for instance 'u_riscv_cache_core' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:329]
-WARNING: [Synth 8-7023] instance 'u_riscv_cache_core' of module 'riscv_cache_core' has 63 connections declared, but only 60 given [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:329]
+WARNING: [Synth 8-7071] port 'm_axi_inst_awsize' of module 'riscv_cache_core' is unconnected for instance 'u_riscv_cache_core' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:331]
+WARNING: [Synth 8-7071] port 'm_axi_inst_awburst' of module 'riscv_cache_core' is unconnected for instance 'u_riscv_cache_core' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:331]
+WARNING: [Synth 8-7071] port 'm_axi_inst_awvalid' of module 'riscv_cache_core' is unconnected for instance 'u_riscv_cache_core' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:331]
+WARNING: [Synth 8-7023] instance 'u_riscv_cache_core' of module 'riscv_cache_core' has 63 connections declared, but only 60 given [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:331]
 INFO: [Synth 8-6157] synthesizing module 'axi_switch_m3s3' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:5]
 INFO: [Synth 8-6157] synthesizing module 'axi_mtos_m3' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:2523]
 INFO: [Synth 8-6157] synthesizing module 'axi_arbiter_mtos_m3' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/axi_switch/rtl/verilog/axi_switch_m3s3.v:1960]
@@ -235,25 +235,28 @@ INFO: [Synth 8-6155] done synthesizing module 'gpio_axi_lite_if' (61#1) [/home/s
 INFO: [Synth 8-6157] synthesizing module 'gpio_csr' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/gpio_axi_lite/rtl/verilog/gpio_axi_lite.v:180]
 INFO: [Synth 8-6155] done synthesizing module 'gpio_csr' (62#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/gpio_axi_lite/rtl/verilog/gpio_axi_lite.v:180]
 INFO: [Synth 8-6155] done synthesizing module 'gpio_axi_lite' (63#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/gpio_axi_lite/rtl/verilog/gpio_axi_lite.v:53]
+INFO: [Synth 8-6157] synthesizing module 'IOBUF' [/tools/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:59735]
+INFO: [Synth 8-6155] done synthesizing module 'IOBUF' (64#1) [/tools/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:59735]
 INFO: [Synth 8-6157] synthesizing module 'i2c_axi_lite' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_axi_lite.v:10]
 INFO: [Synth 8-6157] synthesizing module 'i2c_axi_lite_if' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_axi_lite_if.v:16]
-INFO: [Synth 8-6155] done synthesizing module 'i2c_axi_lite_if' (64#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_axi_lite_if.v:16]
+INFO: [Synth 8-6155] done synthesizing module 'i2c_axi_lite_if' (65#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_axi_lite_if.v:16]
 INFO: [Synth 8-6157] synthesizing module 'I2C' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_master.v:1]
-INFO: [Synth 8-155] case statement is not full and has no default [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_master.v:196]
-INFO: [Synth 8-6155] done synthesizing module 'I2C' (65#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_master.v:1]
-INFO: [Synth 8-6155] done synthesizing module 'i2c_axi_lite' (66#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_axi_lite.v:10]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'u_uart'. This will prevent further optimization [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:915]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'u_gpio'. This will prevent further optimization [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:942]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'u_i2c'. This will prevent further optimization [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:968]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'u_riscv_cache_core'. This will prevent further optimization [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:329]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'u_timer'. This will prevent further optimization [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:892]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'u_pic'. This will prevent further optimization [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:868]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'u_axi_lite_bus'. This will prevent further optimization [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:764]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'u_axi4_to_lite'. This will prevent further optimization [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:698]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'u_mem_axi'. This will prevent further optimization [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:638]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'u_axi_switch_m3s3'. This will prevent further optimization [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:441]
-INFO: [Synth 8-6155] done synthesizing module 'riscv_cache_soc' (67#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:47]
-INFO: [Synth 8-6155] done synthesizing module 'design_riscv_cache_riscv_cache_soc_0_0' (68#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/synth/design_riscv_cache_riscv_cache_soc_0_0.v:60]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_master.v:199]
+INFO: [Synth 8-6155] done synthesizing module 'I2C' (66#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_master.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'i2c_axi_lite' (67#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_axi_lite.v:10]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'u_uart'. This will prevent further optimization [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:917]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'u_gpio'. This will prevent further optimization [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:944]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'i2c_sda_iobuf'. This will prevent further optimization [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:976]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'u_i2c'. This will prevent further optimization [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:985]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'u_riscv_cache_core'. This will prevent further optimization [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:331]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'u_timer'. This will prevent further optimization [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:894]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'u_pic'. This will prevent further optimization [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:870]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'u_axi_lite_bus'. This will prevent further optimization [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:766]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'u_axi4_to_lite'. This will prevent further optimization [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:700]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'u_mem_axi'. This will prevent further optimization [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:640]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'u_axi_switch_m3s3'. This will prevent further optimization [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:443]
+INFO: [Synth 8-6155] done synthesizing module 'riscv_cache_soc' (68#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v:47]
+INFO: [Synth 8-6155] done synthesizing module 'design_riscv_cache_riscv_cache_soc_0_0' (69#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_riscv_cache_soc_0_0/synth/design_riscv_cache_riscv_cache_soc_0_0.v:60]
 WARNING: [Synth 8-7129] Port waddr[31] in module gpio_csr is either unconnected or has no load
 WARNING: [Synth 8-7129] Port waddr[30] in module gpio_csr is either unconnected or has no load
 WARNING: [Synth 8-7129] Port waddr[29] in module gpio_csr is either unconnected or has no load
@@ -356,7 +359,7 @@ WARNING: [Synth 8-7129] Port wdata[17] in module pic_core is either unconnected 
 WARNING: [Synth 8-7129] Port wdata[16] in module pic_core is either unconnected or has no load
 INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:25 . Memory (MB): peak = 2744.824 ; gain = 0.000 ; free physical = 318 ; free virtual = 77190
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:39 . Memory (MB): peak = 2745.824 ; gain = 0.000 ; free physical = 2380 ; free virtual = 78722
 ---------------------------------------------------------------------------------
 CRITICAL WARNING: [Synth 8-5543] Port 'gpio_out[3]' in module 'riscv_cache_soc' has MARK_DEBUG and also connected to other port(s) having MARK_DEBUG; consider putting MARK_DEBUG on one only
 CRITICAL WARNING: [Synth 8-5543] Port 'gpio_out[2]' in module 'riscv_cache_soc' has MARK_DEBUG and also connected to other port(s) having MARK_DEBUG; consider putting MARK_DEBUG on one only
@@ -370,8 +373,801 @@ CRITICAL WARNING: [Synth 8-5543] Port 'keypad_col[0]' in module 'riscv_cache_soc
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:26 . Memory (MB): peak = 2744.824 ; gain = 0.000 ; free physical = 302 ; free virtual = 77179
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:40 . Memory (MB): peak = 2745.824 ; gain = 0.000 ; free physical = 2254 ; free virtual = 78597
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:26 . Memory (MB): peak = 2744.824 ; gain = 0.000 ; free physical = 302 ; free virtual = 77179
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:40 . Memory (MB): peak = 2745.824 ; gain = 0.000 ; free physical = 2254 ; free virtual = 78597
 ---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.11 ; elapsed = 00:00:00.12 . Memory (MB): peak = 2745.824 ; gain = 0.000 ; free physical = 2323 ; free virtual = 78668
+INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2818.684 ; gain = 0.000 ; free physical = 2036 ; free virtual = 78382
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 1 instance 
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.42 ; elapsed = 00:00:00.09 . Memory (MB): peak = 2821.652 ; gain = 2.969 ; free physical = 2034 ; free virtual = 78380
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:12 ; elapsed = 00:00:45 . Memory (MB): peak = 2821.652 ; gain = 75.828 ; free physical = 2115 ; free virtual = 78477
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg484-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:12 ; elapsed = 00:00:45 . Memory (MB): peak = 2821.652 ; gain = 75.828 ; free physical = 2115 ; free virtual = 78477
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:12 ; elapsed = 00:00:45 . Memory (MB): peak = 2821.652 ; gain = 75.828 ; free physical = 2115 ; free virtual = 78477
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_q_reg' in module 'icache'
+INFO: [Synth 8-802] inferred FSM for state register 'state_q_reg' in module 'dcache_core'
+INFO: [Synth 8-802] inferred FSM for state register 'stateAR_reg' in module 'axi_arbiter_mtos_m3'
+INFO: [Synth 8-802] inferred FSM for state register 'stateAW_reg' in module 'axi_arbiter_mtos_m3'
+INFO: [Synth 8-802] inferred FSM for state register 'stateW_reg' in module 'axi_default_slave'
+INFO: [Synth 8-802] inferred FSM for state register 'stateR_reg' in module 'axi_default_slave'
+INFO: [Synth 8-802] inferred FSM for state register 'stateW_reg' in module 'mem_axi'
+INFO: [Synth 8-802] inferred FSM for state register 'stateR_reg' in module 'mem_axi'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'axi4_to_lite_write'
+INFO: [Synth 8-802] inferred FSM for state register 'state_lite_reg' in module 'axi4_to_lite_write'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'axi4_to_lite_read'
+INFO: [Synth 8-802] inferred FSM for state register 'state_lite_reg' in module 'axi4_to_lite_read'
+INFO: [Synth 8-802] inferred FSM for state register 'stateR_reg' in module 'amba_axi_lite_m5_core'
+INFO: [Synth 8-802] inferred FSM for state register 'stateW_reg' in module 'pic_axi_lite_if'
+INFO: [Synth 8-802] inferred FSM for state register 'stateR_reg' in module 'pic_axi_lite_if'
+INFO: [Synth 8-802] inferred FSM for state register 'stateW_reg' in module 'timer_axi_lite_if'
+INFO: [Synth 8-802] inferred FSM for state register 'stateR_reg' in module 'timer_axi_lite_if'
+INFO: [Synth 8-802] inferred FSM for state register 'stateW_reg' in module 'uart_axi_lite_if'
+INFO: [Synth 8-802] inferred FSM for state register 'stateR_reg' in module 'uart_axi_lite_if'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'uart_tx'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'uart_rx'
+INFO: [Synth 8-802] inferred FSM for state register 'stateW_reg' in module 'gpio_axi_lite_if'
+INFO: [Synth 8-802] inferred FSM for state register 'stateR_reg' in module 'gpio_axi_lite_if'
+INFO: [Synth 8-802] inferred FSM for state register 'write_state_reg' in module 'i2c_axi_lite_if'
+INFO: [Synth 8-802] inferred FSM for state register 'read_state_reg' in module 'i2c_axi_lite_if'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+             STATE_FLUSH |                               11 |                               00
+            STATE_LOOKUP |                               01 |                               01
+            STATE_REFILL |                               10 |                               10
+          STATE_RELOOKUP |                               00 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_q_reg' using encoding 'sequential' in module 'icache'
+INFO: [Synth 8-3971] The signal "dcache_core_data_ram:/ram_reg" was recognized as a true dual port RAM template.
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+             STATE_RESET |                             1000 |                             0000
+            STATE_LOOKUP |                             0000 |                             0011
+         STATE_WRITEBACK |                             0011 |                             1010
+        STATE_FLUSH_ADDR |                             0100 |                             0001
+             STATE_FLUSH |                             0111 |                             0010
+             STATE_EVICT |                             0001 |                             0111
+        STATE_EVICT_WAIT |                             1001 |                             1000
+            STATE_REFILL |                             0010 |                             0110
+             STATE_WRITE |                             1010 |                             0101
+              STATE_READ |                             0110 |                             0100
+        STATE_INVALIDATE |                             0101 |                             1001
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_q_reg' using encoding 'sequential' in module 'dcache_core'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                STAW_RUN |                               00 |                               00
+               STAW_WAIT |                               01 |                               01
+               STAW_LOCK |                               10 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'stateAW_reg' using encoding 'sequential' in module 'axi_arbiter_mtos_m3'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                STAR_RUN |                               00 |                               00
+               STAR_LOCK |                               01 |                               10
+               STAR_WAIT |                               10 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'stateAR_reg' using encoding 'sequential' in module 'axi_arbiter_mtos_m3'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                STW_IDLE |                               00 |                               00
+                 STW_RUN |                               01 |                               01
+                STW_WAIT |                               10 |                               10
+                 STW_RSP |                               11 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'stateW_reg' using encoding 'sequential' in module 'axi_default_slave'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                STR_IDLE |                               00 |                               00
+                 STR_RUN |                               01 |                               01
+                STR_WAIT |                               10 |                               10
+                 STR_END |                               11 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'stateR_reg' using encoding 'sequential' in module 'axi_default_slave'
+WARNING: [Synth 8-6841] Block RAM (mem_reg) originally specified as a Byte Wide Write Enable RAM cannot take advantage of ByteWide feature and is implemented with single write enable per RAM due to following reason.
+(address width (15) is more than optimal threshold of 12. Implementing using BWWE will require more logic and timing would be suboptimal. Please use attribute ram_decomp = power if BWWE is desired.)
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                STW_IDLE |                              001 |                               00
+               STW_WRITE |                              010 |                               10
+                 STW_RSP |                              100 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'stateW_reg' using encoding 'one-hot' in module 'mem_axi'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                STR_IDLE |                             0000 |                             0000
+               STR_READ0 |                             0001 |                             0001
+               STR_READ1 |                             0010 |                             0010
+               STR_READ2 |                             0011 |                             0011
+              STR_READ21 |                             0100 |                             0100
+              STR_READ22 |                             0101 |                             0101
+               STR_READ3 |                             0110 |                             0110
+              STR_READ31 |                             0111 |                             0111
+              STR_READ32 |                             1000 |                             1000
+              STR_READ33 |                             1001 |                             1001
+              STR_READ34 |                             1010 |                             1010
+                 STR_END |                             1011 |                             1011
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'stateR_reg' using encoding 'sequential' in module 'mem_axi'
+INFO: [Synth 8-7082] The signal Mem_reg is implemented as Block RAM but is better mapped onto distributed LUT RAM for the following reason(s): The depth (4 address bits) is shallow. Please use attribute (* ram_style = "distributed" *) to instruct Vivado to infer distributed LUT RAM.
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                ST_READY |                               00 |                               00
+                 ST_DATA |                               01 |                               01
+                 ST_WAIT |                               10 |                               10
+                 ST_RESP |                               11 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'axi4_to_lite_write'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+               STL_READY |                            00001 |                              000
+                STL_ADDR |                            00010 |                              001
+                STL_DATA |                            00100 |                              010
+                STL_RESP |                            01000 |                              011
+                STL_WAIT |                            10000 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_lite_reg' using encoding 'one-hot' in module 'axi4_to_lite_write'
+INFO: [Synth 8-7082] The signal Mem_reg is implemented as Block RAM but is better mapped onto distributed LUT RAM for the following reason(s): The depth (4 address bits) is shallow. Please use attribute (* ram_style = "distributed" *) to instruct Vivado to infer distributed LUT RAM.
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                ST_READY |                              001 |                               00
+                 ST_DATA |                              010 |                               01
+                 ST_WAIT |                              100 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'axi4_to_lite_read'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+               STL_READY |                               00 |                               00
+                STL_ADDR |                               01 |                               01
+                STL_DATA |                               10 |                               10
+                STL_WAIT |                               11 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_lite_reg' using encoding 'sequential' in module 'axi4_to_lite_read'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                STR_ADDR |                               00 |                               00
+               STR_ERROR |                               01 |                               10
+                STR_DATA |                               10 |                               01
+                 STR_END |                               11 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'stateR_reg' using encoding 'sequential' in module 'amba_axi_lite_m5_core'
+INFO: [Synth 8-6159] Found Keep on FSM register 'stateR_reg' in module 'pic_axi_lite_if', re-encoding will not be performed
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+*
+               STR_READY |                              000 |                              000
+                 STR_ARB |                              001 |                              001
+               STR_READ0 |                              010 |                              010
+               STR_READ1 |                              011 |                              011
+                 STR_END |                              100 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-6159] Found Keep on FSM register 'stateW_reg' in module 'pic_axi_lite_if', re-encoding will not be performed
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+               STW_READY |                               00 |                               00
+                 STW_ARB |                               01 |                               01
+               STW_WRITE |                               10 |                               10
+                 STW_RSP |                               11 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-6159] Found Keep on FSM register 'stateR_reg' in module 'timer_axi_lite_if', re-encoding will not be performed
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+*
+               STR_READY |                              000 |                              000
+                 STR_ARB |                              001 |                              001
+               STR_READ0 |                              010 |                              010
+               STR_READ1 |                              011 |                              011
+                 STR_END |                              100 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-6159] Found Keep on FSM register 'stateW_reg' in module 'timer_axi_lite_if', re-encoding will not be performed
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+               STW_READY |                               00 |                               00
+                 STW_ARB |                               01 |                               01
+               STW_WRITE |                               10 |                               10
+                 STW_RSP |                               11 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-6159] Found Keep on FSM register 'stateR_reg' in module 'uart_axi_lite_if', re-encoding will not be performed
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+*
+               STR_READY |                              000 |                              000
+                 STR_ARB |                              001 |                              001
+               STR_READ0 |                              010 |                              010
+               STR_READ1 |                              011 |                              011
+                 STR_END |                              100 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-6159] Found Keep on FSM register 'stateW_reg' in module 'uart_axi_lite_if', re-encoding will not be performed
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+               STW_READY |                               00 |                               00
+                 STW_ARB |                               01 |                               01
+               STW_WRITE |                               10 |                               10
+                 STW_RSP |                               11 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-6159] Found Keep on FSM register 'state_reg' in module 'uart_tx', re-encoding will not be performed
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+*
+                ST_READY |                              000 |                              000
+                ST_START |                              001 |                              001
+                 ST_DATA |                              010 |                              010
+               ST_PARITY |                              011 |                              011
+                 ST_STOP |                              100 |                              100
+                 ST_WAIT |                              101 |                              101
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-7082] The signal Mem_reg is implemented as Block RAM but is better mapped onto distributed LUT RAM for the following reason(s): The depth (4 address bits) is shallow. Please use attribute (* ram_style = "distributed" *) to instruct Vivado to infer distributed LUT RAM.
+INFO: [Synth 8-6159] Found Keep on FSM register 'state_reg' in module 'uart_rx', re-encoding will not be performed
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+*
+                ST_READY |                              000 |                              000
+                ST_START |                              001 |                              001
+                 ST_DATA |                              010 |                              010
+               ST_PARITY |                              011 |                              011
+                 ST_STOP |                              100 |                              100
+                  ST_END |                              101 |                              101
+                 ST_WAIT |                              110 |                              110
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-6159] Found Keep on FSM register 'stateR_reg' in module 'gpio_axi_lite_if', re-encoding will not be performed
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+*
+               STR_READY |                              000 |                              000
+                 STR_ARB |                              001 |                              001
+               STR_READ0 |                              010 |                              010
+               STR_READ1 |                              011 |                              011
+                 STR_END |                              100 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-6159] Found Keep on FSM register 'stateW_reg' in module 'gpio_axi_lite_if', re-encoding will not be performed
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+               STW_READY |                               00 |                               00
+                 STW_ARB |                               01 |                               01
+               STW_WRITE |                               10 |                               10
+                 STW_RSP |                               11 |                               11
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                STW_IDLE |                              001 |                               00
+               STW_WRITE |                              010 |                               01
+                STW_RESP |                              100 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'write_state_reg' using encoding 'one-hot' in module 'i2c_axi_lite_if'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                STR_IDLE |                              001 |                               00
+                STR_READ |                              010 |                               01
+                STR_RESP |                              100 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'read_state_reg' using encoding 'one-hot' in module 'i2c_axi_lite_if'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:49 . Memory (MB): peak = 2821.652 ; gain = 75.828 ; free physical = 2405 ; free virtual = 78774
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   64 Bit       Adders := 1     
+	   2 Input   32 Bit       Adders := 16    
+	   3 Input   32 Bit       Adders := 3     
+	   2 Input   30 Bit       Adders := 2     
+	   2 Input   17 Bit       Adders := 3     
+	   2 Input   16 Bit       Adders := 2     
+	   2 Input   15 Bit       Adders := 3     
+	   2 Input   11 Bit       Adders := 2     
+	   2 Input   10 Bit       Adders := 1     
+	   2 Input    9 Bit       Adders := 7     
+	   2 Input    8 Bit       Adders := 8     
+	   2 Input    7 Bit       Adders := 1     
+	   2 Input    5 Bit       Adders := 41    
+	   2 Input    4 Bit       Adders := 5     
+	   2 Input    3 Bit       Adders := 1     
+	   2 Input    2 Bit       Adders := 10    
+	   2 Input    1 Bit       Adders := 10    
++---XORs : 
+	   2 Input     32 Bit         XORs := 1     
+	   2 Input      1 Bit         XORs := 10    
++---Registers : 
+	               84 Bit    Registers := 1     
+	               77 Bit    Registers := 2     
+	               70 Bit    Registers := 2     
+	               66 Bit    Registers := 1     
+	               63 Bit    Registers := 1     
+	               36 Bit    Registers := 4     
+	               34 Bit    Registers := 2     
+	               33 Bit    Registers := 2     
+	               32 Bit    Registers := 129   
+	               21 Bit    Registers := 2     
+	               20 Bit    Registers := 2     
+	               17 Bit    Registers := 4     
+	               16 Bit    Registers := 5     
+	               11 Bit    Registers := 5     
+	               10 Bit    Registers := 3     
+	                9 Bit    Registers := 11    
+	                8 Bit    Registers := 20    
+	                7 Bit    Registers := 1     
+	                6 Bit    Registers := 16    
+	                5 Bit    Registers := 41    
+	                4 Bit    Registers := 15    
+	                3 Bit    Registers := 18    
+	                2 Bit    Registers := 30    
+	                1 Bit    Registers := 204   
++---RAMs : 
+	            1024K Bit	(32768 X 32 bit)          RAMs := 1     
+	              64K Bit	(2048 X 32 bit)          RAMs := 4     
+	               5K Bit	(256 X 20 bit)          RAMs := 2     
+	               5K Bit	(256 X 21 bit)          RAMs := 2     
+	              576 Bit	(16 X 36 bit)          RAMs := 1     
+	              544 Bit	(16 X 34 bit)          RAMs := 1     
+	              144 Bit	(16 X 9 bit)          RAMs := 1     
+	               96 Bit	(16 X 6 bit)          RAMs := 4     
+	               64 Bit	(16 X 4 bit)          RAMs := 3     
++---Muxes : 
+	   2 Input   77 Bit        Muxes := 1     
+	   2 Input   70 Bit        Muxes := 1     
+	   2 Input   66 Bit        Muxes := 1     
+	   2 Input   63 Bit        Muxes := 2     
+	   2 Input   36 Bit        Muxes := 2     
+	   4 Input   36 Bit        Muxes := 1     
+	   2 Input   34 Bit        Muxes := 1     
+	   4 Input   34 Bit        Muxes := 1     
+	   3 Input   33 Bit        Muxes := 2     
+	   2 Input   33 Bit        Muxes := 4     
+	   2 Input   32 Bit        Muxes := 166   
+	   3 Input   32 Bit        Muxes := 8     
+	   4 Input   32 Bit        Muxes := 10    
+	  11 Input   32 Bit        Muxes := 2     
+	   7 Input   32 Bit        Muxes := 2     
+	  23 Input   32 Bit        Muxes := 1     
+	  14 Input   32 Bit        Muxes := 1     
+	   6 Input   32 Bit        Muxes := 10    
+	   8 Input   32 Bit        Muxes := 2     
+	   5 Input   32 Bit        Muxes := 3     
+	  12 Input   32 Bit        Muxes := 1     
+	  10 Input   31 Bit        Muxes := 1     
+	   2 Input   31 Bit        Muxes := 2     
+	   2 Input   27 Bit        Muxes := 3     
+	   2 Input   21 Bit        Muxes := 5     
+	   4 Input   21 Bit        Muxes := 1     
+	   3 Input   20 Bit        Muxes := 1     
+	   4 Input   17 Bit        Muxes := 3     
+	   2 Input   17 Bit        Muxes := 3     
+	   3 Input   17 Bit        Muxes := 1     
+	  12 Input   17 Bit        Muxes := 2     
+	   2 Input   16 Bit        Muxes := 10    
+	   2 Input   13 Bit        Muxes := 2     
+	   2 Input   12 Bit        Muxes := 1     
+	   2 Input   11 Bit        Muxes := 13    
+	   3 Input   11 Bit        Muxes := 1     
+	   2 Input   10 Bit        Muxes := 4     
+	   2 Input    9 Bit        Muxes := 4     
+	   8 Input    9 Bit        Muxes := 1     
+	   4 Input    9 Bit        Muxes := 3     
+	   5 Input    9 Bit        Muxes := 1     
+	   3 Input    9 Bit        Muxes := 1     
+	   4 Input    8 Bit        Muxes := 2     
+	   2 Input    8 Bit        Muxes := 25    
+	   7 Input    8 Bit        Muxes := 1     
+	   8 Input    8 Bit        Muxes := 1     
+	   3 Input    8 Bit        Muxes := 1     
+	  12 Input    8 Bit        Muxes := 1     
+	   2 Input    7 Bit        Muxes := 2     
+	   2 Input    6 Bit        Muxes := 22    
+	   5 Input    6 Bit        Muxes := 3     
+	   4 Input    6 Bit        Muxes := 1     
+	   3 Input    6 Bit        Muxes := 5     
+	   7 Input    5 Bit        Muxes := 1     
+	   2 Input    5 Bit        Muxes := 45    
+	   3 Input    5 Bit        Muxes := 1     
+	   7 Input    4 Bit        Muxes := 2     
+	  11 Input    4 Bit        Muxes := 3     
+	   2 Input    4 Bit        Muxes := 43    
+	   9 Input    4 Bit        Muxes := 1     
+	  25 Input    4 Bit        Muxes := 1     
+	   5 Input    4 Bit        Muxes := 7     
+	  10 Input    4 Bit        Muxes := 1     
+	  27 Input    4 Bit        Muxes := 1     
+	   3 Input    4 Bit        Muxes := 2     
+	   8 Input    4 Bit        Muxes := 1     
+	  12 Input    4 Bit        Muxes := 1     
+	   3 Input    3 Bit        Muxes := 10    
+	   2 Input    3 Bit        Muxes := 65    
+	   4 Input    3 Bit        Muxes := 17    
+	  13 Input    3 Bit        Muxes := 1     
+	   6 Input    3 Bit        Muxes := 5     
+	   7 Input    3 Bit        Muxes := 1     
+	   8 Input    3 Bit        Muxes := 1     
+	   3 Input    2 Bit        Muxes := 10    
+	   4 Input    2 Bit        Muxes := 15    
+	   2 Input    2 Bit        Muxes := 79    
+	  21 Input    2 Bit        Muxes := 1     
+	   7 Input    2 Bit        Muxes := 1     
+	   6 Input    2 Bit        Muxes := 1     
+	  12 Input    2 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 368   
+	   8 Input    1 Bit        Muxes := 16    
+	  22 Input    1 Bit        Muxes := 3     
+	   4 Input    1 Bit        Muxes := 110   
+	   3 Input    1 Bit        Muxes := 79    
+	   6 Input    1 Bit        Muxes := 69    
+	  13 Input    1 Bit        Muxes := 9     
+	  10 Input    1 Bit        Muxes := 2     
+	   7 Input    1 Bit        Muxes := 13    
+	   5 Input    1 Bit        Muxes := 5     
+	  12 Input    1 Bit        Muxes := 14    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+DSP Report: Generating DSP mult_result_w, operation Mode is: A*B.
+DSP Report: operator mult_result_w is absorbed into DSP mult_result_w.
+DSP Report: operator mult_result_w is absorbed into DSP mult_result_w.
+DSP Report: Generating DSP mult_result_w, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mult_result_w is absorbed into DSP mult_result_w.
+DSP Report: operator mult_result_w is absorbed into DSP mult_result_w.
+DSP Report: Generating DSP mult_result_w, operation Mode is: A*B.
+DSP Report: operator mult_result_w is absorbed into DSP mult_result_w.
+DSP Report: operator mult_result_w is absorbed into DSP mult_result_w.
+DSP Report: Generating DSP mult_result_w, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mult_result_w is absorbed into DSP mult_result_w.
+DSP Report: operator mult_result_w is absorbed into DSP mult_result_w.
+INFO: [Synth 8-3971] The signal "inst/i_0/u_riscv_cache_core/u_dcache/u_core/u_data0/ram_reg" was recognized as a true dual port RAM template.
+INFO: [Synth 8-3971] The signal "inst/i_0/u_riscv_cache_core/u_dcache/u_core/u_data1/ram_reg" was recognized as a true dual port RAM template.
+INFO: [Synth 8-7082] The signal u_core/u_rx/u_fifo/Mem_reg is implemented as Block RAM but is better mapped onto distributed LUT RAM for the following reason(s): The depth (4 address bits) is shallow. Please use attribute (* ram_style = "distributed" *) to instruct Vivado to infer distributed LUT RAM.
+WARNING: [Synth 8-3936] Found unconnected internal register 'u_write/u_fifo/mem_dout_reg' and it is trimmed from '36' to '32' bits. [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/axi4_to_lite/rtl/verilog/axi4_to_lite_fifo_sync.v:131]
+INFO: [Synth 8-7082] The signal u_write/u_fifo/Mem_reg is implemented as Block RAM but is better mapped onto distributed LUT RAM for the following reason(s): The depth (4 address bits) is shallow. Please use attribute (* ram_style = "distributed" *) to instruct Vivado to infer distributed LUT RAM.
+INFO: [Synth 8-7082] The signal u_read/u_fifo/Mem_reg is implemented as Block RAM but is better mapped onto distributed LUT RAM for the following reason(s): The depth (4 address bits) is shallow. Please use attribute (* ram_style = "distributed" *) to instruct Vivado to infer distributed LUT RAM.
+WARNING: [Synth 8-6841] Block RAM (u_mem_axi_core/mem_reg) originally specified as a Byte Wide Write Enable RAM cannot take advantage of ByteWide feature and is implemented with single write enable per RAM due to following reason.
+(address width (15) is more than optimal threshold of 12. Implementing using BWWE will require more logic and timing would be suboptimal. Please use attribute ram_decomp = power if BWWE is desired.)
+WARNING: [Synth 8-3332] Sequential element (FSM_sequential_stateAW_reg[1]) is unused and will be removed from module axi_arbiter_mtos_m3.
+WARNING: [Synth 8-3332] Sequential element (FSM_sequential_stateAR_reg[0]) is unused and will be removed from module axi_arbiter_mtos_m3.
+WARNING: [Synth 8-3332] Sequential element (FSM_sequential_stateAW_reg[1]) is unused and will be removed from module axi_arbiter_mtos_m3__3.
+WARNING: [Synth 8-3332] Sequential element (FSM_sequential_stateAR_reg[0]) is unused and will be removed from module axi_arbiter_mtos_m3__3.
+WARNING: [Synth 8-3332] Sequential element (FSM_sequential_stateAW_reg[1]) is unused and will be removed from module axi_arbiter_mtos_m3__2.
+WARNING: [Synth 8-3332] Sequential element (FSM_sequential_stateAR_reg[0]) is unused and will be removed from module axi_arbiter_mtos_m3__2.
+WARNING: [Synth 8-3332] Sequential element (FSM_sequential_stateAW_reg[1]) is unused and will be removed from module axi_arbiter_mtos_m3__1.
+WARNING: [Synth 8-3332] Sequential element (FSM_sequential_stateAR_reg[0]) is unused and will be removed from module axi_arbiter_mtos_m3__1.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:50 ; elapsed = 00:01:25 . Memory (MB): peak = 2821.652 ; gain = 75.828 ; free physical = 3367 ; free virtual = 79801
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Preliminary Mapping Report (see note below)
++----------------------------+---------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name                 | RTL Object                      | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++----------------------------+---------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|inst/i_0/u_riscv_cache_core | u_icache/u_tag0/ram_reg         | 256 x 20(READ_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|inst/i_0/u_riscv_cache_core | u_icache/u_tag1/ram_reg         | 256 x 20(READ_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|inst/i_0/u_riscv_cache_core | u_icache/u_data0/ram_reg        | 2 K x 32(READ_FIRST)   | W | R |                        |   |   | Port A           | 0      | 2      | 
+|inst/i_0/u_riscv_cache_core | u_icache/u_data1/ram_reg        | 2 K x 32(READ_FIRST)   | W | R |                        |   |   | Port A           | 0      | 2      | 
+|inst/i_0/u_riscv_cache_core | u_dcache/u_core/u_data0/ram_reg | 2 K x 32(WRITE_FIRST)  | W |   | 2 K x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 2      | 
+|inst/i_0/u_riscv_cache_core | u_dcache/u_core/u_data1/ram_reg | 2 K x 32(WRITE_FIRST)  | W |   | 2 K x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 2      | 
+|inst/i_1/u_uart             | u_core/u_rx/u_fifo/Mem_reg      | 16 x 9(READ_FIRST)     | W |   | 16 x 9(WRITE_FIRST)    |   | R | Port A and B     | 1      | 0      | 
+|inst/i_1/u_axi4_to_lite     | u_write/u_fifo/Mem_reg          | 16 x 32(READ_FIRST)    | W |   | 16 x 32(WRITE_FIRST)   |   | R | Port A and B     | 1      | 0      | 
+|inst/i_1/u_axi4_to_lite     | u_read/u_fifo/Mem_reg           | 16 x 34(READ_FIRST)    | W |   | 16 x 34(WRITE_FIRST)   |   | R | Port A and B     | 1      | 0      | 
+|inst/i_1/u_mem_axi          | u_mem_axi_core/mem_reg          | 32 K x 32(READ_FIRST)  | W |   | 32 K x 32(WRITE_FIRST) |   | R | Port A and B     | 0      | 32     | 
++----------------------------+---------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+
+Distributed RAM: Preliminary Mapping Report (see note below)
++-----------------------------------------------------------------+--------------------------------+-----------+----------------------+--------------+
+|Module Name                                                      | RTL Object                     | Inference | Size (Depth x Width) | Primitives   | 
++-----------------------------------------------------------------+--------------------------------+-----------+----------------------+--------------+
+|inst/i_0/u_riscv_cache_core                                      | u_dcache/u_core/u_tag0/ram_reg | Implied   | 256 x 21             | RAM64M x 28  | 
+|inst/i_0/u_riscv_cache_core                                      | u_dcache/u_core/u_tag1/ram_reg | Implied   | 256 x 21             | RAM64M x 28  | 
+|inst/i_1/u_axi_switch_m3s3/\u_axi_mtos_s0/u_axi_arbiter_mtos_m3  | u_axi_fifo_sync/Mem_reg        | Implied   | 16 x 6               | RAM32M x 1   | 
+|inst/i_1/u_axi_switch_m3s3/\u_axi_mtos_s1/u_axi_arbiter_mtos_m3  | u_axi_fifo_sync/Mem_reg        | Implied   | 16 x 6               | RAM32M x 1   | 
+|inst/i_1/u_axi_switch_m3s3/\u_axi_mtos_s2/u_axi_arbiter_mtos_m3  | u_axi_fifo_sync/Mem_reg        | Implied   | 16 x 6               | RAM32M x 1   | 
+|inst/i_1/u_axi_switch_m3s3/\u_axi_mtos_sd/u_axi_arbiter_mtos_m3  | u_axi_fifo_sync/Mem_reg        | Implied   | 16 x 6               | RAM32M x 1   | 
++-----------------------------------------------------------------+--------------------------------+-----------+----------------------+--------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+
+DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
++-----------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name      | DSP Mapping    | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++-----------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|riscv_multiplier | A*B            | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|riscv_multiplier | (PCIN>>17)+A*B | 16     | 16     | -      | -      | 30     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|riscv_multiplier | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|riscv_multiplier | (PCIN>>17)+A*B | 18     | 16     | -      | -      | 47     | 0    | 0    | -    | -    | -     | 0    | 0    | 
++-----------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:54 ; elapsed = 00:01:29 . Memory (MB): peak = 2821.652 ; gain = 75.828 ; free physical = 3806 ; free virtual = 80243
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:54 ; elapsed = 00:01:29 . Memory (MB): peak = 2821.652 ; gain = 75.828 ; free physical = 3806 ; free virtual = 80243
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Final Mapping Report
++----------------------------+---------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name                 | RTL Object                      | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++----------------------------+---------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|inst/i_0/u_riscv_cache_core | u_icache/u_tag0/ram_reg         | 256 x 20(READ_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|inst/i_0/u_riscv_cache_core | u_icache/u_tag1/ram_reg         | 256 x 20(READ_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|inst/i_0/u_riscv_cache_core | u_icache/u_data0/ram_reg        | 2 K x 32(READ_FIRST)   | W | R |                        |   |   | Port A           | 0      | 2      | 
+|inst/i_0/u_riscv_cache_core | u_icache/u_data1/ram_reg        | 2 K x 32(READ_FIRST)   | W | R |                        |   |   | Port A           | 0      | 2      | 
+|inst/i_0/u_riscv_cache_core | u_dcache/u_core/u_data0/ram_reg | 2 K x 32(WRITE_FIRST)  | W |   | 2 K x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 2      | 
+|inst/i_0/u_riscv_cache_core | u_dcache/u_core/u_data1/ram_reg | 2 K x 32(WRITE_FIRST)  | W |   | 2 K x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 2      | 
+|inst/i_1/u_uart             | u_core/u_rx/u_fifo/Mem_reg      | 16 x 9(READ_FIRST)     | W |   | 16 x 9(WRITE_FIRST)    |   | R | Port A and B     | 1      | 0      | 
+|inst/i_1/u_axi4_to_lite     | u_write/u_fifo/Mem_reg          | 16 x 32(READ_FIRST)    | W |   | 16 x 32(WRITE_FIRST)   |   | R | Port A and B     | 1      | 0      | 
+|inst/i_1/u_axi4_to_lite     | u_read/u_fifo/Mem_reg           | 16 x 34(READ_FIRST)    | W |   | 16 x 34(WRITE_FIRST)   |   | R | Port A and B     | 1      | 0      | 
+|inst/i_1/u_mem_axi          | u_mem_axi_core/mem_reg          | 32 K x 32(READ_FIRST)  | W |   | 32 K x 32(WRITE_FIRST) |   | R | Port A and B     | 0      | 32     | 
++----------------------------+---------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+
+Distributed RAM: Final Mapping Report
++-----------------------------------------------------------------+--------------------------------+-----------+----------------------+--------------+
+|Module Name                                                      | RTL Object                     | Inference | Size (Depth x Width) | Primitives   | 
++-----------------------------------------------------------------+--------------------------------+-----------+----------------------+--------------+
+|inst/i_0/u_riscv_cache_core                                      | u_dcache/u_core/u_tag0/ram_reg | Implied   | 256 x 21             | RAM64M x 28  | 
+|inst/i_0/u_riscv_cache_core                                      | u_dcache/u_core/u_tag1/ram_reg | Implied   | 256 x 21             | RAM64M x 28  | 
+|inst/i_1/u_axi_switch_m3s3/\u_axi_mtos_s0/u_axi_arbiter_mtos_m3  | u_axi_fifo_sync/Mem_reg        | Implied   | 16 x 6               | RAM32M x 1   | 
+|inst/i_1/u_axi_switch_m3s3/\u_axi_mtos_s1/u_axi_arbiter_mtos_m3  | u_axi_fifo_sync/Mem_reg        | Implied   | 16 x 6               | RAM32M x 1   | 
+|inst/i_1/u_axi_switch_m3s3/\u_axi_mtos_s2/u_axi_arbiter_mtos_m3  | u_axi_fifo_sync/Mem_reg        | Implied   | 16 x 6               | RAM32M x 1   | 
+|inst/i_1/u_axi_switch_m3s3/\u_axi_mtos_sd/u_axi_arbiter_mtos_m3  | u_axi_fifo_sync/Mem_reg        | Implied   | 16 x 6               | RAM32M x 1   | 
++-----------------------------------------------------------------+--------------------------------+-----------+----------------------+--------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7052] The timing for the instance inst/u_riscv_cache_core/u_icache/u_tag0/ram_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_riscv_cache_core/u_icache/u_tag0/ram_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_riscv_cache_core/u_icache/u_tag1/ram_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_riscv_cache_core/u_icache/u_tag1/ram_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_riscv_cache_core/u_icache/u_data0/ram_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_riscv_cache_core/u_icache/u_data0/ram_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_riscv_cache_core/u_icache/u_data1/ram_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_riscv_cache_core/u_icache/u_data1/ram_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_riscv_cache_core/u_dcache/u_core/u_data0/ram_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_riscv_cache_core/u_dcache/u_core/u_data0/ram_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_riscv_cache_core/u_dcache/u_core/u_data1/ram_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_riscv_cache_core/u_dcache/u_core/u_data1/ram_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_uart/u_core/u_rx/u_fifo/Mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_axi4_to_lite/u_write/u_fifo/Mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_axi4_to_lite/u_read/u_fifo/Mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_0_0_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_0_0_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_0_0_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_0_0_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_0_0_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_0_0_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_0_0_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_0_0_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_1_0_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_1_0_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_1_0_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_1_0_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_1_0_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_1_0_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_1_0_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_1_0_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_2_0_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_2_0_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_2_0_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_2_0_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_2_0_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_2_0_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_2_0_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_2_0_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_3_0_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_3_0_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_3_0_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_3_0_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_3_0_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_3_0_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_3_0_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_mem_axi/u_mem_axi_core/mem_reg_3_0_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:56 ; elapsed = 00:01:31 . Memory (MB): peak = 2872.637 ; gain = 126.812 ; free physical = 3735 ; free virtual = 80173
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+INFO: [Synth 8-3295] tying undriven pin axi_inst_awsize_inferred:in0[2] to constant 0
+INFO: [Synth 8-3295] tying undriven pin axi_inst_awsize_inferred:in0[1] to constant 0
+INFO: [Synth 8-3295] tying undriven pin axi_inst_awsize_inferred:in0[0] to constant 0
+INFO: [Synth 8-3295] tying undriven pin axi_inst_awburst_inferred:in0[1] to constant 0
+INFO: [Synth 8-3295] tying undriven pin axi_inst_awburst_inferred:in0[0] to constant 0
+INFO: [Synth 8-3295] tying undriven pin axi_inst_awvalid_inferred:in0 to constant 0
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:58 ; elapsed = 00:01:33 . Memory (MB): peak = 2872.637 ; gain = 126.812 ; free physical = 3802 ; free virtual = 80240
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:58 ; elapsed = 00:01:33 . Memory (MB): peak = 2872.637 ; gain = 126.812 ; free physical = 3803 ; free virtual = 80241
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:58 ; elapsed = 00:01:33 . Memory (MB): peak = 2872.637 ; gain = 126.812 ; free physical = 3803 ; free virtual = 80242
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:58 ; elapsed = 00:01:33 . Memory (MB): peak = 2872.637 ; gain = 126.812 ; free physical = 3803 ; free virtual = 80242
+---------------------------------------------------------------------------------
+CRITICAL WARNING: [Synth 8-5543] Port 'gpio_out[3]' in module 'riscv_cache_soc' has MARK_DEBUG and also connected to other port(s) having MARK_DEBUG; consider putting MARK_DEBUG on one only
+CRITICAL WARNING: [Synth 8-5543] Port 'gpio_out[2]' in module 'riscv_cache_soc' has MARK_DEBUG and also connected to other port(s) having MARK_DEBUG; consider putting MARK_DEBUG on one only
+CRITICAL WARNING: [Synth 8-5543] Port 'gpio_out[1]' in module 'riscv_cache_soc' has MARK_DEBUG and also connected to other port(s) having MARK_DEBUG; consider putting MARK_DEBUG on one only
+CRITICAL WARNING: [Synth 8-5543] Port 'gpio_out[0]' in module 'riscv_cache_soc' has MARK_DEBUG and also connected to other port(s) having MARK_DEBUG; consider putting MARK_DEBUG on one only
+CRITICAL WARNING: [Synth 8-5543] Port 'keypad_col[3]' in module 'riscv_cache_soc' has MARK_DEBUG and also connected to other port(s) having MARK_DEBUG; consider putting MARK_DEBUG on one only
+CRITICAL WARNING: [Synth 8-5543] Port 'keypad_col[2]' in module 'riscv_cache_soc' has MARK_DEBUG and also connected to other port(s) having MARK_DEBUG; consider putting MARK_DEBUG on one only
+CRITICAL WARNING: [Synth 8-5543] Port 'keypad_col[1]' in module 'riscv_cache_soc' has MARK_DEBUG and also connected to other port(s) having MARK_DEBUG; consider putting MARK_DEBUG on one only
+CRITICAL WARNING: [Synth 8-5543] Port 'keypad_col[0]' in module 'riscv_cache_soc' has MARK_DEBUG and also connected to other port(s) having MARK_DEBUG; consider putting MARK_DEBUG on one only
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:59 ; elapsed = 00:01:33 . Memory (MB): peak = 2872.637 ; gain = 126.812 ; free physical = 3803 ; free virtual = 80242
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:59 ; elapsed = 00:01:33 . Memory (MB): peak = 2872.637 ; gain = 126.812 ; free physical = 3803 ; free virtual = 80242
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |CARRY4   |   307|
+|2     |DSP48E1  |     4|
+|3     |LUT1     |   335|
+|4     |LUT2     |  1219|
+|5     |LUT3     |   855|
+|6     |LUT4     |  1259|
+|7     |LUT5     |  1254|
+|8     |LUT6     |  3698|
+|9     |MUXF7    |   315|
+|10    |MUXF8    |   141|
+|11    |RAM32M   |     4|
+|12    |RAM64M   |    56|
+|13    |RAMB18E1 |     5|
+|16    |RAMB36E1 |    40|
+|19    |FDCE     |  3396|
+|20    |FDPE     |    90|
+|21    |FDRE     |  1389|
+|22    |LDC      |    16|
+|23    |IOBUF    |     1|
++------+---------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:59 ; elapsed = 00:01:33 . Memory (MB): peak = 2872.637 ; gain = 126.812 ; free physical = 3803 ; free virtual = 80242
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 8 critical warnings and 12 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:56 ; elapsed = 00:01:31 . Memory (MB): peak = 2872.637 ; gain = 50.984 ; free physical = 3859 ; free virtual = 80298
+Synthesis Optimization Complete : Time (s): cpu = 00:00:59 ; elapsed = 00:01:33 . Memory (MB): peak = 2872.645 ; gain = 126.812 ; free physical = 3859 ; free virtual = 80298
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.11 ; elapsed = 00:00:00.10 . Memory (MB): peak = 2872.645 ; gain = 0.000 ; free physical = 4396 ; free virtual = 80836
+INFO: [Netlist 29-17] Analyzing 889 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2904.652 ; gain = 0.000 ; free physical = 4518 ; free virtual = 80959
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 77 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 1 instance 
+  LDC => LDCE: 16 instances
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 4 instances
+  RAM64M => RAM64M (RAMD64E(x4)): 56 instances
+
+Synth Design complete, checksum: c4ae320e
+INFO: [Common 17-83] Releasing license: Synthesis
+318 Infos, 149 Warnings, 16 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:07 ; elapsed = 00:01:39 . Memory (MB): peak = 2904.652 ; gain = 158.906 ; free physical = 4687 ; free virtual = 81128
+INFO: [Common 17-1381] The checkpoint '/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_riscv_cache_soc_0_0_synth_1/design_riscv_cache_riscv_cache_soc_0_0.dcp' has been generated.
+INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
+INFO: [Coretcl 2-1174] Renamed 82 cell refs.
+INFO: [Common 17-1381] The checkpoint '/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_riscv_cache_soc_0_0_synth_1/design_riscv_cache_riscv_cache_soc_0_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file design_riscv_cache_riscv_cache_soc_0_0_utilization_synth.rpt -pb design_riscv_cache_riscv_cache_soc_0_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Wed Nov  5 18:58:45 2025...

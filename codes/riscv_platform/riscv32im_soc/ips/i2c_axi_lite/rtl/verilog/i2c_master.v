@@ -21,7 +21,9 @@ module I2C 	#(		parameter 	Hz_counter=120
 	// 기존에는 input이었으나, EEPROM에서 읽은 데이터를 출력하려면 output이어야 함
 	output      reg     [31:0]		        rdata		    , // Read data from EEPROM (output)
 	
-	inout		wire						sda		     	,
+	input		wire						sda_i	     	,
+	output		wire						sda_o	     	,
+	output		wire						sda_t	     	,
 	output		wire						scl			
 
 );
@@ -100,12 +102,13 @@ i2c_ctrl 비트 필드:
     // da_out (1=high-z, 0=low) + 데이터 비트 그대로 (mem[0][bit])
     // I2C는 오픈 드레인이므로 1=High-Z(풀업), 0=Low(구동)이 직관적
     reg sda_out;         // 1이면 High-Z (해제), 0이면 Low (구동)
-    assign sda = sda_out ? 1'bz : 1'b0;
+    assign sda_o = 1'b0;
+    assign sda_t = sda_out;
 
 	
 	reg                 data_flag		; // 8비트 데이터 전송 완료 감지(데이터 전송 중 1로 설정, 완료시 0으로 클리어)
 	reg		[2:0]		counter_data	; // 8비트 데이터 전송 시 비트 위치 추적 (MSB : 7 -> 6 ... -> 0)
-	reg                 ack_flag		; // ACK 신호 감지(슬레이브로부터 ack(sda == 0 )받으면 1로 설정)
+	reg                 ack_flag		; // ACK 신호 감지(슬레이브로부터 ack(sda_i == 0 )받으면 1로 설정)
 	reg					state_flag		; // 상태 내에서의 단계 구분
 	reg		[1:0]		counter_page	; // 페이지 쓰기/읽기 시 바이트 카운터 
 	reg					page_flag		; // 페이지 모드 종료 조건 표시(addr[17] == 1)
@@ -168,7 +171,7 @@ i2c_ctrl 비트 필드:
 			
 			else if (state == r_data) begin
 				if (scl == 1'b1 && counter_half) begin
-					mem[2][counter_data + (counter_page * 8)] <= sda;
+					mem[2][counter_data + (counter_page * 8)] <= sda_i;
 				end
 			end
 			
@@ -212,7 +215,7 @@ i2c_ctrl 비트 필드:
 				end
 				
 				// After SDA is low, pull SCL low and move to start state
-				if (mem[0][31] && sda == 0 && scl == 1) begin
+				if (mem[0][31] && sda_i == 0 && scl == 1) begin
 					scl_o <= 0;    // Pull SCL Low
 					scl_en <= 1;
 					state <= start;
@@ -278,7 +281,7 @@ i2c_ctrl 비트 필드:
 		
 			w_d_addr_a: begin
 				
-				if (sda == 0) begin
+				if (sda_i == 0) begin
 					if (scl == 0) begin
 						if (counter_half) begin
 							sda_out <= mem[0][counter_data]; //word address [7]
@@ -320,7 +323,7 @@ i2c_ctrl 비트 필드:
 		
 		
 			w_w_addr_a: begin
-				if (sda == 0) begin
+				if (sda_i == 0) begin
 					if (scl == 0) begin
 						if (counter_half) begin
 							sda_out <= mem[1][counter_data]; //word address [7]
@@ -363,7 +366,7 @@ i2c_ctrl 비트 필드:
 		
 			w_data_a: begin
 			
-				if (sda == 0) begin
+				if (sda_i == 0) begin
 					if (scl == 0) begin
 						if ( mem[0][17] != 0) begin
 								counter_page <= counter_page + 1;
@@ -460,7 +463,7 @@ i2c_ctrl 비트 필드:
 
 			r_d_addr_a: begin
 			
-				if (sda == 0) begin
+				if (sda_i == 0) begin
 					if (scl == 0) begin
 						if (counter_clr) begin
 							state <= r_data;
@@ -514,7 +517,7 @@ i2c_ctrl 비트 필드:
 		
 		
 			r_data_a: begin
-				if (sda == 0) begin
+				if (sda_i == 0) begin
 					if (scl == 0) begin
 						if ( mem[0][17] != 0) begin
 								counter_page <= counter_page + 1;

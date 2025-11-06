@@ -68,7 +68,7 @@ sw:
 #ELF ?= ../../sw.riscv/fft/fft_test.elf
 #ELF ?= ../../sw.riscv/aes/aes_test.elf
 #ELF ?= ../../sw.riscv/mmul/mmul_test.elf
-ELF ?= ../../sw.riscv/hello_world/uart_test.elf
+ELF ?= ../../sw.riscv/hello_world/gpio_test.elf
 #ELF ?= ../../sw.riscv.mon/mon/monitor.elf
 #ELF ?= ../../sw.riscv/timer_interrupt/timer_test.elf
 #ELF ?= /home/adki/work/projects/RISC-V/riscv_hw/UltraEmbedded/riscv32im_soc_rom/sw.riscv.monitor/monitor/v1.2/bld/rv32db/monitor.elf

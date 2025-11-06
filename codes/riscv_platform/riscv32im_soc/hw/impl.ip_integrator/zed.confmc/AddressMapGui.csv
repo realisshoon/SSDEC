@@ -1,0 +1,7 @@
+Cell,Slave Interface,Base Name,Offset Address,Range,High Address
+/bfm_axi_if_0,,,,,
+m_axi(32 address bits : 4G),,,,,
+/riscv_cache_soc_0,s_axi_confmc,reg0,0x00000000,4G,0xFFFFFFFF
+/riscv_cache_soc_0,,,,,
+m_axi_mem(32 address bits : 4G),,,,,
+/axi_bram_ctrl_0,S_AXI,Mem0,0x02000000,128K,0x0201FFFF

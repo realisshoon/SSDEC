@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/codes/riscv_platform/riscv32im_soc/sw.riscv/hello_world/src",
+                "${workspaceFolder}/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/api/c",
+                "${workspaceFolder}/codes/riscv_platform/riscv32im_soc/ips/gpio_axi_lite/api/c",
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "BAUD_RATE=115200"
+            ],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c99",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-x64"
+        }
+    ],
+    "version": 4
+}
+
