@@ -82,35 +82,12 @@ int main()
     uart_set_addr(UART_BASE_ADDR);
     uart_init(100000000, BAUD_RATE, 8, 0, 1);  // 100MHz 클럭 명시
     
-    // 즉시 출력 시작 (지연 최소화)
-    uart_put_char('S');
-    uart_put_char('T');
-    uart_put_char('A');
-    uart_put_char('R');
-    uart_put_char('T');
-    uart_put_char('\r');
-    uart_put_char('\n');
-    
-    // 초기화 메시지 출력
-    my_printf("=== System Starting ===\r\n");
-    
-    // 반복적인 테스트 출력
-    for (int i = 0; i < 5; i++) {
-        uart_put_char('T');
-        uart_put_char('E');
-        uart_put_char('S');
-        uart_put_char('T');
-        uart_put_char(' ');
-        uart_put_char('0' + i);
-        uart_put_char('\r');
-        uart_put_char('\n');
-        delay_ms(100);
-    }
-    
+
     // GPIO 및 키패드 초기화
     gpio_set_addr(GPIO_BASE_ADDR);
     keypad_init(GPIO_BASE_ADDR);
     
+    uint32_t key_release_count = 0;
     // GPIO 설정: 하위 8비트는 키패드용, 상위 비트는 LED용
     gpio_init(0x0000FFFF, 0, 0, 0);
     gpio_write(0x0000000F);  // 키패드 Column 초기화
@@ -143,7 +120,7 @@ int main()
             system_mode = MODE_HOME;
             my_printf("\r\n=== HOME MODE ===\r\n");
             my_printf("Enter 4-digit password to unlock\r\n");
-            my_printf("Press A to set new password\r\n");
+            my_printf("If you want to set new password, Press A to set new password\r\n");
         } else {
             password_exists = 0;
             system_mode = MODE_INIT;

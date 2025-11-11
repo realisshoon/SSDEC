@@ -4,8 +4,10 @@
 //------------------------------------------------------------------------------
 // VERSION: 2025.10.29
 //------------------------------------------------------------------------------
+`timescale 1ns/1ps
+
 `include "i2c_axi_lite_if.v"
-`include "i2c_master.v"
+`include "i2c_master_ver2.v"
 
 module i2c_axi_lite
     #(parameter Hz_counter = 120)  // 400kHz I2C clock @ 100MHz system clock
@@ -75,6 +77,7 @@ module i2c_axi_lite
     wire [31:0] rdata;        // i2c_master에서 받는 읽기 데이터 (output)
     wire        i2c_start;
     wire        i2c_busy;
+    wire        i2c_master_idle;  // I2C Master가 idle 상태인지 (트랜잭션 완료 감지용)
     
     // IOBUF signals are now external ports (IP Packager가 자동으로 IOBUF 생성)
     
@@ -107,33 +110,35 @@ module i2c_axi_lite
         .wdata          (wdata),        // 변경: i2c_data1 -> wdata
         .rdata          (rdata),        // 변경: i2c_data2 -> rdata (output)
         .i2c_start      (i2c_start),
-        .i2c_busy       (i2c_busy)
+        .i2c_busy       (i2c_busy),
+        .i2c_master_idle (i2c_master_idle)  // I2C Master idle 상태
     );
     
     //--------------------------------------------------------------------------
-    // I2C Master Module
+    // BUSY signal generation
     //--------------------------------------------------------------------------
-    // BUSY signal generation (간단한 구현)
+    // I2C 트랜잭션이 진행 중일 때 BUSY = 1
+    // i2c_start 펄스가 발생하면 BUSY를 활성화하고,
+    // I2C Master가 idle 상태로 돌아오면 (i2c_master_idle == 1) BUSY 해제
     reg i2c_busy_reg;
-    reg [7:0] busy_counter;
+    reg i2c_start_prev;
     
     always @(posedge aclk or negedge aresetn) begin
         if (!aresetn) begin
             i2c_busy_reg <= 1'b0;
-            busy_counter <= 8'h0;
+            i2c_start_prev <= 1'b0;
         end
         else begin
-            if (i2c_start && !i2c_busy_reg) begin
+            i2c_start_prev <= i2c_start;
+            
+            // i2c_start 펄스가 발생하면 BUSY 시작
+            if (i2c_start && !i2c_start_prev) begin
                 i2c_busy_reg <= 1'b1;
-                busy_counter <= 8'd100; // 타이밍 조정 필요
             end
-            else if (i2c_busy_reg) begin
-                if (busy_counter > 0) begin
-                    busy_counter <= busy_counter - 1;
-                end
-                else begin
-                    i2c_busy_reg <= 1'b0;
-                end
+            // I2C Master가 idle 상태로 돌아오면 BUSY 해제
+            // (i2c_master_idle이 1이면 트랜잭션이 완료된 것)
+            else if (i2c_busy_reg && i2c_master_idle) begin
+                i2c_busy_reg <= 1'b0;
             end
         end
     end
@@ -155,7 +160,8 @@ module i2c_axi_lite
         .sda_i      (i2c_sda_i),  // Input from pad
         .sda_o      (i2c_sda_o),  // Output to pad (always 0)
         .sda_t      (i2c_sda_t),  // Tri-state enable
-        .scl        (i2c_scl)
+        .scl        (i2c_scl),
+        .i2c_idle   (i2c_master_idle)  // I2C Master idle 상태 (트랜잭션 완료 감지)
     );
 
 endmodule

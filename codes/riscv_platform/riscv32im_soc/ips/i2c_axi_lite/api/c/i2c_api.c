@@ -154,3 +154,101 @@ int i2c_eeprom_read_bytes(uint8_t mem_addr, uint8_t *data, uint8_t len) {
     return 0;
 }
 
+//------------------------------------------------------------------------------
+// Password Management Functions
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+int i2c_password_write(const uint8_t *password, uint8_t len) {
+    uint8_t i;
+    
+    // 길이 체크
+    if (len == 0 || len > MAX_PASSWORD_LEN) {
+        return -1;
+    }
+    
+    // 비밀번호 데이터 저장
+    for (i = 0; i < len; i++) {
+        if (i2c_eeprom_write_byte(PASSWORD_START_ADDR + i, password[i]) != 0) {
+            return -1;
+        }
+    }
+    
+    // 비밀번호 길이 저장
+    if (i2c_eeprom_write_byte(PASSWORD_LEN_ADDR, len) != 0) {
+        return -1;
+    }
+    
+    return 0;
+}
+
+//------------------------------------------------------------------------------
+int i2c_password_read(uint8_t *password, uint8_t *len) {
+    uint8_t i;
+    uint8_t password_len;
+    uint8_t byte_data;
+    
+    // 비밀번호 길이 읽기
+    if (i2c_eeprom_read_byte(PASSWORD_LEN_ADDR, &password_len) != 0) {
+        return -1;
+    }
+    
+    // 길이 체크
+    if (password_len == 0 || password_len > MAX_PASSWORD_LEN) {
+        return -1;
+    }
+    
+    // 비밀번호 데이터 읽기
+    for (i = 0; i < password_len; i++) {
+        if (i2c_eeprom_read_byte(PASSWORD_START_ADDR + i, &byte_data) != 0) {
+            return -1;
+        }
+        password[i] = byte_data;
+    }
+    
+    *len = password_len;
+    return 0;
+}
+
+//------------------------------------------------------------------------------
+int i2c_password_verify(const uint8_t *password, uint8_t len) {
+    uint8_t stored_password[MAX_PASSWORD_LEN];
+    uint8_t stored_len;
+    uint8_t i;
+    
+    // 저장된 비밀번호 읽기
+    if (i2c_password_read(stored_password, &stored_len) != 0) {
+        return -1;
+    }
+    
+    // 길이 확인
+    if (stored_len != len) {
+        return 0;  // 길이 불일치
+    }
+    
+    // 데이터 비교
+    for (i = 0; i < len; i++) {
+        if (stored_password[i] != password[i]) {
+            return 0;  // 불일치
+        }
+    }
+    
+    return 1;  // 일치
+}
+
+//------------------------------------------------------------------------------
+int i2c_password_change(const uint8_t *old_password, uint8_t old_len,
+                        const uint8_t *new_password, uint8_t new_len) {
+    // 기존 비밀번호 검증
+    if (i2c_password_verify(old_password, old_len) != 1) {
+        return -1;  // 기존 비밀번호 불일치
+    }
+    
+    // 새 비밀번호 저장
+    if (i2c_password_write(new_password, new_len) != 0) {
+        return -1;  // 저장 실패
+    }
+    
+    return 0;  // 성공
+}
+

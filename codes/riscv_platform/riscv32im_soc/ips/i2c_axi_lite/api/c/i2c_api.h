@@ -80,6 +80,53 @@ int i2c_eeprom_write_bytes(uint8_t mem_addr, const uint8_t *data, uint8_t len);
  */
 int i2c_eeprom_read_bytes(uint8_t mem_addr, uint8_t *data, uint8_t len);
 
+//------------------------------------------------------------------------------
+// Password Management Functions
+//------------------------------------------------------------------------------
+// Password storage area:
+//   0x00-0x0F: Password data (max 16 bytes)
+//   0x10: Password length (1 byte)
+//------------------------------------------------------------------------------
+
+#define PASSWORD_START_ADDR  0x00  // Password data start address
+#define PASSWORD_LEN_ADDR    0x10  // Password length address
+#define MAX_PASSWORD_LEN     16    // Maximum password length (bytes)
+
+/**
+ * @brief Write password to EEPROM
+ * @param password Pointer to password string
+ * @param len Password length (max 16 bytes)
+ * @return 0 on success, -1 on error
+ */
+int i2c_password_write(const uint8_t *password, uint8_t len);
+
+/**
+ * @brief Read password from EEPROM
+ * @param password Pointer to buffer to store password
+ * @param len Pointer to store password length (output)
+ * @return 0 on success, -1 on error
+ */
+int i2c_password_read(uint8_t *password, uint8_t *len);
+
+/**
+ * @brief Verify password
+ * @param password Pointer to password to verify
+ * @param len Password length
+ * @return 1 if password matches, 0 if not, -1 on error
+ */
+int i2c_password_verify(const uint8_t *password, uint8_t len);
+
+/**
+ * @brief Change password
+ * @param old_password Pointer to old password
+ * @param old_len Old password length
+ * @param new_password Pointer to new password
+ * @param new_len New password length
+ * @return 0 on success, -1 on error (wrong old password or write error)
+ */
+int i2c_password_change(const uint8_t *old_password, uint8_t old_len,
+                        const uint8_t *new_password, uint8_t new_len);
+
 #ifdef __cplusplus
 }
 #endif

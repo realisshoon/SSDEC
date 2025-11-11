@@ -1,8 +1,126 @@
 # Team2
 
 
-## Project Diagram
-![프로젝트 다이어그램](docs/images/image.png)
+## 시스템 아키텍처
+
+### 1. 하드웨어 구조 (Hardware Architecture)
+
+```mermaid
+graph TB
+    subgraph "AXI Switch"
+        SWITCH[AXI Switch<br/>Crossbar]
+    end
+    
+    subgraph "Masters"
+        RISCV[RISC-V Core<br/>RV32IM]
+        BFM[BFM<br/>Test Master]
+        AXIDATA[AXI Data<br/>Interface]
+    end
+    
+    subgraph "Memory"
+        MEM[mem_axi<br/>System Memory]
+    end
+    
+    subgraph "High-Speed Peripheral"
+        SPI[SPI Master<br/>RFID Reader]
+    end
+    
+    subgraph "AXI4-Lite Peripherals"
+        BRIDGE[axi4_to_lite<br/>Bridge]
+        AXILITE[AXI-Lite Bus<br/>Interconnect]
+        
+        PIC[PIC<br/>Interrupt Controller]
+        TIMER[Timer<br/>System Timer]
+        UART[UART<br/>Debug Console]
+        GPIO[GPIO<br/>Keypad/LED]
+        I2C[I2C Master<br/>EEPROM]
+    end
+    
+    %% Master Connections
+    RISCV -->|m0<br/>axi_inst| SWITCH
+    BFM -->|m2<br/>axi_confmc| SWITCH
+    AXIDATA -->|m1<br/>axi_data| SWITCH
+    
+    %% Slave Connections
+    SWITCH -->|s0| MEM
+    SWITCH -->|s1| BRIDGE
+    SWITCH -->|s2| SPI
+    
+    %% AXI-Lite Chain
+    BRIDGE --> AXILITE
+    AXILITE -->|m0<br/>0x9000_0000| PIC
+    AXILITE -->|m1<br/>0x9001_0000| TIMER
+    AXILITE -->|m2<br/>0x9002_0000| UART
+    AXILITE -->|m3<br/>0x9004_0000| GPIO
+    AXILITE -->|m4<br/>0x9003_0000| I2C
+    
+    %% External Connections
+    GPIO -.->|입력| KEYPAD[Keypad<br/>비밀번호]
+    GPIO -.->|출력| LED[LED<br/>상태표시]
+    I2C -.-> EEPROM[EEPROM<br/>AT24C]
+    UART -.-> PC[PC<br/>디버그]
+    SPI -.-> RFID[RFID<br/>RC522]
+    
+    style RISCV fill:#e1f5ff
+    style SWITCH fill:#fff4e6
+    style BRIDGE fill:#f3e5f5
+    style AXILITE fill:#f3e5f5
+```
+
+### 2. 도어락 동작 흐름 (Door Lock Operation Flow)
+
+```mermaid
+sequenceDiagram
+    participant User as 사용자
+    participant RFID as RFID Reader<br/>(SPI)
+    participant Keypad as Keypad<br/>(GPIO)
+    participant CPU as RISC-V Core
+    participant EEPROM as EEPROM<br/>(I2C)
+    participant Output as LED/UART
+    
+    Note over User,Output: 1단계: RFID 카드 인증
+    User->>RFID: 카드 태그
+    RFID->>CPU: 카드 UID 읽기 (SPI)
+    CPU->>EEPROM: 저장된 UID 조회 (I2C Read)
+    EEPROM-->>CPU: UID 데이터
+    
+    alt 유효한 카드
+        Note over CPU: UID 일치 ✓
+        CPU->>Output: "Card OK" (UART)
+        
+        Note over User,Output: 2단계: 비밀번호 입력
+        User->>Keypad: 비밀번호 입력
+        Keypad->>CPU: 키 입력 인터럽트 (GPIO)
+        CPU->>EEPROM: 저장된 비밀번호 조회 (I2C Read)
+        EEPROM-->>CPU: 비밀번호 데이터
+        
+        alt 비밀번호 일치
+            CPU->>Output: "Access Granted" (UART)
+            CPU->>Output: LED ON (GPIO)
+            Note over User,Output: 🔓 도어 열림
+        else 비밀번호 불일치
+            CPU->>Output: "Wrong Password" (UART)
+            CPU->>Output: LED 3회 깜빡임 (GPIO)
+            Note over User,Output: ❌ 접근 거부
+        end
+        
+    else 무효한 카드
+        CPU->>Output: "Invalid Card" (UART)
+        CPU->>Output: LED 빠른 깜빡임 (GPIO)
+        Note over User,Output: ❌ 인증 실패
+    end
+```
+
+### 3. 메모리 맵 (Memory Map)
+
+| 주소 | Peripheral | 설명 |
+|------|-----------|------|
+| `0x9000_0000` | **PIC** | Programmable Interrupt Controller |
+| `0x9001_0000` | **Timer** | System Timer |
+| `0x9002_0000` | **UART** | Debug Console / Status Output |
+| `0x9003_0000` | **I2C** | EEPROM Controller (비밀번호 저장) |
+| `0x9004_0000` | **GPIO** | Keypad Input / LED Output |
+| `0x4xxx_xxxx` | **SPI** | RFID Reader (via AXI Switch s2) |
 
 ---
 

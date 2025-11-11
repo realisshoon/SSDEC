@@ -73,6 +73,7 @@ add_files -norecurse -scan_for_includes $::env(DIR_GPIO_AXI_LITE)/rtl/verilog/gp
 add_files -norecurse -scan_for_includes $::env(DIR_I2C_AXI_LITE)/rtl/verilog/i2c_axi_lite.v
 add_files -norecurse -scan_for_includes $::env(DIR_I2C_AXI_LITE)/rtl/verilog/i2c_axi_lite_if.v
 add_files -norecurse -scan_for_includes $::env(DIR_I2C_AXI_LITE)/rtl/verilog/i2c_master.v
+add_files -norecurse -scan_for_includes $::env(DIR_I2C_AXI_LITE)/rtl/verilog/i2c_master_ver2.v
 add_files -norecurse -scan_for_includes $::env(DIR_RTL)/riscv_cache_soc.v
 add_files -norecurse -scan_for_includes $::env(DIR_RTL)/riscv_cache_core.v
 add_files -norecurse -scan_for_includes $::env(RISCV_CORE)/top_cache_axi/src_v/dcache_axi_axi.v
