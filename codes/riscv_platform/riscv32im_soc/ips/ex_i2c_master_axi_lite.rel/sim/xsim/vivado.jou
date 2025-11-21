@@ -1,0 +1,27 @@
+#-----------------------------------------------------------
+# Vivado v2021.2 (64-bit)
+# SW Build 3367213 on Tue Oct 19 02:47:39 MDT 2021
+# IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
+# Start of session at: Wed Nov 19 16:03:25 2025
+# Process ID: 32639
+# Current directory: /home/sogang/test1/codes/riscv_platform/riscv32im_soc/ips/ex_i2c_master_axi_lite.rel/sim/xsim
+# Command line: vivado
+# Log file: /home/sogang/test1/codes/riscv_platform/riscv32im_soc/ips/ex_i2c_master_axi_lite.rel/sim/xsim/vivado.log
+# Journal file: /home/sogang/test1/codes/riscv_platform/riscv32im_soc/ips/ex_i2c_master_axi_lite.rel/sim/xsim/vivado.jou
+# Running On: sogang-500TGA-500SGA, OS: Linux, CPU Frequency: 801.032 MHz, CPU Physical cores: 10, Host memory: 16429 MB
+#-----------------------------------------------------------
+start_gui
+source /home/sogang/test1/codes/riscv_platform/riscv32im_soc/ips/ex_i2c_master_axi_lite.rel/sim/xsim/create_vivado_project.tcl
+update_compile_order -fileset sources_1
+/home/sogang/test1/codes/riscv_platform/riscv32im_soc/ips/ex_i2c_master_axi_lite.rel/sim/xsim/
+launch_simulation
+launch_simulation
+launch_simulation
+launch_simulation
+set_property generic {} [get_filesets sim_1]
+set_property -name {xsim.simulate.xsim.more_options} -value {-testplusarg EEPROM_TEST=1} -objects [get_filesets sim_1]
+launch_simulation
+source top.tcl
+run 10 us
+run all
+close_sim

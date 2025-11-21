@@ -87,7 +87,6 @@ int main()
     gpio_set_addr(GPIO_BASE_ADDR);
     keypad_init(GPIO_BASE_ADDR);
     
-    uint32_t key_release_count = 0;
     // GPIO 설정: 하위 8비트는 키패드용, 상위 비트는 LED용
     gpio_init(0x0000FFFF, 0, 0, 0);
     gpio_write(0x0000000F);  // 키패드 Column 초기화

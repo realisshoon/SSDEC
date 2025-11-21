@@ -25,6 +25,23 @@ static volatile uint32_t  UART_CLK_FREQ =0x90020020;
         extern int cid;
 #       define CSR_WRITE(A,B)   cosim_bfm_axi_lite_write((uint32_t)(A), (uint32_t)(B), cid)
 #       define CSR_READ(A,B)    cosim_bfm_axi_lite_read((uint32_t)(A), (uint32_t*)&(B), cid)
+#elif defined(COSIM_LIB) && (COSIM_LIB==1)
+#include "cosim_bfm_api.h"
+        static uint8_t csr_data_buf[4];
+#       define CSR_WRITE(A,B)   do { \
+            csr_data_buf[0] = (B) & 0xFF; \
+            csr_data_buf[1] = ((B) >> 8) & 0xFF; \
+            csr_data_buf[2] = ((B) >> 16) & 0xFF; \
+            csr_data_buf[3] = ((B) >> 24) & 0xFF; \
+            bfm_write((uint32_t)(A), csr_data_buf, 4, 1); \
+        } while(0)
+#       define CSR_READ(A,B)    do { \
+            bfm_read((uint32_t)(A), csr_data_buf, 4, 1); \
+            (B) = (uint32_t)csr_data_buf[0] | \
+                  ((uint32_t)csr_data_buf[1] << 8) | \
+                  ((uint32_t)csr_data_buf[2] << 16) | \
+                  ((uint32_t)csr_data_buf[3] << 24); \
+        } while(0)
 #else
 #define reinterpret_cast(TO, VAR)\
        ({ union { __typeof__((VAR)) source; TO dest; } u = { .source = (VAR) }; (TO)u.dest; })

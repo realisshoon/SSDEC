@@ -1,0 +1,23 @@
+=== SPI 디버깅 결과 요약 ===
+
+1. 시뮬레이션 실행: ✓ 완료
+   - 컴파일: 성공
+   - 시뮬레이션: 1000us 실행
+
+2. 확인된 사항:
+   - SPI 트랜잭션 발생: ✓ (1회 - [5000] SPI Transaction END)
+   - SPI_ADDR 레지스터 쓰기: ✓ (0x02000004)
+   - SPI_CTRL 레지스터 쓰기: ✗ (없음 - 0x02000000 주소에 쓰기 없음)
+   - SPI_EN Rising Edge 메시지: ✗ (없음)
+   - SPI Master EN Asserted 메시지: ✗ (없음)
+
+3. 문제점:
+   - SPI_CTRL 레지스터(0x02000000)에 enable=1이 쓰이지 않았습니다
+   - 이로 인해 spi_en 신호가 1로 설정되지 않았을 가능성이 높습니다
+   - SPI_master의 en 입력이 활성화되지 않아 트랜잭션이 시작되지 않았을 수 있습니다
+
+4. 다음 단계:
+   - tester.sv의 test_mfrc522_init() 또는 test_transaction_analysis()에서 
+     spi_start_transaction이 호출되는지 확인
+   - 파형 뷰어에서 u_spi_axi.spi_en 신호 확인
+   - SPI_CTRL 레지스터에 쓰기가 실제로 발생하는지 확인

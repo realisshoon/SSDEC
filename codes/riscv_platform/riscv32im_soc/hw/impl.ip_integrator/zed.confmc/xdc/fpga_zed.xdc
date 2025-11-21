@@ -37,10 +37,7 @@ set_property PACKAGE_PIN AA9 [get_ports uart_rts_n]
 #set_property PACKAGE_PIN AB9  [get_ports {JA9}];  # "JA9"
 #set_property PACKAGE_PIN AA8  [get_ports {JA10}]; # "JA10"
 
-set_property IOSTANDARD LVCMOS33 [get_ports uart_*]
-# Note that the bank voltage for IO Bank 13 is fixed to 3.3V on ZedBoard.
-#set_property IOSTANDARD LVCMOS33 [get_ports -of_objects [get_iobanks 13]];
-
+set_property IOSTANDARD LVCMOS33 [getrealisshoon
 
 
 #--------------------------------------------------------
@@ -137,4 +134,44 @@ set_property DRIVE 4 [get_ports i2c_sda]
 set_property PULLUP true [get_ports i2c_sda]
 
 
+#--------------------------------------------------------
+# RFID (MFRC522) via SPI - PMOD JC Connector (Bank 13, 3.3V)
+#--------------------------------------------------------
+# PMOD JC 핀 배치:
+#    +--+--+--+--+--+--+
+#    |V |G |4 |3 |2 |1 | upper
+#    +--+--+--+--+--+--+
+#    |V |G |10|9 |8 |7 | lower
+#  --+--+--+--+--+--+--+--
+#
+# MFRC522 → PMOD JC 연결 매핑:
+#   - VCC (3.3V) → JC 핀 6 (PMOD VCC)
+#   - GND        → JC 핀 5 (PMOD GND)
+#   - RST        → JC 핀 7 (JC3_N, T6) → spi_rst
+#   - SDA        → JC 핀 2 (JC1_P, AB7) → spi_mosi
+#   - SCK        → JC 핀 1 (JC1_N, AB6) → spi_sck
+#   - NSS/CS     → JC 핀 4 (JC2_P, Y4) → spi_cs_n
+#   - MISO       → JC 핀 3 (JC2_N, AA4) → spi_miso
+#   - IRQ        → (선택사항, 연결 안 해도 됨)
+#
+# 주의사항:
+#   1. MFRC522는 3.3V 전원 사용 (5V 사용 금지!)
+#   2. RST 핀은 필수입니다 (하드웨어 리셋 필요)
+#   3. SPI 통신 속도는 10MHz 이하 권장
+#   4. 상위 모듈(riscv_cache_soc.v)에 spi_rst 포트 추가 필요
+#--------------------------------------------------------
+# SPI 핀 할당
+set_property PACKAGE_PIN AB6 [get_ports spi_sck]    # JC1_N (핀 1)
+set_property PACKAGE_PIN AB7 [get_ports spi_mosi]   # JC1_P (핀 2)
+set_property PACKAGE_PIN AA4 [get_ports spi_miso]   # JC2_N (핀 3)
+set_property PACKAGE_PIN Y4  [get_ports spi_cs_n]   # JC2_P (핀 4)
 
+# RST 핀 할당 (PMOD JC 핀 7)
+set_property PACKAGE_PIN T6 [get_ports spi_rst]     # JC3_N (핀 7)
+
+# I/O 표준 설정
+set_property IOSTANDARD LVCMOS33 [get_ports spi_sck]
+set_property IOSTANDARD LVCMOS33 [get_ports spi_mosi]
+set_property IOSTANDARD LVCMOS33 [get_ports spi_miso]
+set_property IOSTANDARD LVCMOS33 [get_ports spi_cs_n]
+set_property IOSTANDARD LVCMOS33 [get_ports spi_rst]

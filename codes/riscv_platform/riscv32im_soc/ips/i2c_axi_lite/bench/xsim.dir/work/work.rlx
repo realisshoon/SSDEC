@@ -1,9 +1,0 @@
-0.7
-2020.2
-Oct 19 2021
-02:56:52
-/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/i2c_axi_lite/bench/verilog/tester.v,1762837916,systemVerilog,,/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/i2c_axi_lite/bench/verilog/top.v,,i2c_eeprom_model,,,,,,,,
-/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/i2c_axi_lite/bench/verilog/top.v,1762839416,systemVerilog,,,,top,,,,,,,,
-/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_axi_lite.v,1762833745,systemVerilog,,/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_master_ver2.v,/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_axi_lite_if.v;/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_master_ver2.v,i2c_axi_lite,,,,,,,,
-/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_axi_lite_if.v,1762839481,systemVerilog,,/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_axi_lite.v,,i2c_axi_lite_if,,,,,,,,
-/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_master_ver2.v,1762839483,systemVerilog,,/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/i2c_axi_lite/bench/verilog/tester.v,,I2C,,,,,,,,

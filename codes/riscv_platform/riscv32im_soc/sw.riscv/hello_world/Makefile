@@ -120,7 +120,7 @@ program:
 	$(DIR_BIT)/program_fpga.sh $(DIR_BIT)/design_riscv_cache_wrapper.bit
 
 download:
-	@echo "Downloading $(TARGET).elf to CON-FMC..."
+	@echo "Downloading $(TARGET).elf to CONFMC..."
 	@../../sw.confmc/elf_download/elf_download -A $(TARGET).elf -B u.bin -D -g 1
 	@echo "Download completed successfully!"
 

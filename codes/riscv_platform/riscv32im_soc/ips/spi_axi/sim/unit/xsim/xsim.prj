@@ -1,0 +1,6 @@
+sv work \
+        -i ../../../bench/unit/verilog \
+           ../../../bench/unit/verilog/top.sv \
+           ../../../bench/unit/verilog/spi_checker.sv \
+        -i ../../../rtl/verilog \
+           ../../../rtl/verilog/spi_master.v

@@ -98,6 +98,12 @@ module riscv_cache_soc
      (* mark_debug="true" *) inout  wire       i2c_sda,    // I2C data line
      (* mark_debug="true" *) output wire       i2c_scl,    // I2C clock line
      (* mark_debug="true" *) input  wire  cpu_resetn, // must go to 1 after axi_aresetn de-asserted
+     // SPI Interface
+     output wire        spi_cs_n,
+     output wire        spi_sck,
+     output wire        spi_mosi,
+     input  wire        spi_miso,
+     output wire        spi_rst,     // MFRC522 Reset (Active Low)
      (* X_INTERFACE_PARAMETER = "POLARITY ACTIVE_LOW" *)
      (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 axi_aresetn RST"*) (* mark_debug="true" *) input  wire  axi_aresetn,
      (* X_INTERFACE_PARAMETER = "ASSOCIATED_BUSIF s_axi_confmc:m_axi_mem" *)
@@ -598,38 +604,131 @@ module riscv_cache_soc
          , .S1_RLAST             (axi_bus_rlast   [1])
          , .S1_RVALID            (axi_bus_rvalid  [1])
          , .S1_RREADY            (axi_bus_rready  [1])
-         , .S2_AWID              (m_axi_mem_awid   )
-         , .S2_AWADDR            (m_axi_mem_awaddr )
-         , .S2_AWLEN             (m_axi_mem_awlen  )
+         , .S2_AWID              (spi_s2_awid      )
+         , .S2_AWADDR            (spi_s2_awaddr    )
+         , .S2_AWLEN             (spi_s2_awlen     )
          , .S2_AWLOCK            (                 )
-         , .S2_AWSIZE            (m_axi_mem_awsize )
-         , .S2_AWBURST           (m_axi_mem_awburst)
-         , .S2_AWVALID           (m_axi_mem_awvalid)
-         , .S2_AWREADY           (m_axi_mem_awready)
-         , .S2_WDATA             (m_axi_mem_wdata  )
-         , .S2_WSTRB             (m_axi_mem_wstrb  )
-         , .S2_WLAST             (m_axi_mem_wlast  )
-         , .S2_WVALID            (m_axi_mem_wvalid )
-         , .S2_WREADY            (m_axi_mem_wready )
-         , .S2_BID               (m_axi_mem_bid    )
-         , .S2_BRESP             (m_axi_mem_bresp  )
-         , .S2_BVALID            (m_axi_mem_bvalid )
-         , .S2_BREADY            (m_axi_mem_bready )
-         , .S2_ARID              (m_axi_mem_arid   )
-         , .S2_ARADDR            (m_axi_mem_araddr )
-         , .S2_ARLEN             (m_axi_mem_arlen  )
+         , .S2_AWSIZE            (spi_s2_awsize    )
+         , .S2_AWBURST           (spi_s2_awburst   )
+         , .S2_AWVALID           (spi_s2_awvalid   )
+         , .S2_AWREADY           (spi_s2_awready   )
+         , .S2_WDATA             (spi_s2_wdata     )
+         , .S2_WSTRB             (spi_s2_wstrb     )
+         , .S2_WLAST             (spi_s2_wlast     )
+         , .S2_WVALID            (spi_s2_wvalid    )
+         , .S2_WREADY            (spi_s2_wready    )
+         , .S2_BID               (spi_s2_bid       )
+         , .S2_BRESP             (spi_s2_bresp     )
+         , .S2_BVALID            (spi_s2_bvalid    )
+         , .S2_BREADY            (spi_s2_bready    )
+         , .S2_ARID              (spi_s2_arid      )
+         , .S2_ARADDR            (spi_s2_araddr    )
+         , .S2_ARLEN             (spi_s2_arlen     )
          , .S2_ARLOCK            (                 )
-         , .S2_ARSIZE            (m_axi_mem_arsize )
-         , .S2_ARBURST           (m_axi_mem_arburst)
-         , .S2_ARVALID           (m_axi_mem_arvalid)
-         , .S2_ARREADY           (m_axi_mem_arready)
-         , .S2_RID               (m_axi_mem_rid    )
-         , .S2_RDATA             (m_axi_mem_rdata  )
-         , .S2_RRESP             (m_axi_mem_rresp  )
-         , .S2_RLAST             (m_axi_mem_rlast  )
-         , .S2_RVALID            (m_axi_mem_rvalid )
-         , .S2_RREADY            (m_axi_mem_rready )
+         , .S2_ARSIZE            (spi_s2_arsize    )
+         , .S2_ARBURST           (spi_s2_arburst   )
+         , .S2_ARVALID           (spi_s2_arvalid   )
+         , .S2_ARREADY           (spi_s2_arready   )
+         , .S2_RID               (spi_s2_rid       )
+         , .S2_RDATA             (spi_s2_rdata     )
+         , .S2_RRESP             (spi_s2_rresp     )
+         , .S2_RLAST             (spi_s2_rlast     )
+         , .S2_RVALID            (spi_s2_rvalid    )
+         , .S2_RREADY            (spi_s2_rready    )
     );
+    //--------------------------------------------------------------------------
+    // SPI AXI Controller Connection Wires
+    //--------------------------------------------------------------------------
+    wire [AXI_WIDTH_SID-1:0]  spi_s2_awid;
+    wire [AXI_WIDTH_ADDR-1:0] spi_s2_awaddr;
+    wire [ 7:0]               spi_s2_awlen;
+    wire [ 2:0]               spi_s2_awsize;
+    wire [ 1:0]               spi_s2_awburst;
+    wire                      spi_s2_awvalid;
+    wire                      spi_s2_awready;
+    wire [AXI_WIDTH_DATA-1:0] spi_s2_wdata;
+    wire [AXI_WIDTH_STRB-1:0] spi_s2_wstrb;
+    wire                      spi_s2_wlast;
+    wire                      spi_s2_wvalid;
+    wire                      spi_s2_wready;
+    wire [AXI_WIDTH_SID-1:0]  spi_s2_bid;
+    wire [ 1:0]               spi_s2_bresp;
+    wire                      spi_s2_bvalid;
+    wire                      spi_s2_bready;
+    wire [AXI_WIDTH_SID-1:0]  spi_s2_arid;
+    wire [AXI_WIDTH_ADDR-1:0] spi_s2_araddr;
+    wire [ 7:0]               spi_s2_arlen;
+    wire [ 2:0]               spi_s2_arsize;
+    wire [ 1:0]               spi_s2_arburst;
+    wire                      spi_s2_arvalid;
+    wire                      spi_s2_arready;
+    wire [AXI_WIDTH_SID-1:0]  spi_s2_rid;
+    wire [AXI_WIDTH_DATA-1:0] spi_s2_rdata;
+    wire [ 1:0]               spi_s2_rresp;
+    wire                      spi_s2_rlast;
+    wire                      spi_s2_rvalid;
+    wire                      spi_s2_rready;
+
+    //--------------------------------------------------------------------------
+    // SPI AXI Controller Instance
+    //--------------------------------------------------------------------------
+    spi_axi_controller #(
+        .AXI_WIDTH_ID   (AXI_WIDTH_SID),
+        .AXI_WIDTH_ADDR (AXI_WIDTH_ADDR),
+        .AXI_WIDTH_DATA (AXI_WIDTH_DATA),
+        .AXI_WIDTH_STRB (AXI_WIDTH_STRB),
+        .P_SIZE_IN_BYTES(4096)
+    ) u_spi_axi (
+          .axi_aresetn   (axi_aresetn)
+        , .axi_aclk      (axi_aclk)
+        , .s_axi_awid    (spi_s2_awid)
+        , .s_axi_awaddr  (spi_s2_awaddr)
+        , .s_axi_awlen   (spi_s2_awlen)
+        , .s_axi_awsize  (spi_s2_awsize)
+        , .s_axi_awburst (spi_s2_awburst)
+        , .s_axi_awvalid (spi_s2_awvalid)
+        , .s_axi_awready (spi_s2_awready)
+        , .s_axi_wdata   (spi_s2_wdata)
+        , .s_axi_wstrb   (spi_s2_wstrb)
+        , .s_axi_wlast   (spi_s2_wlast)
+        , .s_axi_wvalid  (spi_s2_wvalid)
+        , .s_axi_wready  (spi_s2_wready)
+        , .s_axi_bid     (spi_s2_bid)
+        , .s_axi_bresp   (spi_s2_bresp)
+        , .s_axi_bvalid  (spi_s2_bvalid)
+        , .s_axi_bready  (spi_s2_bready)
+        , .s_axi_arid    (spi_s2_arid)
+        , .s_axi_araddr  (spi_s2_araddr)
+        , .s_axi_arlen   (spi_s2_arlen)
+        , .s_axi_arsize  (spi_s2_arsize)
+        , .s_axi_arburst (spi_s2_arburst)
+        , .s_axi_arvalid (spi_s2_arvalid)
+        , .s_axi_arready (spi_s2_arready)
+        , .s_axi_rid     (spi_s2_rid)
+        , .s_axi_rdata   (spi_s2_rdata)
+        , .s_axi_rresp   (spi_s2_rresp)
+        , .s_axi_rlast   (spi_s2_rlast)
+        , .s_axi_rvalid  (spi_s2_rvalid)
+        , .s_axi_rready  (spi_s2_rready)
+        , .spi_cs_n      (spi_cs_n)
+        , .spi_sck       (spi_sck)
+        , .spi_mosi      (spi_mosi)
+        , .spi_miso      (spi_miso)
+    );
+    
+    //--------------------------------------------------------------------------
+    // MFRC522 RST 제어 (Active Low)
+    // 리셋 해제 후 정상 동작을 위해 HIGH로 설정
+    //--------------------------------------------------------------------------
+    reg spi_rst_reg;
+    always @(posedge axi_aclk) begin
+        if (!axi_aresetn) begin
+            spi_rst_reg <= 1'b0;  // 리셋 시 LOW
+        end else begin
+            spi_rst_reg <= 1'b1;  // 정상 동작 시 HIGH
+        end
+    end
+    assign spi_rst = spi_rst_reg;
     //--------------------------------------------------------------------------
     // on-chip memory
     mem_axi #(.AXI_WIDTH_ID   (AXI_WIDTH_SID  )

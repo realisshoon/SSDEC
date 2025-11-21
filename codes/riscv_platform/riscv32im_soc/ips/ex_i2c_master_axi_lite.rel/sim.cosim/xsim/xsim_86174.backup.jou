@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# xsim v2021.2 (64-bit)
+# SW Build 3367213 on Tue Oct 19 02:47:39 MDT 2021
+# IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
+# Start of session at: Thu Nov 20 17:29:06 2025
+# Process ID: 86174
+# Current directory: /home/sogang/test1/codes/riscv_platform/riscv32im_soc/ips/ex_i2c_master_axi_lite.rel/sim.cosim/xsim
+# Command line: xsim -mode tcl -source {xsim.dir/top_snapshot/xsim_script.tcl}
+# Log file: /home/sogang/test1/codes/riscv_platform/riscv32im_soc/ips/ex_i2c_master_axi_lite.rel/sim.cosim/xsim/xsim.log
+# Journal file: /home/sogang/test1/codes/riscv_platform/riscv32im_soc/ips/ex_i2c_master_axi_lite.rel/sim.cosim/xsim/xsim.jou
+# Running On: sogang-500TGA-500SGA, OS: Linux, CPU Frequency: 1355.756 MHz, CPU Physical cores: 10, Host memory: 16429 MB
+#-----------------------------------------------------------
+source xsim.dir/top_snapshot/xsim_script.tcl
+source xsim_run.tcl
