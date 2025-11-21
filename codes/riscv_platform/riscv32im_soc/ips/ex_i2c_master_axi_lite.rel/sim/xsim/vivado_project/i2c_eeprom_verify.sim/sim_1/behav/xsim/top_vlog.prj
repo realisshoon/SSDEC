@@ -1,0 +1,14 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  -i "../../../../../../../bench/verilog" -i "../../../../../../../beh/verilog" -i "../../../../../../../rtl/verilog" \
+"../../../../../../../rtl/verilog/i2c_master_axi_lite.v" \
+"../../../../../../../beh/verilog/i2c_slave.v" \
+
+sv xil_defaultlib  -i "../../../../../../../bench/verilog" -i "../../../../../../../beh/verilog" -i "../../../../../../../rtl/verilog" \
+"../../../../../../../bench/verilog/tester.sv" \
+"../../../../../../../bench/verilog/top.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

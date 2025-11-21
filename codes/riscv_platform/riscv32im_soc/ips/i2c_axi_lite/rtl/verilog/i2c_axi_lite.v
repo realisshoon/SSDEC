@@ -1,151 +1,127 @@
 //------------------------------------------------------------------------------
-//  I2C AXI4-Lite Top Module
-//  AT24C02 EEPROM 통신을 위한 완전한 I2C 마스터 + AXI4-Lite 인터페이스
+//  Copyright (c) 2024 by Ando Ki.
+//  All right reserved.
 //------------------------------------------------------------------------------
-// VERSION: 2025.10.29
+// i2c_axi_lite.v
 //------------------------------------------------------------------------------
 `include "i2c_axi_lite_if.v"
-`include "i2c_master.v"
+`include "i2c_core.v"
+`include "i2c_csr.v"
 
 module i2c_axi_lite
-    #(parameter Hz_counter = 120)  // 400kHz I2C clock @ 100MHz system clock
+     #(parameter CLK_FREQ=100_000_000
+               // 시뮬레이션에서 충분한 I2C 토글을 보기 위해 기본값을 빠르게 설정
+               , I2C_CLK_FREQ=5_000_000) // I2C clock frequency (for cosim, effectively ~5MHz)
 (
-    // Reset and Clock
-    (* X_INTERFACE_PARAMETER = "POLARITY ACTIVE_LOW" *)
-    (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 aresetn RST" *)
-    input  wire          aresetn,
-    
-    (* X_INTERFACE_PARAMETER = "ASSOCIATED_BUSIF s_axi_lite, ASSOCIATED_RESET aresetn" *)
-    (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 aclk CLK" *)
-    input  wire          aclk,
+     (* X_INTERFACE_PARAMETER = "POLARITY ACTIVE_LOW" *)
+     (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 aresetn RST"*) input  wire          aresetn,
+     (* X_INTERFACE_PARAMETER = "ASSOCIATED_BUSIF s_axi_" *)
+     (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 aclk CLK"   *) input  wire          aclk,
 
-    // AXI4-Lite Slave Interface
-    (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_lite AWADDR" *)
-    input  wire [31:0]   s_axi_awaddr,
-    (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_lite AWVALID" *)
-    input  wire          s_axi_awvalid,
-    (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_lite AWREADY" *)
-    output wire          s_axi_awready,
-    
-    (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_lite WDATA" *)
-    input  wire [31:0]   s_axi_wdata,
-    (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_lite WVALID" *)
-    input  wire          s_axi_wvalid,
-    (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_lite WREADY" *)
-    output wire          s_axi_wready,
-    
-    (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_lite BRESP" *)
-    output wire [ 1:0]   s_axi_bresp,
-    (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_lite BVALID" *)
-    output wire          s_axi_bvalid,
-    (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_lite BREADY" *)
-    input  wire          s_axi_bready,
-    
-    (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_lite ARADDR" *)
-    input  wire [31:0]   s_axi_araddr,
-    (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_lite ARVALID" *)
-    input  wire          s_axi_arvalid,
-    (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_lite ARREADY" *)
-    output wire          s_axi_arready,
-    
-    (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_lite RDATA" *)
-    output wire [31:0]   s_axi_rdata,
-    (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_lite RRESP" *)
-    output wire [ 1:0]   s_axi_rresp,
-    (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_lite RVALID" *)
-    output wire          s_axi_rvalid,
-    (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_lite RREADY" *)
-    input  wire          s_axi_rready,
-    
-    // I2C Physical Interface
-    inout  wire          i2c_sda,
-    output wire          i2c_scl
+     (* X_INTERFACE_PARAMETER = "ASSOCIATED_BUSIF s_axi_,ASSOCIATED_RESET aresetn,CLK_DOMAIN aclk" *)
+     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ AWADDR"  *) input  wire [31:0] s_axi_awaddr,
+     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ AWVALID" *) input  wire        s_axi_awvalid,
+     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ AWREADY" *) output wire        s_axi_awready,
+     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ WDATA"   *) input  wire [31:0] s_axi_wdata,
+     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ WVALID"  *) input  wire        s_axi_wvalid,
+     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ WREADY"  *) output wire        s_axi_wready,
+     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ BRESP"   *) output wire [ 1:0] s_axi_bresp,
+     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ BVALID"  *) output wire        s_axi_bvalid,
+     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ BREADY"  *) input  wire        s_axi_bready,
+     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ ARADDR"  *) input  wire [31:0] s_axi_araddr,
+     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ ARVALID" *) input  wire        s_axi_arvalid,
+     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ ARREADY" *) output wire        s_axi_arready,
+     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ RDATA"   *) output wire [31:0] s_axi_rdata,
+     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ RRESP"   *) output wire [ 1:0] s_axi_rresp,
+     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ RVALID"  *) output wire        s_axi_rvalid,
+     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ RREADY"  *) input  wire        s_axi_rready
+
+    , inout wire          sda
+    , output wire         scl
 );
+    //--------------------------------------------------------------------------
+    localparam ADD_WIDTH=8;
+    wire   [ADD_WIDTH-1:0]  bram_addr;
+    wire   [31:0]           bram_wr_data;
+    wire   [31:0]           bram_rd_data;
+    wire                    bram_rd;
+    wire                    bram_wr;
+    //--------------------------------------------------------------------------
 
     //--------------------------------------------------------------------------
-    // Internal Signals
-    //--------------------------------------------------------------------------
-    // [수정] i2c_master.v 인터페이스 변경에 따른 신호명 업데이트
-    // data0 -> i2c_ctrl, data1 -> wdata, data2 -> rdata (output)
-    wire [31:0] i2c_ctrl;     // i2c_master로 전달할 제어/주소 데이터
-    wire [31:0] wdata;        // i2c_master로 전달할 쓰기 데이터
-    wire [31:0] rdata;        // i2c_master에서 받는 읽기 데이터 (output)
-    wire        i2c_start;
-    wire        i2c_busy;
-    
-    //--------------------------------------------------------------------------
-    // AXI4-Lite Interface Module
-    //--------------------------------------------------------------------------
-    i2c_axi_lite_if u_i2c_axi_lite_if (
-        // AXI4-Lite Interface
-        .s_axi_aresetn  (aresetn),
-        .s_axi_aclk     (aclk),
-        .s_axi_awaddr   (s_axi_awaddr),
-        .s_axi_awvalid  (s_axi_awvalid),
-        .s_axi_awready  (s_axi_awready),
-        .s_axi_wdata    (s_axi_wdata),
-        .s_axi_wvalid   (s_axi_wvalid),
-        .s_axi_wready   (s_axi_wready),
-        .s_axi_bresp    (s_axi_bresp),
-        .s_axi_bvalid   (s_axi_bvalid),
-        .s_axi_bready   (s_axi_bready),
-        .s_axi_araddr   (s_axi_araddr),
-        .s_axi_arvalid  (s_axi_arvalid),
-        .s_axi_arready  (s_axi_arready),
-        .s_axi_rdata    (s_axi_rdata),
-        .s_axi_rresp    (s_axi_rresp),
-        .s_axi_rvalid   (s_axi_rvalid),
-        .s_axi_rready   (s_axi_rready),
-        
-        // I2C Master Interface
-        .i2c_ctrl       (i2c_ctrl),    // 변경: i2c_data0 -> i2c_ctrl
-        .wdata          (wdata),        // 변경: i2c_data1 -> wdata
-        .rdata          (rdata),        // 변경: i2c_data2 -> rdata (output)
-        .i2c_start      (i2c_start),
-        .i2c_busy       (i2c_busy)
+    i2c_axi_lite_if #(.ADD_WIDTH(ADD_WIDTH))
+    u_axi_lite_if (
+          .aresetn       ( aresetn       )
+        , .aclk          ( aclk          )
+        , .s_axi_awaddr  ( s_axi_awaddr  )
+        , .s_axi_awvalid ( s_axi_awvalid )
+        , .s_axi_awready ( s_axi_awready )
+        , .s_axi_wdata   ( s_axi_wdata   )
+        , .s_axi_wvalid  ( s_axi_wvalid  )
+        , .s_axi_wready  ( s_axi_wready  )
+        , .s_axi_bresp   ( s_axi_bresp   )
+        , .s_axi_bvalid  ( s_axi_bvalid  )
+        , .s_axi_bready  ( s_axi_bready  )
+        , .s_axi_araddr  ( s_axi_araddr  )
+        , .s_axi_arvalid ( s_axi_arvalid )
+        , .s_axi_arready ( s_axi_arready )
+        , .s_axi_rdata   ( s_axi_rdata   )
+        , .s_axi_rresp   ( s_axi_rresp   )
+        , .s_axi_rvalid  ( s_axi_rvalid  )
+        , .s_axi_rready  ( s_axi_rready  )
+        , .bram_addr     ( bram_addr     )
+        , .bram_wr       ( bram_wr       )
+        , .bram_wr_data  ( bram_wr_data  )
+        , .bram_rd       ( bram_rd       )
+        , .bram_rd_data  ( bram_rd_data  )
     );
-    
     //--------------------------------------------------------------------------
-    // I2C Master Module
-    //--------------------------------------------------------------------------
-    // BUSY signal generation (간단한 구현)
-    reg i2c_busy_reg;
-    reg [7:0] busy_counter;
-    
-    always @(posedge aclk or negedge aresetn) begin
-        if (!aresetn) begin
-            i2c_busy_reg <= 1'b0;
-            busy_counter <= 8'h0;
-        end
-        else begin
-            if (i2c_start && !i2c_busy_reg) begin
-                i2c_busy_reg <= 1'b1;
-                busy_counter <= 8'd100; // 타이밍 조정 필요
-            end
-            else if (i2c_busy_reg) begin
-                if (busy_counter > 0) begin
-                    busy_counter <= busy_counter - 1;
-                end
-                else begin
-                    i2c_busy_reg <= 1'b0;
-                end
-            end
-        end
-    end
-    
-    assign i2c_busy = i2c_busy_reg;
-    
-    I2C #(
-        .Hz_counter(Hz_counter)
-    ) u_i2c_master (
-        .clk        (aclk),
-        .n_rst      (aresetn),
-        .i2c_ctrl   (i2c_ctrl),   // 변경: data0 -> i2c_ctrl
-        .wdata      (wdata),      // 변경: data1 -> wdata
-        .rdata      (rdata),      // 변경: data2 -> rdata (output)
-        .sda        (i2c_sda),
-        .scl        (i2c_scl)
+    wire [31:0] csr_data0;
+    wire [31:0] csr_data1;
+    wire [31:0] csr_data2;
+    wire        status_busy;
+    wire        status_ack_err;
+    wire        status_done;
+    wire        status_data_ready;
+    i2c_csr #(.CLK_FREQ(CLK_FREQ))
+    u_csr (
+          .reset_n  ( aresetn      )
+        , .clk      ( aclk         )
+        , .addr     ( bram_addr    )  
+        , .wren     ( bram_wr      )
+        , .rden     ( bram_rd      )
+        , .wdata    ( bram_wr_data )
+        , .rdata    ( bram_rd_data )
+        , .data0    ( csr_data0    )
+        , .data1    ( csr_data1    )
+        , .data2    ( csr_data2    )
+        , .status_busy       ( status_busy       )
+        , .status_ack_err    ( status_ack_err    )
+        , .status_done       ( status_done       )
+        , .status_data_ready ( status_data_ready )
     );
+    //--------------------------------------------------------------------------
+    // data2: read-only buffer exposed from I2C core (driven by I2C core)
+    localparam Hz_counter = CLK_FREQ / (I2C_CLK_FREQ * 2);
 
+    I2C #(.Hz_counter(Hz_counter))
+    u_i2c (
+          .clk     ( aclk      )
+        , .n_rst   ( aresetn   )
+        , .data0   ( csr_data0 )
+        , .data1   ( csr_data1 )
+        , .data2   ( csr_data2 )
+        , .status_busy       ( status_busy       )
+        , .status_ack_error  ( status_ack_err    )
+        , .status_done       ( status_done       )
+        , .status_data_ready ( status_data_ready )
+        , .sda     ( sda       )
+        , .scl     ( scl       )
+    );
+    //--------------------------------------------------------------------------
 endmodule
-
+//------------------------------------------------------------------------------
+// Revision history
+//
+// 2024.08.10: Started by Ando Ki (andoki@gmail.com)
+//------------------------------------------------------------------------------

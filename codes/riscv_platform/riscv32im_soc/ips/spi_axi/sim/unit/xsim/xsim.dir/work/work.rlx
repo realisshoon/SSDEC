@@ -1,0 +1,7 @@
+0.7
+2020.2
+Oct 19 2021
+02:56:52
+/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/spi_axi/bench/unit/verilog/spi_checker.sv,1763432587,systemVerilog,,/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/spi_axi/rtl/verilog/spi_master.v,,spi_checker,,,../../../bench/unit/verilog;../../../rtl/verilog,,,,,
+/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/spi_axi/bench/unit/verilog/top.sv,1763450312,systemVerilog,,/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/spi_axi/bench/unit/verilog/spi_checker.sv,,top,,,../../../bench/unit/verilog;../../../rtl/verilog,,,,,
+/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/spi_axi/rtl/verilog/spi_master.v,1763457141,systemVerilog,,,,SPI_master,,,../../../bench/unit/verilog;../../../rtl/verilog,,,,,

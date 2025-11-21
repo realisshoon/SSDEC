@@ -11,7 +11,7 @@ fi
 if [ -z "$2" ]; then
     INIT_PATH="../../sw.arm/bootgen/ps7_init.tcl"
 else
-    FSBL_PATH="$1"
+    INIT_PATH="$2"
 fi
 
 
@@ -19,7 +19,7 @@ xsct -interactive << EOF
 #connect -url TCP:127.0.0.1:3121
 connect
 targets -set -nocase -filter {name =~"APU*"}
-source ps7_init.tcl
+source ${INIT_PATH}
 ps7_init
 ps7_post_config
 targets -set -nocase -filter {name =~ "*A9*#0"}

@@ -1,0 +1,11 @@
+
+ api/                API
+ bench/              test-bench for RTL-simulation
+ bench.cosim/        test-bench for HW/SW co-simulation
+ c.cosim/            C part of HW/SW co-simulation
+ rtl/                RTL
+ sim/                simulation project for RTL simulation
+ sim.cosim/          simulation project for HW/SW co-simulation
+ syn/                Logic synthesis
+
+

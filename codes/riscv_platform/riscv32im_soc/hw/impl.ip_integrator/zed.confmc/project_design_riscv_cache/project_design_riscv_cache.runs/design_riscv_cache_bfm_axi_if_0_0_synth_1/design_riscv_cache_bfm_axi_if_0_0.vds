@@ -1,0 +1,304 @@
+#-----------------------------------------------------------
+# Vivado v2021.2 (64-bit)
+# SW Build 3367213 on Tue Oct 19 02:47:39 MDT 2021
+# IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
+# Start of session at: Wed Nov  5 18:56:50 2025
+# Process ID: 393803
+# Current directory: /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_bfm_axi_if_0_0_synth_1
+# Command line: vivado -log design_riscv_cache_bfm_axi_if_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_riscv_cache_bfm_axi_if_0_0.tcl
+# Log file: /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_bfm_axi_if_0_0_synth_1/design_riscv_cache_bfm_axi_if_0_0.vds
+# Journal file: /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_bfm_axi_if_0_0_synth_1/vivado.jou
+# Running On: sogang-500TGA-500SGA, OS: Linux, CPU Frequency: 3371.364 MHz, CPU Physical cores: 10, Host memory: 16429 MB
+#-----------------------------------------------------------
+source design_riscv_cache_bfm_axi_if_0_0.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/opt/confmc/2020.06/hwlib/trx_axi/gen_ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2021.2/data/ip'.
+Command: synth_design -top design_riscv_cache_bfm_axi_if_0_0 -part xc7z020clg484-1 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg484-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 393910
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2749.824 ; gain = 0.000 ; free physical = 552 ; free virtual = 78961
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'design_riscv_cache_bfm_axi_if_0_0' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_bfm_axi_if_0_0/synth/design_riscv_cache_bfm_axi_if_0_0.v:57]
+INFO: [Synth 8-6157] synthesizing module 'bfm_axi_if' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ipshared/415e/src/bfm_axi_if.v:12]
+INFO: [Synth 8-6157] synthesizing module 'IOBUF' [/tools/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:59735]
+INFO: [Synth 8-6155] done synthesizing module 'IOBUF' (1#1) [/tools/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:59735]
+INFO: [Synth 8-6157] synthesizing module 'bfm_axi' [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ipshared/415e/src/bfm_axi.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'bfm_axi_if' (2#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ipshared/415e/src/bfm_axi_if.v:12]
+INFO: [Synth 8-6155] done synthesizing module 'design_riscv_cache_bfm_axi_if_0_0' (3#1) [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_bfm_axi_if_0_0/synth/design_riscv_cache_bfm_axi_if_0_0.v:57]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:18 . Memory (MB): peak = 2749.824 ; gain = 0.000 ; free physical = 252 ; free virtual = 77380
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:23 . Memory (MB): peak = 2749.824 ; gain = 0.000 ; free physical = 285 ; free virtual = 77124
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:23 . Memory (MB): peak = 2749.824 ; gain = 0.000 ; free physical = 285 ; free virtual = 77124
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2749.824 ; gain = 0.000 ; free physical = 281 ; free virtual = 77056
+INFO: [Netlist 29-17] Analyzing 32 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2813.777 ; gain = 0.000 ; free physical = 2320 ; free virtual = 78662
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 32 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 32 instances
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.22 . Memory (MB): peak = 2813.777 ; gain = 0.000 ; free physical = 2269 ; free virtual = 78611
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:07 ; elapsed = 00:00:44 . Memory (MB): peak = 2813.777 ; gain = 63.953 ; free physical = 2098 ; free virtual = 78447
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg484-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:07 ; elapsed = 00:00:44 . Memory (MB): peak = 2813.777 ; gain = 63.953 ; free physical = 2098 ; free virtual = 78447
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:07 ; elapsed = 00:00:44 . Memory (MB): peak = 2813.777 ; gain = 63.953 ; free physical = 2098 ; free virtual = 78447
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:44 . Memory (MB): peak = 2813.777 ; gain = 63.953 ; free physical = 2100 ; free virtual = 78453
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+INFO: [Synth 8-3917] design design_riscv_cache_bfm_axi_if_0_0 has port m_axi_awcache[3] driven by constant 0
+INFO: [Synth 8-3917] design design_riscv_cache_bfm_axi_if_0_0 has port m_axi_awcache[2] driven by constant 0
+INFO: [Synth 8-3917] design design_riscv_cache_bfm_axi_if_0_0 has port m_axi_awcache[1] driven by constant 0
+INFO: [Synth 8-3917] design design_riscv_cache_bfm_axi_if_0_0 has port m_axi_awcache[0] driven by constant 0
+INFO: [Synth 8-3917] design design_riscv_cache_bfm_axi_if_0_0 has port m_axi_awprot[2] driven by constant 0
+INFO: [Synth 8-3917] design design_riscv_cache_bfm_axi_if_0_0 has port m_axi_awprot[1] driven by constant 0
+INFO: [Synth 8-3917] design design_riscv_cache_bfm_axi_if_0_0 has port m_axi_awprot[0] driven by constant 0
+INFO: [Synth 8-3917] design design_riscv_cache_bfm_axi_if_0_0 has port m_axi_arcache[3] driven by constant 0
+INFO: [Synth 8-3917] design design_riscv_cache_bfm_axi_if_0_0 has port m_axi_arcache[2] driven by constant 0
+INFO: [Synth 8-3917] design design_riscv_cache_bfm_axi_if_0_0 has port m_axi_arcache[1] driven by constant 0
+INFO: [Synth 8-3917] design design_riscv_cache_bfm_axi_if_0_0 has port m_axi_arcache[0] driven by constant 0
+INFO: [Synth 8-3917] design design_riscv_cache_bfm_axi_if_0_0 has port m_axi_arprot[2] driven by constant 0
+INFO: [Synth 8-3917] design design_riscv_cache_bfm_axi_if_0_0 has port m_axi_arprot[1] driven by constant 0
+INFO: [Synth 8-3917] design design_riscv_cache_bfm_axi_if_0_0 has port m_axi_arprot[0] driven by constant 0
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:08 ; elapsed = 00:00:45 . Memory (MB): peak = 2813.777 ; gain = 63.953 ; free physical = 2133 ; free virtual = 78515
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:53 . Memory (MB): peak = 2813.777 ; gain = 63.953 ; free physical = 2021 ; free virtual = 78411
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:53 . Memory (MB): peak = 2813.777 ; gain = 63.953 ; free physical = 2021 ; free virtual = 78411
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:11 ; elapsed = 00:00:53 . Memory (MB): peak = 2813.777 ; gain = 63.953 ; free physical = 1967 ; free virtual = 78357
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:13 ; elapsed = 00:00:55 . Memory (MB): peak = 2813.777 ; gain = 63.953 ; free physical = 1945 ; free virtual = 78335
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:13 ; elapsed = 00:00:55 . Memory (MB): peak = 2813.777 ; gain = 63.953 ; free physical = 1945 ; free virtual = 78335
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:13 ; elapsed = 00:00:55 . Memory (MB): peak = 2813.777 ; gain = 63.953 ; free physical = 1945 ; free virtual = 78335
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:13 ; elapsed = 00:00:55 . Memory (MB): peak = 2813.777 ; gain = 63.953 ; free physical = 1945 ; free virtual = 78335
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:13 ; elapsed = 00:00:55 . Memory (MB): peak = 2813.777 ; gain = 63.953 ; free physical = 1945 ; free virtual = 78335
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:13 ; elapsed = 00:00:55 . Memory (MB): peak = 2813.777 ; gain = 63.953 ; free physical = 1945 ; free virtual = 78335
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+--------------+----------+
+|      |BlackBox name |Instances |
++------+--------------+----------+
+|1     |bfm_axi       |         1|
++------+--------------+----------+
+
+Report Cell Usage: 
++------+-------------+------+
+|      |Cell         |Count |
++------+-------------+------+
+|1     |bfm_axi_bbox |     1|
+|2     |IOBUF        |    32|
++------+-------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:13 ; elapsed = 00:00:55 . Memory (MB): peak = 2813.777 ; gain = 63.953 ; free physical = 1937 ; free virtual = 78327
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:12 ; elapsed = 00:00:38 . Memory (MB): peak = 2813.777 ; gain = 0.000 ; free physical = 2058 ; free virtual = 78449
+Synthesis Optimization Complete : Time (s): cpu = 00:00:13 ; elapsed = 00:00:55 . Memory (MB): peak = 2813.777 ; gain = 63.953 ; free physical = 2074 ; free virtual = 78465
+INFO: [Project 1-571] Translating synthesized netlist
+Parsing EDIF File [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_bfm_axi_if_0_0/src/bfm_axi.edif]
+Finished Parsing EDIF File [/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache/ip/design_riscv_cache_bfm_axi_if_0_0/src/bfm_axi.edif]
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2813.777 ; gain = 0.000 ; free physical = 2644 ; free virtual = 79052
+INFO: [Netlist 29-17] Analyzing 163 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2019.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[0] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[0] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[10] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[10] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[11] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[11] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[12] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[12] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[13] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[13] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[14] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[14] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[15] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[15] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[16] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[16] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[17] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[17] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[18] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[18] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[19] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[19] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[1] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[1] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[20] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[20] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[21] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[21] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[22] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[22] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[23] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[23] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[24] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[24] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[25] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[25] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[26] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[26] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[27] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[27] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[28] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[28] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[29] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[29] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[2] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[2] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[30] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[30] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[31] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[31] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[3] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[3] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[4] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[4] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[5] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[5] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[6] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[6] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[7] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[7] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[8] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[8] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+CRITICAL WARNING: [Constraints 18-841] Port SL_DT[9] has IOB constraint. But it drives multiple flops. Please specify IOB constraint on individual flop. The IOB constraint on port will be ignored.
+WARNING: [Constraints 18-5573] Port SL_DT[9] has IOB constraint set, However, the instance inst/u_bfm_axi/u_gpif2mst/SL_DT_T_reg connected to it does not seem to have valid I/O connection to be placed into I/O. The constraint on the port will be ignored.
+WARNING: [Constraints 18-5572] Instance inst/u_bfm_axi/u_gpif2mst/SL_AD_reg[1] has IOB constraint set, However, the instance does not seem to have valid I/O connection to be placed into I/O. The constraint on the instance will be ignored.
+WARNING: [Constraints 18-5572] Instance inst/u_bfm_axi/u_gpif2mst/SL_OE_N_reg has IOB constraint set, However, the instance does not seem to have valid I/O connection to be placed into I/O. The constraint on the instance will be ignored.
+WARNING: [Constraints 18-5572] Instance inst/u_bfm_axi/u_gpif2mst/SL_PKTEND_N_reg has IOB constraint set, However, the instance does not seem to have valid I/O connection to be placed into I/O. The constraint on the instance will be ignored.
+WARNING: [Constraints 18-5572] Instance inst/u_bfm_axi/u_gpif2mst/SL_RD_N_reg has IOB constraint set, However, the instance does not seem to have valid I/O connection to be placed into I/O. The constraint on the instance will be ignored.
+WARNING: [Constraints 18-5572] Instance inst/u_bfm_axi/u_gpif2mst/SL_WR_N_reg has IOB constraint set, However, the instance does not seem to have valid I/O connection to be placed into I/O. The constraint on the instance will be ignored.
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2813.777 ; gain = 0.000 ; free physical = 2795 ; free virtual = 79206
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 45 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 32 instances
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 13 instances
+
+Synth Design complete, checksum: 72192b0e
+INFO: [Common 17-83] Releasing license: Synthesis
+41 Infos, 38 Warnings, 32 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:21 ; elapsed = 00:01:01 . Memory (MB): peak = 2813.777 ; gain = 64.031 ; free physical = 2970 ; free virtual = 79382
+report_design_analysis: Time (s): cpu = 00:00:00.13 ; elapsed = 00:00:07 . Memory (MB): peak = 2845.793 ; gain = 0.000 ; free physical = 3129 ; free virtual = 79571
+INFO: [Common 17-1381] The checkpoint '/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_bfm_axi_if_0_0_synth_1/design_riscv_cache_bfm_axi_if_0_0.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:00.52 ; elapsed = 00:00:07 . Memory (MB): peak = 2845.793 ; gain = 32.016 ; free physical = 3139 ; free virtual = 79576
+INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
+INFO: [Coretcl 2-1174] Renamed 79 cell refs.
+INFO: [Common 17-1381] The checkpoint '/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/impl.ip_integrator/zed.confmc/project_design_riscv_cache/project_design_riscv_cache.runs/design_riscv_cache_bfm_axi_if_0_0_synth_1/design_riscv_cache_bfm_axi_if_0_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file design_riscv_cache_bfm_axi_if_0_0_utilization_synth.rpt -pb design_riscv_cache_bfm_axi_if_0_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Wed Nov  5 18:58:19 2025...

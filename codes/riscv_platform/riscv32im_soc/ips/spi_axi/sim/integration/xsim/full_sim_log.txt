@@ -1,0 +1,37 @@
+
+****** xsim v2021.2 (64-bit)
+  **** SW Build 3367213 on Tue Oct 19 02:47:39 MDT 2021
+  **** IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
+    ** Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
+
+source xsim.dir/top_axi_switch/xsim_script.tcl
+# xsim {top_axi_switch} -autoloadwcfg -tclbatch {xsim_run.tcl}
+Time resolution is 1 ps
+source xsim_run.tcl
+## log_wave -recursive *
+## run 50us
+[5000] SPI Transaction END
+[5000]   MFRC522 Model - Addr:0x00, Data:0x00, R/W=0
+[5000] ========================================
+========================================
+SPI AXI Controller Test
+========================================
+
+[Test 1] Register Access Test
+----------------------------
+Writing ADDR register: 0x00000037
+[1125000] M0 Write Address: AWADDR=0x02000004, AWID=0, AWVALID=1, AWREADY=1
+[1125000] S2 Write Address: AWADDR=0x02000004, AWID=0, AWVALID=1, AWREADY=1
+[1135000] M0 Write Data: WDATA=0x00000037, WSTRB=0xf, WLAST=1, WVALID=1, WREADY=1
+[1135000] S2 Write Data: WDATA=0x00000037, WSTRB=0xf, WLAST=1, WVALID=1, WREADY=1
+[1235000] M0 Read Address: ARADDR=0x02000004, ARID=0, ARVALID=1
+[1245000] SPI_AXI Read Start: ARID=0x0, ARADDR=0x02000004, ARLEN=0, addrR=0x00000000
+[1245000] M0 Read Address Accepted: ARREADY=1
+[1245000] SPI_AXI Read Internal: addrR=0x02000004, addrR[4:2]=1, spi_addr=0x37, rdata_internal=0x00000037
+[1265000] SPI_AXI Read Data: RID=0x0, RDATA=0x00000000, rdata_internal=0x00000037, RVALID=1, RREADY=0
+[1275000] SPI_AXI Read Data: RID=0x0, RDATA=0x00000037, rdata_internal=0x00000037, RVALID=1, RREADY=1
+[1275000] M0 Read Data: RDATA=0x00000037, RID=0, RVALID=1, RREADY=1
+Reading ADDR register: 0x00000037
+Writing DATA_IN register: 0x000000aa
+## quit
+INFO: [Common 17-206] Exiting xsim at Wed Nov 19 15:26:57 2025...

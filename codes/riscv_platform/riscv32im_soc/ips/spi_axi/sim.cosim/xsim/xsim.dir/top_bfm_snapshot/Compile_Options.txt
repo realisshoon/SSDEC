@@ -1,0 +1,1 @@
+-d "COSIM_DPI=1" -sv_root "/home/sogang/pjt/team2/codes/cosim_bfm_library/lib/xsim/linux_x86_64" -sv_lib "cosim_dpi_bfm" -debug "typical" -top "top_bfm" -snapshot "top_bfm_snapshot" 

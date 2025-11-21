@@ -7,11 +7,11 @@ MAKEFILE = Makefile
 PLATFORM = $(shell uname -s | tr '[:upper:]' '[:lower:]')
 MACHINE  = $(shell uname -m)
 
-export TARGET   = uart_test
+export TARGET   = gpio_test
 #-------------------------------------------------------------------------------
 ifeq ($(MAKECMDGOALS),$(findstring $(MAKECMDGOALS), "" "all" "sw" "sim"))
     ifndef RISCV
-       export RISCV = $(HOME)/riscv32)
+       export RISCV = $(HOME)/pjt/team2/codes/riscv32im
        $(warning RISCV environment variable updated $(RISCV))
     endif
     export HOST = riscv32-unknown-elf
@@ -26,12 +26,13 @@ endif
 #-------------------------------------------------------------------------------
 export DIR_SRC    := ./src
 export DIR_UART   := ../../ips/uart_axi_lite
-#28800 115200 460800 921600
+export DIR_GPIO   := ../../ips/gpio_axi_lite
+export DIR_I2C    := ../../ips/i2c_axi_lite
 export BAUD_RATE  := 115200
 #export BAUD_RATE  := 921600
 export VCD := 1
 
-SRC.C   = main.c my_printf.c uart_api.c gpio_api.c
+SRC.C   = main.c my_printf.c uart_api.c gpio_api.c keypad_api.c i2c_api.c syscalls.c
 SRC.S   = start.S
 OBJS    = $(SRC.S:.S=.o) $(SRC.C:.c=.o)
 
@@ -48,7 +49,10 @@ ABI     = ilp32
 ASFLAGS = -march=$(ARCH) -mabi=$(ABI)
 # add -v to get more information for gcc
 CFLAGS  = -march=$(ARCH) -mabi=$(ABI) -DBAUD_RATE=$(BAUD_RATE)
-INCS    = -I $(DIR_SRC) -I $(DIR_UART)/api/c\
+INCS    = -I $(DIR_SRC) \
+          -I $(DIR_UART)/api/c \
+          -I $(DIR_GPIO)/api/c \
+          -I $(DIR_I2C)/api/c \
           -I $(RISCV)/$(HOST)/include\
           -I $(RISCV)/lib/gcc/$(HOST)/$(GCCVER)/include
 LDFLAGS = -nostdlib -static\
@@ -61,8 +65,8 @@ LDFLAGS = -nostdlib -static\
 #          -Ttext-segment $(ADDR_ENTRY)
 
 #-------------------------------------------------------------------------------
-vpath %.h   $(DIR_SRC):$(DIR_UART)/api/c
-vpath %.c   $(DIR_SRC):$(DIR_UART)/api/c
+vpath %.h   $(DIR_SRC):$(DIR_UART)/api/c:$(DIR_GPIO)/api/c:$(DIR_I2C)/api/c
+vpath %.c   $(DIR_SRC):$(DIR_UART)/api/c:$(DIR_GPIO)/api/c:$(DIR_I2C)/api/c
 vpath %.S   $(DIR_SRC)
 
 $(DIR_OBJ)/%.o: %.c
@@ -116,7 +120,10 @@ program:
 	$(DIR_BIT)/program_fpga.sh $(DIR_BIT)/design_riscv_cache_wrapper.bit
 
 download:
-	../../sw.confmc/elf_download/elf_download -A $(TARGET).elf -B u.bin -D
+	@echo "Downloading $(TARGET).elf to CONFMC..."
+	@../../sw.confmc/elf_download/elf_download -A $(TARGET).elf -B u.bin -D -g 1
+	@echo "Download completed successfully!"
+
 
 #-------------------------------------------------------------------------------
 #export SIMULATOR ?= iverilog
@@ -132,7 +139,7 @@ ifeq ($(MAKECMDGOALS),$(findstring $(MAKECMDGOALS), "hw" "sim"))
         ifeq (, $(shell which iverilog))
            $(error iverilog not found.)
         endif
-        export DIR_HW_SIM = ../../hw/sim.riscv_cache_soc/iverilog
+        #export DIR_HW_SIM = ../../hw/sim.riscv_cache_soc/iverilog
     endif
     FILE_BIN = $(abspath $(TARGET).bin)
    #FILE_BIN = $(abspath ../../sw.confmc/elf_download/u.bin)

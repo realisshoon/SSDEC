@@ -1,0 +1,12 @@
+# Vivado project file for I2C AXI-Lite simulation
+# Generated on 2024-10-03
+
+# RTL files
+$(DIR_RTL)/i2c_axi_lite.v
+$(DIR_RTL)/i2c_axi_lite_if.v
+$(DIR_RTL)/i2c_csr.v
+$(DIR_RTL)/i2c_core.v
+
+# Testbench files
+$(DIR_BENCH)/eeprom_model.v
+$(DIR_BENCH)/tester_i2c_axi_lite.sv

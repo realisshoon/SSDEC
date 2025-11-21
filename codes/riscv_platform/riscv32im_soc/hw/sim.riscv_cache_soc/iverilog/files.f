@@ -1,0 +1,52 @@
++incdir+$(DIR_BENCH)
+        $(DIR_BENCH)/top.sv
+        $(DIR_BENCH)/tester.sv
+        $(DIR_BENCH)/tty.sv
++incdir+$(DIR_AXI_SWITCH)/rtl/verilog
+        $(DIR_AXI_SWITCH)/rtl/verilog/axi_switch_m3s3.v
++incdir+$(DIR_MEM_AXI)/rtl/verilog
+        $(DIR_MEM_AXI)/rtl/verilog/mem_axi.v
++incdir+$(DIR_AXI2LITE)/rtl/verilog
+        $(DIR_AXI2LITE)/rtl/verilog/axi4_to_lite.v
++incdir+$(DIR_AXI4_LITE_BUS)/rtl/verilog\
+        $(DIR_AXI4_LITE_BUS)/rtl/verilog/amba_axi_lite_m3.v
++incdir+$(DIR_PIC_AXI_LITE)/rtl/verilog
+        $(DIR_PIC_AXI_LITE)/rtl/verilog/pic_axi_lite.v
++incdir+$(DIR_TIMER_AXI_LITE)/rtl/verilog
+        $(DIR_TIMER_AXI_LITE)/rtl/verilog/timer_axi_lite.v
++incdir+$(DIR_UART_AXI_LITE)/rtl/verilog
+        $(DIR_UART_AXI_LITE)/rtl/verilog/uart_axi_lite.v
++incdir+$(DIR_RTL)
+        $(DIR_RTL)/riscv_cache_soc.v
+        $(DIR_RTL)/riscv_cache_core.v
++incdir+$(RISCV_CORE)/top_cache_axi/src_v
+        $(RISCV_CORE)/top_cache_axi/src_v/dcache_axi_axi.v
+        $(RISCV_CORE)/top_cache_axi/src_v/dcache_axi.v
+        $(RISCV_CORE)/top_cache_axi/src_v/dcache_core_data_ram.v
+        $(RISCV_CORE)/top_cache_axi/src_v/dcache_core_tag_ram.v
+        $(RISCV_CORE)/top_cache_axi/src_v/dcache_core.v
+        $(RISCV_CORE)/top_cache_axi/src_v/dcache_if_pmem.v
+        $(RISCV_CORE)/top_cache_axi/src_v/dcache_mux.v
+        $(RISCV_CORE)/top_cache_axi/src_v/dcache_pmem_mux.v
+        $(RISCV_CORE)/top_cache_axi/src_v/dcache.v
+        $(RISCV_CORE)/top_cache_axi/src_v/icache_data_ram.v
+        $(RISCV_CORE)/top_cache_axi/src_v/icache_tag_ram.v
+        $(RISCV_CORE)/top_cache_axi/src_v/icache.v
++incdir+$(RISCV_CORE)/core/riscv
+        $(RISCV_CORE)/core/riscv/riscv_alu.v
+        $(RISCV_CORE)/core/riscv/riscv_core.v
+        $(RISCV_CORE)/core/riscv/riscv_csr_regfile.v
+        $(RISCV_CORE)/core/riscv/riscv_csr.v
+        $(RISCV_CORE)/core/riscv/riscv_decoder.v
+        $(RISCV_CORE)/core/riscv/riscv_decode.v
+        $(RISCV_CORE)/core/riscv/riscv_divider.v
+        $(RISCV_CORE)/core/riscv/riscv_exec.v
+        $(RISCV_CORE)/core/riscv/riscv_fetch.v
+        $(RISCV_CORE)/core/riscv/riscv_issue.v
+        $(RISCV_CORE)/core/riscv/riscv_lsu.v
+        $(RISCV_CORE)/core/riscv/riscv_mmu.v
+        $(RISCV_CORE)/core/riscv/riscv_multiplier.v
+        $(RISCV_CORE)/core/riscv/riscv_pipe_ctrl.v
+        $(RISCV_CORE)/core/riscv/riscv_regfile.v
+        $(RISCV_CORE)/core/riscv/riscv_trace_sim.v
+        $(RISCV_CORE)/core/riscv/riscv_xilinx_2r1w.v

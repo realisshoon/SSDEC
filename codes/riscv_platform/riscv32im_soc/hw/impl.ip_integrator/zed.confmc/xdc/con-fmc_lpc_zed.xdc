@@ -54,6 +54,8 @@ set_property PACKAGE_PIN L17 [get_ports SL_RST_N]
 set_property PACKAGE_PIN M17 [get_ports {SL_MODE[0]}]
 set_property PACKAGE_PIN E19 [get_ports {SL_MODE[1]}]
 
+# Bank 34/35는 J18 점퍼로 2.5V로 설정되어 있으므로 모든 포트를 LVCMOS25로 통일
+# SL_* 포트들은 모두 LVCMOS25 사용
 set_property IOSTANDARD LVCMOS25 [get_ports SL_*]
 set_property SLEW FAST [get_ports {SL_AD[1]}]
 set_property SLEW FAST [get_ports {SL_AD[0]}]
@@ -98,13 +100,14 @@ set_property SLEW FAST [get_ports SL_WR_N]
 
 set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets {SL_MODE_IBUF[0]}]
 
+# IOB 제약 조건 - 현재 디자인 구조와 맞지 않아 주석 처리
 #set_property IOB TRUE  [get_cells {u_dut/*/u_gpif2mst/SL_DT_O*}]
-set_property IOB TRUE  [get_cells {u_dut/u_bfm_axi/u_gpif2mst/SL_DT_O reg*}]
-set_property IOB TRUE  [get_cells {u_dut/u_bfm_axi/u_gpif2mst/SL_RD_N_reg}]
-set_property IOB TRUE  [get_cells {u_dut/u_bfm_axi/u_gpif2mst/SL_WR_N_reg}]
-set_property IOB TRUE  [get_cells {u_dut/u_bfm_axi/u_gpif2mst/SL_OE_N_reg}]
-set_property IOB TRUE  [get_cells {u_dut/u_bfm_axi/u_gpif2mst/SL_PKTEND_N_reg}]
-set_property IOB TRUE  [get_cells {u_dut/u_bfm_axi/u_gpif2mst/SL_AD_reg*}]
+#set_property IOB TRUE  [get_cells {u_dut/u_bfm_axi/u_gpif2mst/SL_DT_O reg*}]
+#set_property IOB TRUE  [get_cells {u_dut/u_bfm_axi/u_gpif2mst/SL_RD_N_reg}]
+#set_property IOB TRUE  [get_cells {u_dut/u_bfm_axi/u_gpif2mst/SL_WR_N_reg}]
+#set_property IOB TRUE  [get_cells {u_dut/u_bfm_axi/u_gpif2mst/SL_OE_N_reg}]
+#set_property IOB TRUE  [get_cells {u_dut/u_bfm_axi/u_gpif2mst/SL_PKTEND_N_reg}]
+#set_property IOB TRUE  [get_cells {u_dut/u_bfm_axi/u_gpif2mst/SL_AD_reg*}]
 
 
 

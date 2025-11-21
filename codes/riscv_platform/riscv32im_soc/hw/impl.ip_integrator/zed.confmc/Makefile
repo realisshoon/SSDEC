@@ -19,7 +19,6 @@ endif
 
 #-------------------------------------------------------------------------------
 export VIVADO       = vivado
-#export DESIGN       = riscv_cache
 export DESIGN       = riscv_cache
 export DESIGN_NAME  = design_$(DESIGN)
 export PROJECT_NAME = project_$(DESIGN_NAME)
@@ -75,6 +74,8 @@ clean:
 	/bin/rm   -f  hs_err_*.log
 	/bin/rm   -f  vivado_pid*.str
 	/bin/rm   -f  vivado_pid*.zip
+	find . -maxdepth 5 -name "vivado.jou" -type f -delete 2>/dev/null || true
+	find . -maxdepth 5 -name "vivado.log" -type f -delete 2>/dev/null || true
 	if [ -d .Xil ]; then /bin/rm -fr .Xil; fi
 	if [ -d hd_visual ]; then /bin/rm -fr hd_visual; fi
 

@@ -1,0 +1,12 @@
+sv work -d AMBA_AXI4 -d AMBA_AXI_CACHE -d AMBA_AXI_PROT -d COSIM_DPI \
+        -i ../../bench.cosim/verilog \
+           ../../bench.cosim/verilog/top_bfm.sv \
+           ../../bench.cosim/verilog/cosim_bfm_axi_full.sv \
+           ../../bench.cosim/verilog/mfrc522_dummy.v \
+        -i /home/sogang/pjt/team2/codes/cosim_bfm_library/include/verilog \
+           /home/sogang/pjt/team2/codes/cosim_bfm_library/include/verilog/cosim_bfm_axi_dpi.sv \
+        -i ../../../axi_switch/rtl/verilog \
+           ../../../axi_switch/rtl/verilog/axi_switch_m3s3.v \
+        -i ../../rtl/verilog \
+           ../../rtl/verilog/spi_axi_if.v \
+           ../../rtl/verilog/spi_master.v
