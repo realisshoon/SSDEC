@@ -1,7 +1,7 @@
 //Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2021.2 (lin64) Build 3367213 Tue Oct 19 02:47:39 MDT 2021
-//Date        : Wed Nov  5 18:56:45 2025
+//Date        : Wed Nov 26 10:27:26 2025
 //Host        : sogang-500TGA-500SGA running 64-bit Ubuntu 22.04.5 LTS
 //Command     : generate_target design_riscv_cache.bd
 //Design      : design_riscv_cache
@@ -33,6 +33,11 @@ module design_riscv_cache
     i2c_sda,
     keypad_col,
     keypad_row,
+    spi_cs_n,
+    spi_miso,
+    spi_mosi,
+    spi_rst,
+    spi_sck,
     uart_cts_n,
     uart_rts_n,
     uart_rxd,
@@ -59,6 +64,11 @@ module design_riscv_cache
   inout i2c_sda;
   output [3:0]keypad_col;
   input [3:0]keypad_row;
+  output spi_cs_n;
+  input spi_miso;
+  output spi_mosi;
+  output spi_rst;
+  output spi_sck;
   input uart_cts_n;
   output uart_rts_n;
   input uart_rxd;
@@ -164,11 +174,16 @@ module design_riscv_cache
   wire riscv_cache_soc_0_m_axi_mem_WREADY;
   wire [3:0]riscv_cache_soc_0_m_axi_mem_WSTRB;
   wire riscv_cache_soc_0_m_axi_mem_WVALID;
+  wire riscv_cache_soc_0_spi_cs_n;
+  wire riscv_cache_soc_0_spi_mosi;
+  wire riscv_cache_soc_0_spi_rst;
+  wire riscv_cache_soc_0_spi_sck;
   wire riscv_cache_soc_0_uart_rts_n;
   wire riscv_cache_soc_0_uart_txd;
   wire [15:0]rstmgra_0_GPIN;
   wire rstmgra_0_bus_resetn;
   wire rstmgra_0_cpu_resetn;
+  wire spi_miso_1;
   wire uart_cts_n_1;
   wire uart_rxd_1;
   wire util_vector_logic_0_Res;
@@ -193,6 +208,11 @@ module design_riscv_cache
   assign i2c_scl = riscv_cache_soc_0_i2c_scl;
   assign keypad_col[3:0] = riscv_cache_soc_0_keypad_col;
   assign keypad_row_1 = keypad_row[3:0];
+  assign spi_cs_n = riscv_cache_soc_0_spi_cs_n;
+  assign spi_miso_1 = spi_miso;
+  assign spi_mosi = riscv_cache_soc_0_spi_mosi;
+  assign spi_rst = riscv_cache_soc_0_spi_rst;
+  assign spi_sck = riscv_cache_soc_0_spi_sck;
   assign uart_cts_n_1 = uart_cts_n;
   assign uart_rts_n = riscv_cache_soc_0_uart_rts_n;
   assign uart_rxd_1 = uart_rxd;
@@ -330,7 +350,7 @@ module design_riscv_cache
         .slowest_sync_clk(clk_wiz_0_clk_out2));
   design_riscv_cache_riscv_cache_soc_0_0 riscv_cache_soc_0
        (.axi_aclk(clk_wiz_0_clk_out2),
-        .axi_aresetn(rstmgra_0_bus_resetn),
+        .axi_aresetn(proc_sys_reset_0_peripheral_aresetn),
         .cpu_resetn(rstmgra_0_cpu_resetn),
         .gpio_in(gpio_in_1),
         .gpio_out(riscv_cache_soc_0_gpio_out),
@@ -396,6 +416,11 @@ module design_riscv_cache
         .s_axi_confmc_wready(bfm_axi_if_0_m_axi_WREADY),
         .s_axi_confmc_wstrb(bfm_axi_if_0_m_axi_WSTRB),
         .s_axi_confmc_wvalid(bfm_axi_if_0_m_axi_WVALID),
+        .spi_cs_n(riscv_cache_soc_0_spi_cs_n),
+        .spi_miso(spi_miso_1),
+        .spi_mosi(riscv_cache_soc_0_spi_mosi),
+        .spi_rst(riscv_cache_soc_0_spi_rst),
+        .spi_sck(riscv_cache_soc_0_spi_sck),
         .uart_cts_n(uart_cts_n_1),
         .uart_rts_n(riscv_cache_soc_0_uart_rts_n),
         .uart_rxd(uart_rxd_1),

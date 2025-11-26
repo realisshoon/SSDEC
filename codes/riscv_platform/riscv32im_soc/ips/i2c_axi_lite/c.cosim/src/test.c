@@ -1,69 +1,73 @@
+//--------------------------------------------------------
+// Copyright (c) 2022 by Future Design Systems Co., Ltd.
+// All right reserved.
+//
+// http://www.future-ds.com
+//--------------------------------------------------------
+// VERSION = 2022.10.11.
+//--------------------------------------------------------
 #include <stdio.h>
-#include <stdint.h>
-#include "i2c_api.h"
+#include <stdlib.h>
+#include <string.h>
+#include <signal.h>
+#include <assert.h>
+#include <unistd.h>
+#include "i2c_master_api.h"
 
-// 간단한 I2C EEPROM(24xx 계열 가정) 읽기/쓰기 예제
-//  - dev7  : 7-bit device address (예: 0x50)
-//  - word  : 8-bit word/offset address
-//  - write : DATA1에 데이터를 쓰고, DATA0에 control + START 비트를 써서 트랜잭션 시작
-//  - read  : control에 읽기 플래그를 세팅하고, DATA2에서 결과를 읽어옴
+#define I2C_DEV_ADDR_D7R8   0x41 //0b100_0001
+#define I2C_DEV_ADDR_D7R16  0x45 //0b100_0101
+#define I2C_DEV_ADDR_D10R8  0x201 //0b10_0000_0001
+#define I2C_DEV_ADDR_D10R16 0x205 //0b10_0000_0101
 
 int test(void)
 {
-    uint8_t  dev7  = 0x50;          // I2C 디바이스 7-bit 주소 예제
-    uint8_t  word  = 0x00;          // 워드/오프셋 주소
-    uint32_t wdata = 0x11223344;    // 쓸 데이터 (최대 4바이트)
-    uint32_t rdata;
+     int ret;
 
-    printf("---- I2C CSR dump ----\n");
-    i2c_csr();
-    printf("I2C base addr : 0x%08X\n", i2c_get_addr());
+     i2c_set_addr(0xC0060000);
 
-    // 1) I2C WRITE 트랜잭션
-    printf("\n[I2C WRITE]\n");
-    printf("  dev7=0x%02X word=0x%02X data=0x%08X\n", dev7, word, wdata);
+     printf("I2C MST CSR ======\n");
+     i2c_csr_check();
 
-    // DATA1(write buffer)에 데이터 쓰기
-    i2c_write_data(wdata);
+     i2c_init( 200000 );
+     ret = i2c_config ( 2 //gap  
+                      , 2 //post 
+                      , 2 //mid
+                      , 2 //pre
+                      );
+     i2c_enable();
 
-    // DATA0(control)에 트랜잭션 정보 + START 비트 설정
-    // is_read = 0 (write), random = 0, page = 0
-    i2c_start_simple(dev7,
-                     word,
-                     0 /* is_read: write */,
-                     0 /* random */,
-                     0 /* page */);
+     uint8_t  dev_addr=I2C_DEV_ADDR_D7R8;
+     uint8_t  reg_addr=0x00;
+     uint8_t  reg_dataW=0x01;
+     uint8_t  reg_dataR;
+     int      reg_num=10;
+     for (reg_addr=0x00; reg_addr<reg_num; reg_addr++) {
+         reg_dataW = reg_addr;
+         ret = i2c_write_d7r8( dev_addr //7-bit format
+                             , reg_addr
+                             , reg_dataW );
+     }
+     int error = 0;
+     for (reg_addr=0x00; reg_addr<reg_num; reg_addr++) {
+         reg_dataW = reg_addr;
+         ret = i2c_read_d7r8( dev_addr //7-bit format
+                            , reg_addr
+                            ,&reg_dataR);
+         if (reg_dataR!=reg_dataW) {
+             error++;
+             printf("Dev:0x%08X A=0x%02X D=0x%02X, but 0x%02X expected.\n", dev_addr, reg_addr, reg_dataR, reg_dataW);
+         }
+     }
+     if (error==0) printf("Dev:0x%08X %d OK\n", dev_addr, reg_num);
+     else          printf("Dev:0x%08X %d out of %d error\n", dev_addr, error, reg_num);
 
-    printf("  write transaction issued.\n");
+     i2c_disable();
+     i2c_rst();
 
-    // 2) I2C READ 트랜잭션
-    //    실제 디바이스 특성에 따라 status polling, random read 등이 필요할 수 있음.
-    printf("\n[I2C READ]\n");
-    printf("  dev7=0x%02X word=0x%02X\n", dev7, word);
-    // is_read = 1 (read), random = 0, page = 0
-    i2c_start_simple(dev7,
-                     word,
-                     1 /* is_read: read */,
-                     0 /* random */,
-                     0 /* page */);
-
-    // I2C 트랜잭션이 완료될 때까지 대기
-    // 실제 하드웨어에서는 상태 레지스터를 폴링해야 하지만,
-    // 시뮬레이션에서는 간단히 지연 시간을 두거나 상태 확인
-    volatile int i;
-    for (i = 0; i < 5000000; i++); // I2C 트랜잭션 완료를 위한 충분한 지연
-    
-    // 단순 예제: 바로 DATA2를 읽어서 값 확인
-    rdata = i2c_read_data();
-    printf("  read data   : 0x%08X\n", rdata);
-
-    // 트랜잭션 이후 CSR 상태 다시 덤프 (DATA0/1/STATUS/DATA2 값 확인용)
-    printf("\n---- I2C CSR dump after transactions ----\n");
-    i2c_csr();
-
-    printf("\nI2C cosim test done.\n");
-    fflush(stdout);  // 출력 버퍼 플러시
-    return 0;
+     return 0;
 }
-
-
+//--------------------------------------------------------
+// Revision History
+//
+// 2022.10.11: Start by Ando Ki (adki@future-ds.com)
+//--------------------------------------------------------

@@ -7,7 +7,6 @@
 //      |               |<====>|              |
 //      |               |      |              |
 //      +---------------+      +--------------+
-//----------------------------------------------------------------------------
 
 module cosim_bfm_axi_lite
      #(parameter integer AXI_WIDTH_ADDR=32
@@ -121,37 +120,39 @@ module cosim_bfm_axi_lite
                   ,.AXI_WIDTH_ADDR(AXI_WIDTH_ADDR)
                   ,.AXI_WIDTH_DATA(AXI_WIDTH_DATA))
     u_axi4_to_lite (
-          .axi_aresetn     ( aresetn            )
-        , .axi_aclk        ( aclk               )
-        , .s_axi_awid      ( bfm_awid           )
-        , .s_axi_awaddr    ( bfm_awaddr         )
-        , .s_axi_awlen     ( bfm_awlen          )
-        , .s_axi_awsize    ( bfm_awsize         )
-        , .s_axi_awburst   ( bfm_awburst        )
-        , .s_axi_awvalid   ( bfm_awvalid        )
-        , .s_axi_awready   ( bfm_awready        )
-        , .s_axi_wdata     ( bfm_wdata          )
-        , .s_axi_wstrb     ( bfm_wstrb          )
-        , .s_axi_wlast     ( bfm_wlast          )
-        , .s_axi_wvalid    ( bfm_wvalid         )
-        , .s_axi_wready    ( bfm_wready         )
-        , .s_axi_bid       ( bfm_bid            )
-        , .s_axi_bresp     ( bfm_bresp          )
-        , .s_axi_bvalid    ( bfm_bvalid         )
-        , .s_axi_bready    ( bfm_bready         )
-        , .s_axi_arid      ( bfm_arid           )
-        , .s_axi_araddr    ( bfm_araddr         )
-        , .s_axi_arlen     ( bfm_arlen          )
-        , .s_axi_arsize    ( bfm_arsize         )
-        , .s_axi_arburst   ( bfm_arburst        )
-        , .s_axi_arvalid   ( bfm_arvalid        )
-        , .s_axi_arready   ( bfm_arready        )
-        , .s_axi_rid       ( bfm_rid            )
-        , .s_axi_rdata     ( bfm_rdata          )
-        , .s_axi_rresp     ( bfm_rresp          )
-        , .s_axi_rlast     ( bfm_rlast          )
-        , .s_axi_rvalid    ( bfm_rvalid         )
-        , .s_axi_rready    ( bfm_rready         )
+          .axi_aresetn     ( aresetn       )
+        , .axi_aclk        ( aclk          )
+        , .s_axi_awid      ( bfm_awid      )
+        , .s_axi_awaddr    ( bfm_awaddr    )
+        , .s_axi_awlen     ( bfm_awlen     )
+        , .s_axi_awsize    ( bfm_awsize    )
+        , .s_axi_awburst   ( bfm_awburst   )
+        , .s_axi_awvalid   ( bfm_awvalid   )
+        , .s_axi_awready   ( bfm_awready   )
+        , .s_axi_wdata     ( bfm_wdata     )
+        , .s_axi_wstrb     ( bfm_wstrb     )
+        , .s_axi_wlast     ( bfm_wlast     )
+        , .s_axi_wvalid    ( bfm_wvalid    )
+        , .s_axi_wready    ( bfm_wready    )
+        , .s_axi_bid       ( bfm_bid       )
+        , .s_axi_bresp     ( bfm_bresp     )
+        , .s_axi_bvalid    ( bfm_bvalid    )
+        , .s_axi_bready    ( bfm_bready    )
+        , .s_axi_arid      ( bfm_arid      )
+        , .s_axi_araddr    ( bfm_araddr    )
+        , .s_axi_arlen     ( bfm_arlen     )
+        , .s_axi_arsize    ( bfm_arsize    )
+        , .s_axi_arburst   ( bfm_arburst   )
+        , .s_axi_arvalid   ( bfm_arvalid   )
+        , .s_axi_arready   ( bfm_arready   )
+        , .s_axi_rid       ( bfm_rid       )
+        , .s_axi_rdata     ( bfm_rdata     )
+        , .s_axi_rresp     ( bfm_rresp     )
+        , .s_axi_rlast     ( bfm_rlast     )
+        , .s_axi_rvalid    ( bfm_rvalid    )
+        , .s_axi_rready    ( bfm_rready    )
+        , .axil_aresetn    ( aresetn            )
+        , .axil_aclk       ( aclk               )
         , .m_axil_awaddr   ( m_axi_lite_awaddr  )
         , .m_axil_awvalid  ( m_axi_lite_awvalid )
         , .m_axil_awready  ( m_axi_lite_awready )
@@ -170,5 +171,8 @@ module cosim_bfm_axi_lite
         , .m_axil_rready   ( m_axi_lite_rready  )
     );
 endmodule
-
-
+//----------------------------------------------------------------------------
+// Revision history
+//
+// 2025.08.10: Started by Ando Ki (andoki@gmail.com)
+//----------------------------------------------------------------------------

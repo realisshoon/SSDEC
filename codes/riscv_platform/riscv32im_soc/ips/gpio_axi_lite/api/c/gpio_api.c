@@ -26,9 +26,15 @@
 //          - 1 for active-high for level, rising-edge for edge
 //          - default: 0x00000000
 //------------------------------------------------------------------------------
-#include <stdio.h>
 #include <stdint.h>
 #include "gpio_api.h"
+// Use my_printf instead of printf for embedded systems
+#ifdef USE_MY_PRINTF
+#include "my_printf.h"
+#define printf my_printf
+#else
+#include <stdio.h>
+#endif
 
 #ifdef __cplusplus
 extern "C" {

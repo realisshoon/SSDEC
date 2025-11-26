@@ -71,11 +71,13 @@ module riscv_cache_soc
       ,parameter ADDR_UART  = 32'h9002_0000 // starting address of UART
       ,parameter ADDR_GPIO  = 32'h9003_0000 // starting address of GPIO
       ,parameter ADDR_I2C   = 32'h9004_0000 // starting address of I2C
+      ,parameter ADDR_SPI   = 32'hA000_0000 // starting address of SPI (outside PERIPHERAL range)
       ,parameter SIZE_PIC   = 32'h0000_1000
       ,parameter SIZE_TIMER = 32'h0000_1000
       ,parameter SIZE_UART  = 32'h0000_1000
       ,parameter SIZE_GPIO  = 32'h0000_1000
       ,parameter SIZE_I2C   = 32'h0000_1000
+      ,parameter SIZE_SPI   = 32'h0000_1000
       ,parameter NUM_IRQ    = 3  // timer(0), uart(1), gpio(2)
       ,parameter IRQ_TIMER  = 0  // timer(0)
       ,parameter IRQ_UART   = 1 // uart(1)
@@ -444,8 +446,8 @@ module riscv_cache_soc
                      ,.ADDR_LENGTH0($clog2(MEM_ONCHIP_SIZE))
                      ,.ADDR_BASE1  (ADDR_PERIPHERAL)
                      ,.ADDR_LENGTH1($clog2(SIZE_PERIPHERAL))
-                     ,.ADDR_BASE2  (MEM_OFFCHIP_ADDR)
-                     ,.ADDR_LENGTH2($clog2(MEM_OFFCHIP_SIZE)))
+                     ,.ADDR_BASE2  (ADDR_SPI)
+                     ,.ADDR_LENGTH2($clog2(SIZE_SPI)))
     u_axi_switch_m3s3 (
            .ARESETn              (axi_aresetn     )
          , .ACLK                 (axi_aclk        )
@@ -1075,11 +1077,14 @@ module riscv_cache_soc
     IOBUF i2c_sda_iobuf (
         .IO(i2c_sda),      // Bidirectional port
         .I(i2c_sda_o),     // Output from logic
-        .O(i2c_sda_i),     // Input to logic
+         .O(i2c_sda_i),     // Input to logic
         .T(i2c_sda_t)      // Tri-state enable
     );
     
     //--------------------------------------------------------------------------
+    // I2C disabled (module not available in project)
+    //--------------------------------------------------------------------------
+    /*
     i2c_axi_lite #(.Hz_counter(120)) 
     u_i2c (
           .aresetn       ( axi_aresetn        )
@@ -1105,6 +1110,16 @@ module riscv_cache_soc
         , .i2c_sda_t     ( i2c_sda_t        )   // I2C SDA tri-state enable
         , .i2c_scl       ( i2c_scl          )   // I2C clock line
     );
+    */
+    // Tie off I2C AXI Lite signals
+    assign axi_lite_awready[5] = 1'b0;
+    assign axi_lite_wready[5]  = 1'b0;
+    assign axi_lite_bresp[5]   = 2'b11; // DECERR
+    assign axi_lite_bvalid[5]  = 1'b0;
+    assign axi_lite_arready[5] = 1'b0;
+    assign axi_lite_rdata[5]   = 32'h0;
+    assign axi_lite_rresp[5]   = 2'b11; // DECERR
+    assign axi_lite_rvalid[5]  = 1'b0;
     //--------------------------------------------------------------------------
     // Keypad Column/Row assignment (connected to GPIO for software control)
     // PMODKYPD 구조:

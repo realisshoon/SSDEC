@@ -56,8 +56,9 @@ DUMMY    := $(shell [ -d $(OBJECTDIR) ] || mkdir $(OBJECTDIR) )
 #-------------------------------------------------------------------------------
 DIR_SRC          := ./src
 DIR_UART_API     := ../../uart_axi_lite/api/c
+DIR_SPI_API      := ../api/c
 #-------------------------------------------------------------------------------
-SRCS   = main.c my_printf.c $(C_SRCS)
+SRCS   = main.c my_printf.c spi_api.c mfrc522_api.c $(C_SRCS)
 
 OBJS   = $(SRCS:.c=.o)
 DEPS   = $(SRCS:.c=.d)
@@ -79,6 +80,7 @@ CFLAGS   := $(C_DEFS)\
              -MMD -g -O0 -Werror\
              -I$(DIR_SRC)\
              -I$(DIR_UART_API)\
+             -I$(DIR_SPI_API)\
              $(C_INCS)
 LDFLAGS  = -O0
 LDLIBS   = $(C_LDLIBS)
@@ -98,6 +100,9 @@ $(TARGET): $(addprefix $(OBJECTDIR)/,$(OBJS)) $(OBJECTDIR)/uart_api.o
 		$(LDLIBS)
 
 $(OBJECTDIR)/uart_api.o: $(DIR_UART_API)/uart_api.c
+	$(CC) -c $(CFLAGS) $< -o $@ 2>&1 | tee -a compile.log
+
+$(OBJECTDIR)/spi_api.o: $(DIR_SPI_API)/spi_api.c
 	$(CC) -c $(CFLAGS) $< -o $@ 2>&1 | tee -a compile.log
 
 .PHONY: pre

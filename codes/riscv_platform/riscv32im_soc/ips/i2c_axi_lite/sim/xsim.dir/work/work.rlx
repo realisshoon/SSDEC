@@ -1,8 +1,0 @@
-0.7
-2020.2
-Oct 19 2021
-02:56:52
-/home/sogang/Desktop/riscv_platform_1020/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_axi_lite_if.v,1762928029,systemVerilog,,/home/sogang/Desktop/riscv_platform_1020/riscv32im_soc/ips/i2c_axi_lite/sim/i2c_tb.v,,i2c_axi_lite_if,,,,,,,,
-/home/sogang/Desktop/riscv_platform_1020/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_core.v,1762998175,systemVerilog,,/home/sogang/Desktop/riscv_platform_1020/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_csr.v,,I2C,,,,,,,,
-/home/sogang/Desktop/riscv_platform_1020/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_csr.v,1762928028,systemVerilog,,/home/sogang/Desktop/riscv_platform_1020/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_axi_lite_if.v,,i2c_csr,,,,,,,,
-/home/sogang/Desktop/riscv_platform_1020/riscv32im_soc/ips/i2c_axi_lite/sim/i2c_tb.v,1762937711,systemVerilog,,,,iic_controller_tb,,,,,,,,

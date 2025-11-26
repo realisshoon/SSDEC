@@ -19,10 +19,11 @@ sv work \
            $DIR_UART_AXI_LITE/rtl/verilog/uart_axi_lite.v\
         -i $DIR_GPIO_AXI_LITE/rtl/verilog\
            $DIR_GPIO_AXI_LITE/rtl/verilog/gpio_axi_lite.v\
-        -i $DIR_I2C_AXI_LITE/rtl/verilog\
-           $DIR_I2C_AXI_LITE/rtl/verilog/i2c_axi_lite.v\
-           $DIR_I2C_AXI_LITE/rtl/verilog/i2c_axi_lite_if.v\
-           $DIR_I2C_AXI_LITE/rtl/verilog/i2c_master.v\
+        -i ../../../ips/spi_axi/rtl/verilog\
+           ../../../ips/spi_axi/rtl/verilog/spi_axi_if.v\
+           ../../../ips/spi_axi/rtl/verilog/spi_master.v\
+        -i ../../../ips/spi_axi/bench.cosim/verilog\
+           ../../../ips/spi_axi/bench.cosim/verilog/mfrc522_dummy.v\
         -i $DIR_RTL\
            $DIR_RTL/riscv_cache_soc.v\
            $DIR_RTL/riscv_cache_core.v\

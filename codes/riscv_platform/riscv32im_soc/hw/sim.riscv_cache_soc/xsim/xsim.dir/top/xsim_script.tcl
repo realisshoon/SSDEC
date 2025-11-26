@@ -1,1 +1,1 @@
-xsim {top} -testplusarg ADDR_ENTRY=0x0 -testplusarg FILE_BIN=/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/sw.riscv/hello_world/gpio_test.bin -testplusarg CHECK_BIN=1 -testplusarg BAUD_RATE=115200 -testplusarg VCD=1 -autoloadwcfg -tclbatch {xsim_run.tcl}
+xsim {top} -testplusarg ADDR_ENTRY=0x0 -testplusarg FILE_BIN=/home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/sw.riscv/spi_test/spi_test.bin -testplusarg CHECK_BIN=1 -testplusarg BAUD_RATE=115200 -testplusarg VCD=1 -autoloadwcfg -tclbatch {xsim_run.tcl}

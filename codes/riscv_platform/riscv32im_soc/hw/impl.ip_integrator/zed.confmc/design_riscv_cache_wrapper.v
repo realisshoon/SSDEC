@@ -1,7 +1,7 @@
 //Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2021.2 (lin64) Build 3367213 Tue Oct 19 02:47:39 MDT 2021
-//Date        : Wed Nov  5 18:56:42 2025
+//Date        : Wed Nov 26 10:27:24 2025
 //Host        : sogang-500TGA-500SGA running 64-bit Ubuntu 22.04.5 LTS
 //Command     : generate_target design_riscv_cache_wrapper.bd
 //Design      : design_riscv_cache_wrapper
@@ -32,6 +32,11 @@ module design_riscv_cache_wrapper
     i2c_sda,
     keypad_col,
     keypad_row,
+    spi_cs_n,
+    spi_miso,
+    spi_mosi,
+    spi_rst,
+    spi_sck,
     uart_cts_n,
     uart_rts_n,
     uart_rxd,
@@ -58,6 +63,11 @@ module design_riscv_cache_wrapper
   inout i2c_sda;
   output [3:0]keypad_col;
   input [3:0]keypad_row;
+  output spi_cs_n;
+  input spi_miso;
+  output spi_mosi;
+  output spi_rst;
+  output spi_sck;
   input uart_cts_n;
   output uart_rts_n;
   input uart_rxd;
@@ -85,6 +95,11 @@ module design_riscv_cache_wrapper
   wire i2c_sda;
   wire [3:0]keypad_col;
   wire [3:0]keypad_row;
+  wire spi_cs_n;
+  wire spi_miso;
+  wire spi_mosi;
+  wire spi_rst;
+  wire spi_sck;
   wire uart_cts_n;
   wire uart_rts_n;
   wire uart_rxd;
@@ -113,6 +128,11 @@ module design_riscv_cache_wrapper
         .i2c_sda(i2c_sda),
         .keypad_col(keypad_col),
         .keypad_row(keypad_row),
+        .spi_cs_n(spi_cs_n),
+        .spi_miso(spi_miso),
+        .spi_mosi(spi_mosi),
+        .spi_rst(spi_rst),
+        .spi_sck(spi_sck),
         .uart_cts_n(uart_cts_n),
         .uart_rts_n(uart_rts_n),
         .uart_rxd(uart_rxd),

@@ -30,6 +30,8 @@ ifeq ($(MAKECMDGOALS),$(findstring $(MAKECMDGOALS), "hw" "sw" "sim" "run" "run_w
 endif
 
 export DIR_C        = ../../c.cosim/src
+export DIR_SPI_API  = ../../api/c
+export DIR_UART_API = ../../../uart_axi_lite/api/c
 export DIR_BENCH    = ../../bench.cosim/verilog
 export DIR_INTEGRATION = ../../bench/integration/verilog
 export DIR_RTL      = ../../rtl/verilog
@@ -67,9 +69,9 @@ sw:
 	@if [ ! -f $(DIR_COSIM_LIB)/lib$(COSIM_LIB).a ]; then\
 		echo "Need $(DIR_COSIM_LIB)/lib$(COSIM_LIB).a";\
 	else\
-		gcc -o test $(DIR_C)/main.c\
+		gcc -o test $(DIR_C)/main.c $(DIR_C)/my_printf.c $(DIR_C)/mfrc522_api.c $(DIR_SPI_API)/spi_api.c $(DIR_UART_API)/uart_api.c\
                         -DCOSIM_LIB=1\
-                        -I$(DIR_C) -I$(DIR_COSIM_INC)\
+                        -I$(DIR_C) -I$(DIR_COSIM_INC) -I$(DIR_SPI_API) -I$(DIR_UART_API)\
                         -Wl,-Bstatic -L$(DIR_COSIM_LIB) -l$(COSIM_LIB) -Wl,-Bdynamic;\
 	fi
 
@@ -148,25 +150,48 @@ else
 endif
 
 #------------------------------------------------------------------------
+# clean: 시뮬레이션 결과물만 삭제 (소스 파일은 보존)
+# - make sw: test 실행 파일 삭제
+# - make hw: xvlog, xelab, xsim 생성 파일들 삭제
+# - rtl/, bench/, c.cosim/src/ 등 소스 파일은 절대 삭제하지 않음
 .PHONY: clean
 clean:
+	@echo "Cleaning simulation files only (source files are preserved)..."
 	@if [ -n "$(OBJECTDIR)" ]; then /bin/rm -rf $(OBJECTDIR); fi
+	# 일반 로그 및 오브젝트 파일
 	/bin/rm -f  *.log
 	/bin/rm -f  *.o
 	/bin/rm -f *stackdump
 	/bin/rm -f *.exe.core
 	/bin/rm -f compile.log
 	/bin/rm -f lock_file*.txt
+	/bin/rm -f  run.log
+	# make sw로 생성된 파일
 	/bin/rm -f  test
+	# make hw로 생성된 파일들
 	/bin/rm -f  xsim.prj
 	/bin/rm -f  top_snapshot.wdb top_bfm_snapshot.wdb
 	/bin/rm -f  wave.vcd wave_bfm.vcd wave_bfm_fixed.vcd
+	# xvlog 생성 파일
+	/bin/rm -f  xvlog.log
+	/bin/rm -f  xvlog.pb
+	# xelab 생성 파일
+	/bin/rm -f  xelab.log
 	/bin/rm -f  xelab.pb
-	/bin/rm -f  xsim_*.backup.jou
+	# xsim 생성 파일
 	/bin/rm -fr xsim.dir
 	/bin/rm -f  xsim.jou
-	/bin/rm -f  xvlog.pb
-	/bin/rm -f  run.log
+	/bin/rm -f  xsim.log
+	/bin/rm -f  xsim_*.backup.jou
+	/bin/rm -f  xsim_*.backup.log
+	# Vivado webtalk 파일
+	/bin/rm -f  webtalk.jou
+	/bin/rm -f  webtalk.log
+	/bin/rm -f  webtalk_*.backup.jou
+	/bin/rm -f  webtalk_*.backup.log
+	# Vivado 임시 디렉토리
+	/bin/rm -fr .Xil
+	@echo "Clean completed. Source files in rtl/, bench/, c.cosim/src/ are preserved."
 
 .PHONY: cleanup clobber
 cleanup clobber: clean

@@ -66,6 +66,11 @@ module design_riscv_cache_riscv_cache_soc_0_0 (
   i2c_sda,
   i2c_scl,
   cpu_resetn,
+  spi_cs_n,
+  spi_sck,
+  spi_mosi,
+  spi_miso,
+  spi_rst,
   axi_aresetn,
   axi_aclk,
   s_axi_confmc_awid,
@@ -141,6 +146,13 @@ output wire i2c_scl;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME cpu_resetn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 cpu_resetn RST" *)
 input wire cpu_resetn;
+output wire spi_cs_n;
+output wire spi_sck;
+output wire spi_mosi;
+input wire spi_miso;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME spi_rst, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
+(* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 spi_rst RST" *)
+output wire spi_rst;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axi_aresetn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 axi_aresetn RST" *)
 input wire axi_aresetn;
@@ -293,11 +305,13 @@ output wire m_axi_mem_rready;
     .ADDR_UART(32'H90020000),
     .ADDR_GPIO(32'H90030000),
     .ADDR_I2C(32'H90040000),
+    .ADDR_SPI(32'HA0000000),
     .SIZE_PIC(32'H00001000),
     .SIZE_TIMER(32'H00001000),
     .SIZE_UART(32'H00001000),
     .SIZE_GPIO(32'H00001000),
     .SIZE_I2C(32'H00001000),
+    .SIZE_SPI(32'H00001000),
     .NUM_IRQ(3),
     .IRQ_TIMER(0),
     .IRQ_UART(1),
@@ -320,6 +334,11 @@ output wire m_axi_mem_rready;
     .i2c_sda(i2c_sda),
     .i2c_scl(i2c_scl),
     .cpu_resetn(cpu_resetn),
+    .spi_cs_n(spi_cs_n),
+    .spi_sck(spi_sck),
+    .spi_mosi(spi_mosi),
+    .spi_miso(spi_miso),
+    .spi_rst(spi_rst),
     .axi_aresetn(axi_aresetn),
     .axi_aclk(axi_aclk),
     .s_axi_confmc_awid(s_axi_confmc_awid),

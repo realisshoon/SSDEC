@@ -1,20 +1,16 @@
 #-------------------------------------------------------------------------------
 SHELL	=/bin/bash
 
-ifeq ($(MAKECMDGOALS),$(findstring $(MAKECMDGOALS), "" "all" "vivado"))
-    ifndef XILINX_VIVADO
-       $(error XILINX_VIVADO environment variable not defined)
-    else
-        export VIVADO         = $(XILINX_VIVADO)/bin/vivado
-        export VIVADO_VERSION = $(shell vivado -version | sed -n 1p | cut -d" " -f 2 | cut -c 2-7)
-        export VIVADO_VER     = vivado.$(VIVADO_VERSION)
-    endif
-    ifndef CONFMC_HOME
-       $(error CONFMC_HOME environment variable not defined)
-    else
-        export BFM_AXI = ${CONFMC_HOME}/hwlib/trx_axi
-        export BFM_AXI_EDIF = ${BFM_AXI}/syn/vivado.z7
-    endif
+# Optional environment checks – if not set, use defaults
+ifdef XILINX_VIVADO
+    export VIVADO = $(XILINX_VIVADO)/bin/vivado
+else
+    export VIVADO = vivado
+endif
+
+ifdef CONFMC_HOME
+    export BFM_AXI = ${CONFMC_HOME}/hwlib/trx_axi
+    export BFM_AXI_EDIF = ${BFM_AXI}/syn/vivado.z7
 endif
 
 #-------------------------------------------------------------------------------
@@ -40,19 +36,20 @@ export DIR_TIMER_AXI_LITE= ../../../ips/timer_axi_lite
 export DIR_UART_AXI_LITE = ../../../ips/uart_axi_lite
 export DIR_GPIO_AXI_LITE = ../../../ips/gpio_axi_lite
 export DIR_I2C_AXI_LITE  = ../../../ips/i2c_axi_lite
-export DIR_RTL           = ../../rtl/verilog
+export DIR_SPI_AXI       = ../../../ips/spi_axi
 export DIR_DESIGN        = ../../rtl/verilog
+export DIR_RTL            = $(DIR_DESIGN)
 
 export TOP          = fpga
 export SOURCE       = run_vivado.tcl
 export GUI         ?= 1
 
 #-------------------------------------------------------------------------------
-all:
-	if [ "$(GUI)" = "1" ]; then\
-		$(VIVADO) -mode gui -source $(SOURCE);\
-	else\
-		$(VIVADO) -mode batch -source $(SOURCE);\
+all: env
+	@if [ "$(GUI)" = "1" ]; then \
+		$(VIVADO) -mode gui -source $(SOURCE); \
+	else \
+		$(VIVADO) -mode batch -source $(SOURCE); \
 	fi
 
 .PHONY: program
@@ -64,7 +61,7 @@ download:
 	./download_fsbl.sh ../../sw.arm/bootgen/fsbl.elf ../../sw.arm/bootgen/ps7_init.tcl
 
 #-------------------------------------------------------------------------------
-.PHONY: clean cleanup
+.PHONY: clean cleanup env
 
 clean:
 	/bin/rm   -f  vivado.jou
@@ -87,6 +84,17 @@ cleanupall: cleanup
 	/bin/rm -f  $(DESIGN_NAME)_wrapper.ltx
 	/bin/rm -f  $(DESIGN_NAME).pdf
 	/bin/rm -f  AddressMap.cvs AddressMapGui.csv
+	# Vivado/시뮬레이션 생성 로그 및 백업 파일들
+	/bin/rm -f  *_check.jou
+	/bin/rm -f  *_check.log
+	/bin/rm -f  *_check_*.backup.jou
+	/bin/rm -f  *_check_*.backup.log
+	/bin/rm -f  *.backup.jou
+	/bin/rm -f  *.backup.log
+	/bin/rm -f  *.jou
+	/bin/rm -f  *.log
+	/bin/rm -f  *.str
+	/bin/rm -f  *.zip
 	if [ -d $(PROJECT_DIR) ]; then /bin/rm -fr $(PROJECT_DIR); fi
 
 #-------------------------------------------------------------------------------

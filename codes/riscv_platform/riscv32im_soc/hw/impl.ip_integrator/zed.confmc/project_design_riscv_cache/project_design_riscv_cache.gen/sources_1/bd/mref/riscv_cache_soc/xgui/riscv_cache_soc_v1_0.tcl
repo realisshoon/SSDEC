@@ -8,6 +8,7 @@ proc init_gui { IPINST } {
   ipgui::add_param $IPINST -name "ADDR_I2C" -parent ${Page_0}
   ipgui::add_param $IPINST -name "ADDR_PERIPHERAL" -parent ${Page_0}
   ipgui::add_param $IPINST -name "ADDR_PIC" -parent ${Page_0}
+  ipgui::add_param $IPINST -name "ADDR_SPI" -parent ${Page_0}
   ipgui::add_param $IPINST -name "ADDR_TIMER" -parent ${Page_0}
   ipgui::add_param $IPINST -name "ADDR_UART" -parent ${Page_0}
   ipgui::add_param $IPINST -name "AXI_WIDTH_ADDR" -parent ${Page_0}
@@ -34,6 +35,7 @@ proc init_gui { IPINST } {
   ipgui::add_param $IPINST -name "SIZE_I2C" -parent ${Page_0}
   ipgui::add_param $IPINST -name "SIZE_PERIPHERAL" -parent ${Page_0}
   ipgui::add_param $IPINST -name "SIZE_PIC" -parent ${Page_0}
+  ipgui::add_param $IPINST -name "SIZE_SPI" -parent ${Page_0}
   ipgui::add_param $IPINST -name "SIZE_TIMER" -parent ${Page_0}
   ipgui::add_param $IPINST -name "SIZE_UART" -parent ${Page_0}
   ipgui::add_param $IPINST -name "SUPPORT_LOAD_BYPASS" -parent ${Page_0}
@@ -88,6 +90,15 @@ proc update_PARAM_VALUE.ADDR_PIC { PARAM_VALUE.ADDR_PIC } {
 
 proc validate_PARAM_VALUE.ADDR_PIC { PARAM_VALUE.ADDR_PIC } {
 	# Procedure called to validate ADDR_PIC
+	return true
+}
+
+proc update_PARAM_VALUE.ADDR_SPI { PARAM_VALUE.ADDR_SPI } {
+	# Procedure called to update ADDR_SPI when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.ADDR_SPI { PARAM_VALUE.ADDR_SPI } {
+	# Procedure called to validate ADDR_SPI
 	return true
 }
 
@@ -325,6 +336,15 @@ proc validate_PARAM_VALUE.SIZE_PIC { PARAM_VALUE.SIZE_PIC } {
 	return true
 }
 
+proc update_PARAM_VALUE.SIZE_SPI { PARAM_VALUE.SIZE_SPI } {
+	# Procedure called to update SIZE_SPI when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.SIZE_SPI { PARAM_VALUE.SIZE_SPI } {
+	# Procedure called to validate SIZE_SPI
+	return true
+}
+
 proc update_PARAM_VALUE.SIZE_TIMER { PARAM_VALUE.SIZE_TIMER } {
 	# Procedure called to update SIZE_TIMER when any of the dependent parameters in the arguments change
 }
@@ -518,6 +538,11 @@ proc update_MODELPARAM_VALUE.ADDR_I2C { MODELPARAM_VALUE.ADDR_I2C PARAM_VALUE.AD
 	set_property value [get_property value ${PARAM_VALUE.ADDR_I2C}] ${MODELPARAM_VALUE.ADDR_I2C}
 }
 
+proc update_MODELPARAM_VALUE.ADDR_SPI { MODELPARAM_VALUE.ADDR_SPI PARAM_VALUE.ADDR_SPI } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.ADDR_SPI}] ${MODELPARAM_VALUE.ADDR_SPI}
+}
+
 proc update_MODELPARAM_VALUE.SIZE_PIC { MODELPARAM_VALUE.SIZE_PIC PARAM_VALUE.SIZE_PIC } {
 	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
 	set_property value [get_property value ${PARAM_VALUE.SIZE_PIC}] ${MODELPARAM_VALUE.SIZE_PIC}
@@ -541,6 +566,11 @@ proc update_MODELPARAM_VALUE.SIZE_GPIO { MODELPARAM_VALUE.SIZE_GPIO PARAM_VALUE.
 proc update_MODELPARAM_VALUE.SIZE_I2C { MODELPARAM_VALUE.SIZE_I2C PARAM_VALUE.SIZE_I2C } {
 	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
 	set_property value [get_property value ${PARAM_VALUE.SIZE_I2C}] ${MODELPARAM_VALUE.SIZE_I2C}
+}
+
+proc update_MODELPARAM_VALUE.SIZE_SPI { MODELPARAM_VALUE.SIZE_SPI PARAM_VALUE.SIZE_SPI } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.SIZE_SPI}] ${MODELPARAM_VALUE.SIZE_SPI}
 }
 
 proc update_MODELPARAM_VALUE.NUM_IRQ { MODELPARAM_VALUE.NUM_IRQ PARAM_VALUE.NUM_IRQ } {

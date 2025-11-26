@@ -1,0 +1,3 @@
+#!/bin/bash
+# Set CONFMC_HOME for CON-FMC tools
+export CONFMC_HOME=/opt/confmc/2020.06

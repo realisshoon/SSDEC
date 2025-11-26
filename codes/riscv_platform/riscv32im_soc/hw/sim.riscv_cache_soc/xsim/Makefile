@@ -19,7 +19,8 @@ export ADDR_ENTRY ?= 0x00000000
 #export FILE_BIN   ?= ../../../sw.riscv/hello_world/uart_test.bin
 #export FILE_BIN   ?= ../../../sw.riscv/timer_interrupt/timer_test.bin
 #export FILE_BIN   ?= ../../../sw.riscv.mon/mon/monitor.bin
-export FILE_BIN   ?= gpio_test.bin
+# export FILE_BIN   ?= gpio_test.bin
+export FILE_BIN   ?= spi_test.bin
 export CHECK_BIN  ?= 1
 export BAUD_RATE  ?= 115200
 export VCD        ?= 1
@@ -44,7 +45,12 @@ sim:
 		exit -1;\
 	fi
 	@if [ "$(GUI)" = "1" ]; then\
-		$(XSIM) top -gui;\
+		$(XSIM) top -gui\
+			-testplusarg "ADDR_ENTRY=$(ADDR_ENTRY)"\
+			-testplusarg "FILE_BIN=$(FILE_BIN)"\
+			-testplusarg "CHECK_BIN=$(CHECK_BIN)"\
+			-testplusarg "BAUD_RATE=$(BAUD_RATE)"\
+			-testplusarg "VCD=$(VCD)";\
 	else\
 		$(XSIM) top -t xsim_run.tcl\
 			-testplusarg "ADDR_ENTRY=$(ADDR_ENTRY)"\

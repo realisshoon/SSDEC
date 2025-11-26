@@ -1,1 +1,0 @@
-"iic_controller_tb" -s "i2c_tb_sim" --debug "typical" 

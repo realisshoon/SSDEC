@@ -1,0 +1,219 @@
+//------------------------------------------------------------------------------
+//  Copyright (c) 2024 by Ando Ki.
+//  All right reserved.
+//
+// This program is distributed in the hope that it
+// will be useful to understand Ando Ki's work,
+// BUT WITHOUT ANY WARRANTY.
+//------------------------------------------------------------------------------
+#include "uart_api.h"
+#include <stdint.h>
+
+//------------------------------------------------------------------------------
+static volatile uint32_t UART_ADDR_BASE = 0x90020000;
+static volatile uint32_t UART_VERSION = 0x90020000;
+static volatile uint32_t UART_NAME = 0x90020004;
+static volatile uint32_t UART_CONTROL = 0x90020010;
+static volatile uint32_t UART_STATUS = 0x90020014;
+static volatile uint32_t UART_TX = 0x90020018;
+static volatile uint32_t UART_RX = 0x9002001C;
+static volatile uint32_t UART_CLK_FREQ = 0x90020020;
+
+//------------------------------------------------------------------------------
+#if defined(TRX_BFM)
+#include "cosim_bfm_axi.h"
+extern int cid;
+#define CSR_WRITE(A, B)                                                        \
+  cosim_bfm_axi_lite_write((uint32_t)(A), (uint32_t)(B), cid)
+#define CSR_READ(A, B)                                                         \
+  cosim_bfm_axi_lite_read((uint32_t)(A), (uint32_t *)&(B), cid)
+#else
+#define reinterpret_cast(TO, VAR)                                              \
+  ({                                                                           \
+    union {                                                                    \
+      __typeof__((VAR)) source;                                                \
+      TO dest;                                                                 \
+    } u = {.source = (VAR)};                                                   \
+    (TO) u.dest;                                                               \
+  })
+#define CSR_WRITE(A, B) *(reinterpret_cast(uint32_t *, (A))) = B;
+#define CSR_READ(A, B) B = *(reinterpret_cast(uint32_t *, A));
+#endif
+
+//------------------------------------------------------------------------------
+// Default should be 8-bit, no-parity, 1-stop
+void uart_init(uint32_t freq // clock frequency in Hz (use CSR when 0)
+               ,
+               uint32_t baudrate // baud rate
+               ,
+               uint32_t width // 8: 8-bit, 7: 7-bit
+               ,
+               uint32_t parity // 0: disable, 1: odd, 2 even
+               ,
+               uint32_t stop // 1: 1-bit, 2: 2-bit
+) {
+  volatile uint32_t val;
+  if (freq == 0)
+    freq = uart_get_clk_freq();
+  val = (int)(freq / baudrate + 0.5) & 0xFFFF;
+  val |= (width == 8) ? 0 : 1 << 16;
+  val |= (parity == 0) ? 0 : 1 << 17;
+  val |= (parity == 1) ? 0 : 1 << 18;
+  val |= (stop == 1) ? 0 : 1 << 19;
+  CSR_WRITE(UART_CONTROL, val);
+}
+
+//------------------------------------------------------------------------------
+// Default should be 8-bit, no-parity, 1-stop
+void uart_init_ext(uint32_t freq // clock frequency in Hz (use CSR when 0)
+                   ,
+                   uint32_t baudrate // baud rate
+                   ,
+                   uint32_t width // 8: 8-bit, 7: 7-bit
+                   ,
+                   uint32_t parity // 0: disable, 1: odd, 2 even
+                   ,
+                   uint32_t stop // 1: 1-bit, 2: 2-bit
+                   ,
+                   int ie_rx // enabel rx interrupt
+                   ,
+                   int ie_tx // enabel tx interrupt
+) {
+  volatile uint32_t val;
+  if (freq == 0)
+    freq = uart_get_clk_freq();
+  val = (int)(freq / baudrate + 0.5) & 0xFFFF;
+  val |= (width == 8) ? 0 : 1 << 16;
+  val |= (parity == 0) ? 0 : 1 << 17;
+  val |= (parity == 1) ? 0 : 1 << 18;
+  val |= (stop == 1) ? 0 : 1 << 19;
+  val |= (ie_rx == 0) ? 0 : 1 << 21;
+  val |= (ie_tx == 0) ? 0 : 1 << 20;
+  CSR_WRITE(UART_CONTROL, val);
+}
+
+//------------------------------------------------------------------------------
+uint32_t uart_get_char(void) {
+  volatile uint32_t val;
+  do {
+    CSR_READ(UART_RX, val);
+  } while (!(val & 0x80000000));
+  return val & 0xFF;
+}
+
+//------------------------------------------------------------------------------
+// Non-blocking uart get char - returns 0 if no data available
+uint32_t uart_get_char_nb(void) {
+  volatile uint32_t val;
+  CSR_READ(UART_RX, val);
+  if (val & 0x80000000) {
+    return val & 0xFF; // Data available
+  }
+  return 0; // No data
+}
+
+//------------------------------------------------------------------------------
+#define UART_PUT_CHAR(C)                                                       \
+  do {                                                                         \
+    volatile uint32_t val;                                                     \
+    do {                                                                       \
+      CSR_READ(UART_TX, val);                                                  \
+    } while (val & 0x80000000);                                                \
+    CSR_WRITE(UART_TX, (C));                                                   \
+  } while (0)
+
+//------------------------------------------------------------------------------
+uint32_t uart_put_char(char d) {
+  volatile uint32_t val;
+  do {
+    CSR_READ(UART_TX, val);
+  } while (val & 0x80000000);
+  val = d;
+  CSR_WRITE(UART_TX, val);
+  return (uint32_t)d;
+}
+
+//------------------------------------------------------------------------------
+int uart_put_string(char *s) {
+  char c;
+  int i = 0;
+  while ((c = *s++)) {
+    UART_PUT_CHAR(c);
+    i++;
+  }
+  return i;
+}
+
+//--------------------------------------------------------
+void uart_put_int(uint32_t n) {
+  int a;
+  char c;
+  if (n < 0) {
+    UART_PUT_CHAR('-');
+    n = -n;
+  }
+  a = n / 10;
+  if (a)
+    uart_put_int(a);
+  c = '0' + (n % 10);
+  UART_PUT_CHAR(c);
+}
+
+//--------------------------------------------------------
+void uart_put_hex(uint32_t n) {
+  int a;
+  char c;
+  a = n / 16;
+  if (a)
+    uart_put_hex(a);
+  a = n % 16;
+  if (a < 10)
+    c = '0' + a;
+  else
+    c = 'A' + a - 10;
+  UART_PUT_CHAR(c);
+}
+
+//------------------------------------------------------------------------------
+void uart_cler_tx_irq(void) {
+  volatile uint32_t val;
+  CSR_READ(UART_STATUS, val);
+  val &= ~0x1; // bit-0
+  CSR_WRITE(UART_STATUS, val);
+}
+
+//------------------------------------------------------------------------------
+void uart_cler_rx_irq(void) {
+  volatile uint32_t val;
+  CSR_READ(UART_STATUS, val);
+  val &= ~0x2; // bit-1
+  CSR_WRITE(UART_STATUS, val);
+}
+
+//------------------------------------------------------------------------------
+uint32_t uart_get_clk_freq(void) {
+  volatile uint32_t val;
+  CSR_READ(UART_CLK_FREQ, val);
+  return val;
+}
+
+//------------------------------------------------------------------------------
+void uart_set_addr(uint32_t addr) {
+  UART_ADDR_BASE = addr;
+  UART_VERSION = addr + 0x00;
+  UART_NAME = addr + 0x04;
+  UART_CONTROL = addr + 0x10;
+  UART_STATUS = addr + 0x14;
+  UART_TX = addr + 0x18;
+  UART_RX = addr + 0x1C;
+  UART_CLK_FREQ = addr + 0x20;
+}
+
+//------------------------------------------------------------------------------
+uint32_t uart_get_addr(void) { return UART_ADDR_BASE; }
+
+//------------------------------------------------------------------------------
+// Revision history
+//
+// 2024.08.10: Started by Ando Ki (andoki@gmail.com)
+//------------------------------------------------------------------------------

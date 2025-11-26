@@ -2,13 +2,11 @@ sv work -d AMBA_AXI4 -d SIM -d VCD\
         -i ${DIR_BENCH}\
            ${DIR_BENCH}/top.sv\
            ${DIR_BENCH}/cosim_bfm_axi_lite.sv\
-           ${DIR_BENCH}/i2c_timing_checker.sv\
-           ${DIR_BENCH}/i2c_dummy_slave.sv\
+           ${DIR_BENCH}/axi4_to_lite.v\
+        -i ${DIR_BEH}\
+           ${DIR_BEH}/i2c_slave.v\
         -i ${DIR_COSIM_INC}/verilog\
            ${DIR_COSIM_INC}/verilog/cosim_bfm_axi_dpi.sv\
         -i ${DIR_RTL}\
-           ${DIR_RTL}/i2c_axi_lite.v\
-        -i ../../../axi4_to_lite/rtl/verilog\
-           ../../../axi4_to_lite/rtl/verilog/axi4_to_lite.v
-
+           ${DIR_RTL}/i2c_master_axi_lite.v
 

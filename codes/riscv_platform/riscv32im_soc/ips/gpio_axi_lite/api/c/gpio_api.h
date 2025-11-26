@@ -1,4 +1,5 @@
 #pragma once
+#include <stdint.h>
 /**
  * @file gpio_axi_lite.c
  * @brief This file contains GPIO API.
@@ -35,7 +36,7 @@ extern "C" {
  *
  * @return the value of GPIO input line
  */
-uint32_t gpio_read( void );
+uint32_t gpio_read(void);
 
 /**
  * @brief Set vlaue f GPIO output line.
@@ -44,7 +45,7 @@ uint32_t gpio_read( void );
  *
  * @return void
  */
-void gpio_write( uint32_t value );
+void gpio_write(uint32_t value);
 
 /**
  * @brief Set GPIO operating modes.
@@ -64,10 +65,13 @@ void gpio_write( uint32_t value );
  *
  * @return 0 on success, otherwise negative number.
  */
-void gpio_init( uint32_t inout // 0 by default, all input mode
-              , uint32_t edge  // 0 by default, all level-sesitive
-              , uint32_t pol   //~0 by default, all active-high
-              , uint32_t irq_enable);// 0 by default, all disabled
+void gpio_init(uint32_t inout // 0 by default, all input mode
+               ,
+               uint32_t edge // 0 by default, all level-sesitive
+               ,
+               uint32_t pol //~0 by default, all active-high
+               ,
+               uint32_t irq_enable); // 0 by default, all disabled
 
 /**
  * @brief Set GPIO interrupt.
@@ -111,7 +115,8 @@ uint32_t gpio_irq_pol(uint32_t value);
 uint32_t gpio_irq_read(void);
 
 /**
- * @brief Clear GPIO interrupt mode;  clear 'IRQ' bit according to bit value of 'value'.
+ * @brief Clear GPIO interrupt mode;  clear 'IRQ' bit according to bit value of
+ * 'value'.
  *
  * @param value      bitwise setting of level or edge
  *                    Bit value '0' of 'value' clear corresponding bit of 'IRQ'.
@@ -125,7 +130,7 @@ uint32_t gpio_irq_clear(uint32_t value);
  *
  * @return void
  */
-void gpio_csr( void );
+void gpio_csr(void);
 
 /**
  * @brief Set base (offset) address.
@@ -134,14 +139,14 @@ void gpio_csr( void );
  *
  * @return 0 on success, otherwise negative number.
  */
-int gpio_set_addr( uint32_t offset );
+int gpio_set_addr(uint32_t offset);
 
 /**
  * @brief Get base (offset) address.
  *
  * @return current base (offset) address.
  */
-uint32_t gpio_get_addr( void );
+uint32_t gpio_get_addr(void);
 
 #ifdef __cplusplus
 }

@@ -53,8 +53,8 @@
 (* X_CORE_INFO = "riscv_cache_soc,Vivado 2021.2" *)
 (* CHECK_LICENSE_TYPE = "design_riscv_cache_riscv_cache_soc_0_0,riscv_cache_soc,{}" *)
 (* CORE_GENERATION_INFO = "design_riscv_cache_riscv_cache_soc_0_0,riscv_cache_soc,{x_ipProduct=Vivado 2021.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=riscv_cache_soc,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,BOOT_VECTOR=0x00000000,CORE_ID=0,SUPPORT_SUPER=0,SUPPORT_MMU=0,SUPPORT_MULDIV=1,SUPPORT_LOAD_BYPASS=1,SUPPORT_MUL_BYPASS=1,SUPPORT_REGFILE_XILINX=0,EXTRA_DECODE_STAGE=0,MEM_CACHE_ADDR_MIN=0x00000000,MEM_CACHE_ADDR_MAX=0x0FFFFFFF,MEM_ONCHIP_ADDR=0x00000000,MEM_ONCHIP_SIZ\
-E=131072,MEM_OFFCHIP_ADDR=0x02000000,MEM_OFFCHIP_SIZE=131072,ADDR_PERIPHERAL=0x90000000,SIZE_PERIPHERAL=0x10000000,BAUD_RATE=115200,ACLK_FREQ=100000000,ADDR_PIC=0x90000000,ADDR_TIMER=0x90010000,ADDR_UART=0x90020000,ADDR_GPIO=0x90030000,ADDR_I2C=0x90040000,SIZE_PIC=0x00001000,SIZE_TIMER=0x00001000,SIZE_UART=0x00001000,SIZE_GPIO=0x00001000,SIZE_I2C=0x00001000,NUM_IRQ=3,IRQ_TIMER=0,IRQ_UART=1,IRQ_GPIO=2,AXI_WIDTH_CID=2,AXI_WIDTH_ID=4,AXI_WIDTH_SID=6,AXI_WIDTH_ADDR=32,AXI_WIDTH_DATA=32,AXI_WIDTH_STR\
-B=4}" *)
+E=131072,MEM_OFFCHIP_ADDR=0x02000000,MEM_OFFCHIP_SIZE=131072,ADDR_PERIPHERAL=0x90000000,SIZE_PERIPHERAL=0x10000000,BAUD_RATE=115200,ACLK_FREQ=100000000,ADDR_PIC=0x90000000,ADDR_TIMER=0x90010000,ADDR_UART=0x90020000,ADDR_GPIO=0x90030000,ADDR_I2C=0x90040000,ADDR_SPI=0xA0000000,SIZE_PIC=0x00001000,SIZE_TIMER=0x00001000,SIZE_UART=0x00001000,SIZE_GPIO=0x00001000,SIZE_I2C=0x00001000,SIZE_SPI=0x00001000,NUM_IRQ=3,IRQ_TIMER=0,IRQ_UART=1,IRQ_GPIO=2,AXI_WIDTH_CID=2,AXI_WIDTH_ID=4,AXI_WIDTH_SID=6,AXI_WIDTH\
+_ADDR=32,AXI_WIDTH_DATA=32,AXI_WIDTH_STRB=4}" *)
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module design_riscv_cache_riscv_cache_soc_0_0 (
@@ -69,6 +69,11 @@ module design_riscv_cache_riscv_cache_soc_0_0 (
   i2c_sda,
   i2c_scl,
   cpu_resetn,
+  spi_cs_n,
+  spi_sck,
+  spi_mosi,
+  spi_miso,
+  spi_rst,
   axi_aresetn,
   axi_aclk,
   s_axi_confmc_awid,
@@ -144,6 +149,13 @@ output wire i2c_scl;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME cpu_resetn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 cpu_resetn RST" *)
 input wire cpu_resetn;
+output wire spi_cs_n;
+output wire spi_sck;
+output wire spi_mosi;
+input wire spi_miso;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME spi_rst, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
+(* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 spi_rst RST" *)
+output wire spi_rst;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axi_aresetn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 axi_aresetn RST" *)
 input wire axi_aresetn;
@@ -296,11 +308,13 @@ output wire m_axi_mem_rready;
     .ADDR_UART(32'H90020000),
     .ADDR_GPIO(32'H90030000),
     .ADDR_I2C(32'H90040000),
+    .ADDR_SPI(32'HA0000000),
     .SIZE_PIC(32'H00001000),
     .SIZE_TIMER(32'H00001000),
     .SIZE_UART(32'H00001000),
     .SIZE_GPIO(32'H00001000),
     .SIZE_I2C(32'H00001000),
+    .SIZE_SPI(32'H00001000),
     .NUM_IRQ(3),
     .IRQ_TIMER(0),
     .IRQ_UART(1),
@@ -323,6 +337,11 @@ output wire m_axi_mem_rready;
     .i2c_sda(i2c_sda),
     .i2c_scl(i2c_scl),
     .cpu_resetn(cpu_resetn),
+    .spi_cs_n(spi_cs_n),
+    .spi_sck(spi_sck),
+    .spi_mosi(spi_mosi),
+    .spi_miso(spi_miso),
+    .spi_rst(spi_rst),
     .axi_aresetn(axi_aresetn),
     .axi_aclk(axi_aclk),
     .s_axi_confmc_awid(s_axi_confmc_awid),

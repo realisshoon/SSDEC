@@ -1,1 +1,0 @@
--prj "xsim.prj" -debug "typical" -sv_root "/home/sogang/work/cosim_bfm_library/lib/xsim/linux_x86_64" -sv_lib "cosim_dpi_bfm.so" "top" -s "top_snapshot" 

@@ -1,0 +1,45 @@
+void spi_write_reg(uint8_t addr, uint8_t data) {
+  uint32_t ctrl;
+  uint32_t status;
+  int timeout = 100000;
+
+  my_printf("[SPI_WR] Entering function\\r\\n");
+  
+  do {
+    CSR_READ(CSRA_STATUS, status);
+    my_printf("[SPI_WR] STATUS=0x%08x\\r\\n", status);
+    if (status == 0xFFFFFFFF) {
+      my_printf("[SPI_WR] Bus Error!\\r\\n");
+      return;
+    }
+    timeout--;
+  } while ((status & 0x1) && timeout > 0);
+
+  if (timeout == 0) {
+    my_printf("[SPI_WR] Timeout!\\r\\n");
+    return;
+  }
+
+  CSR_WRITE(CSRA_ADDR, ((addr << 1) & 0x7E));
+  CSR_WRITE(CSRA_DATA_IN, data);
+  
+  ctrl = 0x001;
+  CSR_WRITE(CSRA_CTRL, ctrl);
+
+  timeout = 100000;
+  do {
+    CSR_READ(CSRA_STATUS, status);
+    if (status == 0xFFFFFFFF) {
+      my_printf("[SPI_WR] Bus Error 2!\\r\\n");
+      return;
+    }
+    timeout--;
+  } while ((status & 0x1) && timeout > 0);
+
+  if (timeout == 0) {
+    my_printf("[SPI_WR] Timeout 2!\\r\\n");
+    return;
+  }
+  
+  my_printf("[SPI_WR] Done!\\r\\n");
+}

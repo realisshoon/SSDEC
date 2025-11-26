@@ -1,0 +1,147 @@
+//------------------------------------------------------------------------------
+// Door Lock System with RFID Card Key
+//------------------------------------------------------------------------------
+#include "gpio_api.h"
+#include "mfrc522_api.h"
+#include "my_printf.h"
+#include "spi_api.h"
+#include "uart_api.h"
+#include <stdint.h>
+
+#ifndef BAUD_RATE
+#define BAUD_RATE 115200
+#endif
+
+#define UART_BASE_ADDR 0x90020000
+#define GPIO_BASE_ADDR 0x90030000
+#define SPI_BASE_ADDR                                                          \
+  0xA0000000 // SPI moved outside PERIPHERAL range to avoid AXI address overlap
+
+// Master Key UID (Example: 4 bytes)
+// In simulation with simple dummy, we might need to adjust this or the dummy
+// model. For now, let's define a target UID.
+static const uint8_t MASTER_UID[4] = {0x93, 0x20, 0x55, 0xAA};
+
+// LED Control (GPIO [15:8])
+static void led_set(uint8_t pattern) {
+  // Read current GPIO state to preserve other bits if needed,
+  // but here we assume we control the whole upper byte.
+  // GPIO_BASE_ADDR + 0x00 is usually the data register.
+  // We need to ensure direction is set to output for these bits.
+
+  // Current gpio_api doesn't have read-modify-write for specific bits easily
+  // without reading back. Assuming we can write to the whole port or just the
+  // upper bits if we manage the state. Let's assume we write 32-bit value,
+  // keeping lower 8 bits (keypad) as is or 0 for now.
+
+  uint32_t val = (uint32_t)pattern << 8;
+  gpio_write(val);
+}
+
+static void led_on(void) {
+  led_set(0xFF); // All LEDs ON
+}
+
+static void led_off(void) {
+  led_set(0x00); // All LEDs OFF
+}
+
+static void delay_ms(uint32_t ms) {
+  volatile uint32_t i, j;
+  for (i = 0; i < ms; i++) {
+    for (j = 0; j < 1000; j++) {
+      // Adjust based on clock
+    }
+  }
+}
+
+// Check if detected UID matches Master UID
+static int check_uid(uint8_t *uid) {
+  for (int i = 0; i < 4; i++) {
+    if (uid[i] != MASTER_UID[i]) {
+      return 0; // Mismatch
+    }
+  }
+  return 1; // Match
+}
+
+int main() {
+  // 1. UART Initialization
+  uart_set_addr(UART_BASE_ADDR);
+  my_printf("[DEBUG] Before UART init\r\n");
+  uart_init(100000000, BAUD_RATE, 8, 0, 1);
+  my_printf("\r\n[System] UART Initialized\r\n");
+
+  // 2. GPIO Initialization
+  my_printf("[DEBUG] Before GPIO init\r\n");
+  gpio_set_addr(GPIO_BASE_ADDR);
+  // Set direction: Lower 8 bits (Keypad) = Input/Output mixed (handled by
+  // keypad_api later) Upper 8 bits (LED) = Output For Phase 1, we just set
+  // upper 8 bits as output. gpio_init(dir, int_en, ...); dir: 1=output, 0=input
+  gpio_init(0x0000FF00, 0, 0, 0);
+  led_off();
+  my_printf("[System] GPIO Initialized (LEDs OFF)\r\n");
+
+  // 3. SPI & MFRC522 Initialization
+  my_printf("[DEBUG] Before SPI init\r\n");
+  spi_set_addr(SPI_BASE_ADDR);
+  my_printf("[DEBUG] Before MFRC522_Init\r\n");
+  MFRC522_Init();
+  my_printf("[DEBUG] After MFRC522_Init\r\n");
+
+  // Check MFRC522 Version
+  my_printf("[DEBUG] Before reading version\r\n");
+  uint8_t ver = MFRC522_ReadReg(MFRC522_REG_VERSION);
+  my_printf("[MFRC522] Version: 0x%x\r\n", ver);
+  if (ver == 0x92 || ver == 0x91 || ver == 0x88) {
+    my_printf("[MFRC522] Initialization Successful\r\n");
+  } else {
+    my_printf("[MFRC522] Warning: Unknown Version or Init Failed\r\n");
+  }
+
+  my_printf("[System] Ready. Waiting for Card...\r\n");
+
+  uint8_t uid[10];
+  uint8_t last_uid[10] = {0};
+  int card_present_prev = 0;
+  uint32_t loop_count = 0;
+
+  while (1) {
+    loop_count++;
+    if (loop_count % 1000 == 0) {
+      my_printf("[DEBUG] Main loop iteration: %d\r\n", loop_count);
+    }
+    // Check for card
+    if (MFRC522_IsCardPresent(uid)) {
+      if (!card_present_prev) {
+        // New card detected
+        my_printf("\r\n[RFID] Card Detected! UID: %x %x %x %x\r\n", uid[0],
+                  uid[1], uid[2], uid[3]);
+
+        if (check_uid(uid)) {
+          my_printf("[Access] Access Granted! Unlocking Door...\r\n");
+          led_on();
+          delay_ms(3000); // Keep unlocked for 3 seconds
+          led_off();
+          my_printf("[Access] Door Locked.\r\n");
+        } else {
+          my_printf("[Access] Access Denied. Unknown Card.\r\n");
+          // Blink LED twice
+          for (int k = 0; k < 2; k++) {
+            led_set(0x55);
+            delay_ms(200);
+            led_off();
+            delay_ms(200);
+          }
+        }
+        card_present_prev = 1;
+      }
+    } else {
+      card_present_prev = 0;
+    }
+
+    delay_ms(100);
+  }
+
+  return 0;
+}

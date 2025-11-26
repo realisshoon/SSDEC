@@ -1,7 +1,18 @@
 //----------------------------------------------------------------------------
-// I2C AXI-Lite HW/SW co-simulation top
-//   참고: uart_axi_lite/bench.cosim/verilog/top.sv 와 유사한 구조
-//   SW <-> AXI-Lite BFM(cosim_bfm_axi_lite) <-> i2c_axi_lite
+// Copyright (c) 2025 by Ando Ki.
+// All rights are reserved by Ando Ki.
+//----------------------------------------------------------------------------
+// top.v
+//----------------------------------------------------------------------------
+// |<-- SW --->|<-----------HW-------------------------->|
+// +--------+     +--------+     +--------+     +--------+
+// |        |     |        |     |        |     |        |
+// | SW     |<...>| bfm    |     | axi4   |     | i2c    |
+// |        |<...>|        |<===>| to     |<===>| master |
+// |        |     |        |     | lite   |     | axi    |
+// |        |     |        |     |        |     | lite   |
+// +--------+     +--------+     +--------+     +--------+
+//
 //----------------------------------------------------------------------------
 `timescale 1ns/1ps
 
@@ -13,30 +24,31 @@
 
 //----------------------------------------------------------------------------
 module top;
+    localparam GPIO_WIDTH=32;
     //--------------------------------------------------------------------------
     // Oscillators
     localparam real CLOCK_FREQ =10_000_000.0;
     localparam real CLOCK_HALF =(1_000_000_000.0/CLOCK_FREQ/2.0);
     //--------------------------------------------------------------------------
-    reg  axil_aclk    = 1'b0; always #(CLOCK_HALF) axil_aclk <= ~axil_aclk;
-    reg  axil_aresetn = 1'b0; initial begin #111; axil_aresetn = 1'b1; end
+    reg  axil_aclk=1'b0; always #(CLOCK_HALF) axil_aclk <= ~axil_aclk;
+    reg  axil_aresetn=1'b0; initial begin #111; axil_aresetn=1'b1; end
     //------------------------------------------------------------------------
-    wire [31:0] axi_lite_awaddr ;
-    wire        axi_lite_awvalid;
-    wire        axi_lite_awready;
-    wire [31:0] axi_lite_wdata  ;
-    wire        axi_lite_wvalid ;
-    wire        axi_lite_wready ;
-    wire [ 1:0] axi_lite_bresp  ;
-    wire        axi_lite_bvalid ;
-    wire        axi_lite_bready ;
-    wire [31:0] axi_lite_araddr ;
-    wire        axi_lite_arvalid;
-    wire        axi_lite_arready;
-    wire [31:0] axi_lite_rdata  ;
-    wire [ 1:0] axi_lite_rresp  ;
-    wire        axi_lite_rvalid ;
-    wire        axi_lite_rready ;
+    wire [31:0] `DELAY_LINE axi_lite_awaddr ;
+    wire        `DELAY_LINE axi_lite_awvalid;
+    wire        `DELAY_LINE axi_lite_awready;
+    wire [31:0] `DELAY_LINE axi_lite_wdata  ;
+    wire        `DELAY_LINE axi_lite_wvalid ;
+    wire        `DELAY_LINE axi_lite_wready ;
+    wire [ 1:0] `DELAY_LINE axi_lite_bresp  ;
+    wire        `DELAY_LINE axi_lite_bvalid ;
+    wire        `DELAY_LINE axi_lite_bready ;
+    wire [31:0] `DELAY_LINE axi_lite_araddr ;
+    wire        `DELAY_LINE axi_lite_arvalid;
+    wire        `DELAY_LINE axi_lite_arready;
+    wire [31:0] `DELAY_LINE axi_lite_rdata  ;
+    wire [ 1:0] `DELAY_LINE axi_lite_rresp  ;
+    wire        `DELAY_LINE axi_lite_rvalid ;
+    wire        `DELAY_LINE axi_lite_rready ;
     //--------------------------------------------------------------------------
     cosim_bfm_axi_lite
     u_bfm_axi_lite (
@@ -60,53 +72,112 @@ module top;
         , .m_axi_lite_rready  ( axi_lite_rready  )
     );
     //--------------------------------------------------------------------------
-    wire `DELAY_LINE sda;
-    wire `DELAY_LINE scl;
-
-    // I2C AXI-Lite peripheral
-    i2c_axi_lite
-    u_i2c (
-          .aresetn       ( axil_aresetn     )
-        , .aclk          ( axil_aclk        )
-        , .s_axi_awaddr  ( axi_lite_awaddr  )
-        , .s_axi_awvalid ( axi_lite_awvalid )
-        , .s_axi_awready ( axi_lite_awready )
-        , .s_axi_wdata   ( axi_lite_wdata   )
-        , .s_axi_wvalid  ( axi_lite_wvalid  )
-        , .s_axi_wready  ( axi_lite_wready  )
-        , .s_axi_bresp   ( axi_lite_bresp   )
-        , .s_axi_bvalid  ( axi_lite_bvalid  )
-        , .s_axi_bready  ( axi_lite_bready  )
-        , .s_axi_araddr  ( axi_lite_araddr  )
-        , .s_axi_arvalid ( axi_lite_arvalid )
-        , .s_axi_arready ( axi_lite_arready )
-        , .s_axi_rdata   ( axi_lite_rdata   )
-        , .s_axi_rresp   ( axi_lite_rresp   )
-        , .s_axi_rvalid  ( axi_lite_rvalid  )
-        , .s_axi_rready  ( axi_lite_rready  )
-        , .scl                ( scl              )
-        , .sda                ( sda              )
+    wire  `DELAY_LINE  SCL  ;
+    wire  `DELAY_LINE  SCL_I;
+    wire  `DELAY_LINE  SCL_O;
+    wire  `DELAY_LINE  SCL_T;
+    wire  `DELAY_LINE  SDA  ;
+    wire  `DELAY_LINE  SDA_I;
+    wire  `DELAY_LINE  SDA_O;
+    wire  `DELAY_LINE  SDA_T;
+    //--------------------------------------------------------------------------
+    assign SCL   =(SCL_T==1'b0) ? SCL_O : 1'bZ;
+    assign SCL_I = SCL;
+    assign SDA   =(SDA_T==1'b0) ? SDA_O : 1'bZ;
+    assign SDA_I = SDA;
+    //---------------------------------------------------------------------------
+    pullup u_scl(SCL);
+    pullup u_sda(SDA);
+    //---------------------------------------------------------------------------
+    parameter P_CLK_FREQ    =CLOCK_FREQ // CLK frequency
+            , P_I2C_SPEED   =1_000_000 // I2C SCLK frequency
+            , P_I2C_BPW     =16
+            , P_I2C_CPOL    =1'b0 // SCLK stay 0 by default
+            , P_I2C_CPHA    =1'b1 // MOSI driven at rising edge, latched at falling edge
+            , P_I2C_LSB_FIRST=1'b0 // LSB fisrt when 1
+            , P_I2C_SS_HIGH  =1'b0 // SS_N active high when 1
+            ;
+    //--------------------------------------------------------------------------
+    i2c_master_axi_lite #(.P_CLK_FREQ    (P_CLK_FREQ )
+                         ,.P_I2C_SPEED   (P_I2C_SPEED))
+    u_i2c_master (
+          .aresetn            ( axil_aresetn     )
+        , .aclk               ( axil_aclk        )
+        , .s_axi_lite_awaddr  ( axi_lite_awaddr  )
+        , .s_axi_lite_awvalid ( axi_lite_awvalid )
+        , .s_axi_lite_awready ( axi_lite_awready )
+        , .s_axi_lite_wdata   ( axi_lite_wdata   )
+        , .s_axi_lite_wvalid  ( axi_lite_wvalid  )
+        , .s_axi_lite_wready  ( axi_lite_wready  )
+        , .s_axi_lite_bresp   ( axi_lite_bresp   )
+        , .s_axi_lite_bvalid  ( axi_lite_bvalid  )
+        , .s_axi_lite_bready  ( axi_lite_bready  )
+        , .s_axi_lite_araddr  ( axi_lite_araddr  )
+        , .s_axi_lite_arvalid ( axi_lite_arvalid )
+        , .s_axi_lite_arready ( axi_lite_arready )
+        , .s_axi_lite_rdata   ( axi_lite_rdata   )
+        , .s_axi_lite_rresp   ( axi_lite_rresp   )
+        , .s_axi_lite_rvalid  ( axi_lite_rvalid  )
+        , .s_axi_lite_rready  ( axi_lite_rready  )
+        , .IRQ     ( IRQ     )
+        , .SCL_I   ( SCL_I   )
+        , .SCL_O   ( SCL_O   )
+        , .SCL_T   ( SCL_T   )
+        , .SDA_I   ( SDA_I   )
+        , .SDA_O   ( SDA_O   )
+        , .SDA_T   ( SDA_T   )
     );
-
-    // 간단한 풀업 및 덤프 설정
-    pullup u_sda_pu(sda);
-    
-    // I2C Dummy Slave 모델 (ACK 응답 제공)
-    i2c_dummy_slave #(.DEV_ADDR(7'h50))
-    u_dummy_slave (
-          .scl ( scl )
-        , .sda ( sda )
+    //--------------------------------------------------------------------------
+    `ifndef I2C_DEV_ADDR_D7R8
+    `define I2C_DEV_ADDR_D7R8 7'b1000001
+    `endif
+    i2c_slave #(.P_I2C_DEV_ADDR_LEN(7)
+               ,.P_I2C_DEV_ADDR(`I2C_DEV_ADDR_D7R8)
+               ,.P_I2C_REG_ADDR_LEN(8)
+               ,.P_I2C_MEM_SIZE(10'h100))
+    u_slave0 (
+        .SCL(SCL )
+      , .SDA(SDA )
     );
-
-    // I2C 타이밍 검증 모듈
-    i2c_timing_checker
-    u_timing_checker (
-          .scl ( scl )
-        , .sda ( sda )
+    //--------------------------------------------------------------------------
+    `ifndef I2C_DEV_ADDR_D7R16
+    `define I2C_DEV_ADDR_D7R16 7'b1000101
+    `endif
+    i2c_slave #(.P_I2C_DEV_ADDR_LEN(7)
+               ,.P_I2C_DEV_ADDR(`I2C_DEV_ADDR_D7R16)
+               ,.P_I2C_REG_ADDR_LEN(16)
+               ,.P_I2C_MEM_SIZE(10'h100))
+    u_slave1(
+        .SCL(SCL)
+      , .SDA(SDA)
     );
-
+    //--------------------------------------------------------------------------
+    `ifndef I2C_DEV_ADDR_D10R8
+    `define I2C_DEV_ADDR_D10R8 10'b1000000001
+    `endif
+    i2c_slave #(.P_I2C_DEV_ADDR_LEN(7)
+               ,.P_I2C_DEV_ADDR(`I2C_DEV_ADDR_D10R8)
+               ,.P_I2C_REG_ADDR_LEN(8)
+               ,.P_I2C_MEM_SIZE(10'h100))
+    u_slave2 (
+        .SCL(SCL)
+      , .SDA(SDA)
+    );
+    //--------------------------------------------------------------------------
+    `ifndef I2C_DEV_ADDR_D10R16
+    `define I2C_DEV_ADDR_D10R16 10'b1000000_101
+    `endif
+    i2c_slave #(.P_I2C_DEV_ADDR_LEN(7)
+               ,.P_I2C_DEV_ADDR(`I2C_DEV_ADDR_D10R16)
+               ,.P_I2C_REG_ADDR_LEN(16)
+               ,.P_I2C_MEM_SIZE(10'h100))
+    u_slave3 (
+        .SCL(SCL)
+      , .SDA(SDA)
+    );
+    //--------------------------------------------------------------------------
     initial begin
-       $display("I2C cosim VCD dump enable.");
+       $display("VCD dump enable.");
        $dumpfile("wave.vcd");
        $dumpvars(0);
     end
@@ -115,7 +186,6 @@ endmodule
 
 //----------------------------------------------------------------------------
 // Revision history
-// 2025.11.xx: Created for i2c_axi_lite cosim.
+//
+// 2025.09.10: Started by Ando Ki (andoki@gmail.com)
 //----------------------------------------------------------------------------
-
-

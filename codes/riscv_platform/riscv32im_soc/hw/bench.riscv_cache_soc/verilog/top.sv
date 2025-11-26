@@ -56,11 +56,13 @@ module top ;
     localparam ADDR_UART  = 32'h9002_0000;// starting address of UART
     localparam ADDR_GPIO  = 32'h9003_0000;// starting address of GPIO
     localparam ADDR_I2C   = 32'h9004_0000;// starting address of I2C
+    localparam ADDR_SPI   = 32'hA000_0000;// starting address of SPI
     localparam SIZE_PIC   = 32'h0000_1000;
     localparam SIZE_TIMER = 32'h0000_1000;
     localparam SIZE_UART  = 32'h0000_1000;
     localparam SIZE_GPIO  = 32'h0000_1000;
     localparam SIZE_I2C   = 32'h0000_1000;
+    localparam SIZE_SPI   = 32'h0000_1000;
     localparam NUM_IRQ    = 3; // timer(0), uart(1), gpio(2)
     localparam IRQ_TIMER  = 0; // timer(0)
     localparam IRQ_UART   = 1; // uart(1)
@@ -77,6 +79,11 @@ module top ;
     wire  [3:0] keypad_row;
     wire        i2c_sda;
     wire        i2c_scl;
+    wire        spi_cs_n;
+    wire        spi_sck;
+    wire        spi_mosi;
+    wire        spi_miso;
+    wire        spi_rst;
 
     // 가상 키패드 시뮬레이션을 위한 reg 신호
     reg [7:0] gpio_in_reg;
@@ -255,11 +262,13 @@ module top ;
                      ,.ADDR_UART             (ADDR_UART             )
                      ,.ADDR_GPIO             (ADDR_GPIO             )
                      ,.ADDR_I2C              (ADDR_I2C              )
+                     ,.ADDR_SPI              (ADDR_SPI              )
                      ,.SIZE_PIC              (SIZE_PIC              )
                      ,.SIZE_TIMER            (SIZE_TIMER            )
                      ,.SIZE_UART             (SIZE_UART             )
                      ,.SIZE_GPIO             (SIZE_GPIO             )
                      ,.SIZE_I2C              (SIZE_I2C              )
+                     ,.SIZE_SPI              (SIZE_SPI              )
                      ,.NUM_IRQ               (NUM_IRQ               )
                      ,.IRQ_TIMER             (IRQ_TIMER             )
                      ,.IRQ_UART              (IRQ_UART              )
@@ -278,6 +287,11 @@ module top ;
         ,.keypad_row  ( keypad_row  )
         ,.i2c_sda     ( i2c_sda     )
         ,.i2c_scl     ( i2c_scl     )
+        ,.spi_cs_n    ( spi_cs_n    )
+        ,.spi_sck     ( spi_sck     )
+        ,.spi_mosi    ( spi_mosi    )
+        ,.spi_miso    ( spi_miso    )
+        ,.spi_rst     ( spi_rst     )
     );
     //--------------------------------------------------------------------------
     // load program and release reset
@@ -298,6 +312,18 @@ module top ;
        .uart_rx(uart_txd)
       ,.uart_tx(uart_rxd)
     );
+    //--------------------------------------------------------------------------
+    // MFRC522 Dummy Model
+    //--------------------------------------------------------------------------
+    mfrc522_dummy u_mfrc522_dummy (
+        .axi_aclk    ( axi_aclk    ),
+        .axi_aresetn ( axi_aresetn ),
+        .spi_cs_n    ( spi_cs_n    ),
+        .spi_sck     ( spi_sck     ),
+        .spi_mosi    ( spi_mosi    ),
+        .spi_miso    ( spi_miso    )
+    );
+    //--------------------------------------------------------------------------
     //--------------------------------------------------------------------------
     integer code;
     string  str_val;

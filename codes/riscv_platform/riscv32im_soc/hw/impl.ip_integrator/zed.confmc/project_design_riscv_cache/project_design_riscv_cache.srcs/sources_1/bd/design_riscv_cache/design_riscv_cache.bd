@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x848712D633B8A7D9",
+      "boundary_crc": "0xC6979E385F82D20A",
       "device": "xc7z020clg484-1",
       "gen_directory": "../../../../project_design_riscv_cache.gen/sources_1/bd/design_riscv_cache",
       "name": "design_riscv_cache",
@@ -154,6 +154,27 @@
       },
       "i2c_scl": {
         "direction": "O"
+      },
+      "spi_sck": {
+        "direction": "O"
+      },
+      "spi_mosi": {
+        "direction": "O"
+      },
+      "spi_miso": {
+        "direction": "I"
+      },
+      "spi_cs_n": {
+        "direction": "O"
+      },
+      "spi_rst": {
+        "direction": "O",
+        "parameters": {
+          "POLARITY": {
+            "value": "ACTIVE_LOW",
+            "value_src": "default_prop"
+          }
+        }
       }
     },
     "components": {
@@ -850,6 +871,22 @@
               }
             }
           },
+          "spi_cs_n": {
+            "direction": "O"
+          },
+          "spi_sck": {
+            "direction": "O"
+          },
+          "spi_mosi": {
+            "direction": "O"
+          },
+          "spi_miso": {
+            "direction": "I"
+          },
+          "spi_rst": {
+            "type": "rst",
+            "direction": "O"
+          },
           "axi_aresetn": {
             "type": "rst",
             "direction": "I",
@@ -1146,7 +1183,8 @@
         "ports": [
           "proc_sys_reset_0/peripheral_aresetn",
           "axi_bram_ctrl_0/s_axi_aresetn",
-          "bfm_axi_if_0/m_axi_aresetn"
+          "bfm_axi_if_0/m_axi_aresetn",
+          "riscv_cache_soc_0/axi_aresetn"
         ]
       },
       "riscv_cache_soc_0_gpio_out": {
@@ -1173,6 +1211,30 @@
           "keypad_col"
         ]
       },
+      "riscv_cache_soc_0_spi_cs_n": {
+        "ports": [
+          "riscv_cache_soc_0/spi_cs_n",
+          "spi_cs_n"
+        ]
+      },
+      "riscv_cache_soc_0_spi_mosi": {
+        "ports": [
+          "riscv_cache_soc_0/spi_mosi",
+          "spi_mosi"
+        ]
+      },
+      "riscv_cache_soc_0_spi_rst": {
+        "ports": [
+          "riscv_cache_soc_0/spi_rst",
+          "spi_rst"
+        ]
+      },
+      "riscv_cache_soc_0_spi_sck": {
+        "ports": [
+          "riscv_cache_soc_0/spi_sck",
+          "spi_sck"
+        ]
+      },
       "riscv_cache_soc_0_uart_rts_n": {
         "ports": [
           "riscv_cache_soc_0/uart_rts_n",
@@ -1193,14 +1255,19 @@
       },
       "rstmgra_0_bus_resetn": {
         "ports": [
-          "rstmgra_0/bus_resetn",
-          "riscv_cache_soc_0/axi_aresetn"
+          "rstmgra_0/bus_resetn"
         ]
       },
       "rstmgra_0_cpu_resetn": {
         "ports": [
           "rstmgra_0/cpu_resetn",
           "riscv_cache_soc_0/cpu_resetn"
+        ]
+      },
+      "spi_miso_1": {
+        "ports": [
+          "spi_miso",
+          "riscv_cache_soc_0/spi_miso"
         ]
       },
       "uart_cts_n_1": {

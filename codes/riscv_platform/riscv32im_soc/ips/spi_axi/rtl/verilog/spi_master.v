@@ -42,6 +42,7 @@ module SPI_master (
     localparam IDLE      = 3'b000;
     localparam CS_ASSERT = 3'b001;
     localparam TX_ADDR   = 3'b010;
+    localparam DUMMY_BYTE = 3'b110;  // 더미 바이트 전송 (읽기 시)
     localparam TX_DATA   = 3'b011;
     localparam RX_DATA   = 3'b100;
     localparam CS_DEASSERT = 3'b101;
@@ -134,7 +135,7 @@ module SPI_master (
                     sck_div <= 2'b00;
             end
                 default: begin
-                    // In TX_ADDR, TX_DATA, RX_DATA states, generate SCK
+                    // In TX_ADDR, TX_DATA, RX_DATA, DUMMY_BYTE states, generate SCK
                     sck_div <= sck_div + 1;
                 end
             endcase
@@ -183,6 +184,7 @@ module SPI_master (
     end
     wire state_tx_addr_entry = (state == TX_ADDR) && (state_prev != TX_ADDR);
     wire state_tx_data_entry = (state == TX_DATA) && (state_prev != TX_DATA);
+    wire state_dummy_byte_entry = (state == DUMMY_BYTE) && (state_prev != DUMMY_BYTE);
     wire state_rx_data_entry = (state == RX_DATA) && (state_prev != RX_DATA);
     
     // Next state logic
@@ -207,10 +209,17 @@ module SPI_master (
                 // Transition after 8 bits (bit_count == 7) on rising edge
                 if (bit_count == 7 && sck_rising) begin
                     if (rw) begin
-                        next_state = RX_DATA;  // Read operation
+                        next_state = DUMMY_BYTE;  // Read operation: 더미 바이트 전송 필요
                     end else begin
                         next_state = TX_DATA;  // Write operation
                     end
+                end
+            end
+            DUMMY_BYTE: begin
+                // 더미 바이트 전송 후 RX_DATA로 진입
+                // MFRC522는 주소 바이트 후 더미 바이트를 받아야 데이터를 준비함
+                if (bit_count == 7 && sck_rising) begin
+                    next_state = RX_DATA;
                 end
             end
             TX_DATA: begin
@@ -246,9 +255,9 @@ module SPI_master (
     always @(posedge clk) begin
         if (rst) begin
             bit_count <= 6'b0;
-        end else if (state == TX_ADDR || state == TX_DATA || state == RX_DATA) begin
+        end else if (state == TX_ADDR || state == TX_DATA || state == RX_DATA || state == DUMMY_BYTE) begin
             // Reset bit_count when entering new state
-            if (state_tx_addr_entry || state_tx_data_entry || state_rx_data_entry) begin
+            if (state_tx_addr_entry || state_tx_data_entry || state_rx_data_entry || state_dummy_byte_entry) begin
                 bit_count <= 6'b0;
                 // Debug output disabled
             end else if (sck_rising) begin
@@ -304,11 +313,14 @@ module SPI_master (
     always @(posedge clk) begin
         if (rst) begin
             tx_shift_reg <= 8'h00;
-        end else if (state == IDLE && en_internal) begin
+        end         else if (state == IDLE && en_internal) begin
             // Pre-load address byte in IDLE state to avoid timing issues
-            // Debug output disabled
-            tx_shift_reg <= {rw, addr[6:0]};
-            tx_addr_original <= {rw, addr[6:0]};  // Store original address for last bit
+            // MFRC522 주소 바이트 형식: 0bRAAAAAA0
+            // Bit 7: rw (읽기/쓰기 플래그, 0=쓰기, 1=읽기)
+            // Bit 6-1: addr[5:0] (레지스터 주소, 6비트)
+            // Bit 0: 0 (항상 0)
+            tx_shift_reg <= {rw, addr[5:0], 1'b0};
+            tx_addr_original <= {rw, addr[5:0], 1'b0};  // Store original address for last bit
         end else if (state == CS_ASSERT) begin
             // Keep tx_shift_reg value during CS assertion (don't clear!)
             tx_shift_reg <= tx_shift_reg;
@@ -319,6 +331,16 @@ module SPI_master (
                 // Shift when SCK is HIGH and about to go LOW (falling edge)
                 // This ensures MOSI changes on falling edge, ready for next rising edge sampling
                 // Shift after bit 0 is sampled (bit_count > 0) through bit 6 (bit_count <= 6)
+                if (bit_count <= 6) begin
+                    tx_shift_reg <= {tx_shift_reg[6:0], 1'b0};
+                end
+            end
+        end else if (state == DUMMY_BYTE) begin
+            // 더미 바이트 로드 (읽기 시 MFRC522가 데이터를 준비하는 동안 전송)
+            if (state_dummy_byte_entry) begin
+                tx_shift_reg <= 8'h00;  // 더미 바이트 (0x00)
+            end else if (sck_enable && sck == 1'b1 && bit_count > 0) begin
+                // Shift when SCK is HIGH and about to go LOW (falling edge)
                 if (bit_count <= 6) begin
                     tx_shift_reg <= {tx_shift_reg[6:0], 1'b0};
                 end
@@ -354,6 +376,24 @@ module SPI_master (
     // SPI Mode 0: Sample MISO on rising edge of SCK
     // Note: MISO is only sampled during RX_DATA phase (not during TX_ADDR)
     // MFRC522 and most SPI devices don't send data during address transmission
+    reg bit_count_was_7;  // Flag to track when bit_count was 7
+    
+    always @(posedge clk) begin
+        if (rst) begin
+            bit_count_was_7 <= 1'b0;
+        end else if (state == RX_DATA) begin
+            // bit_count가 7일 때 플래그 설정
+            if (sck_rising && bit_count == 7) begin
+                bit_count_was_7 <= 1'b1;
+            end else if (sck_rising && bit_count == 0 && bit_count_was_7) begin
+                // bit_count가 0으로 리셋되고 플래그가 설정되어 있으면 클리어
+                bit_count_was_7 <= 1'b0;
+            end
+        end else begin
+            bit_count_was_7 <= 1'b0;
+        end
+    end
+    
     always @(posedge clk) begin
         if (rst) begin
             rx_shift_reg <= 8'h00;
@@ -365,7 +405,9 @@ module SPI_master (
             end else if (sck_rising) begin
                 // Sample MISO on rising edge of SCK (SPI Mode 0)
                 rx_shift_reg <= {rx_shift_reg[6:0], miso};
-                // Complete byte received, store to data_out
+                
+                // Complete byte received: bit_count가 7일 때 (마지막 비트) data_out 업데이트
+                // state가 CS_DEASSERT로 넘어가기 전에 캡처해야 함
                 if (bit_count == 7) begin
                     data_out <= {rx_shift_reg[6:0], miso};
                 end
@@ -380,7 +422,7 @@ module SPI_master (
     always @(posedge clk) begin
         if (rst) begin
             sck <= 1'b0;
-        end else if (state == TX_ADDR || state == TX_DATA || state == RX_DATA) begin
+        end else if (state == TX_ADDR || state == TX_DATA || state == RX_DATA || state == DUMMY_BYTE) begin
             // Toggle SCK on sck_enable
             if (sck_enable) begin
                 sck <= ~sck;
@@ -396,7 +438,7 @@ module SPI_master (
     always @(posedge clk) begin
         if (rst) begin
             mosi <= 1'b0;
-        end else if (state == TX_ADDR || state == TX_DATA) begin
+        end else if (state == TX_ADDR || state == TX_DATA || state == DUMMY_BYTE) begin
             // Output MSB of shift register for bits 0-6
             // For bit 7 (last bit), output LSB of original data
             if (state == TX_DATA && bit_count == 7) begin
@@ -405,6 +447,9 @@ module SPI_master (
             end else if (state == TX_ADDR && bit_count == 7) begin
                 // Last bit of TX_ADDR: output LSB (bit 0) of original address
                 mosi <= tx_addr_original[0];
+            end else if (state == DUMMY_BYTE && bit_count == 7) begin
+                // Last bit of DUMMY_BYTE: output LSB (bit 0) of dummy byte (0x00)
+                mosi <= 1'b0;
             end else begin
                 // Bits 0-6: output MSB (bit 7) of shift register
                 // Ensure MOSI is updated immediately when tx_shift_reg changes
@@ -424,7 +469,7 @@ module SPI_master (
     always @(posedge clk) begin
         if (rst) begin
             cs_n <= 1'b1;  // Inactive (HIGH)
-        end else if (state == CS_ASSERT || state == TX_ADDR || 
+        end else if (state == CS_ASSERT || state == TX_ADDR || state == DUMMY_BYTE ||
                      state == TX_DATA || state == RX_DATA) begin
             cs_n <= 1'b0;  // Active (LOW)
             // Debug output disabled
@@ -458,41 +503,43 @@ module SPI_master (
                     done <= 1'b0;
                 end
             end else begin
-                // During TX_ADDR, TX_DATA, RX_DATA states
+                // During TX_ADDR, TX_DATA, RX_DATA, DUMMY_BYTE states
                 busy <= 1'b1;
                 done <= 1'b0;
             end
         end
     end
-// RX 과정 모니터링
-always @(posedge clk) begin
-    if (state == RX_DATA && sck_rising) begin
-        $display("[%0t] RX: bit_count=%0d, miso=%b, rx_shift=%h", 
-                 $time, bit_count, miso, rx_shift_reg);
-        
-        if (bit_count == 7) begin
-            $display("[%0t] *** RX Complete! data_out = %h ***", 
-                     $time, {rx_shift_reg[6:0], miso});
-        end
-    end
-end
+// RX 과정 모니터링 (디버그 출력 최소화)
+// always @(posedge clk) begin
+//     if (state == RX_DATA && sck_rising) begin
+//         $display("[%0t] RX: bit_count=%0d, miso=%b, rx_shift=%h", 
+//                  $time, bit_count, miso, rx_shift_reg);
+//         
+//         if (bit_count == 7) begin
+//             $display("[%0t] *** RX Complete! data_out = %h ***", 
+//                      $time, {rx_shift_reg[6:0], miso});
+//         end
+//     end
+// end
 
-// 상태 전환 모니터링
-always @(state) begin
-    case (state)
-        // 상태 정의에 따라 수정
-        3'b000: $display("[%0t] State: IDLE", $time);
-        3'b001: $display("[%0t] State: START", $time);
-        3'b010: $display("[%0t] State: TX_DATA", $time);
-        3'b011: $display("[%0t] State: RX_DATA", $time);  // ← 이게 나오는지 확인!
-        3'b100: $display("[%0t] State: STOP", $time);
-    endcase
-end
+// 상태 전환 모니터링 (디버그 출력 최소화)
+// always @(state) begin
+//     case (state)
+//         3'b000: $display("[%0t] State: IDLE", $time);
+//         3'b001: $display("[%0t] State: CS_ASSERT", $time);
+//         3'b010: $display("[%0t] State: TX_ADDR", $time);
+//         3'b011: $display("[%0t] State: TX_DATA", $time);
+//         3'b100: $display("[%0t] State: RX_DATA", $time);
+//         3'b101: $display("[%0t] State: CS_DEASSERT", $time);
+//         3'b110: $display("[%0t] State: DUMMY_BYTE", $time);
+//         default: $display("[%0t] State: UNKNOWN (%b)", $time, state);
+//     endcase
+// end
 
-// data_out 변화 감지
+// data_out 변화 감지 (0x00이 아닐 때만 출력)
 always @(data_out) begin
     if (data_out != 8'h00) begin
-        $display("[%0t] *** data_out changed to: 0x%h ***", $time, data_out);
+        $display("[%0t] *** SPI data_out = 0x%h ***", $time, data_out);
     end
 end
 endmodule

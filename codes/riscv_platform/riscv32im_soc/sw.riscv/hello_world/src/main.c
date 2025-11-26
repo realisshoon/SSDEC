@@ -2,7 +2,7 @@
 #include "my_printf.h"
 #include "gpio_api.h"
 #include "keypad_api.h"
-#include "i2c_api.h"
+// #include "i2c_api.h"
 #include <stdint.h>
 
 #ifndef BAUD_RATE

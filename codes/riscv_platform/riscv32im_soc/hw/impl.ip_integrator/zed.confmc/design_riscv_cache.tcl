@@ -70,10 +70,17 @@ add_files -norecurse -scan_for_includes $::env(DIR_TIMER_AXI_LITE)/rtl/verilog/t
 add_files -norecurse -scan_for_includes $::env(DIR_UART_AXI_LITE)/rtl/verilog/uart_axi_lite.v
 add_files -norecurse -scan_for_includes $::env(DIR_GPIO_AXI_LITE)/rtl/verilog/gpio_axi_lite.v
 add_files -norecurse -scan_for_includes $::env(DIR_GPIO_AXI_LITE)/rtl/verilog/gpio_axi_lite_if.v
+# I2C AXI Lite files
 add_files -norecurse -scan_for_includes $::env(DIR_I2C_AXI_LITE)/rtl/verilog/i2c_axi_lite.v
-add_files -norecurse -scan_for_includes $::env(DIR_I2C_AXI_LITE)/rtl/verilog/i2c_axi_lite_if.v
-add_files -norecurse -scan_for_includes $::env(DIR_I2C_AXI_LITE)/rtl/verilog/i2c_master.v
-add_files -norecurse -scan_for_includes $::env(DIR_I2C_AXI_LITE)/rtl/verilog/i2c_master_ver2.v
+add_files -norecurse -scan_for_includes $::env(DIR_I2C_AXI_LITE)/rtl/verilog/i2c_master_axi_lite.v
+add_files -norecurse -scan_for_includes $::env(DIR_I2C_AXI_LITE)/rtl/verilog/i2c_master_byte.v
+add_files -norecurse -scan_for_includes $::env(DIR_I2C_AXI_LITE)/rtl/verilog/i2c_master_core.v
+add_files -norecurse -scan_for_includes $::env(DIR_I2C_AXI_LITE)/rtl/verilog/i2c_master_csr.v
+add_files -norecurse -scan_for_includes $::env(DIR_I2C_AXI_LITE)/rtl/verilog/i2c_master_define.v
+add_files -norecurse -scan_for_includes $::env(DIR_I2C_AXI_LITE)/rtl/verilog/i2c_fifo_sync_small.v
+# SPI AXI files
+add_files -norecurse -scan_for_includes $::env(DIR_SPI_AXI)/rtl/verilog/spi_axi_if.v
+add_files -norecurse -scan_for_includes $::env(DIR_SPI_AXI)/rtl/verilog/spi_master.v
 add_files -norecurse -scan_for_includes $::env(DIR_RTL)/riscv_cache_soc.v
 add_files -norecurse -scan_for_includes $::env(DIR_RTL)/riscv_cache_core.v
 add_files -norecurse -scan_for_includes $::env(RISCV_CORE)/top_cache_axi/src_v/dcache_axi_axi.v
@@ -310,6 +317,12 @@ proc create_root_design { parentCell } {
   set keypad_row [ create_bd_port -dir I -from 3 -to 0 keypad_row ]
   set i2c_sda [ create_bd_port -dir IO i2c_sda ]
   set i2c_scl [ create_bd_port -dir O i2c_scl ]
+  # SPI ports for RFID (MFRC522) via JC PMOD
+  set spi_sck [ create_bd_port -dir O spi_sck ]
+  set spi_mosi [ create_bd_port -dir O spi_mosi ]
+  set spi_miso [ create_bd_port -dir I spi_miso ]
+  set spi_cs_n [ create_bd_port -dir O spi_cs_n ]
+  set spi_rst [ create_bd_port -dir O spi_rst ]
 
   # Create instance: axi_bram_ctrl_0, and set properties
   set axi_bram_ctrl_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl:4.1 axi_bram_ctrl_0 ]
@@ -391,11 +404,11 @@ proc create_root_design { parentCell } {
   connect_bd_net -net clk_wiz_0_clk_out2 [get_bd_pins axi_bram_ctrl_0/s_axi_aclk] [get_bd_pins bfm_axi_if_0/m_axi_aclk] [get_bd_pins clk_wiz_0/clk_out2] [get_bd_pins proc_sys_reset_0/slowest_sync_clk] [get_bd_pins riscv_cache_soc_0/axi_aclk] [get_bd_pins rstmgra_0/clk]
   connect_bd_net -net clk_wiz_0_locked [get_bd_pins bfm_axi_if_0/SYS_CLK_STABLE] [get_bd_pins clk_wiz_0/locked] [get_bd_pins proc_sys_reset_0/dcm_locked]
   connect_bd_net -net proc_sys_reset_0_interconnect_aresetn [get_bd_pins proc_sys_reset_0/interconnect_aresetn] [get_bd_pins rstmgra_0/rstn]
-  connect_bd_net -net proc_sys_reset_0_peripheral_aresetn [get_bd_pins axi_bram_ctrl_0/s_axi_aresetn] [get_bd_pins bfm_axi_if_0/m_axi_aresetn] [get_bd_pins proc_sys_reset_0/peripheral_aresetn]
+  connect_bd_net -net proc_sys_reset_0_peripheral_aresetn [get_bd_pins axi_bram_ctrl_0/s_axi_aresetn] [get_bd_pins bfm_axi_if_0/m_axi_aresetn] [get_bd_pins proc_sys_reset_0/peripheral_aresetn] [get_bd_pins riscv_cache_soc_0/axi_aresetn]
   connect_bd_net -net riscv_cache_soc_0_uart_rts_n [get_bd_ports uart_rts_n] [get_bd_pins riscv_cache_soc_0/uart_rts_n]
   connect_bd_net -net riscv_cache_soc_0_uart_txd [get_bd_ports uart_txd] [get_bd_pins riscv_cache_soc_0/uart_txd]
   connect_bd_net -net rstmgra_0_GPIN [get_bd_pins bfm_axi_if_0/GPIN] [get_bd_pins rstmgra_0/GPIN]
-  connect_bd_net -net rstmgra_0_bus_resetn [get_bd_pins riscv_cache_soc_0/axi_aresetn] [get_bd_pins rstmgra_0/bus_resetn]
+  connect_bd_net -net rstmgra_0_bus_resetn [get_bd_pins rstmgra_0/bus_resetn]
   connect_bd_net -net rstmgra_0_cpu_resetn [get_bd_pins riscv_cache_soc_0/cpu_resetn] [get_bd_pins rstmgra_0/cpu_resetn]
   connect_bd_net -net uart_cts_n_1 [get_bd_ports uart_cts_n] [get_bd_pins riscv_cache_soc_0/uart_cts_n]
   connect_bd_net -net uart_rxd_1 [get_bd_ports uart_rxd] [get_bd_pins riscv_cache_soc_0/uart_rxd]
@@ -405,6 +418,12 @@ proc create_root_design { parentCell } {
   connect_bd_net -net keypad_row_1 [get_bd_ports keypad_row] [get_bd_pins riscv_cache_soc_0/keypad_row]
   connect_bd_net -net riscv_cache_soc_0_i2c_sda [get_bd_ports i2c_sda] [get_bd_pins riscv_cache_soc_0/i2c_sda]
   connect_bd_net -net riscv_cache_soc_0_i2c_scl [get_bd_ports i2c_scl] [get_bd_pins riscv_cache_soc_0/i2c_scl]
+  # SPI connections for RFID (MFRC522)
+  connect_bd_net -net riscv_cache_soc_0_spi_sck [get_bd_ports spi_sck] [get_bd_pins riscv_cache_soc_0/spi_sck]
+  connect_bd_net -net riscv_cache_soc_0_spi_mosi [get_bd_ports spi_mosi] [get_bd_pins riscv_cache_soc_0/spi_mosi]
+  connect_bd_net -net spi_miso_1 [get_bd_ports spi_miso] [get_bd_pins riscv_cache_soc_0/spi_miso]
+  connect_bd_net -net riscv_cache_soc_0_spi_cs_n [get_bd_ports spi_cs_n] [get_bd_pins riscv_cache_soc_0/spi_cs_n]
+  connect_bd_net -net riscv_cache_soc_0_spi_rst [get_bd_ports spi_rst] [get_bd_pins riscv_cache_soc_0/spi_rst]
   # Note: gpio_dir is internal signal only, not connected to top-level port
   connect_bd_net -net util_vector_logic_0_Res [get_bd_pins bfm_axi_if_0/SYS_RST_N] [get_bd_pins proc_sys_reset_0/aux_reset_in]
 

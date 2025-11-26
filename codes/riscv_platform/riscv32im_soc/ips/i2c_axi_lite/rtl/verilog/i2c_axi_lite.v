@@ -1,127 +1,246 @@
+`ifndef I2C_AXI_LITE_IF
+`define I2C_AXI_LITE_IF
+//-----------------------------------------------------------------------------
+// Copyright (c) 2025 by Ando Ki
+// All right reserved.
 //------------------------------------------------------------------------------
-//  Copyright (c) 2024 by Ando Ki.
-//  All right reserved.
-//------------------------------------------------------------------------------
-// i2c_axi_lite.v
-//------------------------------------------------------------------------------
-`include "i2c_axi_lite_if.v"
-`include "i2c_core.v"
-`include "i2c_csr.v"
-
-module i2c_axi_lite
-     #(parameter CLK_FREQ=100_000_000
-               // 시뮬레이션에서 충분한 I2C 토글을 보기 위해 기본값을 빠르게 설정
-               , I2C_CLK_FREQ=5_000_000) // I2C clock frequency (for cosim, effectively ~5MHz)
+module i2c_axi_lite_if
 (
-     (* X_INTERFACE_PARAMETER = "POLARITY ACTIVE_LOW" *)
-     (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 aresetn RST"*) input  wire          aresetn,
-     (* X_INTERFACE_PARAMETER = "ASSOCIATED_BUSIF s_axi_" *)
-     (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 aclk CLK"   *) input  wire          aclk,
-
-     (* X_INTERFACE_PARAMETER = "ASSOCIATED_BUSIF s_axi_,ASSOCIATED_RESET aresetn,CLK_DOMAIN aclk" *)
-     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ AWADDR"  *) input  wire [31:0] s_axi_awaddr,
-     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ AWVALID" *) input  wire        s_axi_awvalid,
-     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ AWREADY" *) output wire        s_axi_awready,
-     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ WDATA"   *) input  wire [31:0] s_axi_wdata,
-     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ WVALID"  *) input  wire        s_axi_wvalid,
-     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ WREADY"  *) output wire        s_axi_wready,
-     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ BRESP"   *) output wire [ 1:0] s_axi_bresp,
-     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ BVALID"  *) output wire        s_axi_bvalid,
-     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ BREADY"  *) input  wire        s_axi_bready,
-     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ ARADDR"  *) input  wire [31:0] s_axi_araddr,
-     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ ARVALID" *) input  wire        s_axi_arvalid,
-     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ ARREADY" *) output wire        s_axi_arready,
-     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ RDATA"   *) output wire [31:0] s_axi_rdata,
-     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ RRESP"   *) output wire [ 1:0] s_axi_rresp,
-     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ RVALID"  *) output wire        s_axi_rvalid,
-     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_ RREADY"  *) input  wire        s_axi_rready
-
-    , inout wire          sda
-    , output wire         scl
+       input  wire           s_axi_aresetn
+     , input  wire           s_axi_aclk
+     , input  wire   [31:0]  s_axi_awaddr
+     , input  wire           s_axi_awvalid
+     , output reg            s_axi_awready
+     , input  wire   [31:0]  s_axi_wdata
+     , input  wire           s_axi_wvalid
+     , output reg            s_axi_wready
+     , output reg    [ 1:0]  s_axi_bresp
+     , output reg            s_axi_bvalid
+     , input  wire           s_axi_bready
+     , input  wire   [31:0]  s_axi_araddr
+     , input  wire           s_axi_arvalid
+     , output reg            s_axi_arready
+     , output reg    [31:0]  s_axi_rdata
+     , output reg    [ 1:0]  s_axi_rresp
+     , output reg            s_axi_rvalid
+     , input  wire           s_axi_rready
+     , output wire   [31:0]  bram_addr
+     , output wire   [31:0]  bram_wr_data
+     , input  wire   [31:0]  bram_rd_data
+     , output wire           bram_en
+     , output wire           bram_we
+     , output wire           bram_re
 );
     //--------------------------------------------------------------------------
-    localparam ADD_WIDTH=8;
-    wire   [ADD_WIDTH-1:0]  bram_addr;
-    wire   [31:0]           bram_wr_data;
-    wire   [31:0]           bram_rd_data;
-    wire                    bram_rd;
-    wire                    bram_wr;
-    //--------------------------------------------------------------------------
-
-    //--------------------------------------------------------------------------
-    i2c_axi_lite_if #(.ADD_WIDTH(ADD_WIDTH))
-    u_axi_lite_if (
-          .aresetn       ( aresetn       )
-        , .aclk          ( aclk          )
-        , .s_axi_awaddr  ( s_axi_awaddr  )
-        , .s_axi_awvalid ( s_axi_awvalid )
-        , .s_axi_awready ( s_axi_awready )
-        , .s_axi_wdata   ( s_axi_wdata   )
-        , .s_axi_wvalid  ( s_axi_wvalid  )
-        , .s_axi_wready  ( s_axi_wready  )
-        , .s_axi_bresp   ( s_axi_bresp   )
-        , .s_axi_bvalid  ( s_axi_bvalid  )
-        , .s_axi_bready  ( s_axi_bready  )
-        , .s_axi_araddr  ( s_axi_araddr  )
-        , .s_axi_arvalid ( s_axi_arvalid )
-        , .s_axi_arready ( s_axi_arready )
-        , .s_axi_rdata   ( s_axi_rdata   )
-        , .s_axi_rresp   ( s_axi_rresp   )
-        , .s_axi_rvalid  ( s_axi_rvalid  )
-        , .s_axi_rready  ( s_axi_rready  )
-        , .bram_addr     ( bram_addr     )
-        , .bram_wr       ( bram_wr       )
-        , .bram_wr_data  ( bram_wr_data  )
-        , .bram_rd       ( bram_rd       )
-        , .bram_rd_data  ( bram_rd_data  )
-    );
-    //--------------------------------------------------------------------------
-    wire [31:0] csr_data0;
-    wire [31:0] csr_data1;
-    wire [31:0] csr_data2;
-    wire        status_busy;
-    wire        status_ack_err;
-    wire        status_done;
-    wire        status_data_ready;
-    i2c_csr #(.CLK_FREQ(CLK_FREQ))
-    u_csr (
-          .reset_n  ( aresetn      )
-        , .clk      ( aclk         )
-        , .addr     ( bram_addr    )  
-        , .wren     ( bram_wr      )
-        , .rden     ( bram_rd      )
-        , .wdata    ( bram_wr_data )
-        , .rdata    ( bram_rd_data )
-        , .data0    ( csr_data0    )
-        , .data1    ( csr_data1    )
-        , .data2    ( csr_data2    )
-        , .status_busy       ( status_busy       )
-        , .status_ack_err    ( status_ack_err    )
-        , .status_done       ( status_done       )
-        , .status_data_ready ( status_data_ready )
-    );
-    //--------------------------------------------------------------------------
-    // data2: read-only buffer exposed from I2C core (driven by I2C core)
-    localparam Hz_counter = CLK_FREQ / (I2C_CLK_FREQ * 2);
-
-    I2C #(.Hz_counter(Hz_counter))
-    u_i2c (
-          .clk     ( aclk      )
-        , .n_rst   ( aresetn   )
-        , .data0   ( csr_data0 )
-        , .data1   ( csr_data1 )
-        , .data2   ( csr_data2 )
-        , .status_busy       ( status_busy       )
-        , .status_ack_error  ( status_ack_err    )
-        , .status_done       ( status_done       )
-        , .status_data_ready ( status_data_ready )
-        , .sda     ( sda       )
-        , .scl     ( scl       )
-    );
-    //--------------------------------------------------------------------------
+     reg                    trans_wr=1'b0;
+     reg                    trans_rd=1'b0;
+     reg  [31:0]            Traddr='h0;
+     reg  [31:0]            Twaddr='h0;
+     wire [31:0]            Taddr = (trans_wr==1'b1) ? Twaddr : Traddr;
+     reg  [31:0]            Twdata='h0;
+     reg                    Twen=1'b0;
+     wire [31:0]            Trdata;
+     reg                    Tren=1'b0;// driven by stateR
+     //-------------------------------------------------------------------------
+     assign bram_addr    = Taddr;
+     assign bram_wr_data = Twdata;
+     assign Trdata       = bram_rd_data;
+     assign bram_en      = Tren|Twen;
+     assign bram_we      = Twen;
+     assign bram_re      = Tren;
+     //-------------------------------------------------------------------------
+     // synthesis translate_off
+     always @ (posedge s_axi_aclk) if (trans_wr&trans_rd) $display("%t %m ERROR", $time);
+     // synthesis translate_on
+     //-------------------------------------------------------------------------
+     // write case
+     //-------------------------------------------------------------------------
+     localparam STW_READY  = 'h0,
+                STW_ARB    = 'h1,
+                STW_WRITE  = 'h2,
+                STW_RSP    = 'h3;
+     reg [1:0] stateW=STW_READY; // synthesis attribute keep of stateW is "true";
+     always @ (posedge s_axi_aclk or negedge s_axi_aresetn) begin
+     if (s_axi_aresetn==1'b0) begin
+         s_axi_awready <= 1'b0;
+         s_axi_wready  <= 1'b0;
+         s_axi_bresp   <= 2'b10; // SLAVE ERROR
+         s_axi_bvalid  <= 1'b0;
+         Twaddr        <=  'h0;
+         Twdata        <=  'h0;
+         Twen          <= 1'b0;
+         trans_wr      <= 1'b0;
+         stateW        <= STW_READY;
+     end else begin
+         case (stateW)
+         STW_READY: begin
+             trans_wr <= 1'b0;
+             if ((s_axi_awvalid==1'b1)&&(s_axi_awready==1'b1)) begin
+                  s_axi_awready <= 1'b0;
+                  s_axi_bresp   <= 2'b00; // OKAY
+                  Twaddr        <= s_axi_awaddr;
+                  if (trans_rd==1'b1) begin // write has higher priority
+                      stateW   <= STW_ARB;
+                  end else begin
+                      trans_wr     <= 1'b1;
+                      s_axi_wready <= 1'b1;
+                      stateW       <= STW_WRITE;
+                  end
+             end else begin
+                  s_axi_awready <= 1'b1;
+             end
+             end // STW_READY
+         STW_ARB: begin
+             if (trans_rd==1'b0) begin
+                 trans_wr     <= 1'b1;
+                 s_axi_wready <= 1'b1;
+                 stateW       <= STW_WRITE;
+             end
+             end // STW_ARB
+         STW_WRITE: begin
+             if (s_axi_wvalid==1'b1) begin
+                 s_axi_wready <= 1'b0;
+                 Twdata <= s_axi_wdata;
+                 Twen   <= 1'b1;
+                 s_axi_bresp  <= 2'b00;
+                 s_axi_bvalid <= 1'b1;
+                 stateW       <= STW_RSP;
+             end
+             end // STW_WRITE
+         STW_RSP: begin
+             Twen     <= 1'b0;
+             trans_wr <= 1'b0;
+             if (s_axi_bready==1'b1) begin
+                 s_axi_bvalid  <= 1'b0;
+                 s_axi_bresp   <= 2'b10; // SLAVE ERROR
+                 s_axi_awready <= 1'b1;
+                 stateW        <= STW_READY;
+             end
+             end // STW_RSP
+         default: begin
+             s_axi_awready     <= 1'b0;
+             s_axi_wready      <= 1'b0;
+             s_axi_bresp       <= 2'b10; // SLAVE ERROR
+             s_axi_bvalid      <= 1'b0;
+             Twaddr      <=  'h0;
+             Twdata      <=  'h0;
+             Twen        <= 1'b0;
+             trans_wr    <= 1'b0;
+             stateW      <= STW_READY;
+             end
+         endcase
+     end // if
+     end // always
+     //-------------------------------------------------------------------------
+     // synthesis translate_off
+     reg  [8*10-1:0] stateW_ascii = "READY";
+     always @ (stateW) begin
+     case (stateW)
+         STW_READY : stateW_ascii="READY ";
+         STW_ARB   : stateW_ascii="ARB   ";
+         STW_WRITE : stateW_ascii="WRITE ";
+         STW_RSP   : stateW_ascii="RSP   ";
+         default   : stateW_ascii="ERROR ";
+     endcase
+     end
+     // synthesis translate_on
+     //-------------------------------------------------------------------------
+     // read case
+     //-------------------------------------------------------------------------
+     localparam STR_READY= 'h0
+              , STR_ARB  = 'h1
+              , STR_READ0= 'h2
+              , STR_READ1= 'h3
+              , STR_END  = 'h4;
+     reg [2:0] stateR=STR_READY; // synthesis attribute keep of stateR is "true";
+     always @ (posedge s_axi_aclk or negedge s_axi_aresetn) begin
+     if (s_axi_aresetn==1'b0) begin
+         s_axi_arready     <= 1'b0;
+         s_axi_rresp       <= 2'b10; // SLAERROR
+         s_axi_rdata       <=  'h0;
+         s_axi_rvalid      <= 1'b0;
+         Traddr      <=  'h0;
+         Tren        <= 1'b0;
+         trans_rd    <= 1'b0;
+         stateR      <= STR_READY;
+     end else begin
+         case (stateR)
+         STR_READY: begin
+             trans_rd <= 1'b0;
+             if ((s_axi_arvalid==1'b1)&&(s_axi_arready==1'b1)) begin
+                  s_axi_arready     <= 1'b0;
+                  Traddr      <= s_axi_araddr;
+                  Tren        <= 1'b1;
+                  if (((s_axi_awvalid==1'b1)&&(s_axi_awready==1'b1))||(trans_wr==1'b1)) begin
+                      // write has higher priority
+                      stateR      <= STR_ARB;
+                  end else begin
+                      trans_rd <= 1'b1;
+                      stateR   <= STR_READ0;
+                  end
+             end else begin
+                 s_axi_arready <= 1'b1;
+             end
+             end // STR_READY
+         STR_ARB: begin
+             if (trans_wr==1'b0) begin
+                 trans_rd <= 1'b1;
+                 stateR   <= STR_READ0;
+             end
+             end // STR_ARB
+         STR_READ0: begin // address only
+             Tren   <= 1'b0;
+             stateR <= STR_READ1;
+             end // STR_READ0
+         STR_READ1: begin // data only
+             s_axi_rdata  <= Trdata;
+             s_axi_rresp  <= 2'b00;
+             s_axi_rvalid <= 1'b1;
+             stateR <= STR_END;
+             end // STR_READ1
+         STR_END: begin // data only
+             Tren <= 1'b0;
+             if (s_axi_rready==1'b1) begin
+                 s_axi_rdata    <=  'h0;
+                 s_axi_rresp    <= 2'b10; // SLVERR
+                 s_axi_rvalid   <= 1'b0;
+                 s_axi_arready  <= 1'b1;
+                 trans_rd <= 1'b0;
+                 stateR   <= STR_READY;
+             end
+             end // STR_END
+         default: begin
+             s_axi_arready     <= 1'b0;
+             s_axi_rresp       <= 2'b10; // SLAERROR
+             s_axi_rdata       <=  'h0;
+             s_axi_rvalid      <= 1'b0;
+             Traddr      <=  'h0;
+             Tren        <= 1'b0;
+             trans_rd    <= 1'b0;
+             stateR      <= STR_READY;
+             end
+         endcase
+     end // if
+     end // always
+     //-------------------------------------------------------------------------
+     // synthesis translate_off
+     reg  [8*10-1:0] stateR_ascii = "READY";
+     always @ (stateR) begin
+     case (stateR)
+         STR_READY : stateR_ascii="READY";
+         STR_ARB   : stateR_ascii="ARB  ";
+         STR_READ0 : stateR_ascii="READ0";
+         STR_READ1 : stateR_ascii="READ1";
+         STR_END   : stateR_ascii="END  ";
+         default   : stateW_ascii="ERROR";
+     endcase
+     end
+     // synthesis translate_on
+     //-------------------------------------------------------------------------
 endmodule
 //------------------------------------------------------------------------------
 // Revision history
 //
-// 2024.08.10: Started by Ando Ki (andoki@gmail.com)
+// 2025.09.10: Started by Ando Ki (andoki@gmail.com).
 //------------------------------------------------------------------------------
+`endif

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7z020clg484-1" LaunchTime="1762336609">
+<GenRun Id="synth_1" LaunchPart="xc7z020clg484-1" LaunchTime="1764120452">
   <File Type="VDS-TIMING-PB" Name="design_riscv_cache_wrapper_timing_summary_synth.pb"/>
   <File Type="VDS-TIMINGSUMMARY" Name="design_riscv_cache_wrapper_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="design_riscv_cache_wrapper.dcp"/>
@@ -110,27 +110,6 @@
       </FileInfo>
     </File>
     <File Path="$PPRDIR/../../../../ips/gpio_axi_lite/rtl/verilog/gpio_axi_lite.v">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PPRDIR/../../../../ips/i2c_axi_lite/rtl/verilog/i2c_master.v">
-      <FileInfo SFType="VHeader">
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-        <Attr Name="IsVisible" Val="1"/>
-      </FileInfo>
-    </File>
-    <File Path="$PPRDIR/../../../../ips/i2c_axi_lite/rtl/verilog/i2c_axi_lite_if.v">
-      <FileInfo SFType="VHeader">
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-        <Attr Name="IsVisible" Val="1"/>
-      </FileInfo>
-    </File>
-    <File Path="$PPRDIR/../../../../ips/i2c_axi_lite/rtl/verilog/i2c_axi_lite.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -312,6 +291,20 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PPRDIR/../../../../ips/spi_axi/rtl/verilog/spi_master.v">
+      <FileInfo SFType="VHeader">
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/spi_axi/rtl/verilog/spi_axi_if.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PPRDIR/../../../../ips/timer_axi_lite/rtl/verilog/timer_tick.v">
       <FileInfo SFType="VHeader">
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -418,6 +411,62 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PPRDIR/../../../../ips/i2c_axi_lite/rtl/verilog/i2c_master_byte.v">
+      <FileInfo SFType="VHeader">
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/i2c_axi_lite/rtl/verilog/i2c_master_core.v">
+      <FileInfo SFType="VHeader">
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/i2c_axi_lite/rtl/verilog/i2c_fifo_sync_small.v">
+      <FileInfo SFType="VHeader">
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/i2c_axi_lite/rtl/verilog/i2c_master_define.v">
+      <FileInfo SFType="VHeader">
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/i2c_axi_lite/rtl/verilog/i2c_master_csr.v">
+      <FileInfo SFType="VHeader">
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/i2c_axi_lite/rtl/verilog/i2c_axi_lite.v">
+      <FileInfo SFType="VHeader">
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../ips/i2c_axi_lite/rtl/verilog/i2c_master_axi_lite.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PPRDIR/../../../../ips/riscv/core/riscv/riscv_trace_sim.v">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
@@ -475,11 +524,11 @@
     </StratHandle>
     <Step Id="synth_design"/>
   </Strategy>
-  <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_clk_wiz_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_proc_sys_reset_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_axi_bram_ctrl_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_bfm_axi_if_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_axi_bram_ctrl_0_bram_0"/>
   <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_rstmgra_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_riscv_cache_soc_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_clk_wiz_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_bfm_axi_if_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="design_riscv_cache_axi_bram_ctrl_0_bram_0"/>
 </GenRun>

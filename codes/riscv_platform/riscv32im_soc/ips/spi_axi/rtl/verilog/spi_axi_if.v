@@ -1,5 +1,7 @@
 `timescale 1ns/1ps
 
+`include "spi_master.v"
+
 //------------------------------------------------------------------------------
 // mem_axi.v를 기반으로 수정된 AXI4-Full SPI 컨트롤러 래퍼
 // - AXI FSM은 mem_axi.v 의 구조를 따름
@@ -9,7 +11,9 @@
 // Internal module: spi_axi_controller
 // - Instantiates SPI_master
 //------------------------------------------------------------------------------
-`include "spi_master.v"
+// - Instantiates SPI_master
+//------------------------------------------------------------------------------
+
 
 module spi_axi_controller
      #(parameter AXI_WIDTH_ID = 4 // ID width in bits
@@ -58,10 +62,7 @@ module spi_axi_controller
     output wire        spi_cs_n,
     output wire        spi_sck,
     output wire        spi_mosi,
-    input  wire        spi_miso,
-    
-    // Debug signals (for testbench)
-    output wire [2:0]  spi_state_out  // SPI master state for debugging
+    input  wire        spi_miso
 );
 //-------------------------------------------------------------------------
      localparam AXI_WIDTH_DSB=$clog2(AXI_WIDTH_STRB);
@@ -91,16 +92,29 @@ module spi_axi_controller
     wire        spi_mosi_int;
     wire [2:0]  spi_state_out_int;  // SPI master state (내부 wire)
     
+     // 디버그: SPI 트랜잭션 시작 모니터링
+     reg spi_en_prev;
+     always @(posedge axi_aclk) begin
+         if (~axi_aresetn) begin
+             spi_en_prev <= 1'b0;
+         end else begin
+             spi_en_prev <= spi_en;
+         end
+     end
+     wire spi_en_rising = spi_en && !spi_en_prev;
+    
     // SPI_master.v 인스턴스화
     // SPI_master의 en 입력은 level-sensitive이므로 spi_en을 직접 연결
     // SPI_master는 IDLE 상태에서 en && !busy일 때만 트랜잭션을 시작함
-    // 따라서 spi_en이 1이고 spi_busy가 0이면 트랜잭션이 시작됨
-    wire spi_en_to_master = spi_en && !spi_busy;
+    // spi_en이 1이고 spi_busy가 0이면 트랜잭션이 시작됨
+    // 수정: Level-sensitive가 아닌 Edge-sensitive로 변경하여 무한 루프 방지
+    // C 코드가 busy를 폴링하는 동안 spi_en을 0으로 내리지 못해 재시작되는 문제 해결
+    wire spi_en_to_master = spi_en_rising && !spi_busy;
     
     SPI_master u_spi_master (
         .clk            (axi_aclk),
         .rst            (~axi_aresetn), // Active Low Reset
-        .en             (spi_en_to_master),  // level-sensitive: spi_en이 1이고 busy가 아닐 때 트랜잭션 시작
+        .en             (spi_en_to_master),  // Edge-sensitive: spi_en 상승 에지에서만 시작
         .rw             (spi_rw),
         .addr           (spi_addr),
         .data_in        (spi_data_in),
@@ -116,16 +130,7 @@ module spi_axi_controller
         .state_out      (spi_state_out_int)  // State for testbench monitoring
     );
      
-     // 디버그: SPI 트랜잭션 시작 모니터링
-     reg spi_en_prev;
-     always @(posedge axi_aclk) begin
-         if (~axi_aresetn) begin
-             spi_en_prev <= 1'b0;
-         end else begin
-             spi_en_prev <= spi_en;
-         end
-     end
-     wire spi_en_rising = spi_en && !spi_en_prev;
+
      
      // 디버그 메시지 비활성화 (cosimulation 시 출력이 너무 많음)
      // always @(posedge axi_aclk) begin
@@ -143,7 +148,6 @@ module spi_axi_controller
     assign spi_cs_n = spi_cs_n_int;
     assign spi_sck  = spi_sck_int;
     assign spi_mosi = spi_mosi_int;
-    assign spi_state_out = spi_state_out_int;  // State output for testbench monitoring
      
      // spi_start는 디버깅용 (실제로는 사용하지 않음)
      assign spi_start = spi_en_rising && !spi_busy;
@@ -172,7 +176,7 @@ module spi_axi_controller
          AWLEN_reg   <= 'h0;
          AWSIZE_reg  <= 'b0;
          AWBURST_reg <= 'b0;
-         s_axi_awready     <= 1'b0;
+         s_axi_awready     <= 1'b1;  // FIXED: Ready to accept write requests in IDLE
          s_axi_wready      <= 1'b0;
          s_axi_bid         <=  'h0;
          s_axi_bresp       <= 2'b10; // SLAVE ERROR
@@ -191,20 +195,21 @@ module spi_axi_controller
      end else begin
          case (stateW)
          STW_IDLE: begin
+             s_axi_awready <= 1'b1;  // FIXED: Ready to accept AW in IDLE
+             s_axi_wready  <= 1'b0;
+             s_axi_bvalid  <= 1'b0;
              if ((s_axi_awvalid==1'b1)&&(s_axi_awready==1'b1)) begin
                   AWID_reg    <= s_axi_awid   ;
                   AWADDR_reg  <= s_axi_awaddr ;
                   AWLEN_reg   <= s_axi_awlen  ;
                   AWSIZE_reg  <= s_axi_awsize ;
                   AWBURST_reg <= s_axi_awburst;
-                  s_axi_awready     <= 1'b0;
+                  s_axi_awready     <= 1'b0;  // Deassert after accepting
                   s_axi_wready      <= 1'b1;
                   s_axi_bresp       <= 2'b00; // OKAY (기본 응답)
                   addrW       <= s_axi_awaddr; // 버스트 시작 주소 저장
                   beatW       <=  'h0;
                   stateW      <= STW_WRITE;
-             end else begin
-                  s_axi_awready <= 1'b1;
              end
              end // STW_IDLE
 
@@ -248,24 +253,25 @@ module spi_axi_controller
                         s_axi_bresp <= 2'b00; // OKAY
                     end
                      default: begin
-                         s_axi_bresp <= 2'b10; // SLVERR (잘못된 주소)
+                         s_axi_bresp <= 2'b00; // OKAY (Ignore invalid addr to prevent reset)
                      end
                  endcase
 
-                 // beatW 카운터 업데이트: 현재 beat 처리 후 다음 beat로
-                 if (s_axi_wlast==1'b1) begin
-                     // 마지막 beat이면 응답 준비
-                     // $display("[%0t] SPI_AXI Write Last Beat: Transitioning to STW_RSP", $time);
-                     s_axi_wready <= 1'b0;
-                     s_axi_bvalid <= 1'b1;
-                     s_axi_bid    <= AWID_reg;
-                     stateW <= STW_RSP;
-                 end else begin
-                     // 다음 beat를 위해 주소 업데이트
-                     beatW  <= beatW + 1;
-                     addrW  <= get_next_addr_wr(addrW,AWSIZE_reg,AWBURST_reg,AWLEN_reg);
-                 end
-             end
+                  // beatW 카운터 업데이트: 현재 beat 처리 후 다음 beat로
+                 // FIXED: beat count OR WLAST로 마지막 beat 확인 (Double Safety)
+                 if ((beatW >= AWLEN_reg) || s_axi_wlast) begin
+                      // 마지막 beat이면 응답 준비
+                      // $display("[%0t] SPI_AXI Write Last Beat: Transitioning to STW_RSP", $time);
+                      s_axi_wready <= 1'b0;
+                      s_axi_bvalid <= 1'b1;
+                      s_axi_bid    <= AWID_reg;
+                      stateW <= STW_RSP;
+                  end else begin
+                      // 다음 beat를 위해 주소 업데이트
+                      beatW  <= beatW + 1;
+                      addrW  <= get_next_addr_wr(addrW,AWSIZE_reg,AWBURST_reg,AWLEN_reg);
+                  end
+              end
              end // STW_WRITE
 
          STW_RSP: begin
@@ -334,7 +340,7 @@ module spi_axi_controller
          ARLEN_reg   <= 'h0;
          ARSIZE_reg  <= 'b0;
          ARBURST_reg <= 'b0;
-         s_axi_arready     <= 1'b0;
+         s_axi_arready     <= 1'b1;  // FIXED: Ready to accept read requests in IDLE
          s_axi_rid         <=  'h0;
          s_axi_rlast       <= 1'b0;
          s_axi_rresp       <= 2'b10; // SLAERROR
@@ -346,30 +352,26 @@ module spi_axi_controller
          stateR      <= STR_IDLE;
      end else begin
          case (stateR)
-         STR_IDLE: begin
-             if ((s_axi_arvalid==1'b1)&&(s_axi_arready==1'b1)) begin
-                  ARID_reg    <= s_axi_arid   ;
-                  ARADDR_reg  <= s_axi_araddr ;
-                  ARLEN_reg   <= s_axi_arlen  ;
-                  ARSIZE_reg  <= s_axi_arsize ;
-                  ARBURST_reg <= s_axi_arburst;
-                  s_axi_arready     <= 1'b0;
-                  s_axi_rid         <= s_axi_arid; // Set RID from incoming ARID (will use ARID_reg in next states)
-                  // mem_axi.v 방식: 첫 번째 주소를 그대로 사용 (single beat의 경우)
-                  // multi-beat의 경우 다음 주소를 미리 계산
-                  if (s_axi_arlen == 'h0) begin
-                      addrR <= s_axi_araddr; // single beat: 첫 번째 주소 그대로
-                  end else begin
-                      addrR <= get_next_addr_rd(s_axi_araddr, s_axi_arsize, s_axi_arburst, s_axi_arlen);
-                  end
-                  beatR       <=  'h0;
-                  stateR      <= STR_READ0;
-                  // $display("[%0t] SPI_AXI Read Start: ARID=0x%0X, ARADDR=0x%08X, ARLEN=%0d, addrR=0x%08X", 
-                  //        $time, s_axi_arid, s_axi_araddr, s_axi_arlen, addrR);
-             end else begin
-                 s_axi_arready <= 1'b1;
-             end
-             end // STR_IDLE
+          STR_IDLE: begin
+              s_axi_arready <= 1'b1;  // FIXED: Ready to accept AR in IDLE
+              if ((s_axi_arvalid==1'b1)&&(s_axi_arready==1'b1)) begin
+                   ARID_reg    <= s_axi_arid   ;
+                   ARADDR_reg  <= s_axi_araddr ;
+                   ARLEN_reg   <= s_axi_arlen  ;
+                   ARSIZE_reg  <= s_axi_arsize ;
+                   ARBURST_reg <= s_axi_arburst;
+                   s_axi_arready     <= 1'b0;  // Deassert after accepting
+                   s_axi_rid         <= s_axi_arid;
+                   addrR       <= s_axi_araddr; // Capture address
+                   beatR       <= 'h0;
+                   
+                   // AXI-Lite: Immediately prepare response (skip READ0)
+                   s_axi_rlast  <= 1'b1;  // Always last for single beat
+                   s_axi_rresp  <= 2'b00; // OKAY
+                   s_axi_rvalid <= 1'b1;  // Assert RVALID immediately
+                   stateR      <= STR_READ1; // Go to READ1 to wait for RREADY
+              end
+              end // STR_IDLE
              
          // (FSM 흐름은 mem_axi.v와 동일하게 유지하여 AXI Read Latency 보장)
          STR_READ0: begin 
@@ -384,22 +386,21 @@ module spi_axi_controller
                  stateR <= STR_READ3;
              end
              end // STR_READ0
-             
-         STR_READ1: begin // 1-beat (last)
-             s_axi_rlast  <= 1'b1;
-             s_axi_rdata  <= rdata_internal; // SPI 데이터 출력
-             s_axi_rresp  <= 2'b00;
-             s_axi_rvalid <= 1'b1;
-             // $display("[%0t] SPI_AXI Read Data: RID=0x%0X, RDATA=0x%08X, rdata_internal=0x%08X, RVALID=1, RREADY=%0d", 
-             //          $time, s_axi_rid, s_axi_rdata, rdata_internal, s_axi_rready);
-             if (s_axi_rready==1'b1) begin
-                 // Handshake 완료: RVALID && RREADY
-                 stateR <= STR_END;
-             end else begin
-                 // RREADY가 0이면 handshake 대기
-                 // stateR 유지 (STR_READ1에 머물러서 데이터 유지)
-             end
-             end // STR_READ1
+                      STR_READ1: begin // 1-beat (last) - simplified for AXI-Lite
+              // RVALID, RLAST, RRESP already set in STR_IDLE
+              // Now output data
+              s_axi_rdata  <= rdata_internal; // SPI 데이터 출력
+              if (s_axi_rready==1'b1) begin
+                  // Handshake 완료: RVALID && RREADY
+                  s_axi_rvalid <= 1'b0;  // Deassert RVALID
+                  s_axi_rlast  <= 1'b0;  // Deassert RLAST
+                  s_axi_arready <= 1'b1; // Ready for next request
+                  stateR <= STR_IDLE;    // Return to IDLE immediately
+              end else begin
+                  // RREADY가 0이면 handshake 대기
+                  // stateR 유지 (STR_READ1에 머물러서 데이터 유지)
+              end
+              end // STR_READ1
              
          STR_READ2: begin // 2-beat (1st)
              s_axi_rlast  <= 1'b0;

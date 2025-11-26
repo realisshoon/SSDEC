@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Nov  5 18:56:45 2025" VIVADOVERSION="2021.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Nov 26 10:27:27 2025" VIVADOVERSION="2021.2">
 
   <SYSTEMINFO ARCH="zynq" DEVICE="7z020" NAME="design_riscv_cache" PACKAGE="clg484" SPEEDGRADE="-1"/>
 
@@ -132,6 +132,31 @@
     <PORT DIR="O" NAME="i2c_scl" SIGIS="undef" SIGNAME="riscv_cache_soc_0_i2c_scl">
       <CONNECTIONS>
         <CONNECTION INSTANCE="riscv_cache_soc_0" PORT="i2c_scl"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="spi_sck" SIGIS="undef" SIGNAME="riscv_cache_soc_0_spi_sck">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="riscv_cache_soc_0" PORT="spi_sck"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="spi_mosi" SIGIS="undef" SIGNAME="riscv_cache_soc_0_spi_mosi">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="riscv_cache_soc_0" PORT="spi_mosi"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="spi_miso" SIGIS="undef" SIGNAME="External_Ports_spi_miso">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="riscv_cache_soc_0" PORT="spi_miso"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="spi_cs_n" SIGIS="undef" SIGNAME="riscv_cache_soc_0_spi_cs_n">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="riscv_cache_soc_0" PORT="spi_cs_n"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="spi_rst" POLARITY="ACTIVE_LOW" SIGIS="undef" SIGNAME="riscv_cache_soc_0_spi_rst">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="riscv_cache_soc_0" PORT="spi_rst"/>
       </CONNECTIONS>
     </PORT>
   </EXTERNALPORTS>
@@ -2106,6 +2131,7 @@
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_bram_ctrl_0" PORT="s_axi_aresetn"/>
             <CONNECTION INSTANCE="bfm_axi_if_0" PORT="m_axi_aresetn"/>
+            <CONNECTION INSTANCE="riscv_cache_soc_0" PORT="axi_aresetn"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -2141,11 +2167,13 @@
         <PARAMETER NAME="ADDR_UART" VALUE="0x90020000"/>
         <PARAMETER NAME="ADDR_GPIO" VALUE="0x90030000"/>
         <PARAMETER NAME="ADDR_I2C" VALUE="0x90040000"/>
+        <PARAMETER NAME="ADDR_SPI" VALUE="0xA0000000"/>
         <PARAMETER NAME="SIZE_PIC" VALUE="0x00001000"/>
         <PARAMETER NAME="SIZE_TIMER" VALUE="0x00001000"/>
         <PARAMETER NAME="SIZE_UART" VALUE="0x00001000"/>
         <PARAMETER NAME="SIZE_GPIO" VALUE="0x00001000"/>
         <PARAMETER NAME="SIZE_I2C" VALUE="0x00001000"/>
+        <PARAMETER NAME="SIZE_SPI" VALUE="0x00001000"/>
         <PARAMETER NAME="NUM_IRQ" VALUE="3"/>
         <PARAMETER NAME="IRQ_TIMER" VALUE="0"/>
         <PARAMETER NAME="IRQ_UART" VALUE="1"/>
@@ -2217,9 +2245,34 @@
             <CONNECTION INSTANCE="rstmgra_0" PORT="cpu_resetn"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="axi_aresetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="rstmgra_0_bus_resetn">
+        <PORT DIR="O" NAME="spi_cs_n" SIGIS="undef" SIGNAME="riscv_cache_soc_0_spi_cs_n">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="rstmgra_0" PORT="bus_resetn"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="spi_cs_n"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="spi_sck" SIGIS="undef" SIGNAME="riscv_cache_soc_0_spi_sck">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="spi_sck"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="spi_mosi" SIGIS="undef" SIGNAME="riscv_cache_soc_0_spi_mosi">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="spi_mosi"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="spi_miso" SIGIS="undef" SIGNAME="External_Ports_spi_miso">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="spi_miso"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="spi_rst" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="riscv_cache_soc_0_spi_rst">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="spi_rst"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="axi_aresetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="proc_sys_reset_0_peripheral_aresetn">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="proc_sys_reset_0" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="I" NAME="axi_aclk" SIGIS="clk" SIGNAME="clk_wiz_0_clk_out2">
@@ -2686,11 +2739,7 @@
             <CONNECTION INSTANCE="bfm_axi_if_0" PORT="GPOUT"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="bus_resetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="rstmgra_0_bus_resetn">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="riscv_cache_soc_0" PORT="axi_aresetn"/>
-          </CONNECTIONS>
-        </PORT>
+        <PORT DIR="O" NAME="bus_resetn" POLARITY="ACTIVE_LOW" SIGIS="rst"/>
         <PORT DIR="O" NAME="cpu_resetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="rstmgra_0_cpu_resetn">
           <CONNECTIONS>
             <CONNECTION INSTANCE="riscv_cache_soc_0" PORT="cpu_resetn"/>

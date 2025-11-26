@@ -94,11 +94,10 @@ OPTRACE "Adding files" START { }
 read_verilog {
   /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/axi4_to_lite/rtl/verilog/axi4_to_lite_fifo_sync.v
   /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/gpio_axi_lite/rtl/verilog/gpio_axi_lite_if.v
-  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_master.v
-  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_axi_lite_if.v
   /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/pic_axi_lite/rtl/verilog/pic_core.v
   /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/pic_axi_lite/rtl/verilog/pic_axi_lite_if.v
   /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_defs.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/spi_axi/rtl/verilog/spi_master.v
   /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/timer_axi_lite/rtl/verilog/timer_tick.v
   /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/timer_axi_lite/rtl/verilog/timer_axi_lite_if.v
   /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_fifo_sync_wt.v
@@ -110,11 +109,10 @@ read_verilog {
 }
 set_property file_type "Verilog Header" [get_files /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/axi4_to_lite/rtl/verilog/axi4_to_lite_fifo_sync.v]
 set_property file_type "Verilog Header" [get_files /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/gpio_axi_lite/rtl/verilog/gpio_axi_lite_if.v]
-set_property file_type "Verilog Header" [get_files /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_master.v]
-set_property file_type "Verilog Header" [get_files /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_axi_lite_if.v]
 set_property file_type "Verilog Header" [get_files /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/pic_axi_lite/rtl/verilog/pic_core.v]
 set_property file_type "Verilog Header" [get_files /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/pic_axi_lite/rtl/verilog/pic_axi_lite_if.v]
 set_property file_type "Verilog Header" [get_files /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_defs.v]
+set_property file_type "Verilog Header" [get_files /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/spi_axi/rtl/verilog/spi_master.v]
 set_property file_type "Verilog Header" [get_files /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/timer_axi_lite/rtl/verilog/timer_tick.v]
 set_property file_type "Verilog Header" [get_files /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/timer_axi_lite/rtl/verilog/timer_axi_lite_if.v]
 set_property file_type "Verilog Header" [get_files /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_fifo_sync_wt.v]
@@ -138,7 +136,6 @@ read_verilog -library xil_defaultlib {
   /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_mux.v
   /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/dcache_pmem_mux.v
   /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/gpio_axi_lite/rtl/verilog/gpio_axi_lite.v
-  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/i2c_axi_lite/rtl/verilog/i2c_axi_lite.v
   /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/icache.v
   /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/icache_data_ram.v
   /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/top_cache_axi/src_v/icache_tag_ram.v
@@ -161,6 +158,7 @@ read_verilog -library xil_defaultlib {
   /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_pipe_ctrl.v
   /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_regfile.v
   /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/riscv/core/riscv/riscv_xilinx_2r1w.v
+  /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/spi_axi/rtl/verilog/spi_axi_if.v
   /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/timer_axi_lite/rtl/verilog/timer_axi_lite.v
   /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/ips/uart_axi_lite/rtl/verilog/uart_axi_lite.v
   /home/sogang/pjt/team2/codes/riscv_platform/riscv32im_soc/hw/rtl/verilog/riscv_cache_soc.v
