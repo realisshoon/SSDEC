@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FPGA 기반 도어락 프로젝트 회고</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Noto Sans KR", sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        overflow: hidden;
+      }
+
+      .slide-container {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .slide {
+        width: 1440px;
+        height: 810px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        display: none;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .slide.active {
+        display: flex;
+        animation: slideIn 0.5s ease-out;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .slide-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 40px 60px;
+        color: white;
+      }
+
+      .slide-header h1 {
+        font-size: 48px;
+        font-weight: 900;
+        margin-bottom: 10px;
+      }
+
+      .slide-header .subtitle {
+        font-size: 24px;
+        font-weight: 300;
+        opacity: 0.9;
+      }
+
+      .slide-content {
+        padding: 50px 60px;
+        flex: 1;
+        overflow-y: auto;
+      }
+
+      .slide-title {
+        font-size: 42px;
+        font-weight: 700;
+        color: #667eea;
+        margin-bottom: 40px;
+        border-bottom: 4px solid #667eea;
+        padding-bottom: 15px;
+      }
+
+      .content-section {
+        margin-bottom: 35px;
+      }
+
+      .content-section h3 {
+        font-size: 28px;
+        color: #333;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+      }
+
+      .content-section h3::before {
+        content: "";
+        width: 8px;
+        height: 28px;
+        background: #667eea;
+        margin-right: 15px;
+        border-radius: 4px;
+      }
+
+      .bullet-list {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .bullet-list li {
+        padding: 12px 0 12px 35px;
+        position: relative;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #555;
+      }
+
+      .bullet-list li::before {
+        content: "▸";
+        position: absolute;
+        left: 0;
+        color: #764ba2;
+        font-size: 24px;
+      }
+
+      .highlight-box {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        color: white;
+        padding: 25px 30px;
+        border-radius: 15px;
+        margin: 20px 0;
+        box-shadow: 0 10px 30px rgba(240, 147, 251, 0.3);
+      }
+
+      .highlight-box h4 {
+        font-size: 24px;
+        margin-bottom: 12px;
+        font-weight: 700;
+      }
+
+      .highlight-box p {
+        font-size: 18px;
+        line-height: 1.6;
+        opacity: 0.95;
+      }
+
+      .info-box {
+        background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        padding: 25px 30px;
+        border-radius: 15px;
+        margin: 20px 0;
+        border-left: 5px solid #667eea;
+      }
+
+      .info-box h4 {
+        font-size: 22px;
+        color: #333;
+        margin-bottom: 10px;
+        font-weight: 700;
+      }
+
+      .info-box p {
+        font-size: 18px;
+        color: #555;
+        line-height: 1.6;
+      }
+
+      .two-column {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+      }
+
+      .code-block {
+        background: #282c34;
+        color: #abb2bf;
+        padding: 20px;
+        border-radius: 10px;
+        font-family: "Courier New", monospace;
+        font-size: 14px;
+        overflow-x: auto;
+        margin: 15px 0;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .code-block .keyword {
+        color: #c678dd;
+      }
+
+      .code-block .comment {
+        color: #5c6370;
+        font-style: italic;
+      }
+
+      .navigation {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        display: flex;
+        gap: 15px;
+        z-index: 1000;
+      }
+
+      .nav-btn {
+        background: white;
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .nav-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      }
+
+      .slide-number {
+        position: absolute;
+        bottom: 20px;
+        left: 60px;
+        font-size: 18px;
+        color: #999;
+        font-weight: 300;
+      }
+
+      .icon {
+        display: inline-block;
+        margin-right: 10px;
+        font-size: 28px;
+      }
+
+      .progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        transition: width 0.3s ease;
+        z-index: 1001;
+      }
+
+      .tag {
+        display: inline-block;
+        background: #667eea;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 14px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
+
+      .status-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 16px;
+        font-weight: 600;
+        margin-right: 10px;
+      }
+
+      .status-badge.success {
+        background: #d4edda;
+        color: #155724;
+      }
+
+      .status-badge.warning {
+        background: #fff3cd;
+        color: #856404;
+      }
+
+      .status-badge.error {
+        background: #f8d7da;
+        color: #721c24;
+      }
+
+      .timeline {
+        position: relative;
+        padding-left: 30px;
+        margin: 20px 0;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: #667eea;
+      }
+
+      .timeline-item {
+        position: relative;
+        padding: 15px 0;
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: -36px;
+        top: 20px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #764ba2;
+        border: 3px solid white;
+        box-shadow: 0 0 0 3px #667eea;
+      }
+
+      .timeline-item h4 {
+        font-size: 20px;
+        color: #333;
+        margin-bottom: 5px;
+      }
+
+      .timeline-item p {
+        font-size: 16px;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <div class="slide-container">
+      <!-- Slide 1: Title -->
+      <div class="slide active">
+        <div class="slide-header">
+          <h1>🔐 FPGA 기반 도어락 프로젝트</h1>
+          <div class="subtitle">회고 및 기술적 개선사항</div>
+        </div>
+        <div
+          class="slide-content"
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+          "
+        >
+          <h2
+            style="
+              font-size: 56px;
+              color: #667eea;
+              margin-bottom: 30px;
+              text-align: center;
+            "
+          >
+            실패에서 배운 교훈
+          </h2>
+          <p
+            style="
+              font-size: 28px;
+              color: #666;
+              text-align: center;
+              margin-bottom: 40px;
+            "
+          >
+            "복잡한 시스템은 하나씩 쌓아올려야 한다"
+          </p>
+          <div style="display: flex; gap: 20px; margin-top: 40px">
+            <span class="tag">RISC-V</span>
+            <span class="tag">FPGA</span>
+            <span class="tag">SPI</span>
+            <span class="tag">AXI-Lite</span>
+            <span class="tag">ZedBoard</span>
+          </div>
+          <div style="margin-top: 60px; font-size: 20px; color: #999">
+            Team 2 | 2024.09.29 ~ 2024.11.28
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2: Project Overview -->
+      <div class="slide">
+        <div class="slide-content">
+          <h2 class="slide-title">📌 프로젝트 개요</h2>
+
+          <div class="two-column">
+            <div>
+              <div class="content-section">
+                <h3>시스템 구성</h3>
+                <ul class="bullet-list">
+                  <li>RISC-V RV32IM Core (5-stage Pipeline)</li>
+                  <li>AXI-Lite Bus 기반 Peripheral 통합</li>
+                  <li>RFID + 키패드 2단계 인증</li>
+                  <li>EEPROM 기반 영구 데이터 저장</li>
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <div class="content-section">
+                <h3>주요 모듈</h3>
+                <ul class="bullet-list">
+                  <li>
+                    <span class="status-badge success">✓</span> GPIO
+                    (Keypad/LED)
+                  </li>
+                  <li>
+                    <span class="status-badge success">✓</span> UART (Debug
+                    Console)
+                  </li>
+                  <li>
+                    <span class="status-badge success">✓</span> I²C (EEPROM)
+                  </li>
+                  <li>
+                    <span class="status-badge error">✗</span> SPI (RFID Reader)
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="highlight-box">
+            <h4>🎯 프로젝트 목표</h4>
+            <p>
+              SoC 아키텍처 설계 및 HW/SW Co-design 역량 확보를 통한 실무형
+              임베디드 시스템 개발 경험 획득
+            </p>
+          </div>
+
+          <div class="info-box">
+            <h4>📊 개발 성과</h4>
+            <p>
+              RTL 코드 약 5,000줄, Firmware 약 1,200줄 | FPGA 리소스 사용률 28%
+              (LUT) | 필수 기능 100% 완료, 확장 기능 80% 완료
+            </p>
+          </div>
+        </div>
+        <div class="slide-number">2</div>
+      </div>
+
+      <!-- Slide 3: Problems - SPI Issue -->
+      <div class="slide">
+        <div class="slide-content">
+          <h2 class="slide-title">😔 아쉬운 점: SPI 펌웨어 미완성</h2>
+
+          <div class="content-section">
+            <h3>현상</h3>
+            <div
+              class="highlight-box"
+              style="
+                background: linear-gradient(135deg, #f5576c 0%, #e74c3c 100%);
+              "
+            >
+              <h4>🚨 MFRC522 RFID Reader와의 SPI 통신 실패</h4>
+              <ul class="bullet-list" style="color: white; margin-top: 15px">
+                <li>
+                  MISO 신호가 항상
+                  <code
+                    style="
+                      background: rgba(255, 255, 255, 0.2);
+                      padding: 2px 8px;
+                      border-radius: 4px;
+                    "
+                    >0x00</code
+                  >으로 읽힘
+                </li>
+                <li>
+                  RFID 카드 버전 레지스터 읽기 실패 (기대값:
+                  <code
+                    style="
+                      background: rgba(255, 255, 255, 0.2);
+                      padding: 2px 8px;
+                      border-radius: 4px;
+                    "
+                    >0x91</code
+                  >
+                  또는
+                  <code
+                    style="
+                      background: rgba(255, 255, 255, 0.2);
+                      padding: 2px 8px;
+                      border-radius: 4px;
+                    "
+                    >0x92</code
+                  >)
+                </li>
+                <li>하드웨어 Loopback 테스트에서도 동일한 문제 발생</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h3>원인 분석 (3가지 레벨)</h3>
+            <div class="two-column">
+              <div class="info-box">
+                <h4>1️⃣ 하드웨어</h4>
+                <ul class="bullet-list" style="margin-top: 10px">
+                  <li>Pmod JC 핀 배선 문제</li>
+                  <li>IOSTANDARD 불일치</li>
+                  <li>Tri-state 버퍼 타이밍</li>
+                </ul>
+              </div>
+              <div class="info-box">
+                <h4>2️⃣ 펌웨어</h4>
+                <ul class="bullet-list" style="margin-top: 10px">
+                  <li>레지스터 매핑 오류</li>
+                  <li>샘플링 타이밍 문제</li>
+                  <li>CPOL/CPHA 설정</li>
+                </ul>
+              </div>
+            </div>
+            <div class="info-box">
+              <h4>3️⃣ RTL 설계</h4>
+              <ul class="bullet-list" style="margin-top: 10px">
+                <li>AXI Handshake 동기화 문제</li>
+                <li>SPI Master FSM 상태 전이 오류</li>
+                <li>MISO Tri-state 제어 로직 미흡</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="slide-number">3</div>
+      </div>
+
+      <!-- Slide 4: More Problems -->
+      <div class="slide">
+        <div class="slide-content">
+          <h2 class="slide-title">😔 기타 아쉬운 점</h2>
+
+          <div class="content-section">
+            <h3><span class="icon">⚠️</span>통합 테스트 부족</h3>
+            <ul class="bullet-list">
+              <li>개별 모듈 검증은 완료했으나 전체 시스템 통합 테스트 미흡</li>
+              <li>RFID + 키패드 + EEPROM 통합 시나리오 실제 검증 부족</li>
+              <li>Edge Case 처리 미비 (예: EEPROM 읽기 중 인터럽트 발생)</li>
+            </ul>
+          </div>
+
+          <div class="content-section">
+            <h3><span class="icon">⏰</span>시간 관리 실패</h3>
+            <ul class="bullet-list">
+              <li>SPI 기능을 초기 계획보다 늦게 착수</li>
+              <li>디버깅 시간 과소평가 (예상 1주 → 실제 3주 소요)</li>
+              <li>최종 2주간 SPI 문제 해결에 집중하느라 문서화 부족</li>
+            </ul>
+          </div>
+
+          <div class="content-section">
+            <h3><span class="icon">🔧</span>하드웨어 검증 환경 부족</h3>
+            <ul class="bullet-list">
+              <li>
+                Oscilloscope/Logic Analyzer 미보유로 실제 SPI 신호 파형 확인
+                불가
+              </li>
+              <li>하드웨어 레벨 디버깅 제한</li>
+              <li>추측에 의존한 문제 해결 시도</li>
+            </ul>
+          </div>
+
+          <div class="highlight-box">
+            <h4>💡 핵심 깨달음</h4>
+            <p>
+              완벽한 설계보다 "검증 가능한 설계"가 중요하며, 시간은 항상
+              예상보다 부족하다. 특히 디버깅 시간은 예상의 3배를 확보해야 한다.
+            </p>
+          </div>
+        </div>
+        <div class="slide-number">4</div>
+      </div>
+
+      <!-- Slide 5: Lessons Learned -->
+      <div class="slide">
+        <div class="slide-content">
+          <h2 class="slide-title">📚 교훈: "하나씩 쌓아올려야 한다"</h2>
+
+          <div
+            class="highlight-box"
+            style="
+              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            "
+          >
+            <h4>💎 핵심 교훈</h4>
+            <p style="font-size: 24px; font-weight: 700; margin-top: 15px">
+              "복잡한 시스템은 검증된 작은 블록의 조합이다"
+            </p>
+          </div>
+
+          <div class="content-section">
+            <h3>Bottom-Up 접근의 중요성</h3>
+            <div class="timeline">
+              <div class="timeline-item">
+                <h4>1단계: GPIO 단독 테스트</h4>
+                <p>Keypad 입력과 LED 출력을 완전히 검증</p>
+              </div>
+              <div class="timeline-item">
+                <h4>2단계: GPIO + UART 통합</h4>
+                <p>버스 통신과 동시 동작 확인</p>
+              </div>
+              <div class="timeline-item">
+                <h4>3단계: + I²C 추가</h4>
+                <p>EEPROM 읽기/쓰기 안정성 검증</p>
+              </div>
+              <div class="timeline-item">
+                <h4>4단계: 전체 시스템</h4>
+                <p>모든 모듈이 검증된 상태에서 최종 통합</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="two-column">
+            <div
+              class="info-box"
+              style="
+                background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
+              "
+            >
+              <h4>✅ I²C 성공 사례</h4>
+              <p>
+                RTL 시뮬레이션 → Testbench 검증 → FPGA 포팅 → Firmware API →
+                통합 (모든 단계 성공)
+              </p>
+            </div>
+            <div
+              class="info-box"
+              style="
+                background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+              "
+            >
+              <h4>❌ SPI 실패 원인</h4>
+              <p>
+                RTL 시뮬레이션 불충분 → AXI 검증 생략 → 통합 단계에서 문제 발견
+                → 시간 부족
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="slide-number">5</div>
+      </div>
+
+      <!-- Slide 6: Technical Improvements 1 -->
+      <div class="slide">
+        <div class="slide-content">
+          <h2 class="slide-title">🔧 기술적 개선사항 (1/2)</h2>
+
+          <div class="content-section">
+            <h3>1. SPI 통신 안정화 방안</h3>
+
+            <h4 style="font-size: 20px; color: #667eea; margin: 20px 0 10px 0">
+              하드웨어 레벨: MISO Tri-state 제어 개선
+            </h4>
+            <div class="code-block">
+              <span class="comment">// MISO Tri-state 제어 개선</span>
+              <span class="keyword">always</span> @(<span class="keyword"
+                >posedge</span
+              >
+              spi_clk <span class="keyword">or negedge</span> rst_n)
+              <span class="keyword">begin</span>
+              <span class="keyword">if</span> (!rst_n)
+              <span class="keyword">begin</span> miso_buf &lt;= 1'b0; miso_oe
+              &lt;= 1'b0; <span class="comment">// Output Enable</span>
+              <span class="keyword">end</span>
+              <span class="keyword">else begin</span>
+              <span class="keyword">if</span> (spi_state == READ)
+              <span class="keyword">begin</span> miso_oe &lt;= 1'b1; miso_buf
+              &lt;= shift_reg[7]; <span class="comment">// MSB first</span>
+              <span class="keyword">end</span>
+              <span class="keyword">else begin</span> miso_oe &lt;= 1'b0;
+              <span class="comment">// High-Z</span>
+              <span class="keyword">end</span>
+              <span class="keyword">end</span>
+              <span class="keyword">end</span>
+
+              <span class="keyword">assign</span> spi_miso = (miso_oe) ?
+              miso_buf : 1'bz;
+            </div>
+
+            <h4 style="font-size: 20px; color: #667eea; margin: 20px 0 10px 0">
+              펌웨어 레벨: Retry 로직 추가
+            </h4>
+            <div class="code-block">
+              <span class="comment">// SPI 통신 Retry 로직</span>
+              uint8_t spi_read_register_robust(uint8_t reg_addr) {
+              <span class="keyword">for</span> (<span class="keyword">int</span>
+              retry = 0; retry &lt; SPI_RETRY_MAX; retry++) { uint8_t data =
+              spi_read_register(reg_addr); <span class="keyword">if</span> (data
+              != 0x00 &amp;&amp; data != 0xFF) {
+              <span class="keyword">return</span> data;
+              <span class="comment">// Valid data</span>
+              } delay_us(1000); }
+              <span class="keyword">return</span> 0xFF;
+              <span class="comment">// Error</span>
+              }
+            </div>
+          </div>
+        </div>
+        <div class="slide-number">6</div>
+      </div>
+
+      <!-- Slide 7: Technical Improvements 2 -->
+      <div class="slide">
+        <div class="slide-content">
+          <h2 class="slide-title">🔧 기술적 개선사항 (2/2)</h2>
+
+          <div class="content-section">
+            <h3>2. 통합 검증 강화</h3>
+            <ul class="bullet-list">
+              <li>
+                <strong>Co-simulation 환경 구축</strong>: Hardware + Software
+                동시 검증
+              </li>
+              <li>
+                <strong>Assertion 기반 검증</strong>: SPI/AXI 프로토콜 자동 검증
+              </li>
+              <li>
+                <strong>Regression Test 자동화</strong>: CI/CD 파이프라인 구축
+              </li>
+            </ul>
+          </div>
+
+          <div class="content-section">
+            <h3>3. 모듈화 및 재사용성 개선</h3>
+            <div class="info-box">
+              <h4>Parameterizable SPI Master 설계</h4>
+              <p>
+                CLK_DIV, DATA_WIDTH, CPOL, CPHA 등을 파라미터로 설정 가능하도록
+                개선하여 다양한 SPI 디바이스에 재사용 가능
+              </p>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h3>4. 디버깅 향상</h3>
+            <div class="two-column">
+              <div class="info-box">
+                <h4>ILA 추가</h4>
+                <p>Vivado ILA를 통한 FPGA 내부 신호 실시간 모니터링</p>
+              </div>
+              <div class="info-box">
+                <h4>Clock Gating</h4>
+                <p>SPI 미사용 시 클럭 차단으로 전력 최적화</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="highlight-box">
+            <h4>🎯 개선 효과 예상</h4>
+            <p>
+              디버깅 시간 50% 단축, 코드 재사용성 300% 향상, FPGA 전력 소모 30%
+              감소
+            </p>
+          </div>
+        </div>
+        <div class="slide-number">7</div>
+      </div>
+
+      <!-- Slide 8: Future Plans -->
+      <div class="slide">
+        <div class="slide-content">
+          <h2 class="slide-title">🎯 향후 개선 계획</h2>
+
+          <div class="content-section">
+            <h3>단기 목표 (1개월)</h3>
+            <div
+              class="info-box"
+              style="
+                background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+              "
+            >
+              <h4>SPI 통신 완전 해결</h4>
+              <ul class="bullet-list" style="margin-top: 10px">
+                <li>Logic Analyzer로 실제 파형 확인</li>
+                <li>MISO 신호 근본 원인 파악</li>
+                <li>MFRC522 버전 레지스터 성공적 읽기</li>
+                <li>RFID 카드 UID 안정적 획득</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h3>중기 목표 (3개월)</h3>
+            <div class="two-column">
+              <div class="info-box">
+                <h4>CI/CD 구축</h4>
+                <ul class="bullet-list" style="margin-top: 10px">
+                  <li>Jenkins 자동 빌드</li>
+                  <li>Regression Test</li>
+                  <li>Code Coverage 80%+</li>
+                </ul>
+              </div>
+              <div class="info-box">
+                <h4>추가 기능</h4>
+                <ul class="bullet-list" style="margin-top: 10px">
+                  <li>I²S 오디오 완성</li>
+                  <li>웹 관리 인터페이스</li>
+                  <li>SD Card 로깅</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h3>장기 목표 (6개월)</h3>
+            <div class="highlight-box">
+              <h4>🚀 제품화 준비</h4>
+              <p>
+                PCB 설계 및 제작, 케이스 디자인, 인증 규격 준수 (CE, FCC), 전력
+                소모 50% 감소, 응답 시간 100ms 이하
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="slide-number">8</div>
+      </div>
+
+      <!-- Slide 9: Key Takeaways -->
+      <div class="slide">
+        <div class="slide-content">
+          <h2 class="slide-title">💭 최종 소감 및 적용 사항</h2>
+
+          <div class="content-section">
+            <h3>프로젝트를 통해 배운 것</h3>
+            <div
+              class="highlight-box"
+              style="
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+              "
+            >
+              <h4>1️⃣ "완벽한 설계"보다 "검증 가능한 설계"</h4>
+              <p>
+                복잡한 기능을 한 번에 구현하지 말고 작은 단위로 쪼개서 각각 검증
+                후 통합
+              </p>
+            </div>
+
+            <div
+              class="highlight-box"
+              style="
+                background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+              "
+            >
+              <h4>2️⃣ "시간은 항상 부족하다"</h4>
+              <p>
+                디버깅 시간은 예상의 3배 확보, 버퍼를 충분히 확보, Critical
+                Path를 먼저 해결
+              </p>
+            </div>
+
+            <div
+              class="highlight-box"
+              style="
+                background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+              "
+            >
+              <h4 style="color: #333">3️⃣ "실패도 자산이다"</h4>
+              <p style="color: #555">
+                SPI 통신 실패를 통해 더 많이 배움. 다음 프로젝트에서 같은 실수
+                방지 가능
+              </p>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h3>다음 프로젝트에 적용할 점</h3>
+            <ul class="bullet-list">
+              <li>✅ <strong>철저한 단위 테스트</strong>부터 시작</li>
+              <li>✅ <strong>문서화</strong>를 코딩과 동시에 진행</li>
+              <li>✅ <strong>주간 마일스톤</strong> 설정 및 진행률 체크</li>
+              <li>✅ <strong>코드 리뷰</strong> 문화 정착</li>
+              <li>✅ <strong>리스크 관리</strong> 사전 수행</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-number">9</div>
+      </div>
+
+      <!-- Slide 10: Conclusion -->
+      <div class="slide">
+        <div class="slide-header">
+          <h1>감사합니다</h1>
+          <div class="subtitle">Questions & Discussion</div>
+        </div>
+        <div
+          class="slide-content"
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+          "
+        >
+          <div style="text-align: center; margin-bottom: 50px">
+            <h2 style="font-size: 48px; color: #667eea; margin-bottom: 20px">
+              "작은 성공을 쌓아 큰 시스템을 완성한다"
+            </h2>
+            <p style="font-size: 24px; color: #666">
+              RISC-V 기반 FPGA 도어락 프로젝트 회고
+            </p>
+          </div>
+
+          <div
+            class="highlight-box"
+            style="
+              width: 80%;
+              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            "
+          >
+            <h4>📂 프로젝트 자료</h4>
+            <p style="margin-top: 15px">
+              GitHub Repository: /home/sogang/pjt/team2<br />
+              회고 문서: 프로젝트_회고_및_개선사항.md<br />
+              발표자: Team 2 | 날짜: 2024.11.28
+            </p>
+          </div>
+
+          <div style="margin-top: 50px; display: flex; gap: 15px">
+            <span class="tag">#RISC-V</span>
+            <span class="tag">#FPGA</span>
+            <span class="tag">#SoC</span>
+            <span class="tag">#AXI-Lite</span>
+            <span class="tag">#SPI</span>
+            <span class="tag">#Lessons-Learned</span>
+          </div>
+        </div>
+        <div class="slide-number">10</div>
+      </div>
+    </div>
+
+    <div class="navigation">
+      <button class="nav-btn" onclick="prevSlide()">◀</button>
+      <button class="nav-btn" onclick="nextSlide()">▶</button>
+    </div>
+
+    <script>
+      let currentSlide = 0;
+      const slides = document.querySelectorAll(".slide");
+      const totalSlides = slides.length;
+      const progressBar = document.getElementById("progressBar");
+
+      function showSlide(n) {
+        slides[currentSlide].classList.remove("active");
+        currentSlide = (n + totalSlides) % totalSlides;
+        slides[currentSlide].classList.add("active");
+        updateProgressBar();
+      }
+
+      function nextSlide() {
+        showSlide(currentSlide + 1);
+      }
+
+      function prevSlide() {
+        showSlide(currentSlide - 1);
+      }
+
+      function updateProgressBar() {
+        const progress = ((currentSlide + 1) / totalSlides) * 100;
+        progressBar.style.width = progress + "%";
+      }
+
+      // Keyboard navigation
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight" || e.key === " ") {
+          nextSlide();
+        } else if (e.key === "ArrowLeft") {
+          prevSlide();
+        }
+      });
+
+      // Initialize progress bar
+      updateProgressBar();
+    </script>
+  </body>
+</html>

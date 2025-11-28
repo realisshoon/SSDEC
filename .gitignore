@@ -117,3 +117,29 @@ build/
 !*.sh
 !**/*.sh
 
+### Vivado IP Generated Files ###
+# Processing System IP (auto-generated, can be regenerated)
+**/design_*_processing_system7_0_0/
+
+# Vivado project generated directories
+*.gen/
+*.runs/
+*.sim/
+*.ip_user_files/
+*.hw/
+*.srcs/sources_1/bd/*/hdl/
+
+# Vivado project files (too large or auto-generated)
+*.xpr
+*.bd
+*.bda
+*.xci
+
+### Large Binary Files ###
+# PDF files (can be regenerated or too large)
+*.pdf
+
+# PPTX files (source files should be tracked elsewhere)
+# Uncomment if you want to ignore PPTX
+# *.pptx
+
